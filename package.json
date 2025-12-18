@@ -21,6 +21,7 @@
     "lint:grammar": "textlint \"**/*.html\"",
     "lint:readability": "node scripts/readability-check.js",
     "lint:meta": "node scripts/metadata-check.js",
+    "lint:seo": "node scripts/seo-content.js",
     "lint:content": "npm run lint:spelling && npm run lint:grammar && npm run lint:readability",
     "lint:js": "eslint '**/*.js' --ignore-pattern 'node_modules' --ignore-pattern 'test/fixtures/invalid/**'",
     "lint:js:fix": "eslint '**/*.js' --fix --ignore-pattern 'node_modules' --ignore-pattern 'test/fixtures/invalid/**'",

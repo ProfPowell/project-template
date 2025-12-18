@@ -1,0 +1,10 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#f59e0b"/>
+  <circle cx="150" cy="100" r="40" fill="#fbbf24"/>
+  <circle cx="135" cy="90" r="5" fill="#1f2937"/>
+  <circle cx="165" cy="90" r="5" fill="#1f2937"/>
+  <path d="M 130 110 Q 150 120 170 110" stroke="#1f2937" stroke-width="2" fill="none"/>
+  <rect x="100" y="150" width="100" height="80" fill="#fbbf24"/>
+  <text x="150" y="260" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle" font-weight="bold">Lisa Martinez</text>
+  <text x="150" y="280" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">Team Member</text>
+</svg>

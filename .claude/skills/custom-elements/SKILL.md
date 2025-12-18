@@ -1,0 +1,208 @@
+---
+name: custom-elements
+description: Define and use custom HTML elements. Use when creating new components, defining custom tags, or using project-specific elements beyond standard HTML5.
+allowed-tools: Read, Write, Edit
+---
+
+# Custom Elements Skill
+
+This skill provides guidance for defining and using custom HTML elements in this project.
+
+## Using Existing Elements
+
+Check `elements.json` for defined custom elements:
+
+| Element | Type | Purpose |
+|---------|------|---------|
+| `product-card` | Block | Product display with sku, price attributes |
+| `icon-element` | Void | Self-closing icon with required name attribute |
+| `user-avatar` | Void | Avatar with required src, alt and optional size |
+| `status-badge` | Inline | Status indicator with type (success/warning/error/info) |
+| `data-table` | Block | Data table with source, sortable attributes |
+| `nav-menu` | Block | Navigation with orientation (horizontal/vertical) |
+
+## Usage Examples
+
+```html
+<!-- Product card with attributes -->
+<product-card sku="ABC123" price="29.99">
+  <h2>Product Name</h2>
+  <p>Product description here.</p>
+</product-card>
+
+<!-- Void element (self-closing) -->
+<icon-element name="star"/>
+<user-avatar src="/avatar.jpg" alt="John Doe" size="medium"/>
+
+<!-- Inline element -->
+<p>Status: <status-badge type="success">Active</status-badge></p>
+
+<!-- Block elements -->
+<nav-menu orientation="horizontal">
+  <ul>
+    <li><a href="/">Home</a></li>
+  </ul>
+</nav-menu>
+
+<data-table source="/api/users" sortable="">
+  <!-- Table content -->
+</data-table>
+```
+
+## Ad-hoc Custom Elements
+
+For one-off custom elements not worth defining in `elements.json`, use the `x-*` prefix:
+
+```html
+<x-highlight>Important text</x-highlight>
+<x-tooltip data-text="Help text">Hover me</x-tooltip>
+<x-badge>New</x-badge>
+```
+
+The `x-*` pattern is excluded from validation by default.
+
+## Defining New Elements
+
+### Using Slash Command
+
+```
+/add-element my-widget
+```
+
+### Manual Definition
+
+Add to `elements.json`:
+
+```json
+{
+  "my-element": {
+    "flow": true,
+    "phrasing": false,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "required-attr": { "required": true },
+      "optional-attr": { "required": false }
+    }
+  }
+}
+```
+
+## Element Schema Reference
+
+### Content Model
+
+| Property | Values | Description |
+|----------|--------|-------------|
+| `flow` | boolean | Can appear where flow content is expected |
+| `phrasing` | boolean | Can appear where phrasing content is expected |
+| `void` | boolean | Self-closing element (no content) |
+| `permittedContent` | array | What content is allowed inside |
+
+### Permitted Content Values
+
+- `@flow` - Flow content (most elements)
+- `@phrasing` - Phrasing content (inline elements)
+- `@interactive` - Interactive elements
+- `["p", "div"]` - Specific elements only
+
+### Attribute Definitions
+
+```json
+{
+  "attributes": {
+    "name": {
+      "required": true           // Must be present
+    },
+    "type": {
+      "required": false,
+      "enum": ["a", "b", "c"]    // Restricted values
+    },
+    "enabled": {
+      "boolean": true            // Boolean attribute
+    }
+  }
+}
+```
+
+## Complete Examples
+
+### Block Element
+
+```json
+{
+  "card-component": {
+    "flow": true,
+    "phrasing": false,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "variant": {
+        "required": false,
+        "enum": ["default", "outlined", "elevated"]
+      },
+      "clickable": {
+        "boolean": true
+      }
+    }
+  }
+}
+```
+
+Usage:
+```html
+<card-component variant="elevated" clickable="">
+  <h2>Card Title</h2>
+  <p>Card content</p>
+</card-component>
+```
+
+### Void Element
+
+```json
+{
+  "loading-spinner": {
+    "void": true,
+    "flow": true,
+    "phrasing": true,
+    "attributes": {
+      "size": {
+        "enum": ["small", "medium", "large"]
+      }
+    }
+  }
+}
+```
+
+Usage:
+```html
+<loading-spinner size="medium"/>
+```
+
+### Inline Element
+
+```json
+{
+  "price-tag": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["@phrasing"],
+    "attributes": {
+      "currency": {
+        "required": false,
+        "enum": ["USD", "EUR", "GBP"]
+      }
+    }
+  }
+}
+```
+
+Usage:
+```html
+<p>Price: <price-tag currency="USD">29.99</price-tag></p>
+```
+
+## Naming Conventions
+
+- Use lowercase with hyphens: `my-element`
+- Names must contain a hyphen (web component spec)
+- Be descriptive: `product-card` not `pc`
+- Use consistent prefixes for related elements: `form-input`, `form-select`, `form-button`

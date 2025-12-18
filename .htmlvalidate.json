@@ -1,0 +1,35 @@
+{
+  "$schema": "https://html-validate.org/schemas/config.json",
+  "root": true,
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "void-style": ["error", { "style": "selfclosing" }],
+    "element-case": ["error", { "style": "lowercase" }],
+    "attr-quotes": ["error", { "style": "double", "unquoted": false }],
+    "no-implicit-close": "error",
+    "close-order": "error",
+    "no-self-closing": "off",
+    "prefer-native-element": "error",
+    "prefer-tbody": "error",
+    "no-redundant-role": "error",
+    "heading-level": ["error", {
+      "allowMultipleH1": false,
+      "minInitialRank": "h1"
+    }],
+    "no-inline-style": "error",
+    "element-required-attributes": "error",
+    "attribute-allowed-values": "error",
+    "attribute-boolean-style": ["error", { "style": "empty" }],
+    "attribute-empty-style": ["error", { "style": "empty" }],
+    "doctype-style": ["error", { "style": "lowercase" }],
+    "no-deprecated-attr": "error",
+    "no-dup-attr": "error",
+    "no-dup-id": "error",
+    "script-type": "error",
+    "no-unknown-elements": ["error", { "exclude": ["x-*"] }],
+    "wcag/h36": "error",
+    "wcag/h37": "error",
+    "wcag/h67": "error"
+  },
+  "elements": ["html5", "./elements.json"]
+}

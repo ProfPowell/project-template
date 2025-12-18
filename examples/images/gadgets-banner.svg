@@ -1,0 +1,5 @@
+<svg width="800" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="200" fill="#10b981"/>
+  <text x="400" y="105" font-family="Arial, sans-serif" font-size="28" fill="white" text-anchor="middle" font-weight="bold">gadgets-banner.jpg</text>
+  <text x="400" y="135" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">Product Banner</text>
+</svg>

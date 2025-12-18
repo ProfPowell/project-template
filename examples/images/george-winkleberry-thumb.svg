@@ -1,0 +1,9 @@
+<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
+  <rect width="150" height="150" fill="#f59e0b"/>
+  <circle cx="75" cy="50" r="20" fill="#fbbf24"/>
+  <circle cx="67" cy="45" r="3" fill="#1f2937"/>
+  <circle cx="83" cy="45" r="3" fill="#1f2937"/>
+  <path d="M 65 55 Q 75 60 85 55" stroke="#1f2937" stroke-width="1" fill="none"/>
+  <rect x="50" y="75" width="50" height="40" fill="#fbbf24"/>
+  <text x="75" y="135" font-family="Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="bold">George W.</text>
+</svg>

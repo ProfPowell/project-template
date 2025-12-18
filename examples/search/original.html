@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search - DemoCompany</title>
+</head>
+<body>
+<div class="header">
+<img src="../images/logo.svg">
+</div>
+
+<h1>Search</h1>
+
+<div style="background: #f5f5f5; padding: 30px;">
+<form action="/search" method="get">
+<input type="text" name="q" placeholder="Search products, support articles, press releases..." style="width: 60%; padding: 10px; font-size: 16px;" value="widget">
+<button type="submit" style="padding: 10px 20px; font-size: 16px;">Search</button>
+
+<br><br>
+
+<b>Filter by:</b><br><br>
+
+Category:
+<select name="category">
+<option value="">All Categories</option>
+<option value="products" selected>Products</option>
+<option value="support">Support</option>
+<option value="press">Press Releases</option>
+<option value="careers">Careers</option>
+</select>
+
+Date:
+<select name="date">
+<option value="">Any Time</option>
+<option value="day">Past 24 Hours</option>
+<option value="week">Past Week</option>
+<option value="month">Past Month</option>
+<option value="year">Past Year</option>
+</select>
+
+Sort by:
+<select name="sort">
+<option value="relevance">Relevance</option>
+<option value="date">Date (Newest)</option>
+<option value="date-asc">Date (Oldest)</option>
+</select>
+</form>
+</div>
+
+<p>Showing results for: <b>"widget"</b> in Products</p>
+<p>Found 15 results (0.23 seconds)</p>
+
+<hr>
+
+<div class="search-result">
+<h3><a href="/products/widgets">Widgets - Our Flagship Product Line</a></h3>
+<p style="color: green;">www.democompany.com/products/widgets</p>
+<p>Since 1952, DemoCompany <b>widgets</b> have been the gold standard in the industry. Whether you need a simple solution or enterprise-grade performance, we have a <b>widget</b> for you...</p>
+</div>
+
+<div class="search-result">
+<h3><a href="/products/widgets/basic">Widget Basic - Entry Level</a></h3>
+<p style="color: green;">www.democompany.com/products/widgets/basic</p>
+<p>Perfect for beginners and light-duty applications. The <b>Widget</b> Basic delivers reliable performance at an affordable price. $29.99...</p>
+</div>
+
+<div class="search-result">
+<h3><a href="/products/widgets/pro">Widget Pro - Best Seller</a></h3>
+<p style="color: green;">www.democompany.com/products/widgets/pro</p>
+<p>Our most popular model. The <b>Widget</b> Pro offers enhanced durability and performance for demanding applications. $79.99. 5-year warranty...</p>
+</div>
+
+<div class="search-result">
+<h3><a href="/products/widgets/enterprise">Widget Enterprise - Industrial Grade</a></h3>
+<p style="color: green;">www.democompany.com/products/widgets/enterprise</p>
+<p>Built for the most demanding industrial applications. The <b>Widget</b> Enterprise delivers unmatched performance with lifetime warranty. $199.99...</p>
+</div>
+
+<div class="search-result">
+<h3><a href="/press/widget-pro-launch">DemoCompany Launches New Widget Pro Series</a></h3>
+<p style="color: green;">www.democompany.com/press/widget-pro-launch</p>
+<p>November 28, 2024 - Next-generation <b>widgets</b> offer 50% improved performance and new smart features...</p>
+</div>
+
+<div class="search-result">
+<h3><a href="/support/widget-installation">Widget Installation Guide</a></h3>
+<p style="color: green;">www.democompany.com/support/widget-installation</p>
+<p>Learn how to install and configure your new <b>widget</b>. Step-by-step instructions with photos and video tutorials...</p>
+</div>
+
+<div class="search-result">
+<h3><a href="/support/widget-troubleshooting">Widget Troubleshooting FAQ</a></h3>
+<p style="color: green;">www.democompany.com/support/widget-troubleshooting</p>
+<p>Common <b>widget</b> issues and how to resolve them. If your <b>widget</b> isn't working properly, start here...</p>
+</div>
+
+<div class="search-result">
+<h3><a href="/careers/senior-widget-engineer">Senior Widget Engineer - Job Opening</a></h3>
+<p style="color: green;">www.democompany.com/careers/senior-widget-engineer</p>
+<p>DemoCompany is seeking a Senior <b>Widget</b> Engineer to join our growing engineering team. Design next-generation <b>widgets</b>. $95,000-$130,000...</p>
+</div>
+
+<hr>
+
+<div style="text-align: center;">
+<a href="/search?q=widget&page=1">1</a> |
+<a href="/search?q=widget&page=2">2</a> |
+<a href="/search?q=widget&page=2">Next ></a>
+</div>
+
+<div class="footer">
+<p>&copy; 2025 DemoCompany</p>
+</div>
+</body>
+</html>

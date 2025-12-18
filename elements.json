@@ -1,0 +1,148 @@
+{
+  "form-field": {
+    "flow": true,
+    "permittedContent": ["label", "input", "textarea", "select", "output", "@phrasing"],
+    "attributes": {
+      "data-required": { "required": false, "boolean": true },
+      "data-valid": { "required": false, "boolean": true },
+      "data-invalid": { "required": false, "boolean": true }
+    }
+  },
+  "app-brand": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["@phrasing"]
+  },
+  "app-credits": {
+    "flow": true,
+    "permittedContent": ["@flow"]
+  },
+  "app-help": {
+    "flow": true,
+    "permittedContent": ["@flow"]
+  },
+  "app-settings": {
+    "flow": true,
+    "permittedContent": ["@flow"]
+  },
+  "spacer-element": {
+    "flow": true,
+    "void": true
+  },
+  "table-wrapper": {
+    "flow": true,
+    "permittedContent": ["table", "caption"]
+  },
+  "theme-selector": {
+    "flow": true,
+    "permittedContent": ["fieldset", "label", "input"]
+  },
+  "blog-card": {
+    "flow": true,
+    "permittedContent": ["@flow"]
+  },
+  "tag-list": {
+    "flow": true,
+    "permittedContent": ["tag-topic"]
+  },
+  "tag-topic": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["@phrasing"],
+    "attributes": {
+      "data-topic": { "required": false }
+    }
+  },
+  "tag-index": {
+    "flow": true,
+    "permittedContent": ["tag-index-item", "@flow"]
+  },
+  "tag-index-item": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "data-topic": { "required": false }
+    }
+  },
+  "gallery-grid": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "data-columns": { "required": false },
+      "data-gap": { "required": false }
+    }
+  },
+  "gallery-item": {
+    "flow": true,
+    "permittedContent": ["@flow"]
+  },
+  "product-card": {
+    "flow": true,
+    "phrasing": false,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "sku": { "required": false },
+      "price": { "required": false }
+    }
+  },
+  "icon-element": {
+    "flow": true,
+    "phrasing": true,
+    "void": true,
+    "attributes": {
+      "name": { "required": true }
+    }
+  },
+  "user-avatar": {
+    "flow": true,
+    "phrasing": true,
+    "void": true,
+    "attributes": {
+      "src": { "required": true },
+      "alt": { "required": true },
+      "size": { "required": false, "enum": ["small", "medium", "large"] }
+    }
+  },
+  "status-badge": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["@phrasing"],
+    "attributes": {
+      "type": { "required": false, "enum": ["success", "warning", "error", "info"] }
+    }
+  },
+  "data-table": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "source": { "required": false },
+      "sortable": { "required": false, "boolean": true }
+    }
+  },
+  "nav-menu": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "orientation": { "required": false, "enum": ["horizontal", "vertical"] }
+    }
+  },
+  "faq-list": {
+    "flow": true,
+    "permittedContent": ["faq-question", "faq-answer"],
+    "attributes": {
+      "category": { "required": false }
+    }
+  },
+  "faq-question": {
+    "flow": true,
+    "permittedContent": ["@phrasing"],
+    "attributes": {
+      "id": { "required": false }
+    }
+  },
+  "faq-answer": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {}
+  }
+}

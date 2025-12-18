@@ -1,0 +1,323 @@
+#!/usr/bin/env node
+
+/**
+ * Fix Suggestions Script
+ *
+ * Parses validator output from stdin and suggests fixes for common errors.
+ * Designed to be piped after validator output in PostToolUse hooks.
+ *
+ * Usage:
+ *   npx eslint file.js 2>&1 | node scripts/fix-suggestions.js --type=js
+ *   npx stylelint file.css 2>&1 | node scripts/fix-suggestions.js --type=css
+ *   npx html-validate file.html 2>&1 | node scripts/fix-suggestions.js --type=html
+ */
+
+import { createInterface } from 'readline';
+
+// Parse command line arguments
+const args = process.argv.slice(2);
+const typeArg = args.find(a => a.startsWith('--type='));
+const fileType = typeArg ? typeArg.split('=')[1] : 'unknown';
+
+// Colors for terminal output
+const colors = {
+  cyan: '\x1b[36m',
+  yellow: '\x1b[33m',
+  green: '\x1b[32m',
+  dim: '\x1b[2m',
+  reset: '\x1b[0m',
+  bold: '\x1b[1m',
+};
+
+// Collect all input lines
+const lines = [];
+
+const rl = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+  terminal: false,
+});
+
+rl.on('line', (line) => {
+  // Pass through the original output
+  console.log(line);
+  lines.push(line);
+});
+
+rl.on('close', () => {
+  const suggestions = analyzeLinesAndSuggest(lines, fileType);
+  if (suggestions.length > 0) {
+    printSuggestions(suggestions);
+  }
+});
+
+/**
+ * Analyze output lines and generate fix suggestions
+ * @param {string[]} lines - Output lines from validators
+ * @param {string} type - File type (js, css, html)
+ * @returns {object[]} Array of suggestion objects
+ */
+function analyzeLinesAndSuggest(lines, type) {
+  const suggestions = [];
+  const fullOutput = lines.join('\n');
+  const seenSuggestions = new Set();
+
+  // Helper to add unique suggestions
+  const addSuggestion = (suggestion) => {
+    const key = suggestion.fix || suggestion.message;
+    if (!seenSuggestions.has(key)) {
+      seenSuggestions.add(key);
+      suggestions.push(suggestion);
+    }
+  };
+
+  // JavaScript/ESLint patterns
+  if (type === 'js') {
+    if (fullOutput.includes('Unexpected var')) {
+      addSuggestion({
+        error: 'var usage detected',
+        message: 'Use const or let instead of var',
+        fix: 'npm run lint:js:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('prefer-const')) {
+      addSuggestion({
+        error: 'let could be const',
+        message: 'Variable is never reassigned, use const',
+        fix: 'npm run lint:js:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('prefer-template')) {
+      addSuggestion({
+        error: 'String concatenation',
+        message: 'Use template literals instead of string concatenation',
+        fix: 'npm run lint:js:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('eqeqeq')) {
+      addSuggestion({
+        error: 'Loose equality',
+        message: 'Use === instead of ==',
+        fix: 'npm run lint:js:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('no-console')) {
+      addSuggestion({
+        error: 'console statement',
+        message: 'Consider using a debug logging pattern instead of console',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('complexity')) {
+      addSuggestion({
+        error: 'High complexity',
+        message: 'Function is too complex, consider breaking into smaller functions',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('no-unused-vars')) {
+      addSuggestion({
+        error: 'Unused variable',
+        message: 'Remove unused variable or prefix with _ if intentional',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('Unexpected default export')) {
+      addSuggestion({
+        error: 'Default export',
+        message: 'Use named exports: export { Name } instead of export default',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+  }
+
+  // CSS/Stylelint patterns
+  if (type === 'css') {
+    if (fullOutput.includes('max-nesting-depth')) {
+      addSuggestion({
+        error: 'Deep nesting',
+        message: 'Reduce nesting depth to 3 or less',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('block-no-empty')) {
+      addSuggestion({
+        error: 'Empty block',
+        message: 'Remove empty CSS blocks or add declarations',
+        fix: 'npm run lint:css:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('declaration-block-no-duplicate-properties')) {
+      addSuggestion({
+        error: 'Duplicate property',
+        message: 'Remove duplicate CSS property declarations',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('color-named')) {
+      addSuggestion({
+        error: 'Named color',
+        message: 'Use custom properties or hex/rgb values instead of named colors',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('property-no-unknown')) {
+      addSuggestion({
+        error: 'Unknown property',
+        message: 'Check property name spelling',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('value-no-vendor-prefix') || fullOutput.includes('property-no-vendor-prefix')) {
+      addSuggestion({
+        error: 'Vendor prefix',
+        message: 'Remove vendor prefixes, use autoprefixer if needed',
+        fix: 'npm run lint:css:fix',
+        autoFixable: true,
+      });
+    }
+  }
+
+  // HTML patterns
+  if (type === 'html') {
+    if (fullOutput.includes('void-style') || fullOutput.includes('self-closing')) {
+      addSuggestion({
+        error: 'Void element syntax',
+        message: 'Use self-closing syntax: <br/>, <img/>, <meta/>, <input/>, etc.',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('element-case') || fullOutput.includes('should be lowercase')) {
+      addSuggestion({
+        error: 'Element case',
+        message: 'Use lowercase for all HTML elements and attributes',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('attr-quotes') || fullOutput.includes('must be quoted')) {
+      addSuggestion({
+        error: 'Unquoted attribute',
+        message: 'Quote all attribute values with double quotes',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('multiple <h1>') || fullOutput.includes('unique-landmark')) {
+      addSuggestion({
+        error: 'Multiple h1 elements',
+        message: 'Use only one <h1> per page, use <h2>-<h6> for subsections',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('no-inline-style')) {
+      addSuggestion({
+        error: 'Inline style',
+        message: 'Move inline styles to a CSS file',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('missing alt') || fullOutput.includes('require-img-alt')) {
+      addSuggestion({
+        error: 'Missing alt attribute',
+        message: 'Add alt attribute to <img> elements',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('form-dup-name') || fullOutput.includes('input-missing-label')) {
+      addSuggestion({
+        error: 'Form accessibility',
+        message: 'Add <label> elements with for attribute matching input id',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('doctype')) {
+      addSuggestion({
+        error: 'Missing/incorrect doctype',
+        message: 'Add <!doctype html> at the start of the file',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('Unknown word')) {
+      addSuggestion({
+        error: 'Unknown word (spelling)',
+        message: 'Fix spelling or add to dictionary',
+        fix: '/add-word <word>',
+        autoFixable: false,
+      });
+    }
+
+    // Accessibility (pa11y) patterns
+    if (fullOutput.includes('WCAG2AA') || fullOutput.includes('pa11y')) {
+      if (fullOutput.includes('Elements must have sufficient color contrast')) {
+        addSuggestion({
+          error: 'Low color contrast',
+          message: 'Increase contrast ratio between text and background',
+          fix: null,
+          autoFixable: false,
+        });
+      }
+      if (fullOutput.includes('Links must have discernible text')) {
+        addSuggestion({
+          error: 'Empty link text',
+          message: 'Add text content or aria-label to links',
+          fix: null,
+          autoFixable: false,
+        });
+      }
+    }
+  }
+
+  return suggestions;
+}
+
+/**
+ * Print fix suggestions in a formatted box
+ * @param {object[]} suggestions - Array of suggestion objects
+ */
+function printSuggestions(suggestions) {
+  console.log('');
+  console.log(`${colors.cyan}${colors.bold}=== Fix Suggestions ===${colors.reset}`);
+
+  const autoFixable = suggestions.filter(s => s.autoFixable);
+  const manual = suggestions.filter(s => !s.autoFixable);
+
+  if (autoFixable.length > 0) {
+    console.log(`${colors.green}${colors.bold}Auto-fixable:${colors.reset}`);
+    const fixCommands = [...new Set(autoFixable.map(s => s.fix).filter(Boolean))];
+    for (const cmd of fixCommands) {
+      console.log(`  ${colors.dim}$${colors.reset} ${cmd}`);
+    }
+  }
+
+  if (manual.length > 0) {
+    console.log(`${colors.yellow}${colors.bold}Manual fixes needed:${colors.reset}`);
+    for (const s of manual) {
+      console.log(`  ${colors.dim}•${colors.reset} ${s.message}`);
+      if (s.fix) {
+        console.log(`    ${colors.dim}Try:${colors.reset} ${s.fix}`);
+      }
+    }
+  }
+
+  console.log('');
+}

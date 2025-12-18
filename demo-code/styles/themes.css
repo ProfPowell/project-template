@@ -1,0 +1,95 @@
+/* Theme variables and customizations */
+
+/* Base theme tokens */
+:root {
+    --brand-hue: 2
+    --brand-saturation: 100%;
+    --brand-lightness: 50%;
+    
+    --brand: hsl(var(--brand-hue) var(--brand-saturation) var(--brand-lightness));
+    --brand-hover: hsl(var(--brand-hue) var(--brand-saturation) calc(var(--brand-lightness) - 10%));
+}
+
+/* Light theme (default) */
+[data-theme="light"],
+:root:not([data-theme]) {
+    --surface-1: var(--gray-0);
+    --surface-2: var(--gray-1);
+    --surface-3: var(--gray-2);
+    --surface-4: var(--gray-3);
+    --text-1: var(--gray-9);
+    --text-2: var(--gray-7);
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+    --surface-1: var(--gray-9);
+    --surface-2: var(--gray-8);
+    --surface-3: var(--gray-7);
+    --surface-4: var(--gray-6);
+    --text-1: var(--gray-0);
+    --text-2: var(--gray-2);
+}
+
+/* Sepia theme */
+[data-theme="sepia"] {
+    --brand-hue: 30;
+    --brand-saturation: 75%;
+    --surface-1: hsl(40 33% 95%);
+    --surface-2: hsl(40 33% 90%);
+    --surface-3: hsl(40 33% 85%);
+    --surface-4: hsl(40 33% 80%);
+    --text-1: hsl(40 33% 15%);
+    --text-2: hsl(40 33% 35%);
+}
+
+/* Forest theme */
+[data-theme="forest"] {
+    --brand-hue: 120;
+    --brand-saturation: 50%;
+    --surface-1: hsl(120 20% 95%);
+    --surface-2: hsl(120 20% 90%);
+    --surface-3: hsl(120 20% 85%);
+    --surface-4: hsl(120 20% 80%);
+    --text-1: hsl(120 40% 15%);
+    --text-2: hsl(120 40% 35%);
+}
+
+/* Ocean theme */
+[data-theme="ocean"] {
+    --brand-hue: 200;
+    --brand-saturation: 60%;
+    --surface-1: hsl(200 20% 95%);
+    --surface-2: hsl(200 20% 90%);
+    --surface-3: hsl(200 20% 85%);
+    --surface-4: hsl(200 20% 80%);
+    --text-1: hsl(200 40% 15%);
+    --text-2: hsl(200 40% 35%);
+}
+
+/* High Contrast theme */
+[data-theme="high-contrast"] {
+    --brand-hue: 200;
+    --brand-saturation: 100%;
+    --brand-lightness: 45%;
+    --surface-1: var(--gray-0);
+    --surface-2: var(--gray-1);
+    --surface-3: var(--gray-2);
+    --surface-4: var(--gray-3);
+    --text-1: var(--gray-9);
+    --text-2: var(--gray-9);
+}
+
+/* Apply theme transitions */
+:root {
+    --theme-transition: 0.2s ease;
+}
+
+:root,
+:root * {
+    transition: 
+        background-color var(--theme-transition),
+        border-color var(--theme-transition),
+        color var(--theme-transition),
+        box-shadow var(--theme-transition);
+}

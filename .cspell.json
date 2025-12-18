@@ -1,0 +1,22 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": ["node_modules/**", "*.json", "package-lock.json"],
+  "dictionaryDefinitions": [
+    {
+      "name": "project-words",
+      "path": "./project-words.txt",
+      "addWords": true
+    }
+  ],
+  "dictionaries": ["en_US", "html", "css", "project-words"],
+  "ignoreRegExpList": [
+    "/href=\"[^\"]*\"/g",
+    "/src=\"[^\"]*\"/g",
+    "/id=\"[^\"]*\"/g",
+    "/class=\"[^\"]*\"/g",
+    "/aria-[a-z]+=\"[^\"]*\"/g",
+    "/data-[a-z-]+=\"[^\"]*\"/g"
+  ],
+  "minWordLength": 3
+}

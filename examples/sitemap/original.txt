@@ -1,0 +1,76 @@
+DEMOCOMPANY WEBSITE SITEMAP
+
+HOME
+www.democompany.com/
+
+ABOUT
+www.democompany.com/about
+  - Our History
+  - Mission & Values
+  - Leadership Team
+  - Company Milestones
+
+PRODUCTS
+www.democompany.com/products
+
+  Widgets
+  www.democompany.com/products/widgets
+    - Widget Basic ($29.99)
+    - Widget Pro ($79.99)
+    - Widget Enterprise ($199.99)
+
+  Gadgets
+  www.democompany.com/products/gadgets
+    - Gadget Lite ($49.99)
+    - Gadget Standard ($99.99)
+    - Gadget Pro ($149.99)
+
+  Thingamajigs
+  www.democompany.com/products/thingamajigs
+    - Thingamajig Mini ($19.99)
+    - Thingamajig Standard ($59.99)
+    - Thingamajig Deluxe ($129.99)
+
+SUPPORT
+www.democompany.com/support
+  - FAQ
+  - Product Manuals
+  - Troubleshooting Guides
+  - Contact Support
+  - Warranty Information
+
+CAREERS
+www.democompany.com/careers
+  - Why Work Here
+  - Benefits
+  - Current Openings
+  - Apply Now
+
+PRESS ROOM
+www.democompany.com/press
+  - Press Releases
+  - Media Contact
+  - Press Kit
+  - Company Logos
+
+INVESTOR RELATIONS
+www.democompany.com/investors
+  - Stock Information
+  - Financial Reports
+  - SEC Filings
+  - Corporate Governance
+  - Investor Contact
+
+LEGAL
+www.democompany.com/privacy - Privacy Policy
+www.democompany.com/terms - Terms of Service
+www.democompany.com/accessibility - Accessibility Statement
+
+CONTACT
+www.democompany.com/contact
+  Address: 1122 Boogie Woogie Ave, Upper Fake, WI 54321
+  Phone: 1-800-WIDGETS
+  Email: info@democompany.com
+
+SEARCH
+www.democompany.com/search

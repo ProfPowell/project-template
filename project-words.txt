@@ -1,0 +1,110 @@
+# Project-specific dictionary for cspell
+# Add one word per line (case-insensitive)
+# Lines starting with # are comments
+
+# Project terminology
+XHTML
+doctype
+WCAG
+pa11y
+htmlhint
+htmlvalidate
+textlint
+textlintrc
+cspell
+linkinator
+tbody
+thead
+fieldset
+fieldsets
+hgroup
+blockquote
+frontmatter
+selfclosing
+yci
+sku
+Styleable
+
+# Metadata terms
+charset
+viewport
+preconnect
+prefetch
+preload
+prerender
+noindex
+nofollow
+noarchive
+nosnippet
+noimageindex
+googlebot
+referrer
+crossorigin
+SEO
+PWA
+
+# Modern CSS/HTML terms
+srcset
+WebP
+AVIF
+fetchpriority
+decoding
+classless
+minlength
+labelledby
+LCP
+
+# Custom elements
+product-card
+icon-element
+user-avatar
+status-badge
+data-table
+nav-menu
+faq-list
+faq-question
+faq-answer
+
+# Constitutional archaic spellings (intentional)
+chuse
+chusing
+behaviour
+defence
+colour
+honour
+favour
+encreased
+Offences
+offence
+Attainder
+Emoluments
+Enumeration
+Naturalization
+Tranquility
+Posterity
+
+# Legal/government terms
+Habeas
+Corpus
+Impeachment
+
+# DemoCompany example terms
+DemoCompany
+democompany
+Winkleberry
+thingamajig
+thingamajigs
+Thingamajig
+Thingamajigs
+Boogie
+Woogie
+NASDAQ
+IPO
+Q1
+Q2
+Q3
+Q4
+SolidWorks
+CNC
+WiFi
+BT

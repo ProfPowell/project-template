@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Cache
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Debug logs
+npm-debug.log*

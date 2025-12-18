@@ -1,0 +1,17 @@
+{
+  "plugins": {
+    "html": true
+  },
+  "rules": {
+    "write-good": {
+      "severity": "warning",
+      "passive": true,
+      "illusion": true,
+      "weasel": true,
+      "tooWordy": true,
+      "cliches": true,
+      "adverb": false,
+      "eprime": false
+    }
+  }
+}

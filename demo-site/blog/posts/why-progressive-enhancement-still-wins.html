@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>Why Progressive Enhancement Still Wins</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+<body>
+  <header>
+    <app-brand>App Name</app-brand>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
+    <nav>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../data_table/">Data Table</a></li>
+        <li><a href="../../gallery/">Gallery</a></li>
+        <li><a href="../../blog/" class="active">Blog</a></li>
+        <li><a href="../../contact/">Contact</a></li>
+      </ul>
+    </nav>
+    <app-help>
+      <button commandfor="help-dialog" command="show-modal" aria-label="Help">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+      </button>
+    </app-help>
+  </header>
+
+  <main>
+    <article>
+      <a href="../index.html#progressive-enhancement" class="back-link">← Back to Blog</a>
+      <h1>Why Progressive Enhancement Still Wins</h1>
+      <figure class="hero-wrapper vt-progressive-enhancement"><img class="hero" src="/assets/images/blog/post-1-hero.jpg" alt="Sunset over water" loading="eager" decoding="async" fetchpriority="high"></figure>
+      <p class="post-meta">
+        Published: <time datetime="2025-02-01">2025-02-01</time> ·
+        <tag-list>
+          <tag-topic data-topic="philosophy"><a href="../tags/philosophy.html">philosophy</a></tag-topic>
+          <tag-topic data-topic="ux"><a href="../tags/ux.html">ux</a></tag-topic>
+        </tag-list>
+      </p>
+
+      <nav class="toc">
+        <strong>On this page:</strong>
+        <a href="#baseline">Baseline First</a> ·
+        <a href="#enhancements">Thoughtful Enhancements</a> ·
+        <a href="#case-study">Case Study</a>
+      </nav>
+
+      <p>Progressive enhancement ensures a baseline experience that works on every device and network condition, then layers on richer capabilities where available.</p>
+      <blockquote class="pull-quote">Ship the core experience first, then optimize delight where the platform allows.</blockquote>
+
+      <h2 id="baseline">Baseline First</h2>
+      <p>Start with valid, semantic HTML. Make forms, navigation, and content fully usable without scripts.</p>
+      <aside><strong>Tip:</strong> Test with JavaScript disabled and throttled network to check resilience.</aside>
+
+      <h2 id="enhancements">Thoughtful Enhancements</h2>
+      <ul>
+        <li>Use modern CSS (layers, tokens, nesting) for structure and theming.</li>
+        <li>Add view transitions for continuity between pages.</li>
+        <li>Introduce JS only where it adds clear, measurable value.</li>
+      </ul>
+
+      <h2 id="case-study">Case Study</h2>
+      <p>Our demo’s dialogs, navigation, and gallery work with zero JS. Optional scripts can persist theme or add offline caching later.</p>
+
+      <h2 id="performance">Performance And Resilience</h2>
+      <p>Baseline-first delivery improves Largest Contentful Paint (LCP) and Interaction to Next Paint (INP) because content ships as HTML and styles render progressively. Avoiding render-blocking bundles on first paint reduces time-to-first-meaningful-interaction, especially on low-end devices and constrained networks.</p>
+      <ul>
+        <li>Ship critical HTML and CSS; lazy-load non-critical JS.</li>
+        <li>Prefer declarative features (dialog, form validation, view transitions) over custom script.</li>
+        <li>Cache static assets aggressively and consider a Service Worker for offline.</li>
+      </ul>
+
+      <h2 id="accessibility">Accessibility And Reach</h2>
+      <p>Semantic HTML works well with assistive technologies by default. When functionality is added progressively, users who can’t run scripts or have blockers still get a working experience. Enhancements should never gate core tasks like reading, navigating, or submitting a form.</p>
+      <aside><strong>Reminder:</strong> Test with keyboard-only navigation and screen-reader quick nav headings to verify the document structure communicates intent.</aside>
+
+      <h2 id="seo">SEO And Maintainability</h2>
+      <p>Search engines prefer content that appears in the initial HTML. Progressive enhancement improves crawlability and reduces the need for brittle hydration logic. Teams benefit from smaller surfaces to test and clearer separation of concerns.</p>
+
+      <h2 id="example">Progressive Enhancement Example</h2>
+      <p>Start with semantic markup and native behavior, then layer optional features:</p>
+      <pre><code>&lt;button commandfor="demo-dialog" command="show-modal"&gt;Open Help&lt;/button&gt;
+&lt;dialog id="demo-dialog"&gt;...&lt;/dialog&gt;
+
+/* CSS */
+@layer components {
+  dialog[open] { opacity: 1; }
+}
+      </code></pre>
+      <p>The button and dialog work natively; extra styling is purely progressive. If JavaScript is later added, it augments but doesn’t replace built-in behavior.</p>
+    </article>
+  </main>
+
+  <footer>
+    <spacer-element></spacer-element>
+    <app-credits>Made with ♥ in San Diego</app-credits>
+    <app-settings>
+      <button commandfor="settings-dialog" command="show-modal" aria-label="Settings">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39-0.96c-0.5-0.38-1.03-0.7,1.62-0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+      </button>
+    </app-settings>
+  </footer>
+
+  <!-- Help Dialog -->
+  <dialog id="help-dialog">
+    <header>
+      <h2>Help & Support</h2>
+      <button commandfor="help-dialog" command="close" aria-label="Close">&times;</button>
+    </header>
+    <section>
+      <h3>About This Post</h3>
+      <p>Posts use shared-element transitions for contextual navigation.</p>
+    </section>
+    <footer>
+      <button commandfor="help-dialog" command="close" class="primary">Got it!</button>
+    </footer>
+  </dialog>
+
+  <!-- Settings Dialog -->
+  <dialog id="settings-dialog">
+    <header>
+      <h2>Settings</h2>
+      <button commandfor="settings-dialog" command="close" aria-label="Close">&times;</button>
+    </header>
+    <section>
+      <theme-selector>
+        <fieldset>
+          <legend>Theme Preference</legend>
+          <label><input type="radio" name="theme" id="theme-light" checked><span>☀️ Light Mode</span></label>
+          <label><input type="radio" name="theme" id="theme-dark"><span>🌙 Dark Mode</span></label>
+          <label><input type="radio" name="theme" id="theme-auto"><span>🔄 Automatic (System Preference)</span></label>
+        </fieldset>
+      </theme-selector>
+    </section>
+    <footer>
+      <button commandfor="settings-dialog" command="close" class="primary">Done</button>
+    </footer>
+  </dialog>
+</body>
+</html>

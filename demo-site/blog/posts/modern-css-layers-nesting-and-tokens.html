@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>Modern CSS: Layers, Nesting, and Tokens</title>
+  <link rel="stylesheet" href="/assets/styles/main.css">
+</head>
+<body>
+  <header>
+    <app-brand>App Name</app-brand>
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle" class="nav-toggle-label"><span></span><span></span><span></span></label>
+    <nav>
+      <ul>
+        <li><a href="../../">Home</a></li>
+        <li><a href="../../data_table/">Data Table</a></li>
+        <li><a href="../../gallery/">Gallery</a></li>
+        <li><a href="/blog/" class="active">Blog</a></li>
+        <li><a href="../../contact/">Contact</a></li>
+      </ul>
+    </nav>
+    <app-help>
+      <button commandfor="help-dialog" command="show-modal" aria-label="Help">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+      </button>
+    </app-help>
+  </header>
+
+  <main>
+    <article>
+      <a href="../index.html#modern-css" class="back-link">← Back to Blog</a>
+      <h1>Modern CSS: Layers, Nesting, and Tokens</h1>
+      <figure class="hero-wrapper vt-modern-css"><img class="hero" src="/assets/images/blog/post-2-hero.jpg" alt="Misty forest" loading="eager" decoding="async" fetchpriority="high"></figure>
+      <p class="post-meta">
+        Published: <time datetime="2025-02-03">2025-02-03</time> ·
+        <tag-list>
+          <tag-topic data-topic="css"><a href="../tags/css.html">css</a></tag-topic>
+          <tag-topic data-topic="tooling"><a href="../tags/tooling.html">tooling</a></tag-topic>
+        </tag-list>
+      </p>
+
+      <nav class="toc">
+        <strong>On this page:</strong>
+        <a href="#layers">Layers</a> ·
+        <a href="#tokens">Tokens</a> ·
+        <a href="#nesting">Nesting</a>
+      </nav>
+
+      <p>CSS layers help control cascade order, tokens centralize design decisions, and native nesting simplifies selectors — together they make styles more maintainable.</p>
+      <blockquote class="pull-quote">Treat your CSS like an API: stable tokens, clear layering, clean scopes.</blockquote>
+
+      <h2 id="layers">Layers</h2>
+      <p>Separate reset, tokens, layout, components, and responsive rules to manage specificity and intent.</p>
+
+      <h2 id="tokens">Tokens</h2>
+      <p>Define design tokens for color, spacing, and typography. Reference tokens everywhere to reduce drift.</p>
+
+      <h2 id="nesting">Nesting</h2>
+      <p>Native nesting keeps selectors compact and local to components, improving readability.</p>
+
+      <h2 id="examples">Examples</h2>
+      <pre><code>/* Tokens */
+@layer tokens {
+  :root { --brand: #2563eb; --surface: #fff; }
+}
+
+/* Components */
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid #e5e7eb;
+    & h3 { color: var(--brand); }
+    & a { text-decoration: none; }
+  }
+}
+      </code></pre>
+
+      <h2 id="migration">Migration Tips</h2>
+      <ul>
+        <li>Introduce layers gradually: start by wrapping existing CSS in a single @layer and split later.</li>
+        <li>Centralize colors and spacing as tokens; refactor components to consume them.</li>
+        <li>Use a linter/formatter to keep nesting shallow and intentional.</li>
+      </ul>
+
+      <h2 id="support">Browser Support</h2>
+      <p>Modern browsers support layers, nesting, and custom properties. For older browsers, the cascade gracefully ignores unknown at-rules; keep specificity modest and provide sensible defaults.</p>
+    </article>
+  </main>
+
+  <footer>
+    <spacer-element></spacer-element>
+    <app-credits>Made with ♥ in San Diego</app-credits>
+    <app-settings>
+      <button commandfor="settings-dialog" command="show-modal" aria-label="Settings">
+        <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39-0.96c-0.5-0.38-1.03-0.7,1.62-0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"/></svg>
+      </button>
+    </app-settings>
+  </footer>
+
+  <!-- Help Dialog -->
+  <dialog id="help-dialog">
+    <header>
+      <h2>Help & Support</h2>
+      <button commandfor="help-dialog" command="close" aria-label="Close">&times;</button>
+    </header>
+    <section>
+      <h3>About This Post</h3>
+      <p>Posts use shared-element transitions for contextual navigation.</p>
+    </section>
+    <footer>
+      <button commandfor="help-dialog" command="close" class="primary">Got it!</button>
+    </footer>
+  </dialog>
+
+  <!-- Settings Dialog -->
+  <dialog id="settings-dialog">
+    <header>
+      <h2>Settings</h2>
+      <button commandfor="settings-dialog" command="close" aria-label="Close">&times;</button>
+    </header>
+    <section>
+      <theme-selector>
+        <fieldset>
+          <legend>Theme Preference</legend>
+          <label><input type="radio" name="theme" id="theme-light" checked><span>☀️ Light Mode</span></label>
+          <label><input type="radio" name="theme" id="theme-dark"><span>🌙 Dark Mode</span></label>
+          <label><input type="radio" name="theme" id="theme-auto"><span>🔄 Automatic (System Preference)</span></label>
+        </fieldset>
+      </theme-selector>
+    </section>
+    <footer>
+      <button commandfor="settings-dialog" command="close" class="primary">Done</button>
+    </footer>
+  </dialog>
+</body>
+</html>

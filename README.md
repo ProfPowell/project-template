@@ -104,6 +104,7 @@ Custom slash commands extend Claude's capabilities:
 | `/add-css-file` | Create a scoped CSS file (component/section/page) |
 | `/add-form-field` | Generate an accessible form field with `<output>` |
 | `/health` | Run project health dashboard across all validators |
+| `/uat` | Request, approve, or deny user acceptance testing |
 
 These are markdown files in `.claude/commands/` that Claude interprets as instructions.
 
@@ -148,7 +149,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Available Skills (14 total):**
+**Available Skills (15 total):**
 
 | Skill | Auto-Triggers When | Purpose |
 |-------|-------------------|---------|
@@ -166,6 +167,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 | `design-tokens` | Design system setup | CSS custom properties, theming |
 | `javascript-author` | Creating/editing JS | Web Components, JSDoc, i18n, events, accessibility |
 | `pre-flight-check` | Before creating/editing files | Checklists, pattern matching, issue prevention |
+| `git-workflow` | Starting work on issues | Conventional commits, feature branches, UAT workflow |
 
 Skills are located in `.claude/skills/` and contain:
 - `SKILL.md` - Main skill definition with YAML frontmatter
@@ -909,6 +911,10 @@ xhtml-test/
 │   ├── beads.db                  # Local issue database
 │   ├── config.yaml               # Beads configuration
 │   └── README.md                 # Beads documentation
+├── .worklog/                     # Development work logs
+│   ├── README.md                 # Worklog documentation
+│   ├── TEMPLATE.md               # Template for new entries
+│   └── uat-*.md                  # UAT request files
 ├── .claude/
 │   ├── settings.json          # Claude Code hooks
 │   ├── commands/
@@ -918,8 +924,9 @@ xhtml-test/
 │   │   ├── add-css-tokens.md  # /add-css-tokens command
 │   │   ├── add-css-file.md    # /add-css-file command
 │   │   ├── add-form-field.md  # /add-form-field command
-│   │   └── health.md          # /health command
-│   └── skills/                # 14 authoring skills
+│   │   ├── health.md          # /health command
+│   │   └── uat.md             # /uat command
+│   └── skills/                # 15 authoring skills
 │       ├── xhtml-author/      # XHTML syntax guidance
 │       ├── accessibility-checker/  # WCAG2AA patterns
 │       ├── content-writer/    # Spelling/grammar awareness
@@ -933,7 +940,8 @@ xhtml-test/
 │       ├── progressive-enhancement/  # CSS-only interactivity
 │       ├── design-tokens/     # CSS custom properties, theming
 │       ├── javascript-author/ # Web Components, JSDoc, i18n, events
-│       └── pre-flight-check/  # Checklists, pattern matching, troubleshooting
+│       ├── pre-flight-check/  # Checklists, pattern matching, troubleshooting
+│       └── git-workflow/      # Conventional commits, branches, UAT workflow
 ├── demo-site/                 # Reference HTML implementation (23 pages)
 │   ├── index.html             # Homepage
 │   ├── about/                 # About page

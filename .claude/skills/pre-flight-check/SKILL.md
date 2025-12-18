@@ -1,16 +1,60 @@
 ---
 name: pre-flight-check
-description: Validate intent before writing code. Use this skill to verify you have the right approach, check for common issues, and match patterns before creating or editing files.
-allowed-tools: Read, Glob, Grep
+description: "INVOKE FIRST before any code work. Validates git workflow (branch, issue, worklog) and checks approach. Use at START of every task and END before completing. Prevents skipped steps."
+allowed-tools: Read, Glob, Grep, Bash
 ---
 
 # Pre-Flight Check Skill
 
 Before writing code, run through these checklists to validate your approach and catch potential issues early.
 
+## ⚠️ MANDATORY: Git Workflow Check (DO THIS FIRST)
+
+**STOP! Before ANY code changes, complete this checklist:**
+
+### 1. Issue Check
+```bash
+# What issue are you working on?
+bd show <issue-id>
+
+# If no issue exists, create one first:
+bd create --title="..." --type=feature|bug|task --priority=2
+```
+- [ ] Issue exists and is claimed (`bd update <id> --status=in_progress`)
+
+### 2. Branch Check
+```bash
+# What branch are you on?
+git branch --show-current
+
+# Are you on main? CREATE A FEATURE BRANCH:
+git checkout -b feature/<issue-id>-short-description
+```
+- [ ] On a feature branch (NOT main)
+- [ ] Branch follows naming: `<type>/<issue-id>-description`
+
+### 3. Worklog Check
+```bash
+# Does a worklog entry exist for this issue?
+ls .worklog/*<issue-id>*
+```
+- [ ] Worklog entry exists or will be created before completing work
+
+### Red Flags - STOP if any are true:
+| Situation | Action Required |
+|-----------|-----------------|
+| No issue for this work | Run `bd create` first |
+| On main branch | Run `git checkout -b feature/...` |
+| Issue not claimed | Run `bd update <id> --status=in_progress` |
+
+**Only proceed to code changes after ALL boxes are checked.**
+
+---
+
 ## When to Use This Skill
 
 Activate pre-flight checks when:
+- Starting work on any issue (git workflow check FIRST)
 - Creating a new file
 - Making significant edits to existing code
 - Implementing a new feature
@@ -256,3 +300,50 @@ npm run a11y
 # Full validation
 npm run lint:all
 ```
+
+---
+
+## ⚠️ MANDATORY: Completion Checklist (DO THIS LAST)
+
+**Before saying "done", complete this checklist:**
+
+### 1. Tests Pass
+```bash
+npm test
+npm run lint:all
+```
+- [ ] All tests pass
+- [ ] All linters pass
+
+### 2. Worklog Updated
+- [ ] Worklog entry in `.worklog/` documents changes made
+- [ ] Files modified are listed
+- [ ] Any decisions/issues are noted
+
+### 3. Commit Changes
+```bash
+git add <files>
+git commit -m "type(scope): description"
+```
+- [ ] Changes committed with conventional commit format
+- [ ] Commit message references issue if applicable
+
+### 4. Request UAT
+```
+/uat request <feature-name>
+```
+- [ ] UAT file created in `.worklog/uat-<feature>.md`
+- [ ] Testing instructions provided for human
+
+### 5. Wait for Approval
+- [ ] DO NOT merge to main until `/uat approve` received
+- [ ] If denied, address feedback and re-request UAT
+
+### Completion Red Flags:
+| Situation | Action Required |
+|-----------|-----------------|
+| Tests failing | Fix before proceeding |
+| No worklog entry | Create one now |
+| On main branch | Should have been on feature branch |
+| No UAT requested | Run `/uat request` |
+| Merging without approval | STOP - wait for UAT

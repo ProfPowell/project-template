@@ -29,11 +29,16 @@ Implemented Flesch-Kincaid reading level analysis for HTML content to ensure acc
 - `package.json` - Added lint:readability script, text-readability dependency
 - `package-lock.json` - Updated dependencies
 - `.claude/skills/content-writer/SKILL.md` - Added reading level guidelines
-- `examples/sample.html` - Marked as technical content
+- `examples/sample.html` - Marked as technical content (using `data-content-style`)
 - `test/validators/readability.test.js` - Unit tests
 - `test/fixtures/valid/readability/easy-reading.html` - Passing fixture
 - `test/fixtures/valid/readability/technical-content.html` - Passing technical fixture
 - `test/fixtures/invalid/readability/complex-content.html` - Failing fixture
+
+## UAT Feedback Addressed
+
+- Changed `content-type` to `content-style` to avoid confusion with HTTP Content-Type header
+- Attribute values: `technical`, `casual`, etc.
 
 ## Testing Done
 

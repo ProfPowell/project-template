@@ -8,8 +8,8 @@
  * - Technical content: Grade level < 12
  *
  * Content is marked as technical via:
- * - <meta name="content-type" content="technical"/>
- * - data-content-type="technical" on <html> or <body>
+ * - <meta name="content-style" content="technical"/>
+ * - data-content-style="technical" on <html> or <body>
  *
  * @example
  * node scripts/readability-check.js [files...]
@@ -103,14 +103,14 @@ function extractText(html) {
  */
 function isTechnicalContent(html) {
   // Check meta tag
-  if (/<meta\s+name=["']content-type["']\s+content=["']technical["']/i.test(html)) {
+  if (/<meta\s+name=["']content-style["']\s+content=["']technical["']/i.test(html)) {
     return true;
   }
   // Check data attribute on html or body
-  if (/<html[^>]+data-content-type=["']technical["']/i.test(html)) {
+  if (/<html[^>]+data-content-style=["']technical["']/i.test(html)) {
     return true;
   }
-  if (/<body[^>]+data-content-type=["']technical["']/i.test(html)) {
+  if (/<body[^>]+data-content-style=["']technical["']/i.test(html)) {
     return true;
   }
   return false;
@@ -241,8 +241,8 @@ function printResults(results) {
   console.log(`  Technical content: Grade level ≤ ${THRESHOLDS.technical}`);
   console.log('');
   console.log('Mark content as technical with:');
-  console.log('  <meta name="content-type" content="technical"/>');
-  console.log('  or data-content-type="technical" on <html> or <body>');
+  console.log('  <meta name="content-style" content="technical"/>');
+  console.log('  or data-content-style="technical" on <html> or <body>');
 
   return failed.length;
 }

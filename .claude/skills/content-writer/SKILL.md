@@ -100,18 +100,22 @@ This project enforces reading level thresholds using Flesch-Kincaid scoring.
 | General | 8 | General public |
 | Technical | 12 | Technical audience |
 
-### Marking Content as Technical
+### Marking Content Style
 
 For technical documentation, add one of these:
 
 ```html
 <!-- In <head> -->
-<meta name="content-type" content="technical"/>
+<meta name="content-style" content="technical"/>
 
 <!-- Or on html/body -->
-<html lang="en" data-content-type="technical">
-<body data-content-type="technical">
+<html lang="en" data-content-style="technical">
+<body data-content-style="technical">
 ```
+
+Available content styles:
+- `technical` - Technical documentation, API references (threshold: grade 12)
+- Default (no attribute) - General content (threshold: grade 8)
 
 ### Writing for Readability
 

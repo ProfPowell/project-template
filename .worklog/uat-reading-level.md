@@ -4,7 +4,7 @@
 **Issue**: xhtml-test-8ow
 **Branch**: main
 **Requested**: 2025-12-18
-**Status**: PENDING
+**Status**: APPROVED
 
 ---
 
@@ -87,3 +87,4 @@ Feature needs more changes
 | 2025-12-18 | Requested | Initial UAT request |
 | 2025-12-18 | Denied | Change content-type to content-style |
 | 2025-12-18 | Re-requested | Fixed attribute naming |
+| 2025-12-18 | Approved | Human verified content-style attribute works correctly |

@@ -89,6 +89,71 @@ Follow logical hierarchy:
   <h2>Another Section</h2>
 ```
 
+## Reading Level Guidelines
+
+This project enforces reading level thresholds using Flesch-Kincaid scoring.
+
+### Grade Level Thresholds
+
+| Content Type | Max Grade Level | Audience |
+|--------------|-----------------|----------|
+| General | 8 | General public |
+| Technical | 12 | Technical audience |
+
+### Marking Content as Technical
+
+For technical documentation, add one of these:
+
+```html
+<!-- In <head> -->
+<meta name="content-type" content="technical"/>
+
+<!-- Or on html/body -->
+<html lang="en" data-content-type="technical">
+<body data-content-type="technical">
+```
+
+### Writing for Readability
+
+**Use shorter sentences:**
+```
+<!-- Hard to read (grade 12+) -->
+The implementation of the aforementioned functionality requires
+consideration of various architectural constraints that may
+impact the overall system performance.
+
+<!-- Easier to read (grade 8) -->
+This feature needs careful planning. We must consider how it
+affects system speed.
+```
+
+**Use simpler words:**
+
+| Complex Word | Simpler Alternative |
+|--------------|---------------------|
+| utilize | use |
+| implement | build, create |
+| functionality | feature |
+| subsequently | then, later |
+| facilitate | help, enable |
+| approximately | about |
+| demonstrate | show |
+| modification | change |
+
+**Break up long paragraphs:** Aim for 3-4 sentences per paragraph.
+
+**Use lists:** Convert complex sentences into bullet points when possible.
+
+### Checking Reading Level
+
+```bash
+# Check readability
+npm run lint:readability
+
+# Check all content quality
+npm run lint:content
+```
+
 ## Content Checklist
 
 Before finalizing content:
@@ -99,6 +164,7 @@ Before finalizing content:
 - [ ] Headings follow hierarchy
 - [ ] Alt text provided for images
 - [ ] Proper capitalization for product names
+- [ ] Reading level within threshold (run `npm run lint:readability`)
 
 ## Running Quality Checks
 
@@ -109,7 +175,10 @@ npm run lint:spelling
 # Check grammar/style (advisory)
 npm run lint:grammar
 
-# Run both
+# Check reading level
+npm run lint:readability
+
+# Run all content checks
 npm run lint:content
 ```
 

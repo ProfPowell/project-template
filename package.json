@@ -19,8 +19,9 @@
     "lint:links:remote": "linkinator examples --skip '^(?!https?:)' --timeout 30000",
     "lint:spelling": "cspell \"**/*.html\" --config .cspell.json",
     "lint:grammar": "textlint \"**/*.html\"",
+    "lint:readability": "node scripts/readability-check.js",
     "lint:meta": "node scripts/metadata-check.js",
-    "lint:content": "npm run lint:spelling && npm run lint:grammar",
+    "lint:content": "npm run lint:spelling && npm run lint:grammar && npm run lint:readability",
     "lint:js": "eslint '**/*.js' --ignore-pattern 'node_modules' --ignore-pattern 'test/fixtures/invalid/**'",
     "lint:js:fix": "eslint '**/*.js' --fix --ignore-pattern 'node_modules' --ignore-pattern 'test/fixtures/invalid/**'",
     "lint:complexity": "node scripts/complexity-check.js",
@@ -44,6 +45,7 @@
     "sharp": "^0.34.5",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
+    "text-readability": "^1.1.1",
     "textlint": "^14.0.0",
     "textlint-plugin-html": "^1.0.0",
     "textlint-rule-write-good": "^2.0.0"

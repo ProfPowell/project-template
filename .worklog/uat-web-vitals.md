@@ -173,21 +173,20 @@ Needs changes (please provide feedback)
 
 ### Supported Import Patterns
 
-The script detects various ways to import web-vitals:
+The script detects local import patterns (no CDN/network dependencies):
 
 ```javascript
-// ES module from npm
+// ES module from npm package (requires bundler or importmap)
 import { onLCP, onINP, onCLS } from 'web-vitals';
 
-// Dynamic import
+// Dynamic import from npm package
 import('web-vitals').then(({ onLCP, onINP, onCLS }) => { ... });
 
-// CDN import
-import { onLCP, onINP, onCLS } from 'https://unpkg.com/web-vitals@4?module';
-
-// Script tag
-<script src="https://unpkg.com/web-vitals@4"></script>
+// Local bundled script
+<script src="/js/web-vitals.min.js"></script>
 ```
+
+**Note**: CDN imports (e.g., unpkg.com) are intentionally NOT supported to ensure all dependencies are local.
 
 ---
 

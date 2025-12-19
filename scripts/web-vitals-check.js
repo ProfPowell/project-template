@@ -75,12 +75,14 @@ function findHtmlFiles(dir, files = []) {
  * @returns {boolean} True if web-vitals is imported
  */
 function hasWebVitalsImport(html) {
-  // Check for various import patterns
+  // Check for local import patterns (no CDN/network dependencies)
   const patterns = [
+    // ES module import from npm package
     /import\s+.*from\s+['"]web-vitals['"]/i,
+    // Dynamic import from npm package
     /import\s*\(['"]\s*web-vitals\s*['"]\)/i,
-    /import\s+.*from\s+['"]https?:\/\/.*web-vitals.*['"]/i,
-    /<script[^>]*src=["'][^"']*web-vitals[^"']*["']/i,
+    // Local script reference (bundled or copied)
+    /<script[^>]*src=["'][^"']*\/web-vitals[^"']*["']/i,
   ];
 
   return patterns.some(pattern => pattern.test(html));
@@ -191,12 +193,14 @@ function analyzeFile(filePath) {
 function getInstrumentationSnippet() {
   return `
 <!-- Web Vitals Monitoring -->
+<!-- First: npm install web-vitals -->
 <script type="module">
-  import { onLCP, onINP, onCLS } from 'https://unpkg.com/web-vitals@4?module';
+  // Import from local node_modules (requires bundler) or use importmap
+  import { onLCP, onINP, onCLS } from 'web-vitals';
 
   function sendToAnalytics(metric) {
     // Send to your analytics endpoint
-    console.log(metric);
+    console.log('[Web Vitals]', metric.name, metric.value);
 
     // Example: send to Google Analytics
     // gtag('event', metric.name, {

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page with Web Vitals</title>
+</head>
+<body>
+  <h1>Test Page</h1>
+  <p>This page includes web vitals monitoring.</p>
+
+  <script type="module">
+    import { onLCP, onINP, onCLS } from 'https://unpkg.com/web-vitals@4?module';
+
+    function sendToAnalytics(metric) {
+      console.log(metric);
+    }
+
+    onLCP(sendToAnalytics);
+    onINP(sendToAnalytics);
+    onCLS(sendToAnalytics);
+  </script>
+</body>
+</html>

@@ -35,10 +35,12 @@
     "test": "node scripts/test-runner.js",
     "test:all": "node --test 'test/**/*.test.js'",
     "test:watch": "node --test --watch 'test/**/*.test.js'",
-    "health": "node scripts/health-check.js"
+    "health": "node scripts/health-check.js",
+    "lighthouse": "lhci autorun"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@lhci/cli": "^0.15.1",
     "cspell": "^8.0.0",
     "eslint": "^9.39.2",
     "html-validate": "^8.24.0",

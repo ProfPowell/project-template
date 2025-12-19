@@ -115,3 +115,6 @@ Needs changes (please provide feedback)
 | Date | Action | Notes |
 |------|--------|-------|
 | 2025-12-18 | Requested | Initial UAT request |
+| 2025-12-18 | Denied | Test fixture had broken links causing link-checker test failure |
+| 2025-12-18 | Fixed | Changed absolute paths to relative paths pointing to existing fixtures |
+| 2025-12-18 | Re-requested | All 59 tests now pass |

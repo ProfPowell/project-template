@@ -149,7 +149,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Available Skills (17 total):**
+**Available Skills (18 total):**
 
 | Skill | Auto-Triggers When | Purpose |
 |-------|-------------------|---------|
@@ -165,6 +165,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 | `css-architecture` | Organizing CSS | `@layer`, `@import`, nesting, element-focused selectors |
 | `data-attributes` | Managing state/variants | `data-*` as HTML/CSS/JS bridge |
 | `responsive-images` | Adding images | `<picture>`, `srcset`, `sizes`, modern formats |
+| `security` | Forms, user input, external resources | CSP, SRI, XSS prevention, HTTPS |
 | `progressive-enhancement` | CSS-only interactivity | `:has()`, checkbox hacks, View Transitions |
 | `design-tokens` | Design system setup | CSS custom properties, theming |
 | `javascript-author` | Creating/editing JS | Web Components, JSDoc, i18n, events, accessibility |
@@ -238,7 +239,7 @@ project-words.txt     # Custom dictionary
 # Claude Code integration
 .claude/settings.json # Hook configuration
 .claude/commands/     # Slash commands
-.claude/skills/       # Guidance skills (17 skills)
+.claude/skills/       # Guidance skills (18 skills)
 
 # Custom scripts
 scripts/metadata-check.js  # Metadata validation
@@ -936,7 +937,7 @@ xhtml-test/
 │   │   ├── add-form-field.md  # /add-form-field command
 │   │   ├── health.md          # /health command
 │   │   └── uat.md             # /uat command
-│   └── skills/                # 17 authoring skills
+│   └── skills/                # 18 authoring skills
 │       ├── xhtml-author/      # XHTML syntax guidance
 │       ├── accessibility-checker/  # WCAG2AA patterns
 │       ├── content-writer/    # Spelling/grammar awareness
@@ -949,6 +950,7 @@ xhtml-test/
 │       ├── css-architecture/  # @layer, @import, nesting patterns
 │       ├── data-attributes/   # State/variant management with data-*
 │       ├── responsive-images/ # <picture>, srcset, sizes, formats
+│       ├── security/         # CSP, SRI, XSS prevention, HTTPS
 │       ├── progressive-enhancement/  # CSS-only interactivity
 │       ├── design-tokens/     # CSS custom properties, theming
 │       ├── javascript-author/ # Web Components, JSDoc, i18n, events

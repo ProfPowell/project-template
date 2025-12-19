@@ -616,14 +616,73 @@ function findSiteRoots(baseDir) {
 }
 
 /**
- * Print results for a single site
- * @param {string} siteRoot - Site root path
- * @param {object} allResults - Combined results
+ * Print results for a single check group
+ * @param {string} groupName - Name of the check group
+ * @param {object} results - Results for this group
+ * @returns {object} Counts of errors, warnings, passed
  */
-function printSiteResults(siteRoot, allResults) {
-  const totalErrors = allResults.errors.length;
-  const totalWarnings = allResults.warnings.length;
-  const totalPassed = allResults.passed.length;
+function printGroupResults(groupName, results) {
+  const hasContent = results.errors.length > 0 ||
+                     results.warnings.length > 0 ||
+                     results.passed.length > 0 ||
+                     results.info.length > 0;
+
+  if (!hasContent) {
+    return { errors: 0, warnings: 0, passed: 0 };
+  }
+
+  // Determine group status
+  const groupStatus = results.errors.length > 0
+    ? `${colors.red}✗${colors.reset}`
+    : results.warnings.length > 0
+      ? `${colors.yellow}⚠${colors.reset}`
+      : `${colors.green}✓${colors.reset}`;
+
+  console.log(`\n  ${groupStatus} ${colors.bold}${groupName}${colors.reset}`);
+
+  // Print errors first
+  for (const error of results.errors) {
+    console.log(`      ${colors.red}✗${colors.reset} ${error}`);
+  }
+
+  // Print warnings
+  for (const warning of results.warnings) {
+    console.log(`      ${colors.yellow}⚠${colors.reset} ${warning}`);
+  }
+
+  // Print passed
+  for (const pass of results.passed) {
+    console.log(`      ${colors.green}✓${colors.reset} ${pass}`);
+  }
+
+  // Print info
+  for (const info of results.info) {
+    console.log(`      ${colors.dim}ℹ ${info}${colors.reset}`);
+  }
+
+  return {
+    errors: results.errors.length,
+    warnings: results.warnings.length,
+    passed: results.passed.length,
+  };
+}
+
+/**
+ * Print results for a single site with grouped output
+ * @param {string} siteRoot - Site root path
+ * @param {object[]} checkResults - Array of {name, results} objects
+ */
+function printSiteResults(siteRoot, checkResults) {
+  // Calculate totals
+  let totalErrors = 0;
+  let totalWarnings = 0;
+  let totalPassed = 0;
+
+  for (const check of checkResults) {
+    totalErrors += check.results.errors.length;
+    totalWarnings += check.results.warnings.length;
+    totalPassed += check.results.passed.length;
+  }
 
   const status = totalErrors > 0
     ? `${colors.red}FAIL${colors.reset}`
@@ -634,26 +693,9 @@ function printSiteResults(siteRoot, allResults) {
   console.log(`\n${colors.bold}${siteRoot}${colors.reset} [${status}]`);
   console.log(`${colors.dim}${'─'.repeat(50)}${colors.reset}`);
 
-  // Print errors
-  for (const error of allResults.errors) {
-    console.log(`  ${colors.red}✗${colors.reset} ${error}`);
-  }
-
-  // Print warnings
-  for (const warning of allResults.warnings) {
-    console.log(`  ${colors.yellow}⚠${colors.reset} ${warning}`);
-  }
-
-  // Print passed (only if no errors)
-  if (totalErrors === 0) {
-    for (const pass of allResults.passed) {
-      console.log(`  ${colors.green}✓${colors.reset} ${pass}`);
-    }
-  }
-
-  // Print info
-  for (const info of allResults.info) {
-    console.log(`  ${colors.dim}ℹ ${info}${colors.reset}`);
+  // Print each group
+  for (const check of checkResults) {
+    printGroupResults(check.name, check.results);
   }
 
   console.log(`\n  ${colors.dim}Summary: ${totalPassed} passed, ${totalWarnings} warnings, ${totalErrors} errors${colors.reset}`);
@@ -708,12 +750,6 @@ ${colors.bold}Examples:${colors.reset}
   node scripts/site-check.js examples/
   node scripts/site-check.js --strict ./my-site
   npm run lint:site
-
-${colors.bold}Resources:${colors.reset}
-  https://web.dev/articles/add-manifest
-  https://developers.google.com/search/docs/crawling-indexing/robots/intro
-  https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
-  https://securitytxt.org/
 `);
 }
 
@@ -753,35 +789,26 @@ function main() {
   let totalWarnings = 0;
 
   for (const siteRoot of siteRoots) {
-    // Run all checks
-    const allResults = {
-      passed: [],
-      warnings: [],
-      errors: [],
-      info: [],
-    };
-
+    // Define checks with display names
     const checks = [
       { name: 'Favicons', fn: checkFavicons },
-      { name: 'robots.txt', fn: checkRobotsTxt },
-      { name: 'sitemap.xml', fn: checkSitemap },
-      { name: 'Manifest', fn: checkManifest },
+      { name: 'Crawlers & Robots', fn: checkRobotsTxt },
+      { name: 'Sitemap', fn: checkSitemap },
+      { name: 'PWA Manifest', fn: checkManifest },
       { name: 'Error Pages', fn: checkErrorPages },
-      { name: 'llms.txt', fn: checkLlmsTxt },
-      { name: 'security.txt', fn: checkSecurityTxt },
-      { name: 'opensearch.xml', fn: checkOpenSearch },
-      { name: 'humans.txt', fn: checkHumansTxt },
+      { name: 'AI/LLM Support', fn: checkLlmsTxt },
+      { name: 'Security (.well-known)', fn: checkSecurityTxt },
+      { name: 'OpenSearch', fn: checkOpenSearch },
+      { name: 'Site Credits', fn: checkHumansTxt },
     ];
 
-    for (const check of checks) {
-      const result = check.fn(siteRoot);
-      allResults.passed.push(...result.passed);
-      allResults.warnings.push(...result.warnings);
-      allResults.errors.push(...result.errors);
-      allResults.info.push(...result.info);
-    }
+    // Run all checks and collect results with names
+    const checkResults = checks.map(check => ({
+      name: check.name,
+      results: check.fn(siteRoot),
+    }));
 
-    const summary = printSiteResults(siteRoot, allResults);
+    const summary = printSiteResults(siteRoot, checkResults);
     totalErrors += summary.errors;
     totalWarnings += summary.warnings;
   }

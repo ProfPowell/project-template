@@ -4,7 +4,9 @@
 **Issue**: xhtml-test-j5i
 **Branch**: feature/xhtml-test-j5i-web-vitals
 **Requested**: 2025-12-18
-**Status**: PENDING
+**Status**: APPROVED
+**Approved**: 2025-12-18
+**Approver**: Human (via /uat approve)
 
 ---
 

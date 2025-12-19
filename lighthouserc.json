@@ -1,0 +1,41 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./examples",
+      "url": [
+        "http://localhost/sample.html",
+        "http://localhost/constitution.html",
+        "http://localhost/homepage/original.html",
+        "http://localhost/about/index.html",
+        "http://localhost/faq/index.html"
+      ],
+      "numberOfRuns": 3
+    },
+    "assert": {
+      "preset": "lighthouse:no-pwa",
+      "assertions": {
+        "categories:performance": ["error", { "minScore": 0.9 }],
+        "categories:accessibility": ["error", { "minScore": 1.0 }],
+        "categories:best-practices": ["error", { "minScore": 0.9 }],
+        "categories:seo": ["error", { "minScore": 1.0 }],
+        "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }],
+        "largest-contentful-paint": ["warn", { "maxNumericValue": 2500 }],
+        "cumulative-layout-shift": ["warn", { "maxNumericValue": 0.1 }],
+        "total-blocking-time": ["warn", { "maxNumericValue": 300 }],
+        "color-contrast": "error",
+        "document-title": "error",
+        "html-has-lang": "error",
+        "meta-description": "error",
+        "valid-lang": "error",
+        "errors-in-console": "warn",
+        "no-vulnerable-libraries": "error",
+        "meta-viewport": "error",
+        "robots-txt": "off",
+        "canonical": "warn"
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

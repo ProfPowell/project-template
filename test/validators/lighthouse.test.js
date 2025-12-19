@@ -1,5 +1,7 @@
 import { describe, it } from 'node:test';
 import { execSync } from 'node:child_process';
+import { readFileSync, existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import assert from 'node:assert';
 
 /**
@@ -19,6 +21,11 @@ function checkLighthouseCLI() {
   }
 }
 
+function loadConfig() {
+  const configPath = resolve(process.cwd(), 'lighthouserc.json');
+  return JSON.parse(readFileSync(configPath, 'utf8'));
+}
+
 describe('Lighthouse CI', () => {
   describe('setup', () => {
     it('has @lhci/cli installed', () => {
@@ -36,57 +43,49 @@ describe('Lighthouse CI', () => {
       assert.match(result.version, /\d+\.\d+\.\d+/, 'Version should be semver format');
     });
 
-    it('has lighthouserc.js configuration file', async () => {
-      const fs = await import('node:fs');
-      const path = await import('node:path');
-      const configPath = path.resolve(process.cwd(), 'lighthouserc.js');
-      
+    it('has lighthouserc.json configuration file', () => {
+      const configPath = resolve(process.cwd(), 'lighthouserc.json');
+
       assert.ok(
-        fs.existsSync(configPath),
-        'lighthouserc.js configuration file should exist'
+        existsSync(configPath),
+        'lighthouserc.json configuration file should exist'
       );
     });
 
-    it('has valid configuration structure', async () => {
-      const path = await import('node:path');
-      const configPath = path.resolve(process.cwd(), 'lighthouserc.js');
-      
-      const config = await import(configPath);
-      const lhConfig = config.default;
-      
-      assert.ok(lhConfig.ci, 'Config should have ci property');
-      assert.ok(lhConfig.ci.collect, 'Config should have collect settings');
-      assert.ok(lhConfig.ci.assert, 'Config should have assert settings');
-      assert.ok(lhConfig.ci.assert.assertions, 'Config should have assertions');
+    it('has valid configuration structure', () => {
+      const config = loadConfig();
+
+      assert.ok(config.ci, 'Config should have ci property');
+      assert.ok(config.ci.collect, 'Config should have collect settings');
+      assert.ok(config.ci.assert, 'Config should have assert settings');
+      assert.ok(config.ci.assert.assertions, 'Config should have assertions');
     });
 
-    it('has required budget thresholds configured', async () => {
-      const path = await import('node:path');
-      const configPath = path.resolve(process.cwd(), 'lighthouserc.js');
-      const config = await import(configPath);
-      const assertions = config.default.ci.assert.assertions;
-      
+    it('has required budget thresholds configured', () => {
+      const config = loadConfig();
+      const assertions = config.ci.assert.assertions;
+
       assert.ok(assertions['categories:performance'], 'Should have performance threshold');
       assert.strictEqual(
         assertions['categories:performance'][1].minScore,
         0.9,
         'Performance threshold should be 0.9 (90%)'
       );
-      
+
       assert.ok(assertions['categories:accessibility'], 'Should have accessibility threshold');
       assert.strictEqual(
         assertions['categories:accessibility'][1].minScore,
         1.0,
         'Accessibility threshold should be 1.0 (100%)'
       );
-      
+
       assert.ok(assertions['categories:best-practices'], 'Should have best-practices threshold');
       assert.strictEqual(
         assertions['categories:best-practices'][1].minScore,
         0.9,
         'Best practices threshold should be 0.9 (90%)'
       );
-      
+
       assert.ok(assertions['categories:seo'], 'Should have SEO threshold');
       assert.strictEqual(
         assertions['categories:seo'][1].minScore,
@@ -97,12 +96,10 @@ describe('Lighthouse CI', () => {
   });
 
   describe('npm script', () => {
-    it('has lighthouse script in package.json', async () => {
-      const fs = await import('node:fs');
-      const path = await import('node:path');
-      const pkgPath = path.resolve(process.cwd(), 'package.json');
-      const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
-      
+    it('has lighthouse script in package.json', () => {
+      const pkgPath = resolve(process.cwd(), 'package.json');
+      const pkg = JSON.parse(readFileSync(pkgPath, 'utf8'));
+
       assert.ok(pkg.scripts.lighthouse, 'package.json should have lighthouse script');
       assert.match(
         pkg.scripts.lighthouse,

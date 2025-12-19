@@ -36,21 +36,21 @@ npx lhci --version
 - Command executes successfully
 - Version number displayed (should be 0.15.x or higher)
 
-**Status**: [ ] Pass [ ] Fail
+**Status**: [x] Pass [ ] Fail
 
 ---
 
 ### 2. Configuration File Exists
 
-**Test**: Verify lighthouserc.js configuration file
+**Test**: Verify lighthouserc.json configuration file
 
 ```bash
-cat lighthouserc.js
+cat lighthouserc.json
 ```
 
 **Expected Result**:
 - File exists in project root
-- Contains ES module export (`export default`)
+- Valid JSON format
 - Has `ci.collect`, `ci.assert`, and `ci.upload` sections
 
 **Status**: [ ] Pass [ ] Fail
@@ -59,7 +59,7 @@ cat lighthouserc.js
 
 ### 3. Budget Thresholds Configured
 
-**Test**: Verify budget thresholds in lighthouserc.js
+**Test**: Verify budget thresholds in lighthouserc.json
 
 **Expected Result**:
 - Performance threshold: `minScore: 0.9` (> 90%)
@@ -109,15 +109,15 @@ npm test -- test/validators/lighthouse.test.js
 
 ### 6. Configuration Structure Valid
 
-**Test**: Verify configuration can be imported
+**Test**: Verify configuration can be parsed
 
 ```bash
-node -e "import('./lighthouserc.js').then(c => console.log('Config valid:', !!c.default.ci))"
+node -e "const c = JSON.parse(require('fs').readFileSync('lighthouserc.json')); console.log('Config valid:', !!c.ci)"
 ```
 
 **Expected Result**:
 - Output: `Config valid: true`
-- No import errors
+- No parse errors
 
 **Status**: [ ] Pass [ ] Fail
 
@@ -165,8 +165,7 @@ npm run lighthouse
 ## Quality Checklist
 
 ### Code Quality
-- [ ] lighthouserc.js uses ES module syntax
-- [ ] Configuration is well-documented with comments
+- [ ] lighthouserc.json is valid JSON
 - [ ] Test file follows existing validator test patterns
 - [ ] No eslint errors in new files
 

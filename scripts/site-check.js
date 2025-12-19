@@ -8,8 +8,11 @@
  * - robots.txt (syntax, sitemap reference)
  * - sitemap.xml (existence, valid XML)
  * - manifest.webmanifest (PWA requirements)
- * - 404 page (custom error page)
+ * - Error pages (404, 500, 403)
  * - llms.txt (AI crawler guidance - optional)
+ * - .well-known/security.txt (vulnerability disclosure)
+ * - opensearch.xml (browser search integration)
+ * - humans.txt (site credits)
  *
  * @example
  * node scripts/site-check.js [directory]
@@ -300,11 +303,11 @@ function checkManifest(siteRoot) {
 }
 
 /**
- * Check for custom 404 page
+ * Check for custom error pages (404, 500, 403)
  * @param {string} siteRoot - Site root directory
  * @returns {object} Validation results
  */
-function check404Page(siteRoot) {
+function checkErrorPages(siteRoot) {
   const results = {
     passed: [],
     warnings: [],
@@ -312,39 +315,45 @@ function check404Page(siteRoot) {
     info: [],
   };
 
-  // Check for common 404 page names
-  const possibleNames = ['404.html', '404/index.html', 'error/404.html'];
-  let found = null;
+  const errorPages = [
+    { code: '404', description: 'Not Found', required: false },
+    { code: '500', description: 'Internal Server Error', required: false },
+    { code: '403', description: 'Forbidden', required: false },
+  ];
 
-  for (const name of possibleNames) {
-    if (existsSync(join(siteRoot, name))) {
-      found = name;
-      break;
-    }
-  }
+  for (const page of errorPages) {
+    const possibleNames = [
+      `${page.code}.html`,
+      `${page.code}/index.html`,
+      `error/${page.code}.html`,
+    ];
 
-  if (found) {
-    results.passed.push(`Custom 404 page: ${found}`);
-
-    // Check content
-    try {
-      const content = readFileSync(join(siteRoot, found), 'utf8');
-
-      if (content.includes('<title>') && content.includes('</title>')) {
-        results.passed.push('404 page has title');
-      } else {
-        results.warnings.push('404 page missing title');
+    let found = null;
+    for (const name of possibleNames) {
+      if (existsSync(join(siteRoot, name))) {
+        found = name;
+        break;
       }
-
-      // Check for helpful content
-      if (content.includes('href=') || content.includes('link')) {
-        results.info.push('404 page includes navigation links');
-      }
-    } catch {
-      // Ignore read errors
     }
-  } else {
-    results.info.push('No custom 404 page (server default will be used)');
+
+    if (found) {
+      results.passed.push(`Custom ${page.code} page: ${found}`);
+
+      // Check content
+      try {
+        const content = readFileSync(join(siteRoot, found), 'utf8');
+
+        if (content.includes('<title>') && content.includes('</title>')) {
+          results.info.push(`${page.code} page has title`);
+        } else {
+          results.warnings.push(`${page.code} page missing title`);
+        }
+      } catch {
+        // Ignore read errors
+      }
+    } else {
+      results.info.push(`No custom ${page.code} page (${page.description})`);
+    }
   }
 
   return results;
@@ -389,6 +398,185 @@ function checkLlmsTxt(siteRoot) {
 
   } catch (err) {
     results.errors.push(`Error reading llms.txt: ${err.message}`);
+  }
+
+  return results;
+}
+
+/**
+ * Check for .well-known/security.txt (RFC 9116)
+ * @param {string} siteRoot - Site root directory
+ * @returns {object} Validation results
+ */
+function checkSecurityTxt(siteRoot) {
+  const results = {
+    passed: [],
+    warnings: [],
+    errors: [],
+    info: [],
+  };
+
+  // Check both locations (RFC 9116 prefers .well-known)
+  const wellKnownPath = join(siteRoot, '.well-known', 'security.txt');
+  const rootPath = join(siteRoot, 'security.txt');
+
+  let securityPath = null;
+  let location = null;
+
+  if (existsSync(wellKnownPath)) {
+    securityPath = wellKnownPath;
+    location = '.well-known/security.txt';
+  } else if (existsSync(rootPath)) {
+    securityPath = rootPath;
+    location = 'security.txt (root)';
+    results.warnings.push('security.txt in root - RFC 9116 recommends .well-known/security.txt');
+  }
+
+  if (!securityPath) {
+    results.info.push('No security.txt (recommended for vulnerability disclosure)');
+    return results;
+  }
+
+  results.passed.push(`${location} exists`);
+
+  try {
+    const content = readFileSync(securityPath, 'utf8');
+    const lines = content.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+
+    // Check for required Contact field
+    const hasContact = lines.some(l => l.toLowerCase().startsWith('contact:'));
+    if (hasContact) {
+      results.passed.push('Has Contact field');
+    } else {
+      results.errors.push('Missing required Contact field in security.txt');
+    }
+
+    // Check for recommended Expires field
+    const hasExpires = lines.some(l => l.toLowerCase().startsWith('expires:'));
+    if (hasExpires) {
+      results.passed.push('Has Expires field');
+    } else {
+      results.warnings.push('Missing Expires field (recommended)');
+    }
+
+    // Check for optional but useful fields
+    const hasEncryption = lines.some(l => l.toLowerCase().startsWith('encryption:'));
+    const hasPreferredLanguages = lines.some(l => l.toLowerCase().startsWith('preferred-languages:'));
+    const hasCanonical = lines.some(l => l.toLowerCase().startsWith('canonical:'));
+    const hasPolicy = lines.some(l => l.toLowerCase().startsWith('policy:'));
+
+    if (hasEncryption) results.info.push('Has Encryption field (PGP key)');
+    if (hasPreferredLanguages) results.info.push('Has Preferred-Languages field');
+    if (hasCanonical) results.info.push('Has Canonical field');
+    if (hasPolicy) results.info.push('Has Policy field');
+
+  } catch (err) {
+    results.errors.push(`Error reading security.txt: ${err.message}`);
+  }
+
+  return results;
+}
+
+/**
+ * Check for opensearch.xml (browser search integration)
+ * @param {string} siteRoot - Site root directory
+ * @returns {object} Validation results
+ */
+function checkOpenSearch(siteRoot) {
+  const results = {
+    passed: [],
+    warnings: [],
+    errors: [],
+    info: [],
+  };
+
+  const opensearchPath = join(siteRoot, 'opensearch.xml');
+
+  if (!existsSync(opensearchPath)) {
+    results.info.push('No opensearch.xml (optional - enables browser search integration)');
+    return results;
+  }
+
+  results.passed.push('opensearch.xml exists');
+
+  try {
+    const content = readFileSync(opensearchPath, 'utf8');
+
+    // Check for OpenSearchDescription root element
+    if (content.includes('<OpenSearchDescription')) {
+      results.passed.push('Valid OpenSearch structure');
+    } else {
+      results.errors.push('Missing <OpenSearchDescription> root element');
+      return results;
+    }
+
+    // Check for required ShortName
+    if (content.includes('<ShortName>')) {
+      results.info.push('Has ShortName');
+    } else {
+      results.warnings.push('Missing ShortName element');
+    }
+
+    // Check for required Description
+    if (content.includes('<Description>')) {
+      results.info.push('Has Description');
+    } else {
+      results.warnings.push('Missing Description element');
+    }
+
+    // Check for Url template
+    if (content.includes('<Url')) {
+      results.passed.push('Has search URL template');
+    } else {
+      results.errors.push('Missing Url element (required for search)');
+    }
+
+  } catch (err) {
+    results.errors.push(`Error reading opensearch.xml: ${err.message}`);
+  }
+
+  return results;
+}
+
+/**
+ * Check for humans.txt (site credits)
+ * @param {string} siteRoot - Site root directory
+ * @returns {object} Validation results
+ */
+function checkHumansTxt(siteRoot) {
+  const results = {
+    passed: [],
+    warnings: [],
+    errors: [],
+    info: [],
+  };
+
+  const humansPath = join(siteRoot, 'humans.txt');
+
+  if (!existsSync(humansPath)) {
+    results.info.push('No humans.txt (optional - credits the people behind the site)');
+    return results;
+  }
+
+  results.passed.push('humans.txt exists');
+
+  try {
+    const content = readFileSync(humansPath, 'utf8');
+    const lines = content.split('\n').filter(l => l.trim());
+
+    results.info.push(`Contains ${lines.length} line(s)`);
+
+    // Check for common sections
+    if (content.toLowerCase().includes('team') || content.toLowerCase().includes('author')) {
+      results.info.push('Includes team/author information');
+    }
+
+    if (content.toLowerCase().includes('site') || content.toLowerCase().includes('technology')) {
+      results.info.push('Includes site/technology information');
+    }
+
+  } catch (err) {
+    results.errors.push(`Error reading humans.txt: ${err.message}`);
   }
 
   return results;
@@ -496,16 +684,25 @@ ${colors.bold}Checks Performed:${colors.reset}
     • icon.svg (recommended) - Modern scalable icon
     • apple-touch-icon.png (required) - iOS home screen
 
-  ${colors.green}Crawlers${colors.reset}
+  ${colors.green}Crawlers & Discovery${colors.reset}
     • robots.txt (required) - Search engine directives
     • sitemap.xml (recommended) - Site structure
+    • opensearch.xml (optional) - Browser search integration
     • llms.txt (optional) - AI/LLM crawler guidance
 
   ${colors.green}PWA${colors.reset}
     • manifest.webmanifest - App manifest with icons
 
-  ${colors.green}Error Handling${colors.reset}
-    • 404.html - Custom error page
+  ${colors.green}Error Pages${colors.reset}
+    • 404.html - Not Found
+    • 500.html - Internal Server Error
+    • 403.html - Forbidden
+
+  ${colors.green}.well-known${colors.reset}
+    • security.txt - Vulnerability disclosure (RFC 9116)
+
+  ${colors.green}Credits${colors.reset}
+    • humans.txt - Site credits and team info
 
 ${colors.bold}Examples:${colors.reset}
   node scripts/site-check.js examples/
@@ -516,6 +713,7 @@ ${colors.bold}Resources:${colors.reset}
   https://web.dev/articles/add-manifest
   https://developers.google.com/search/docs/crawling-indexing/robots/intro
   https://evilmartians.com/chronicles/how-to-favicon-in-2021-six-files-that-fit-most-needs
+  https://securitytxt.org/
 `);
 }
 
@@ -568,8 +766,11 @@ function main() {
       { name: 'robots.txt', fn: checkRobotsTxt },
       { name: 'sitemap.xml', fn: checkSitemap },
       { name: 'Manifest', fn: checkManifest },
-      { name: '404 Page', fn: check404Page },
+      { name: 'Error Pages', fn: checkErrorPages },
       { name: 'llms.txt', fn: checkLlmsTxt },
+      { name: 'security.txt', fn: checkSecurityTxt },
+      { name: 'opensearch.xml', fn: checkOpenSearch },
+      { name: 'humans.txt', fn: checkHumansTxt },
     ];
 
     for (const check of checks) {

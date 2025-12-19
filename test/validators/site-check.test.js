@@ -42,6 +42,11 @@ describe('Site Infrastructure Checker', () => {
       assert.ok(result.output.includes('favicon.ico'));
       assert.ok(result.output.includes('robots.txt'));
       assert.ok(result.output.includes('llms.txt'));
+      assert.ok(result.output.includes('security.txt'));
+      assert.ok(result.output.includes('opensearch.xml'));
+      assert.ok(result.output.includes('humans.txt'));
+      assert.ok(result.output.includes('500.html'));
+      assert.ok(result.output.includes('403.html'));
     });
 
     it('shows help with -h flag', () => {
@@ -106,6 +111,42 @@ describe('Site Infrastructure Checker', () => {
       assert.ok(result.output.includes('llms.txt exists'));
       assert.ok(result.output.includes('Includes site purpose/about section'));
       assert.ok(result.output.includes('Includes contact information'));
+    });
+
+    it('detects all error pages (404, 500, 403)', () => {
+      const result = runSiteCheck('test/fixtures/valid/site-check/');
+      assert.ok(result.output.includes('Custom 404 page: 404.html'));
+      assert.ok(result.output.includes('Custom 500 page: 500.html'));
+      assert.ok(result.output.includes('Custom 403 page: 403.html'));
+    });
+
+    it('validates .well-known/security.txt', () => {
+      const result = runSiteCheck('test/fixtures/valid/site-check/');
+      assert.ok(result.output.includes('.well-known/security.txt exists'));
+      assert.ok(result.output.includes('Has Contact field'));
+      assert.ok(result.output.includes('Has Expires field'));
+    });
+
+    it('detects security.txt optional fields', () => {
+      const result = runSiteCheck('test/fixtures/valid/site-check/');
+      assert.ok(result.output.includes('Has Encryption field'));
+      assert.ok(result.output.includes('Has Preferred-Languages field'));
+      assert.ok(result.output.includes('Has Canonical field'));
+      assert.ok(result.output.includes('Has Policy field'));
+    });
+
+    it('validates opensearch.xml', () => {
+      const result = runSiteCheck('test/fixtures/valid/site-check/');
+      assert.ok(result.output.includes('opensearch.xml exists'));
+      assert.ok(result.output.includes('Valid OpenSearch structure'));
+      assert.ok(result.output.includes('Has search URL template'));
+    });
+
+    it('validates humans.txt', () => {
+      const result = runSiteCheck('test/fixtures/valid/site-check/');
+      assert.ok(result.output.includes('humans.txt exists'));
+      assert.ok(result.output.includes('Includes team/author information'));
+      assert.ok(result.output.includes('Includes site/technology information'));
     });
 
   });

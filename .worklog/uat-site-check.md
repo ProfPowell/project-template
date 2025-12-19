@@ -4,7 +4,7 @@
 **Issue**: xhtml-test-xg2
 **Branch**: main (direct implementation)
 **Requested**: 2025-12-18
-**Status**: PENDING
+**Status**: PENDING (v2 - expanded checks)
 
 ---
 
@@ -19,8 +19,11 @@ Unified site infrastructure validator that consolidates checks for essential pro
 - robots.txt (syntax, directives, AI crawler rules)
 - sitemap.xml (existence, structure, URL count)
 - manifest.webmanifest (name, icons, PWA requirements)
-- 404.html (custom error page)
+- Error pages (404, 500, 403)
 - llms.txt (AI/LLM crawler guidance)
+- .well-known/security.txt (RFC 9116 vulnerability disclosure)
+- opensearch.xml (browser search integration)
+- humans.txt (site credits)
 
 ---
 
@@ -129,20 +132,70 @@ node scripts/site-check.js test/fixtures/valid/site-check/
 - Shows display mode info
 - Confirms start_url presence
 
+### 9. Verify error pages (404, 500, 403)
+
+```bash
+node scripts/site-check.js test/fixtures/valid/site-check/
+```
+
+**Expected**:
+- "Custom 404 page: 404.html"
+- "Custom 500 page: 500.html"
+- "Custom 403 page: 403.html"
+- Each page shows "has title" info
+
+### 10. Verify .well-known/security.txt validation
+
+```bash
+node scripts/site-check.js test/fixtures/valid/site-check/
+```
+
+**Expected**:
+- ".well-known/security.txt exists"
+- "Has Contact field"
+- "Has Expires field"
+- Optional fields detected: Encryption, Preferred-Languages, Canonical, Policy
+
+### 11. Verify opensearch.xml validation
+
+```bash
+node scripts/site-check.js test/fixtures/valid/site-check/
+```
+
+**Expected**:
+- "opensearch.xml exists"
+- "Valid OpenSearch structure"
+- "Has search URL template"
+- "Has ShortName" and "Has Description" info
+
+### 12. Verify humans.txt validation
+
+```bash
+node scripts/site-check.js test/fixtures/valid/site-check/
+```
+
+**Expected**:
+- "humans.txt exists"
+- "Includes team/author information"
+- "Includes site/technology information"
+
 ---
 
 ## Expected Results
 
-- [ ] Help output documents all checks
-- [ ] Valid fixture passes with all checks green
+- [ ] Help output documents all checks (including new ones)
+- [ ] Valid fixture passes with all checks green (23 passed)
 - [ ] Invalid fixture fails with clear error messages
 - [ ] Strict mode treats warnings as errors
 - [ ] npm run lint:site executes correctly
-- [ ] All 18 automated tests pass
+- [ ] All 23 automated tests pass
 - [ ] AI/LLM crawler directives detected in robots.txt
 - [ ] Manifest validation checks icons, name, start_url
-- [ ] 404 page detection works
+- [ ] All error pages detected (404, 500, 403)
 - [ ] llms.txt content analysis works
+- [ ] .well-known/security.txt validated with Contact/Expires fields
+- [ ] opensearch.xml structure validated
+- [ ] humans.txt content detected
 
 ---
 
@@ -174,8 +227,13 @@ Needs changes (please provide feedback)
 | robots.txt | Error | Search engine crawler directives |
 | sitemap.xml | Info | Site structure for crawlers |
 | manifest.webmanifest | Info | PWA app manifest |
-| 404.html | Info | Custom error page |
+| 404.html | Info | Not Found error page |
+| 500.html | Info | Internal Server Error page |
+| 403.html | Info | Forbidden error page |
 | llms.txt | Info | AI/LLM crawler guidance |
+| .well-known/security.txt | Info | Vulnerability disclosure (RFC 9116) |
+| opensearch.xml | Info | Browser search integration |
+| humans.txt | Info | Site credits and team info |
 
 ### robots.txt Validation
 
@@ -192,6 +250,26 @@ Needs changes (please provide feedback)
 - Checks for maskable icon purpose
 - Validates start_url presence
 
+### security.txt Validation (RFC 9116)
+
+- Checks .well-known/security.txt location (preferred)
+- Falls back to root /security.txt with warning
+- Required field: Contact
+- Recommended field: Expires
+- Optional fields: Encryption, Preferred-Languages, Canonical, Policy
+
+### opensearch.xml Validation
+
+- Checks for OpenSearchDescription root element
+- Validates ShortName and Description elements
+- Verifies Url template is present
+
+### Error Pages
+
+- Checks for 404.html, 500.html, 403.html
+- Also checks alternate locations: {code}/index.html, error/{code}.html
+- Validates each page has a title element
+
 ### Consolidates Previous Planning Issues
 
 - xhtml-test-c1f (Favicon Handling Plan)
@@ -206,3 +284,4 @@ Needs changes (please provide feedback)
 | Date | Action | Notes |
 |------|--------|-------|
 | 2025-12-18 | Created | Consolidates 4 planning issues into unified checker |
+| 2025-12-18 | Updated | Added security.txt, opensearch.xml, humans.txt, 500/403 pages |

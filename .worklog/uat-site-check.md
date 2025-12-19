@@ -4,7 +4,7 @@
 **Issue**: xhtml-test-xg2
 **Branch**: main (direct implementation)
 **Requested**: 2025-12-18
-**Status**: PENDING (v2 - expanded checks)
+**Status**: PENDING (v3 - grouped output)
 
 ---
 
@@ -285,3 +285,4 @@ Needs changes (please provide feedback)
 |------|--------|-------|
 | 2025-12-18 | Created | Consolidates 4 planning issues into unified checker |
 | 2025-12-18 | Updated | Added security.txt, opensearch.xml, humans.txt, 500/403 pages |
+| 2025-12-18 | Updated | Grouped output by category, removed Resources from help |

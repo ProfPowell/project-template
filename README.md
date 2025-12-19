@@ -1,5 +1,4 @@
 # XHTML-Test
-UAT Test Accept - TAP - 12-18 @ 2:46pm
 
 A comprehensive HTML validation and authoring system enforcing XHTML-strict syntax with HTML5 semantic elements. Designed for use with Claude Code to create valid, accessible, semantic HTML pages using modern HTML-first development patterns.
 
@@ -237,7 +236,7 @@ project-words.txt     # Custom dictionary
 # Claude Code integration
 .claude/settings.json # Hook configuration
 .claude/commands/     # Slash commands
-.claude/skills/       # Guidance skills (13 skills)
+.claude/skills/       # Guidance skills (15 skills)
 
 # Custom scripts
 scripts/metadata-check.js  # Metadata validation
@@ -604,15 +603,23 @@ When editing files in Claude Code, validators run automatically:
 | `npm run lint:links:remote` | Check external links (network required) |
 | `npm run lint:spelling` | Spell check with custom dictionary |
 | `npm run lint:grammar` | Grammar/style suggestions (advisory) |
+| `npm run lint:readability` | Check content readability (Flesch-Kincaid scores) |
 | `npm run lint:meta` | Check metadata completeness (SEO, Open Graph, etc.) |
-| `npm run lint:content` | Combined spelling + grammar |
+| `npm run lint:seo` | Analyze SEO content quality (keyword density, structure) |
+| `npm run lint:budget` | Check resource budgets (JS, CSS, images, fonts) |
+| `npm run lint:vitals` | Analyze Core Web Vitals readiness |
+| `npm run lint:site` | Check site infrastructure (favicon, robots.txt, 404, etc.) |
+| `npm run lint:content` | Combined spelling + grammar + readability |
 | `npm run lint:all` | Full validation (HTML + CSS + JS + images + content + metadata) |
 | `npm run lint:changed` | Validate only git-changed files (incremental) |
 | `npm run lint:staged` | Validate only git-staged files (pre-commit) |
 | `npm run optimize:images` | Generate WebP/AVIF versions of images |
 | `npm run a11y:all` | Run pa11y on all example files |
 | `npm run health` | Project health dashboard (all validators summary) |
-| `npm test` | Run test suite (46 tests) |
+| `npm test` | Run test suite (123 tests) |
+| `npm run test:all` | Run all tests with Node.js test runner |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lighthouse` | Run Lighthouse CI audit |
 
 ## Validators
 
@@ -978,14 +985,20 @@ xhtml-test/
 │       ├── valid/             # Files that should pass
 │       └── invalid/           # Files that should fail
 ├── scripts/
-│   ├── metadata-check.js      # Metadata validation script
 │   ├── complexity-check.js    # JavaScript complexity analysis
-│   ├── health-check.js        # Project health dashboard
 │   ├── fix-suggestions.js     # Analyzes errors, suggests fixes
-│   ├── incremental-validate.js # Git-aware incremental validation
+│   ├── health-check.js        # Project health dashboard
 │   ├── image-check.js         # Image file validation
 │   ├── image-html-check.js    # Image HTML best practices
-│   └── optimize-images.js     # WebP/AVIF generation
+│   ├── incremental-validate.js # Git-aware incremental validation
+│   ├── metadata-check.js      # Metadata validation script
+│   ├── optimize-images.js     # WebP/AVIF generation
+│   ├── readability-check.js   # Content readability analysis
+│   ├── resource-budget.js     # Resource budget checking
+│   ├── seo-content.js         # SEO content analysis
+│   ├── site-check.js          # Site infrastructure checker
+│   ├── test-runner.js         # Test execution wrapper
+│   └── web-vitals-check.js    # Core Web Vitals readiness
 ├── AGENTS.md                  # AI agent workflow instructions
 ├── demosite-summary.md        # Analysis of demo-site patterns
 ├── roadmap.md                 # Future enhancement plans
@@ -1020,12 +1033,12 @@ npm test
 
 ### Test Coverage
 
-- **46 tests** across 10 validators + integration
+- **123 tests** across 14 validators + integration
 - **Positive tests**: Valid files pass all validators
 - **Negative tests**: Invalid files fail with expected errors
 - **Integration tests**: Full pipeline verification
 
-Validators tested: html-validate, htmlhint, pa11y, stylelint, eslint, cspell, textlint, link-checker, image-check
+Validators tested: html-validate, htmlhint, pa11y, stylelint, eslint, cspell, textlint, link-checker, image-check, metadata-check, readability-check, seo-content, resource-budget, web-vitals-check, site-check
 
 ### Test Fixtures
 

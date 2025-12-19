@@ -149,7 +149,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Available Skills (18 total):**
+**Available Skills (19 total):**
 
 | Skill | Auto-Triggers When | Purpose |
 |-------|-------------------|---------|
@@ -161,6 +161,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 | `patterns` | Building common page types | Reusable content blocks, page structures |
 | `performance` | Optimizing page load | Resource hints, lazy loading, Core Web Vitals |
 | `metadata` | Writing `<head>` content | SEO, Open Graph, performance hints |
+| `markdown-author` | Creating/editing .md files | CommonMark/GFM, frontmatter, structure |
 | `forms` | Building forms | `<form-field>` pattern, `<output>` validation, HTML5 attributes |
 | `css-architecture` | Organizing CSS | `@layer`, `@import`, nesting, element-focused selectors |
 | `data-attributes` | Managing state/variants | `data-*` as HTML/CSS/JS bridge |
@@ -239,7 +240,7 @@ project-words.txt     # Custom dictionary
 # Claude Code integration
 .claude/settings.json # Hook configuration
 .claude/commands/     # Slash commands
-.claude/skills/       # Guidance skills (18 skills)
+.claude/skills/       # Guidance skills (19 skills)
 
 # Custom scripts
 scripts/metadata-check.js  # Metadata validation
@@ -937,7 +938,7 @@ xhtml-test/
 │   │   ├── add-form-field.md  # /add-form-field command
 │   │   ├── health.md          # /health command
 │   │   └── uat.md             # /uat command
-│   └── skills/                # 18 authoring skills
+│   └── skills/                # 19 authoring skills
 │       ├── xhtml-author/      # XHTML syntax guidance
 │       ├── accessibility-checker/  # WCAG2AA patterns
 │       ├── content-writer/    # Spelling/grammar awareness
@@ -945,6 +946,7 @@ xhtml-test/
 │       ├── patterns/          # Page type patterns
 │       ├── performance/       # Resource hints, lazy loading, Web Vitals
 │       ├── metadata/          # SEO, Open Graph, performance hints
+│       ├── markdown-author/   # CommonMark/GFM, frontmatter, structure
 │       ├── forms/             # Form-field pattern, <output> validation
 │       ├── i18n/              # Internationalization, lang, dir, hreflang
 │       ├── css-architecture/  # @layer, @import, nesting patterns

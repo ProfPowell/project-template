@@ -149,7 +149,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Available Skills (15 total):**
+**Available Skills (16 total):**
 
 | Skill | Auto-Triggers When | Purpose |
 |-------|-------------------|---------|
@@ -157,6 +157,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 | `accessibility-checker` | Creating forms, images, nav | WCAG2AA patterns |
 | `content-writer` | Writing content/prose | Spelling, grammar awareness |
 | `custom-elements` | Using custom components | Element definitions, schemas |
+| `i18n` | Multilingual content, lang attributes | Internationalization, RTL, hreflang |
 | `patterns` | Building common page types | Reusable content blocks, page structures |
 | `metadata` | Writing `<head>` content | SEO, Open Graph, performance hints |
 | `forms` | Building forms | `<form-field>` pattern, `<output>` validation, HTML5 attributes |
@@ -236,7 +237,7 @@ project-words.txt     # Custom dictionary
 # Claude Code integration
 .claude/settings.json # Hook configuration
 .claude/commands/     # Slash commands
-.claude/skills/       # Guidance skills (15 skills)
+.claude/skills/       # Guidance skills (16 skills)
 
 # Custom scripts
 scripts/metadata-check.js  # Metadata validation
@@ -934,7 +935,7 @@ xhtml-test/
 │   │   ├── add-form-field.md  # /add-form-field command
 │   │   ├── health.md          # /health command
 │   │   └── uat.md             # /uat command
-│   └── skills/                # 15 authoring skills
+│   └── skills/                # 16 authoring skills
 │       ├── xhtml-author/      # XHTML syntax guidance
 │       ├── accessibility-checker/  # WCAG2AA patterns
 │       ├── content-writer/    # Spelling/grammar awareness
@@ -942,6 +943,7 @@ xhtml-test/
 │       ├── patterns/          # Page type patterns
 │       ├── metadata/          # SEO, Open Graph, performance hints
 │       ├── forms/             # Form-field pattern, <output> validation
+│       ├── i18n/              # Internationalization, lang, dir, hreflang
 │       ├── css-architecture/  # @layer, @import, nesting patterns
 │       ├── data-attributes/   # State/variant management with data-*
 │       ├── responsive-images/ # <picture>, srcset, sizes, formats

@@ -46,7 +46,7 @@ Implemented SEO content analysis script that checks HTML files for search engine
 - [x] Linting passes (`npm run lint:js` - warnings only, no errors)
 - [x] Tests pass (`npm test -- test/validators/seo.test.js` - 9/9 pass)
 - [x] Manual testing complete (`npm run lint:seo` runs on examples/)
-- [ ] UAT requested
+- [x] UAT requested
 - [ ] UAT approved
 
 ---

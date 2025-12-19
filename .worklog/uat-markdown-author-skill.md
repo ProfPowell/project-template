@@ -4,7 +4,9 @@
 **Issue**: xhtml-test-nii
 **Branch**: feature/xhtml-test-nii-markdown-author-skill
 **Requested**: 2025-12-19
-**Status**: PENDING
+**Status**: APPROVED
+**Approved**: 2025-12-19
+**Approver**: Human (via /uat approve)
 
 ---
 
@@ -192,3 +194,4 @@ This skill unblocks:
 | Date | Action | Notes |
 |------|--------|-------|
 | 2025-12-19 | Created | Initial markdown-author skill implementation |
+| 2025-12-19 | Approved | UAT passed |

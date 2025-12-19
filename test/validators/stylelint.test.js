@@ -21,6 +21,7 @@ function runStylelint(filePath) {
     const output = execSync(`npx stylelint "${filePath}" --formatter json`, {
       cwd: projectRoot,
       encoding: 'utf-8',
+      stdio: ['pipe', 'pipe', 'pipe'],
     });
     // Parse successful output (no errors)
     try {

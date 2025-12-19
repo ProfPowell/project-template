@@ -32,8 +32,9 @@
     "lint:changed": "node scripts/incremental-validate.js",
     "lint:staged": "node scripts/incremental-validate.js --staged",
     "optimize:images": "node scripts/optimize-images.js",
-    "test": "node --test test/**/*.test.js",
-    "test:watch": "node --test --watch test/**/*.test.js",
+    "test": "node scripts/test-runner.js",
+    "test:all": "node --test 'test/**/*.test.js'",
+    "test:watch": "node --test --watch 'test/**/*.test.js'",
     "health": "node scripts/health-check.js"
   },
   "devDependencies": {

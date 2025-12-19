@@ -130,4 +130,12 @@ export default [
       'no-console': 'off',
     },
   },
+  // Configuration file overrides
+  {
+    files: ['*.config.js', '*rc.js'],
+    rules: {
+      'no-restricted-exports': 'off', // Allow default exports for config files
+    },
+  },
+
 ];

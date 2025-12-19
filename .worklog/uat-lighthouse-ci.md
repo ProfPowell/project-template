@@ -53,7 +53,7 @@ cat lighthouserc.json
 - Valid JSON format
 - Has `ci.collect`, `ci.assert`, and `ci.upload` sections
 
-**Status**: [ ] Pass [ ] Fail
+**Status**: [ x] Pass [ ] Fail
 
 ---
 
@@ -67,7 +67,7 @@ cat lighthouserc.json
 - Best Practices threshold: `minScore: 0.9` (> 90%)
 - SEO threshold: `minScore: 1.0` (100%)
 
-**Status**: [ ] Pass [ ] Fail
+**Status**: [ x] Pass [ ] Fail
 
 ---
 
@@ -76,13 +76,12 @@ cat lighthouserc.json
 **Test**: Check package.json for lighthouse script
 
 ```bash
-npm run lighthouse --help
+grep '"lighthouse"' package.json
 ```
 
 **Expected Result**:
-- Script exists in package.json
-- Command shows LHCI help/usage information
-- No errors about missing script
+- Shows the lighthouse script line
+- Script uses `lhci autorun`
 
 **Status**: [ ] Pass [ ] Fail
 
@@ -103,7 +102,7 @@ npm test -- test/validators/lighthouse.test.js
 - Tests verify budget thresholds
 - Tests verify npm script
 
-**Status**: [ ] Pass [ ] Fail
+**Status**: [ x] Pass [ ] Fail
 
 ---
 
@@ -112,7 +111,7 @@ npm test -- test/validators/lighthouse.test.js
 **Test**: Verify configuration can be parsed
 
 ```bash
-node -e "const c = JSON.parse(require('fs').readFileSync('lighthouserc.json')); console.log('Config valid:', !!c.ci)"
+node --eval "import('fs').then(fs => { const c = JSON.parse(fs.readFileSync('lighthouserc.json')); console.log('Config valid:', Boolean(c.ci)); })"
 ```
 
 **Expected Result**:
@@ -136,7 +135,7 @@ npm test
 - New Lighthouse tests included in output
 - No test failures
 
-**Status**: [ ] Pass [ ] Fail
+**Status**: [ x] Pass [ ] Fail
 
 ---
 
@@ -158,21 +157,21 @@ npm run lighthouse
 - May show warnings/errors based on actual page performance
 - Generates HTML report
 
-**Status**: [ ] Pass [ ] Fail [ ] Skipped
+**Status**: [ x] Pass [ ] Fail [ ] Skipped
 
 ---
 
 ## Quality Checklist
 
 ### Code Quality
-- [ ] lighthouserc.json is valid JSON
-- [ ] Test file follows existing validator test patterns
-- [ ] No eslint errors in new files
+- [x ] lighthouserc.json is valid JSON
+- [x ] Test file follows existing validator test patterns
+- [ x] No eslint errors in new files
 
 ### Documentation
-- [ ] Worklog entry created and complete
-- [ ] UAT instructions clear and detailed
-- [ ] Configuration comments explain purpose
+- [x ] Worklog entry created and complete
+- [x ] UAT instructions clear and detailed
+- [ x] Configuration comments explain purpose
 
 ### Integration
 - [ ] npm script added correctly

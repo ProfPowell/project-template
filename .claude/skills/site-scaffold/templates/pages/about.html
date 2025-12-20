@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Primary Meta -->
+  <title>About - {{SITE_NAME}}</title>
+  <meta name="description" content="Learn more about {{SITE_NAME}} and our mission."/>
+  <meta name="author" content="{{SITE_AUTHOR}}"/>
+
+  <!-- Favicon Set -->
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
+  <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32"/>
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="theme-color" content="{{THEME_COLOR}}"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{SITE_URL}}/pages/about.html"/>
+  <meta property="og:title" content="About - {{SITE_NAME}}"/>
+  <meta property="og:description" content="Learn more about {{SITE_NAME}} and our mission."/>
+  <meta property="og:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/main.css"/>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <a href="/" aria-label="{{SITE_NAME}} home">
+      <img src="/assets/images/logo.svg" alt="{{SITE_NAME}}" width="200" height="44"/>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/about.html" aria-current="page">About</a></li>
+        <li><a href="/pages/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article>
+      <h1>About {{SITE_NAME}}</h1>
+
+      <section aria-labelledby="mission-heading">
+        <h2 id="mission-heading">Our Mission</h2>
+        <p>Add your mission statement here.</p>
+      </section>
+
+      <section aria-labelledby="story-heading">
+        <h2 id="story-heading">Our Story</h2>
+        <p>Founded in <time datetime="{{CURRENT_YEAR}}">{{CURRENT_YEAR}}</time>, {{SITE_NAME}} was created to...</p>
+        <p>Add your company story and history here.</p>
+      </section>
+
+      <section aria-labelledby="values-heading">
+        <h2 id="values-heading">Our Values</h2>
+        <ul>
+          <li><strong>Value One</strong> - Description of the first value.</li>
+          <li><strong>Value Two</strong> - Description of the second value.</li>
+          <li><strong>Value Three</strong> - Description of the third value.</li>
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p><small>&copy; <time datetime="{{CURRENT_YEAR}}">{{CURRENT_YEAR}}</time> {{SITE_NAME}}. All rights reserved.</small></p>
+    <address>
+      <a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a>
+    </address>
+  </footer>
+
+  <script src="/assets/js/main.js" defer=""></script>
+</body>
+</html>

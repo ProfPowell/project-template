@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Primary Meta -->
+  <title>{{SITE_NAME}} - {{SITE_TAGLINE}}</title>
+  <meta name="description" content="{{SITE_DESCRIPTION}}"/>
+  <meta name="author" content="{{SITE_AUTHOR}}"/>
+
+  <!-- Favicon Set -->
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
+  <link rel="icon" href="/assets/images/favicon.ico" sizes="32x32"/>
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json"/>
+  <meta name="theme-color" content="{{THEME_COLOR}}"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="{{SITE_URL}}/"/>
+  <meta property="og:title" content="{{SITE_NAME}}"/>
+  <meta property="og:description" content="{{SITE_DESCRIPTION}}"/>
+  <meta property="og:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="{{SITE_NAME}}"/>
+  <meta name="twitter:description" content="{{SITE_DESCRIPTION}}"/>
+  <meta name="twitter:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/css/main.css"/>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <a href="/" aria-label="{{SITE_NAME}} home">
+      <img src="/assets/images/logo.svg" alt="{{SITE_NAME}}" width="200" height="44"/>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="/pages/about.html">About</a></li>
+        <li><a href="/pages/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-heading">
+      <h1 id="hero-heading">{{SITE_TAGLINE}}</h1>
+      <p>{{SITE_DESCRIPTION}}</p>
+      <a href="/pages/about.html" class="button-primary">Learn More</a>
+    </section>
+
+    <section aria-labelledby="features-heading">
+      <h2 id="features-heading">Features</h2>
+      <ul class="features-grid">
+        <li>
+          <article>
+            <h3>Feature One</h3>
+            <p>Description of the first feature.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Feature Two</h3>
+            <p>Description of the second feature.</p>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Feature Three</h3>
+            <p>Description of the third feature.</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Get Started Today</h2>
+      <p>Ready to begin? Contact us to learn more.</p>
+      <a href="/pages/contact.html" class="button-primary">Contact Us</a>
+    </section>
+  </main>
+
+  <footer>
+    <p><small>&copy; <time datetime="{{CURRENT_YEAR}}">{{CURRENT_YEAR}}</time> {{SITE_NAME}}. All rights reserved.</small></p>
+    <address>
+      <a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a>
+    </address>
+  </footer>
+
+  <script src="/assets/js/main.js" defer=""></script>
+</body>
+</html>

@@ -197,8 +197,8 @@ Skills are located in `.claude/skills/` and contain:
 │  Profiles       → Page-type metadata requirements (JSON)    │
 │  npm Scripts    → Manual validation (npm run lint:all)      │
 │  Task Tracking  → Issue management (bd/beads)               │
-│  Demo Site      → Reference implementation (demo-site/)     │
-│  Demo Code      → JavaScript patterns (demo-code/)          │
+│  Demo Site      → Reference implementation (examples/demo-site/) │
+│  Demo Code      → JavaScript patterns (examples/demo-code/)      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -301,7 +301,7 @@ Fork or clone this repository as a starting point:
 ```bash
 git clone https://github.com/your-org/xhtml-test my-html-project
 cd my-html-project
-rm -rf examples/  # Remove example files
+rm -rf examples/pages/  # Remove example pages
 npm install
 ```
 
@@ -397,7 +397,7 @@ Add validation to your build pipeline:
 - name: Validate HTML
   run: |
     npm run lint:html
-    npm run lint:a11y -- examples/*.html
+    npm run lint:a11y -- examples/pages/*.html
     npm run lint:spelling
     npm run lint:meta
 ```
@@ -549,7 +549,7 @@ Enable smooth page-to-page animations with a single meta tag:
 <meta name="view-transition" content="same-origin"/>
 ```
 
-See the `demo-site/` directory and `demosite-summary.md` for comprehensive examples of all these patterns in action.
+See the `examples/demo-site/` directory and `demosite-summary.md` for comprehensive examples of all these patterns in action.
 
 ---
 
@@ -873,7 +873,7 @@ Common page structures documented in the `patterns` skill:
 | Press Release | Headline, dateline, body, boilerplate |
 | Legal | Numbered sections, definitions |
 
-See `examples/` directory for implementations.
+See `examples/pages/` directory for implementations.
 
 ## Metadata
 
@@ -900,7 +900,7 @@ Different pages need different metadata. Profiles define requirements:
 npm run lint:meta
 
 # Check with article profile
-node scripts/metadata-check.js --profile=article examples/press-release/index.html
+node scripts/metadata-check.js --profile=article examples/pages/press-release/index.html
 ```
 
 Available profiles:
@@ -989,34 +989,28 @@ xhtml-test/
 │       ├── pre-flight-check/  # Checklists, pattern matching, troubleshooting
 │       ├── git-workflow/      # Conventional commits, branches, UAT workflow
 │       └── site-scaffold/     # Standard site structure, PWA, SEO, favicons
-├── demo-site/                 # Reference HTML implementation (23 pages)
-│   ├── index.html             # Homepage
-│   ├── about/                 # About page
-│   ├── blog/                  # Blog listing and posts
-│   ├── contact/               # Contact form
-│   ├── gallery/               # Gallery with grid
-│   └── styles/                # CSS architecture example
-├── demo-code/                 # Reference JavaScript patterns
-│   ├── components/            # Web Component examples
-│   │   ├── msg-box/           # Message input component
-│   │   ├── color-picker/      # Color selection component
-│   │   ├── theme-picker/      # Theme switching component
-│   │   ├── lang-picker/       # Language selection component
-│   │   └── ...                # More component examples
-│   └── scripts/               # Main entry point
-├── examples/                  # DemoCompany mock site
-│   ├── sample.html            # Reference implementation
-│   ├── constitution.html      # Complex document example
-│   ├── images/                # Placeholder images
-│   ├── homepage/              # Homepage example
-│   ├── about/                 # About page example
-│   ├── faq/                   # FAQ page example
-│   ├── products/              # Product pages
-│   ├── contact/               # Contact page
-│   ├── careers/               # Careers page
-│   ├── press/                 # Press room
-│   ├── investor-relations/    # Investor page
-│   └── ...                    # More page types
+├── examples/                  # All example implementations
+│   ├── pages/                 # DemoCompany mock site
+│   │   ├── sample.html        # Reference implementation
+│   │   ├── constitution.html  # Complex document example
+│   │   ├── images/            # Placeholder images
+│   │   ├── homepage/          # Homepage example
+│   │   ├── about/             # About page example
+│   │   ├── faq/               # FAQ page example
+│   │   ├── products/          # Product pages
+│   │   ├── contact/           # Contact page
+│   │   └── ...                # More page types
+│   ├── demo-site/             # Reference HTML implementation (23 pages)
+│   │   ├── index.html         # Homepage
+│   │   ├── about/             # About page
+│   │   ├── blog/              # Blog listing and posts
+│   │   ├── contact/           # Contact form
+│   │   ├── gallery/           # Gallery with grid
+│   │   └── styles/            # CSS architecture example
+│   ├── demo-code/             # Reference JavaScript patterns
+│   │   ├── components/        # Web Component examples
+│   │   └── scripts/           # Main entry point
+│   └── demo-site-claude-2/    # Second demo site (Horizon Data Systems)
 ├── test/
 │   ├── validators/            # Unit tests per validator
 │   ├── integration.test.js    # Full pipeline tests
@@ -1055,10 +1049,12 @@ xhtml-test/
 
 ### Examples Directory
 
-The `examples/` directory contains a complete mock corporate website for **DemoCompany** - a fictional company selling widgets, gadgets, and thingamajigs. Each subdirectory contains:
+The `examples/` directory consolidates all example implementations:
 
-- `original.html` or `original.txt` - Low-quality source file with intentional problems
-- `index.html` - High-quality XHTML conversion (created by Claude)
+- **`pages/`** - DemoCompany mock corporate website (widgets, gadgets, thingamajigs). Each subdirectory contains `original.html` (low-quality source) and `index.html` (high-quality XHTML conversion by Claude).
+- **`demo-site/`** - Reference HTML implementation with 23 pages demonstrating CSS architecture, responsive images, and modern patterns.
+- **`demo-code/`** - Reference JavaScript patterns including Web Components, i18n, and functional core/imperative shell architecture.
+- **`demo-site-claude-2/`** - Second demo site (Horizon Data Systems) built with full skill enforcement, demonstrating div-free semantic HTML.
 
 This structure allows testing the full workflow: Claude reads the original, applies skills, produces valid XHTML, and hooks validate the output.
 

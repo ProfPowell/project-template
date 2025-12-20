@@ -45,7 +45,7 @@ One-page reference for common pre-flight checks.
 
 ### Adding a Page
 ```
-1. Check examples/ for similar page type
+1. Check examples/pages/ for similar page type
 2. Use patterns skill for structure
 3. Apply metadata profile
 4. Include skip link and landmarks

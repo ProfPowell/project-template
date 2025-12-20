@@ -9,7 +9,7 @@
  *
  * @example
  * node scripts/complexity-check.js [files...]
- * node scripts/complexity-check.js demo-code
+ * node scripts/complexity-check.js examples/demo-code
  */
 
 import { execSync } from 'child_process';
@@ -180,7 +180,7 @@ function main() {
 
   if (args.length === 0) {
     // Default: analyze demo-code and scripts directories
-    const defaultDirs = ['demo-code', 'scripts'];
+    const defaultDirs = ['examples/demo-code', 'scripts'];
     for (const dir of defaultDirs) {
       try {
         files = files.concat(findJsFiles(dir));

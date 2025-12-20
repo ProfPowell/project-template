@@ -11,7 +11,7 @@
  *
  * Usage:
  *   node scripts/image-html-check.js [directories...]
- *   node scripts/image-html-check.js examples demo-site
+ *   node scripts/image-html-check.js examples/pages examples/demo-site
  */
 
 import { readdir, readFile, stat } from 'node:fs/promises';
@@ -19,7 +19,7 @@ import { join, extname } from 'node:path';
 
 // Configuration
 const CONFIG = {
-  defaultDirs: ['examples', 'demo-site'],
+  defaultDirs: ['examples/pages', 'examples/demo-site'],
   // Images that should have srcset (likely large/hero images)
   heroImagePatterns: [/hero/i, /banner/i, /cover/i, /featured/i, /full-?width/i],
   // Allowed loading values

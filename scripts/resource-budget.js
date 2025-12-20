@@ -14,7 +14,7 @@
  *
  * @example
  * node scripts/resource-budget.js [files...]
- * node scripts/resource-budget.js examples/
+ * node scripts/resource-budget.js examples/pages/
  * npm run lint:budget
  */
 
@@ -470,8 +470,8 @@ Options:
   --help, -h    Show this help
 
 Examples:
-  node scripts/resource-budget.js examples/
-  node scripts/resource-budget.js examples/homepage/index.html
+  node scripts/resource-budget.js examples/pages/
+  node scripts/resource-budget.js examples/pages/homepage/index.html
   npm run lint:budget
 
 Budgets:

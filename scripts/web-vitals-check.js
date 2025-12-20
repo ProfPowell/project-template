@@ -17,7 +17,7 @@
  *
  * @example
  * node scripts/web-vitals-check.js [files...]
- * node scripts/web-vitals-check.js examples/
+ * node scripts/web-vitals-check.js examples/pages/
  * npm run lint:vitals
  */
 
@@ -329,8 +329,8 @@ Options:
   --snippet     Show instrumentation snippet and exit
 
 Examples:
-  node scripts/web-vitals-check.js examples/
-  node scripts/web-vitals-check.js examples/index.html
+  node scripts/web-vitals-check.js examples/pages/
+  node scripts/web-vitals-check.js examples/pages/index.html
   node scripts/web-vitals-check.js --snippet
   npm run lint:vitals
 

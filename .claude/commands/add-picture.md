@@ -60,7 +60,7 @@ Convert an `<img>` element to a `<picture>` element with modern format sources (
 
 ```
 /add-picture hero-image in index.html
-/add-picture examples/about/team-photo.jpg
+/add-picture examples/pages/about/team-photo.jpg
 /add-picture the logo image in the header
 ```
 

@@ -6,8 +6,8 @@
  *
  * Usage:
  *   node scripts/metadata-check.js [files...]
- *   node scripts/metadata-check.js examples/homepage/index.html
- *   node scripts/metadata-check.js --profile=article examples/press-release/index.html
+ *   node scripts/metadata-check.js examples/pages/homepage/index.html
+ *   node scripts/metadata-check.js --profile=article examples/pages/press-release/index.html
  */
 
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
@@ -266,9 +266,9 @@ Options:
   --help, -h        Show this help
 
 Examples:
-  node scripts/metadata-check.js examples/**/*.html
-  node scripts/metadata-check.js --profile=article examples/press-release/index.html
-  node scripts/metadata-check.js                    # Check all HTML in examples/
+  node scripts/metadata-check.js examples/pages/**/*.html
+  node scripts/metadata-check.js --profile=article examples/pages/press-release/index.html
+  node scripts/metadata-check.js                    # Check all HTML in examples/pages/
 `);
       process.exit(0);
     } else {

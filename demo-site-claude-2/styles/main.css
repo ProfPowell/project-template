@@ -1,0 +1,458 @@
+/**
+ * Horizon Data Systems - Main Stylesheet
+ * NO wrapper divs - layout applied directly to semantic elements
+ */
+
+@layer reset, base, layout, components, forms, utilities;
+
+/* Reset Layer */
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Base Layer - Design Tokens */
+@layer base {
+  :root {
+    /* Colors */
+    --color-primary: #1e40af;
+    --color-primary-dark: #1e3a8a;
+    --color-secondary: #059669;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-bg: #fff;
+    --color-bg-alt: #f3f4f6;
+    --color-border: #e5e7eb;
+
+    /* Form colors */
+    --form-border-color: #d1d5db;
+    --form-focus-color: var(--color-primary);
+    --form-valid-color: #059669;
+    --form-invalid-color: #dc2626;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+
+    /* Typography */
+    --font-family: system-ui, -apple-system, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 2.5rem;
+
+    /* Layout */
+    --max-width: 1200px;
+    --border-radius: 6px;
+  }
+
+  body {
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: 1.2;
+    margin-top: 0;
+  }
+
+  h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  a {
+    color: var(--color-primary);
+
+    &:hover {
+      color: var(--color-primary-dark);
+    }
+  }
+
+  p {
+    margin-top: 0;
+  }
+}
+
+/* Layout Layer - NO wrapper divs, style semantic elements directly */
+@layer layout {
+  header {
+    background: var(--color-primary-dark);
+    padding: var(--space-md) max(var(--space-md), calc((100% - var(--max-width)) / 2));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+
+    img {
+      height: 44px;
+      width: auto;
+    }
+
+    nav ul {
+      display: flex;
+      gap: var(--space-lg);
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+
+      &:hover,
+      &[aria-current="page"] {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-lg);
+  }
+
+  footer {
+    background: var(--color-bg-alt);
+    padding: var(--space-lg) max(var(--space-md), calc((100% - var(--max-width)) / 2));
+    margin-top: var(--space-xl);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+
+    address {
+      font-style: normal;
+      color: var(--color-text-light);
+    }
+  }
+
+  section {
+    margin-bottom: var(--space-xl);
+  }
+
+  article {
+    margin-bottom: var(--space-lg);
+  }
+}
+
+/* Components Layer */
+@layer components {
+  /* Skip Link */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: var(--space-md);
+    background: var(--color-primary);
+    color: #fff;
+    padding: var(--space-sm) var(--space-md);
+    z-index: 100;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+
+    &:focus {
+      top: var(--space-md);
+    }
+  }
+
+  /* Buttons */
+  .button-primary {
+    display: inline-block;
+    background: var(--color-secondary);
+    color: #fff;
+    padding: var(--space-sm) var(--space-lg);
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+
+    &:hover {
+      background: #047857;
+      color: #fff;
+    }
+  }
+
+  button[type="submit"] {
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    padding: var(--space-sm) var(--space-lg);
+    font-size: var(--font-size-base);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--color-primary-dark);
+    }
+  }
+
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    color: #fff;
+    padding: var(--space-xl);
+    text-align: center;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--space-xl);
+
+    h1 {
+      color: #fff;
+      margin-bottom: var(--space-md);
+    }
+
+    p {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-lg);
+    }
+  }
+
+  /* Solutions Grid */
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+
+    article {
+      background: var(--color-bg-alt);
+      padding: var(--space-lg);
+      border-radius: var(--border-radius);
+      text-align: center;
+    }
+
+    img {
+      margin: 0 auto var(--space-md);
+    }
+
+    h3 {
+      margin-bottom: var(--space-sm);
+    }
+  }
+
+  /* Leadership Grid */
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+
+    article {
+      text-align: center;
+    }
+
+    img {
+      border-radius: 50%;
+      margin: 0 auto var(--space-md);
+    }
+
+    h3 {
+      margin-bottom: var(--space-xs);
+    }
+  }
+
+  /* Offices Grid */
+  .offices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+
+    h3 {
+      margin-bottom: var(--space-sm);
+    }
+
+    address {
+      font-style: normal;
+      color: var(--color-text-light);
+    }
+  }
+
+  /* Testimonials */
+  .testimonials {
+    background: var(--color-bg-alt);
+    padding: var(--space-lg);
+    border-radius: var(--border-radius);
+
+    blockquote {
+      margin: 0;
+      font-size: var(--font-size-lg);
+      font-style: italic;
+    }
+
+    cite {
+      display: block;
+      margin-top: var(--space-md);
+      font-style: normal;
+      color: var(--color-text-light);
+    }
+  }
+
+  /* CTA Section */
+  .cta {
+    background: var(--color-primary-dark);
+    color: #fff;
+    padding: var(--space-xl);
+    text-align: center;
+    border-radius: var(--border-radius);
+
+    h2 {
+      color: #fff;
+      margin-bottom: var(--space-md);
+    }
+
+    p {
+      margin-bottom: var(--space-lg);
+    }
+  }
+
+  /* Tables */
+  table {
+    margin: var(--space-md) 0;
+  }
+
+  th,
+  td {
+    padding: var(--space-sm) var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  th {
+    background: var(--color-bg-alt);
+    font-weight: 600;
+  }
+}
+
+/* Forms Layer - Using form-field custom element */
+@layer forms {
+  form {
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 32rem;
+  }
+
+  form-field {
+    display: grid;
+    gap: var(--space-sm);
+
+    label {
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: var(--space-sm);
+      border: 1px solid var(--form-border-color);
+      border-radius: var(--border-radius);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+
+      &:focus {
+        outline: 2px solid var(--form-focus-color);
+        outline-offset: 2px;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      padding: var(--space-sm);
+      border: 1px solid var(--form-border-color);
+      border-radius: var(--border-radius);
+      font-size: var(--font-size-base);
+      font-family: inherit;
+      resize: vertical;
+
+      &:focus {
+        outline: 2px solid var(--form-focus-color);
+        outline-offset: 2px;
+      }
+    }
+
+    output {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-light);
+    }
+  }
+
+  /* Required field indicator */
+  form-field:has(input:required, textarea:required, select:required) {
+    label::after {
+      content: " *";
+      color: var(--form-invalid-color);
+    }
+  }
+
+  /* Validation states */
+  form-field:has(input:user-valid) {
+    input {
+      border-color: var(--form-valid-color);
+    }
+  }
+
+  form-field:has(input:user-invalid) {
+    input {
+      border-color: var(--form-invalid-color);
+    }
+
+    output {
+      color: var(--form-invalid-color);
+    }
+  }
+}
+
+/* Utilities Layer */
+@layer utilities {
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}

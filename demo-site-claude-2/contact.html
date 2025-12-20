@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Contact Us - Horizon Data Systems</title>
+  <meta name="description" content="Get in touch with Horizon Data Systems. Request a demo, contact our sales team, or reach our support department."/>
+  <link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <a href="/" aria-label="Horizon Data Systems home">
+      <img src="images/logo.svg" alt="Horizon Data Systems" width="200" height="44"/>
+    </a>
+    <nav aria-label="Main navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/products.html">Solutions</a></li>
+        <li><a href="/contact.html" aria-current="page">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Contact Us</h1>
+    <p>Ready to transform your data? Get in touch with our team.</p>
+
+    <section aria-labelledby="form-heading">
+      <h2 id="form-heading">Request a Demo</h2>
+      <form action="/api/contact" method="post">
+        <form-field>
+          <label for="name">Full Name</label>
+          <input type="text"
+                 id="name"
+                 name="name"
+                 required=""
+                 minlength="2"
+                 autofocus=""
+                 autocomplete="name"
+                 aria-describedby="name-msg"/>
+          <output id="name-msg" for="name" aria-live="polite">
+            Please enter your full name
+          </output>
+        </form-field>
+
+        <form-field>
+          <label for="email">Work Email</label>
+          <input type="email"
+                 id="email"
+                 name="email"
+                 required=""
+                 autocomplete="email"
+                 aria-describedby="email-msg"/>
+          <output id="email-msg" for="email" aria-live="polite">
+            Please enter a valid work email address
+          </output>
+        </form-field>
+
+        <form-field>
+          <label for="company">Company</label>
+          <input type="text"
+                 id="company"
+                 name="company"
+                 required=""
+                 autocomplete="organization"
+                 aria-describedby="company-msg"/>
+          <output id="company-msg" for="company" aria-live="polite">
+            Enter your company name
+          </output>
+        </form-field>
+
+        <form-field>
+          <label for="phone">Phone Number</label>
+          <input type="tel"
+                 id="phone"
+                 name="phone"
+                 autocomplete="tel"
+                 aria-describedby="phone-msg"/>
+          <output id="phone-msg" for="phone" aria-live="polite">
+            Optional - for scheduling convenience
+          </output>
+        </form-field>
+
+        <form-field>
+          <label for="interest">Area of Interest</label>
+          <select id="interest" name="interest" required="">
+            <option value="" disabled="" selected="">Select a solution...</option>
+            <option value="dataflow">DataFlow Analytics</option>
+            <option value="cloudvault">CloudVault Warehouse</option>
+            <option value="insightai">InsightAI</option>
+            <option value="bundle">Complete Platform Bundle</option>
+            <option value="other">Other / Not Sure</option>
+          </select>
+        </form-field>
+
+        <form-field>
+          <label for="message">Tell us about your needs</label>
+          <textarea id="message"
+                    name="message"
+                    required=""
+                    minlength="20"
+                    rows="5"
+                    aria-describedby="message-msg"></textarea>
+          <output id="message-msg" for="message" aria-live="polite">
+            Describe your data challenges and goals (at least 20 characters)
+          </output>
+        </form-field>
+
+        <button type="submit">Request Demo</button>
+      </form>
+    </section>
+
+    <section aria-labelledby="direct-heading">
+      <h2 id="direct-heading">Contact Information</h2>
+
+      <h3>Headquarters</h3>
+      <address>
+        Horizon Data Systems<br/>
+        500 Data Center Drive<br/>
+        Analytics Park, CA 94043<br/>
+        United States
+      </address>
+
+      <h3>Phone</h3>
+      <p>
+        Sales: <a href="tel:+1-888-555-DATA">1&#8209;888&#8209;555&#8209;DATA</a><br/>
+        Support: <a href="tel:+1-888-555-3282">1&#8209;888&#8209;555&#8209;3282</a>
+      </p>
+
+      <h3>Email</h3>
+      <p>
+        Sales: <a href="mailto:sales@horizondata.example">sales@horizondata.example</a><br/>
+        Support: <a href="mailto:support@horizondata.example">support@horizondata.example</a><br/>
+        General: <a href="mailto:info@horizondata.example">info@horizondata.example</a>
+      </p>
+
+      <h3>Business Hours</h3>
+      <p>
+        Monday - Friday: 6:00 AM - 8:00 PM (Pacific Time)<br/>
+        Support available 24/7 for Enterprise customers
+      </p>
+    </section>
+
+    <section aria-labelledby="offices-heading">
+      <h2 id="offices-heading">Global Offices</h2>
+      <ul class="offices-grid">
+        <li>
+          <h3>Americas (HQ)</h3>
+          <address>
+            500 Data Center Drive<br/>
+            Analytics Park, CA 94043
+          </address>
+        </li>
+        <li>
+          <h3>Europe</h3>
+          <address>
+            25 Finsbury Square<br/>
+            London EC2A 1DX, UK
+          </address>
+        </li>
+        <li>
+          <h3>Asia Pacific</h3>
+          <address>
+            1 Marina Boulevard<br/>
+            Singapore 018989
+          </address>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><small>&copy; <time datetime="2025">2025</time> Horizon Data Systems. All rights reserved.</small></p>
+    <address>
+      500 Data Center Drive, Analytics Park, CA 94043<br/>
+      <a href="tel:+1-888-555-DATA">1&#8209;888&#8209;555&#8209;DATA</a> |
+      <a href="mailto:info@horizondata.example">info@horizondata.example</a>
+    </address>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Design Token Documentation</title>
+<meta name="description" content="Living documentation of CSS design tokens with visual previews."/>
+<meta name="generator" content="document-tokens.js"/>
+<style>
+:root {
+--color-bg: #fafafa;
+--color-surface: #fff;
+--color-text: #1a1a1a;
+--color-text-dim: #666;
+--color-border: #e0e0e0;
+--color-primary: #3b82f6;
+--space-xs: 0.25rem;
+--space-sm: 0.5rem;
+--space-md: 1rem;
+--space-lg: 2rem;
+--space-xl: 4rem;
+}
+
+@media (prefers-color-scheme: dark) {
+:root {
+--color-bg: #1a1a1a;
+--color-surface: #2a2a2a;
+--color-text: #e0e0e0;
+--color-text-dim: #999;
+--color-border: #444;
+--color-primary: #60a5fa;
+}
+}
+
+* { box-sizing: border-box; }
+
+body {
+font-family: system-ui, -apple-system, sans-serif;
+line-height: 1.6;
+max-width: 1200px;
+margin: 0 auto;
+padding: var(--space-lg);
+background: var(--color-bg);
+color: var(--color-text);
+}
+
+header {
+margin-bottom: var(--space-xl);
+padding-bottom: var(--space-lg);
+border-bottom: 1px solid var(--color-border);
+}
+
+h1 { margin-top: 0; }
+
+h2 {
+margin-top: var(--space-xl);
+padding-top: var(--space-lg);
+border-top: 1px solid var(--color-border);
+}
+
+nav ul {
+display: flex;
+flex-wrap: wrap;
+gap: var(--space-sm);
+list-style: none;
+padding: 0;
+margin: var(--space-md) 0;
+}
+
+nav li {
+background: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: 4px;
+}
+
+nav a {
+display: block;
+padding: var(--space-xs) var(--space-sm);
+color: var(--color-primary);
+text-decoration: none;
+font-size: 0.9rem;
+}
+
+nav a:hover { text-decoration: underline; }
+
+.color-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: var(--space-md);
+margin-top: var(--space-md);
+}
+
+.color-grid article {
+background: var(--color-surface);
+border: 1px solid var(--color-border);
+border-radius: 8px;
+padding: var(--space-md);
+}
+
+.color-grid dl {
+display: grid;
+grid-template-columns: auto 1fr;
+gap: var(--space-xs) var(--space-sm);
+margin: var(--space-sm) 0 0;
+font-size: 0.85rem;
+}
+
+.color-grid dt {
+font-weight: 600;
+color: var(--color-text-dim);
+}
+
+.color-grid dd { margin: 0; overflow: hidden; text-overflow: ellipsis; }
+
+table {
+width: 100%;
+border-collapse: collapse;
+background: var(--color-surface);
+border-radius: 8px;
+overflow: hidden;
+border: 1px solid var(--color-border);
+margin-top: var(--space-md);
+}
+
+th, td {
+padding: var(--space-sm) var(--space-md);
+text-align: left;
+border-bottom: 1px solid var(--color-border);
+}
+
+th {
+background: var(--color-bg);
+font-weight: 600;
+}
+
+tr:last-child td { border-bottom: none; }
+
+code {
+font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+font-size: 0.85em;
+background: var(--color-bg);
+padding: 2px 4px;
+border-radius: 3px;
+}
+
+figure {
+margin: 0;
+display: inline-block;
+}
+
+footer {
+margin-top: var(--space-xl);
+padding-top: var(--space-lg);
+border-top: 1px solid var(--color-border);
+color: var(--color-text-dim);
+font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+.color-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header>
+<h1>Design Token Documentation</h1>
+<p>Living documentation of CSS design tokens.</p>
+<p><strong>85</strong> tokens documented from <code>examples/demo-site/assets/styles/main.css</code></p>
+</header>
+
+<nav aria-label="Token categories">
+<ul>
+<li><a href="#colors">🎨 Colors (44)</a></li>
+<li><a href="#spacing">📏 Spacing (5)</a></li>
+<li><a href="#typography">🔤 Typography (11)</a></li>
+<li><a href="#effects">✨ Effects (13)</a></li>
+<li><a href="#layout">📐 Layout (6)</a></li>
+<li><a href="#other">📦 Other (6)</a></li>
+</ul>
+</nav>
+
+<main>
+<section id="colors" aria-labelledby="colors-heading">
+<h2 id="colors-heading">🎨 Colors</h2>
+<p><strong>44</strong> color tokens defined.</p>
+<section class="color-grid">
+<article>
+<figure style="background: #2563eb; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--primary-color</code></dd>
+<dt>Value</dt>
+<dd><code>#2563eb</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #374151; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--secondary-color</code></dd>
+<dt>Value</dt>
+<dd><code>#374151</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #f8fafc; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--background-light</code></dd>
+<dt>Value</dt>
+<dd><code>#f8fafc</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: white; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--background-main</code></dd>
+<dt>Value</dt>
+<dd><code>white</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: white; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--text-on-primary</code></dd>
+<dt>Value</dt>
+<dd><code>white</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: white; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--text-on-secondary</code></dd>
+<dt>Value</dt>
+<dd><code>white</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #1f2937; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--text-color</code></dd>
+<dt>Value</dt>
+<dd><code>#1f2937</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #e5e7eb; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--border-color</code></dd>
+<dt>Value</dt>
+<dd><code>#e5e7eb</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: rgba(0, 0, 0, 0.5); width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--dialog-backdrop</code></dd>
+<dt>Value</dt>
+<dd><code>rgba(0, 0, 0, 0.5)</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: rgba(255, 255, 255, 0.1); width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--overlay-light</code></dd>
+<dt>Value</dt>
+<dd><code>rgba(255, 255, 255, 0.1)</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: rgba(255, 255, 255, 0.15); width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--overlay-medium</code></dd>
+<dt>Value</dt>
+<dd><code>rgba(255, 255, 255, 0.15)</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: rgba(255, 255, 255, 0.2); width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--overlay-strong</code></dd>
+<dt>Value</dt>
+<dd><code>rgba(255, 255, 255, 0.2)</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: rgba(0, 0, 0, 0.05); width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--overlay-border</code></dd>
+<dt>Value</dt>
+<dd><code>rgba(0, 0, 0, 0.05)</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #10b981; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--color-success</code></dd>
+<dt>Value</dt>
+<dd><code>#10b981</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #ef4444; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--color-error</code></dd>
+<dt>Value</dt>
+<dd><code>#ef4444</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #f59e0b; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--color-warning</code></dd>
+<dt>Value</dt>
+<dd><code>#f59e0b</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #f0fdf4; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--background-success</code></dd>
+<dt>Value</dt>
+<dd><code>#f0fdf4</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #fef2f2; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--background-error</code></dd>
+<dt>Value</dt>
+<dd><code>#fef2f2</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #fef3c7; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-philosophy-bg</code></dd>
+<dt>Value</dt>
+<dd><code>#fef3c7</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #f59e0b; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-philosophy-border</code></dd>
+<dt>Value</dt>
+<dd><code>#f59e0b</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #92400e; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-philosophy-text</code></dd>
+<dt>Value</dt>
+<dd><code>#92400e</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #e0f2fe; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-ux-bg</code></dd>
+<dt>Value</dt>
+<dd><code>#e0f2fe</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #0284c7; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-ux-border</code></dd>
+<dt>Value</dt>
+<dd><code>#0284c7</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #075985; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-ux-text</code></dd>
+<dt>Value</dt>
+<dd><code>#075985</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #ecfeff; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-css-bg</code></dd>
+<dt>Value</dt>
+<dd><code>#ecfeff</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #06b6d4; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-css-border</code></dd>
+<dt>Value</dt>
+<dd><code>#06b6d4</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #0e7490; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-css-text</code></dd>
+<dt>Value</dt>
+<dd><code>#0e7490</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #f5f3ff; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-tooling-bg</code></dd>
+<dt>Value</dt>
+<dd><code>#f5f3ff</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #7c3aed; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-tooling-border</code></dd>
+<dt>Value</dt>
+<dd><code>#7c3aed</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #5b21b6; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-tooling-text</code></dd>
+<dt>Value</dt>
+<dd><code>#5b21b6</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #fef2f2; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-animation-bg</code></dd>
+<dt>Value</dt>
+<dd><code>#fef2f2</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #ef4444; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-animation-border</code></dd>
+<dt>Value</dt>
+<dd><code>#ef4444</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #7f1d1d; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-animation-text</code></dd>
+<dt>Value</dt>
+<dd><code>#7f1d1d</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #ecfccb; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-a11y-bg</code></dd>
+<dt>Value</dt>
+<dd><code>#ecfccb</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #65a30d; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-a11y-border</code></dd>
+<dt>Value</dt>
+<dd><code>#65a30d</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #3f6212; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-a11y-text</code></dd>
+<dt>Value</dt>
+<dd><code>#3f6212</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #fae8ff; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-forms-bg</code></dd>
+<dt>Value</dt>
+<dd><code>#fae8ff</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #a855f7; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-forms-border</code></dd>
+<dt>Value</dt>
+<dd><code>#a855f7</code></dd>
+</dl>
+</article>
+<article>
+<figure style="background: #6b21a8; width: 100%; height: 80px; border-radius: 8px; border: 1px solid #e5e7eb;"></figure>
+<dl>
+<dt>Name</dt>
+<dd><code>--tag-forms-text</code></dd>
+<dt>Value</dt>
+<dd><code>#6b21a8</code></dd>
+</dl>
+</article>
+</section>
+</section>
+
+<section id="spacing" aria-labelledby="spacing-heading">
+<h2 id="spacing-heading">📏 Spacing</h2>
+<p><strong>5</strong> spacing tokens defined.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Token</th>
+<th scope="col">Value</th>
+<th scope="col">Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--spacing-xs</code></td>
+<td><code>0.25rem</code></td>
+<td><figure style="background: #3b82f6; height: 16px; width: 0.25rem; border-radius: 2px;"></figure></td>
+</tr>
+<tr>
+<td><code>--spacing-sm</code></td>
+<td><code>0.5rem</code></td>
+<td><figure style="background: #3b82f6; height: 16px; width: 0.5rem; border-radius: 2px;"></figure></td>
+</tr>
+<tr>
+<td><code>--spacing-md</code></td>
+<td><code>1rem</code></td>
+<td><figure style="background: #3b82f6; height: 16px; width: 1rem; border-radius: 2px;"></figure></td>
+</tr>
+<tr>
+<td><code>--spacing-lg</code></td>
+<td><code>2rem</code></td>
+<td><figure style="background: #3b82f6; height: 16px; width: 2rem; border-radius: 2px;"></figure></td>
+</tr>
+<tr>
+<td><code>--spacing-xl</code></td>
+<td><code>3rem</code></td>
+<td><figure style="background: #3b82f6; height: 16px; width: 3rem; border-radius: 2px;"></figure></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="typography" aria-labelledby="typography-heading">
+<h2 id="typography-heading">🔤 Typography</h2>
+<p><strong>11</strong> typography tokens defined.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Token</th>
+<th scope="col">Value</th>
+<th scope="col">Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--font-size-base</code></td>
+<td><code>1rem</code></td>
+<td><span style="font-size: 1rem">Sample at 1rem</span></td>
+</tr>
+<tr>
+<td><code>--font-size-sm</code></td>
+<td><code>0.875rem</code></td>
+<td><span style="font-size: 0.875rem">Sample at 0.875rem</span></td>
+</tr>
+<tr>
+<td><code>--font-size-lg</code></td>
+<td><code>1.125rem</code></td>
+<td><span style="font-size: 1.125rem">Sample at 1.125rem</span></td>
+</tr>
+<tr>
+<td><code>--font-size-xl</code></td>
+<td><code>1.25rem</code></td>
+<td><span style="font-size: 1.25rem">Sample at 1.25rem</span></td>
+</tr>
+<tr>
+<td><code>--font-size-2xl</code></td>
+<td><code>1.5rem</code></td>
+<td><span style="font-size: 1.5rem">Sample at 1.5rem</span></td>
+</tr>
+<tr>
+<td><code>--font-weight-normal</code></td>
+<td><code>400</code></td>
+<td><span style="font-weight: 400">Weight 400</span></td>
+</tr>
+<tr>
+<td><code>--font-weight-medium</code></td>
+<td><code>500</code></td>
+<td><span style="font-weight: 500">Weight 500</span></td>
+</tr>
+<tr>
+<td><code>--font-weight-semibold</code></td>
+<td><code>600</code></td>
+<td><span style="font-weight: 600">Weight 600</span></td>
+</tr>
+<tr>
+<td><code>--font-weight-bold</code></td>
+<td><code>700</code></td>
+<td><span style="font-weight: 700">Weight 700</span></td>
+</tr>
+<tr>
+<td><code>--line-height-tight</code></td>
+<td><code>1</code></td>
+<td><span style="line-height: 1">The quick brown fox jumps over the lazy dog</span></td>
+</tr>
+<tr>
+<td><code>--line-height-normal</code></td>
+<td><code>1.6</code></td>
+<td><span style="line-height: 1.6">The quick brown fox jumps over the lazy dog</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="effects" aria-labelledby="effects-heading">
+<h2 id="effects-heading">✨ Effects</h2>
+<p><strong>13</strong> effect tokens defined.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Token</th>
+<th scope="col">Value</th>
+<th scope="col">Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--opacity-hover</code></td>
+<td><code>0.1</code></td>
+<td><span>—</span></td>
+</tr>
+<tr>
+<td><code>--opacity-active</code></td>
+<td><code>0.2</code></td>
+<td><span>—</span></td>
+</tr>
+<tr>
+<td><code>--opacity-disabled</code></td>
+<td><code>0.5</code></td>
+<td><span>—</span></td>
+</tr>
+<tr>
+<td><code>--opacity-button-hover</code></td>
+<td><code>0.9</code></td>
+<td><span>—</span></td>
+</tr>
+<tr>
+<td><code>--opacity-hidden</code></td>
+<td><code>0</code></td>
+<td><span>—</span></td>
+</tr>
+<tr>
+<td><code>--opacity-visible</code></td>
+<td><code>1</code></td>
+<td><span>—</span></td>
+</tr>
+<tr>
+<td><code>--transition-fast</code></td>
+<td><code>0.2s</code></td>
+<td><figure style="background: #3b82f6; width: 48px; height: 24px; border-radius: 4px;"></figure></td>
+</tr>
+<tr>
+<td><code>--transition-normal</code></td>
+<td><code>0.3s</code></td>
+<td><figure style="background: #3b82f6; width: 48px; height: 24px; border-radius: 4px;"></figure></td>
+</tr>
+<tr>
+<td><code>--transition-slow</code></td>
+<td><code>0.5s</code></td>
+<td><figure style="background: #3b82f6; width: 48px; height: 24px; border-radius: 4px;"></figure></td>
+</tr>
+<tr>
+<td><code>--transition-ease</code></td>
+<td><code>ease-out</code></td>
+<td><figure style="background: #3b82f6; width: 48px; height: 24px; border-radius: 4px;"></figure></td>
+</tr>
+<tr>
+<td><code>--shadow-sm</code></td>
+<td><code>0 1px 3px rgba(0, 0, 0, 0.1)</code></td>
+<td><figure style="box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); background: white; padding: 16px;"></figure></td>
+</tr>
+<tr>
+<td><code>--shadow-md</code></td>
+<td><code>0 4px 6px rgba(0, 0, 0, 0.1)</code></td>
+<td><figure style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background: white; padding: 16px;"></figure></td>
+</tr>
+<tr>
+<td><code>--shadow-lg</code></td>
+<td><code>0 10px 25px rgba(0, 0, 0, 0.2)</code></td>
+<td><figure style="box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); background: white; padding: 16px;"></figure></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="layout" aria-labelledby="layout-heading">
+<h2 id="layout-heading">📐 Layout</h2>
+<p><strong>6</strong> layout tokens defined.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Token</th>
+<th scope="col">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--max-content-width</code></td>
+<td><code>1200px</code></td>
+</tr>
+<tr>
+<td><code>--header-height</code></td>
+<td><code>60px</code></td>
+</tr>
+<tr>
+<td><code>--min-textarea-height</code></td>
+<td><code>120px</code></td>
+</tr>
+<tr>
+<td><code>--z-dropdown</code></td>
+<td><code>99</code></td>
+</tr>
+<tr>
+<td><code>--z-sticky</code></td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>--z-modal</code></td>
+<td><code>200</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section id="other" aria-labelledby="other-heading">
+<h2 id="other-heading">📦 Other</h2>
+<p><strong>6</strong> other tokens defined.</p>
+<table>
+<thead>
+<tr>
+<th scope="col">Token</th>
+<th scope="col">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--table-max-height</code></td>
+<td><code>500px</code></td>
+</tr>
+<tr>
+<td><code>--hamburger-width</code></td>
+<td><code>24px</code></td>
+</tr>
+<tr>
+<td><code>--hamburger-width-sm</code></td>
+<td><code>20px</code></td>
+</tr>
+<tr>
+<td><code>--hamburger-line-height</code></td>
+<td><code>2px</code></td>
+</tr>
+<tr>
+<td><code>--hamburger-gap</code></td>
+<td><code>5px</code></td>
+</tr>
+<tr>
+<td><code>--hamburger-translate</code></td>
+<td><code>7px</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</main>
+
+<footer>
+<p>Generated: <time datetime="2025-12-20T21:08:19.086Z">12/20/2025, 1:08:19 PM</time></p>
+<p>Source: <code>examples/demo-site/assets/styles/main.css</code></p>
+</footer>
+</body>
+</html>

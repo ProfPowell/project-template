@@ -105,6 +105,10 @@ Custom slash commands extend Claude's capabilities:
 | `/add-css-tokens` | Generate a CSS design token system |
 | `/add-css-file` | Create a scoped CSS file (component/section/page) |
 | `/add-form-field` | Generate an accessible form field with `<output>` |
+| `/add-toc` | Generate table of contents from markdown headings |
+| `/add-frontmatter` | Add YAML frontmatter template (blog, docs, changelog) |
+| `/add-callout` | Insert callout block (note, tip, warning, danger) |
+| `/add-code-block` | Insert fenced code block with language identifier |
 | `/health` | Run project health dashboard across all validators |
 | `/uat` | Request, approve, or deny user acceptance testing |
 
@@ -950,13 +954,17 @@ xhtml-test/
 │   └── uat-*.md                  # UAT request files
 ├── .claude/
 │   ├── settings.json          # Claude Code hooks
-│   ├── commands/
+│   ├── commands/              # 12 slash commands
 │   │   ├── add-element.md     # /add-element command
 │   │   ├── add-word.md        # /add-word command
 │   │   ├── add-picture.md     # /add-picture command
 │   │   ├── add-css-tokens.md  # /add-css-tokens command
 │   │   ├── add-css-file.md    # /add-css-file command
 │   │   ├── add-form-field.md  # /add-form-field command
+│   │   ├── add-toc.md         # /add-toc command (markdown)
+│   │   ├── add-frontmatter.md # /add-frontmatter command (markdown)
+│   │   ├── add-callout.md     # /add-callout command (markdown)
+│   │   ├── add-code-block.md  # /add-code-block command (markdown)
 │   │   ├── health.md          # /health command
 │   │   └── uat.md             # /uat command
 │   └── skills/                # 19 authoring skills

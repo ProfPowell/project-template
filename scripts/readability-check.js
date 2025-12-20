@@ -13,7 +13,7 @@
  *
  * @example
  * node scripts/readability-check.js [files...]
- * node scripts/readability-check.js examples/
+ * node scripts/readability-check.js examples/pages/
  * npm run lint:readability
  */
 

@@ -8,7 +8,7 @@
  *
  * Usage:
  *   node scripts/optimize-images.js [directories...]
- *   node scripts/optimize-images.js examples demo-site
+ *   node scripts/optimize-images.js examples/pages examples/demo-site
  *
  * Options:
  *   --sizes    Generate multiple sizes for srcset (400, 800, 1200)
@@ -30,7 +30,7 @@ const CONFIG = {
     png: 85,
   },
   srcsetWidths: [400, 800, 1200],
-  defaultDirs: ['examples', 'demo-site'],
+  defaultDirs: ['examples/pages', 'examples/demo-site'],
 };
 
 // Parse command line arguments

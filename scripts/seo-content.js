@@ -14,7 +14,7 @@
  *
  * @example
  * node scripts/seo-content.js [files...]
- * node scripts/seo-content.js examples/
+ * node scripts/seo-content.js examples/pages/
  * npm run lint:seo
  */
 
@@ -462,8 +462,8 @@ Options:
   --help, -h    Show this help
 
 Examples:
-  node scripts/seo-content.js examples/
-  node scripts/seo-content.js examples/homepage/index.html
+  node scripts/seo-content.js examples/pages/
+  node scripts/seo-content.js examples/pages/homepage/index.html
   npm run lint:seo
 `);
     process.exit(0);

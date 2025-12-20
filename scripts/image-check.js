@@ -10,7 +10,7 @@
  *
  * Usage:
  *   node scripts/image-check.js [directories...]
- *   node scripts/image-check.js examples demo-site
+ *   node scripts/image-check.js examples/pages examples/demo-site
  *
  * Exit codes:
  *   0 - All checks passed
@@ -27,7 +27,7 @@ const CONFIG = {
   maxDimension: 4000, // Max width or height
   sourceFormats: ['.jpg', '.jpeg', '.png'],
   modernFormats: ['.webp', '.avif'],
-  defaultDirs: ['examples', 'demo-site'],
+  defaultDirs: ['examples/pages', 'examples/demo-site'],
 };
 
 // Track errors and warnings

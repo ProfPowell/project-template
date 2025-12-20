@@ -16,7 +16,7 @@
  *
  * @example
  * node scripts/site-check.js [directory]
- * node scripts/site-check.js examples/
+ * node scripts/site-check.js examples/pages/
  * npm run lint:site
  */
 
@@ -747,7 +747,7 @@ ${colors.bold}Checks Performed:${colors.reset}
     • humans.txt - Site credits and team info
 
 ${colors.bold}Examples:${colors.reset}
-  node scripts/site-check.js examples/
+  node scripts/site-check.js examples/pages/
   node scripts/site-check.js --strict ./my-site
   npm run lint:site
 `);

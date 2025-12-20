@@ -156,7 +156,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Available Skills (19 total):**
+**Available Skills (20 total):**
 
 | Skill | Auto-Triggers When | Purpose |
 |-------|-------------------|---------|
@@ -179,6 +179,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 | `javascript-author` | Creating/editing JS | Web Components, JSDoc, i18n, events, accessibility |
 | `pre-flight-check` | Before creating/editing files | Checklists, pattern matching, issue prevention |
 | `git-workflow` | Starting work on issues | Conventional commits, feature branches, UAT workflow |
+| `site-scaffold` | Creating new sites | Standard structure, favicon set, PWA, SEO files |
 
 Skills are located in `.claude/skills/` and contain:
 
@@ -967,7 +968,7 @@ xhtml-test/
 │   │   ├── add-code-block.md  # /add-code-block command (markdown)
 │   │   ├── health.md          # /health command
 │   │   └── uat.md             # /uat command
-│   └── skills/                # 19 authoring skills
+│   └── skills/                # 20 authoring skills
 │       ├── xhtml-author/      # XHTML syntax guidance
 │       ├── accessibility-checker/  # WCAG2AA patterns
 │       ├── content-writer/    # Spelling/grammar awareness
@@ -986,7 +987,8 @@ xhtml-test/
 │       ├── design-tokens/     # CSS custom properties, theming
 │       ├── javascript-author/ # Web Components, JSDoc, i18n, events
 │       ├── pre-flight-check/  # Checklists, pattern matching, troubleshooting
-│       └── git-workflow/      # Conventional commits, branches, UAT workflow
+│       ├── git-workflow/      # Conventional commits, branches, UAT workflow
+│       └── site-scaffold/     # Standard site structure, PWA, SEO, favicons
 ├── demo-site/                 # Reference HTML implementation (23 pages)
 │   ├── index.html             # Homepage
 │   ├── about/                 # About page

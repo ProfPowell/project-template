@@ -267,6 +267,42 @@ function analyzeLinesAndSuggest(lines, type) {
       });
     }
 
+    // Div blacklist (element-name rule)
+    if (fullOutput.includes('is blacklisted') && fullOutput.includes('div')) {
+      addSuggestion({
+        error: 'Div element detected',
+        message: 'Replace <div> with semantic element. See xhtml-author skill for alternatives.',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+
+    // Semantic check patterns
+    if (fullOutput.includes('semantic/form-field')) {
+      addSuggestion({
+        error: 'Form without form-field',
+        message: 'Use <form-field> custom element for form inputs. Invoke forms skill.',
+        fix: '/skill forms',
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('semantic/no-div')) {
+      addSuggestion({
+        error: 'Div with class detected',
+        message: 'Consider semantic alternatives to <div>. Check skill output for specific suggestions.',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('semantic/use-time')) {
+      addSuggestion({
+        error: 'Year without <time> element',
+        message: 'Wrap years in <time datetime="YYYY"> for semantic markup',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+
     // Accessibility (pa11y) patterns
     if (fullOutput.includes('WCAG2AA') || fullOutput.includes('pa11y')) {
       if (fullOutput.includes('Elements must have sufficient color contrast')) {

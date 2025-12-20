@@ -29,7 +29,10 @@
     "no-unknown-elements": ["error", { "exclude": ["x-*"] }],
     "wcag/h36": "error",
     "wcag/h37": "error",
-    "wcag/h67": "error"
+    "wcag/h67": "error",
+    "element-name": ["warn", {
+      "blacklist": ["div"]
+    }]
   },
   "elements": ["html5", "./elements.json"]
 }

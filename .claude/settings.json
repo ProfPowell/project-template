@@ -15,6 +15,10 @@
           {
             "type": "command",
             "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.js$'; then (echo '=== eslint ===' ; npx eslint \"$file_path\" 2>&1) | node scripts/fix-suggestions.js --type=js ; fi"
+          },
+          {
+            "type": "command",
+            "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.md$' && ! echo \"$file_path\" | grep -qE '(\\.worklog|node_modules)/'; then (echo '=== markdownlint ===' ; npx markdownlint \"$file_path\" 2>&1 ; echo '=== cspell ===' ; npx cspell \"$file_path\" --no-progress 2>&1) | node scripts/fix-suggestions.js --type=md ; fi"
           }
         ]
       }

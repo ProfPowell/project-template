@@ -10,6 +10,7 @@
  *   npx eslint file.js 2>&1 | node scripts/fix-suggestions.js --type=js
  *   npx stylelint file.css 2>&1 | node scripts/fix-suggestions.js --type=css
  *   npx html-validate file.html 2>&1 | node scripts/fix-suggestions.js --type=html
+ *   npx markdownlint file.md 2>&1 | node scripts/fix-suggestions.js --type=md
  */
 
 import { createInterface } from 'readline';
@@ -284,6 +285,241 @@ function analyzeLinesAndSuggest(lines, type) {
           autoFixable: false,
         });
       }
+    }
+  }
+
+  // Markdown patterns
+  if (type === 'md') {
+    // Heading structure issues
+    if (fullOutput.includes('MD001') || fullOutput.includes('heading-increment')) {
+      addSuggestion({
+        error: 'Heading increment',
+        message: 'Headings should only increment by one level at a time',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD003') || fullOutput.includes('heading-style')) {
+      addSuggestion({
+        error: 'Heading style',
+        message: 'Use ATX-style headings (# Heading)',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD025') || fullOutput.includes('single-h1')) {
+      addSuggestion({
+        error: 'Multiple H1 headings',
+        message: 'Document should have only one H1 heading as the title',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD041') || fullOutput.includes('first-line-h1')) {
+      addSuggestion({
+        error: 'First line not H1',
+        message: 'First line should be a top-level heading',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+
+    // List formatting
+    if (fullOutput.includes('MD004') || fullOutput.includes('ul-style')) {
+      addSuggestion({
+        error: 'List style',
+        message: 'Use dashes (-) for unordered lists',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD007') || fullOutput.includes('ul-indent')) {
+      addSuggestion({
+        error: 'List indentation',
+        message: 'Use 2-space indentation for nested lists',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD029') || fullOutput.includes('ol-prefix')) {
+      addSuggestion({
+        error: 'Ordered list prefix',
+        message: 'Use ordered (1. 2. 3.) numbering for lists',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+
+    // Code blocks
+    if (fullOutput.includes('MD040') || fullOutput.includes('fenced-code-language')) {
+      addSuggestion({
+        error: 'Missing code language',
+        message: 'Specify language for fenced code blocks (```javascript)',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD046') || fullOutput.includes('code-block-style')) {
+      addSuggestion({
+        error: 'Code block style',
+        message: 'Use fenced code blocks (```) instead of indented',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD048') || fullOutput.includes('code-fence-style')) {
+      addSuggestion({
+        error: 'Code fence style',
+        message: 'Use backticks (```) for code fences, not tildes',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+
+    // Whitespace and formatting
+    if (fullOutput.includes('MD009') || fullOutput.includes('no-trailing-spaces')) {
+      addSuggestion({
+        error: 'Trailing spaces',
+        message: 'Remove trailing whitespace (except 2 spaces for line breaks)',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD010') || fullOutput.includes('no-hard-tabs')) {
+      addSuggestion({
+        error: 'Hard tabs',
+        message: 'Use spaces instead of tabs for indentation',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD012') || fullOutput.includes('no-multiple-blanks')) {
+      addSuggestion({
+        error: 'Multiple blank lines',
+        message: 'Use only one blank line between blocks',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD022') || fullOutput.includes('blanks-around-headings')) {
+      addSuggestion({
+        error: 'Heading spacing',
+        message: 'Add blank lines before and after headings',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD031') || fullOutput.includes('blanks-around-fences')) {
+      addSuggestion({
+        error: 'Code block spacing',
+        message: 'Add blank lines before and after code blocks',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD032') || fullOutput.includes('blanks-around-lists')) {
+      addSuggestion({
+        error: 'List spacing',
+        message: 'Add blank lines before and after lists',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD047') || fullOutput.includes('single-trailing-newline')) {
+      addSuggestion({
+        error: 'File ending',
+        message: 'Files should end with a single newline',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+
+    // Links and images
+    if (fullOutput.includes('MD034') || fullOutput.includes('no-bare-urls')) {
+      addSuggestion({
+        error: 'Bare URL',
+        message: 'Use proper link syntax [text](url) instead of bare URLs',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD042') || fullOutput.includes('no-empty-links')) {
+      addSuggestion({
+        error: 'Empty link',
+        message: 'Links should have text content and valid URLs',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD045') || fullOutput.includes('no-alt-text')) {
+      addSuggestion({
+        error: 'Missing alt text',
+        message: 'Add alt text to images ![description](image.png)',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD051') || fullOutput.includes('link-fragments')) {
+      addSuggestion({
+        error: 'Invalid link fragment',
+        message: 'Link fragment (#section) does not match any heading',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+
+    // Emphasis and formatting
+    if (fullOutput.includes('MD036') || fullOutput.includes('no-emphasis-as-heading')) {
+      addSuggestion({
+        error: 'Emphasis as heading',
+        message: 'Use proper headings instead of bold/emphasis for titles',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('MD037') || fullOutput.includes('no-space-in-emphasis')) {
+      addSuggestion({
+        error: 'Space in emphasis',
+        message: 'Remove spaces inside emphasis markers: *text* not * text *',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD049') || fullOutput.includes('emphasis-style')) {
+      addSuggestion({
+        error: 'Emphasis style',
+        message: 'Use asterisks (*text*) for emphasis, not underscores',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+    if (fullOutput.includes('MD050') || fullOutput.includes('strong-style')) {
+      addSuggestion({
+        error: 'Bold style',
+        message: 'Use asterisks (**text**) for bold, not underscores',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+
+    // Inline code
+    if (fullOutput.includes('MD038') || fullOutput.includes('no-space-in-code')) {
+      addSuggestion({
+        error: 'Space in code',
+        message: 'Remove spaces inside inline code: `code` not ` code `',
+        fix: 'npm run lint:markdown:fix',
+        autoFixable: true,
+      });
+    }
+
+    // Spelling (cspell)
+    if (fullOutput.includes('Unknown word')) {
+      addSuggestion({
+        error: 'Unknown word (spelling)',
+        message: 'Fix spelling or add word to dictionary',
+        fix: '/add-word <word>',
+        autoFixable: false,
+      });
     }
   }
 

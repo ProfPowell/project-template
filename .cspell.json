@@ -1,7 +1,7 @@
 {
   "version": "0.2",
   "language": "en",
-  "ignorePaths": ["node_modules/**", "*.json", "package-lock.json"],
+  "ignorePaths": ["node_modules/**", "*.json", "package-lock.json", ".worklog/**"],
   "dictionaryDefinitions": [
     {
       "name": "project-words",
@@ -9,14 +9,18 @@
       "addWords": true
     }
   ],
-  "dictionaries": ["en_US", "html", "css", "project-words"],
+  "dictionaries": ["en_US", "html", "css", "software-terms", "project-words"],
   "ignoreRegExpList": [
     "/href=\"[^\"]*\"/g",
     "/src=\"[^\"]*\"/g",
     "/id=\"[^\"]*\"/g",
     "/class=\"[^\"]*\"/g",
     "/aria-[a-z]+=\"[^\"]*\"/g",
-    "/data-[a-z-]+=\"[^\"]*\"/g"
+    "/data-[a-z-]+=\"[^\"]*\"/g",
+    "/\\[.*?\\]\\(.*?\\)/g",
+    "/```[\\s\\S]*?```/g",
+    "/`[^`]+`/g",
+    "/^---[\\s\\S]*?---/gm"
   ],
   "minWordLength": 3
 }

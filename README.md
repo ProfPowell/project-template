@@ -600,6 +600,8 @@ When editing files in Claude Code, validators run automatically:
 | `npm run lint:css:fix` | Auto-fix CSS issues |
 | `npm run lint:js` | Run eslint on all JavaScript files |
 | `npm run lint:js:fix` | Auto-fix JavaScript issues |
+| `npm run lint:markdown` | Run markdownlint on all Markdown files |
+| `npm run lint:markdown:fix` | Auto-fix Markdown issues |
 | `npm run lint:complexity` | Analyze JavaScript code complexity |
 | `npm run lint:images` | Check image files (size, modern formats) |
 | `npm run lint:images:html` | Check `<img>` elements (loading, srcset) |
@@ -620,7 +622,7 @@ When editing files in Claude Code, validators run automatically:
 | `npm run optimize:images` | Generate WebP/AVIF versions of images |
 | `npm run a11y:all` | Run pa11y on all example files |
 | `npm run health` | Project health dashboard (all validators summary) |
-| `npm test` | Run test suite (123 tests) |
+| `npm test` | Run test suite (137 tests) |
 | `npm run test:all` | Run all tests with Node.js test runner |
 | `npm run test:watch` | Run tests in watch mode |
 | `npm run lighthouse` | Run Lighthouse CI audit |
@@ -1041,7 +1043,7 @@ npm test
 
 ### Test Coverage
 
-- **123 tests** across 14 validators + integration
+- **137 tests** across 16 validators + integration
 - **Positive tests**: Valid files pass all validators
 - **Negative tests**: Invalid files fail with expected errors
 - **Integration tests**: Full pipeline verification

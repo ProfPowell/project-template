@@ -40,7 +40,8 @@
     "test:watch": "node --test --watch 'test/**/*.test.js'",
     "health": "node scripts/health-check.js",
     "lighthouse": "lhci autorun",
-    "generate:patterns": "node scripts/generate-patterns.js"
+    "generate:patterns": "node scripts/generate-patterns.js",
+    "generate:tokens": "node scripts/document-tokens.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

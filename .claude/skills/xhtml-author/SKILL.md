@@ -32,6 +32,52 @@ Use semantic HTML5 elements instead of `<div>`:
 | `<figcaption>` | Caption for figure |
 | `<hgroup>` | Heading group |
 
+## Div Alternatives (NEVER use `<div>`)
+
+The `<div>` element is **blacklisted** in this project. Always use semantic alternatives:
+
+| Instead of... | Use... |
+|---------------|--------|
+| `<div class="header">` | `<header>` |
+| `<div class="nav">` | `<nav>` |
+| `<div class="footer">` | `<footer>` |
+| `<div class="sidebar">` | `<aside>` |
+| `<div class="content">` | `<main>` or `<article>` |
+| `<div class="section">` | `<section>` with heading |
+| `<div class="card">` | `<article>` or custom element like `<product-card>` |
+| `<div class="wrapper">` | Style the parent element directly |
+| `<div class="container">` | Use CSS on `<body>` or parent landmark |
+| `<div class="grid">` | `<ul>` or `<ol>` with CSS grid |
+
+### Layout Wrappers
+
+For layout constraints (centering, max-width), apply CSS directly to semantic elements:
+
+```css
+/* Instead of <div class="header-content"> inside <header> */
+header {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* For edge-to-edge backgrounds with centered content */
+header {
+  background: var(--color-primary);
+  /* Use padding for the content area */
+  padding: var(--space-md) max(var(--space-md), calc((100% - var(--max-width)) / 2));
+}
+```
+
+### When No Semantic Element Exists
+
+If you truly need a generic container (rare), use a custom element with semantic naming:
+
+```html
+<x-layout-grid>...</x-layout-grid>
+<x-card-group>...</x-card-group>
+```
+
 ## Template
 
 ```html

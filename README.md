@@ -30,6 +30,7 @@ Layer 3: JS (opt)  → Enhanced interactions (Web Components, functional core)
 ```
 
 When JavaScript is needed, follow these patterns:
+
 - **Web Components** for encapsulation (Shadow DOM, custom elements)
 - **Functional core, imperative shell** architecture
 - **JSDoc** for types and documentation
@@ -82,6 +83,7 @@ The hooks are defined in `.claude/settings.json`:
 ```
 
 **How it works:**
+
 1. **Matcher**: `Edit|Write` triggers on any file edit or creation
 2. **File detection**: Extracts the file path from Claude's tool input
 3. **Filter by extension**:
@@ -118,6 +120,7 @@ These are markdown files in `.claude/commands/` that Claude interprets as instru
 | **PostToolUse hooks** | Immediate feedback to AI | Specific to Claude Code |
 
 The PostToolUse hook approach is ideal for AI-assisted development because:
+
 - Feedback is **immediate** (same conversation turn)
 - Errors are **contextual** (Claude knows what it just wrote)
 - Fixes are **automatic** (Claude corrects without user intervention)
@@ -174,6 +177,7 @@ In addition to hooks (which catch errors AFTER writing), this project uses **Cla
 | `git-workflow` | Starting work on issues | Conventional commits, feature branches, UAT workflow |
 
 Skills are located in `.claude/skills/` and contain:
+
 - `SKILL.md` - Main skill definition with YAML frontmatter
 - Supporting files - Detailed references (SYNTAX.md, FORMS.md, etc.)
 
@@ -440,6 +444,7 @@ tag-topic[data-topic="css"] { background: var(--tag-css-bg); }
 ```
 
 **Why data-* over classes:**
+
 - Semantically meaningful (describes what, not how)
 - Clean JS integration via `dataset` API
 - Can validate allowed values in `elements.json`
@@ -505,6 +510,7 @@ Stylesheets use native `@import` with `@layer` for organization without build to
 ```
 
 **File hierarchy:**
+
 - `_tokens.css` - Design system variables (colors, spacing, typography)
 - `_layout.css` - Site-wide structure
 - `sections/` - Recurring parts (header, footer)
@@ -568,6 +574,7 @@ npm test
 When editing files in Claude Code, validators run automatically:
 
 **HTML files** (`.html`, `.xhtml`, `.htm`):
+
 ```
 === html-validate ===
 (XHTML strictness, custom elements, semantics)
@@ -580,12 +587,14 @@ When editing files in Claude Code, validators run automatically:
 ```
 
 **CSS files** (`.css`):
+
 ```
 === stylelint ===
 (Nesting depth, layer patterns, duplicates, specificity)
 ```
 
 **JavaScript files** (`.js`):
+
 ```
 === eslint ===
 (no-var, named exports, JSDoc, modern patterns)
@@ -622,7 +631,7 @@ When editing files in Claude Code, validators run automatically:
 | `npm run optimize:images` | Generate WebP/AVIF versions of images |
 | `npm run a11y:all` | Run pa11y on all example files |
 | `npm run health` | Project health dashboard (all validators summary) |
-| `npm test` | Run test suite (137 tests) |
+| `npm test` | Run test suite (136 tests) |
 | `npm run test:all` | Run all tests with Node.js test runner |
 | `npm run test:watch` | Run tests in watch mode |
 | `npm run lighthouse` | Run Lighthouse CI audit |
@@ -711,17 +720,20 @@ Configuration: `eslint.config.js` (flat config format)
 Two scripts validate images:
 
 **`scripts/image-check.js`** - File validation:
+
 - Max file size (200KB)
 - Requires WebP/AVIF alternatives for JPEG/PNG
 - Dimension and compression checks
 
 **`scripts/image-html-check.js`** - HTML validation:
+
 - `loading` attribute required
 - `decoding` attribute recommended
 - `srcset`/`sizes` consistency
 - `<picture>` element suggestions
 
 **`scripts/optimize-images.js`** - Generate optimized versions:
+
 - WebP (82% quality)
 - AVIF (65% quality)
 - Multiple sizes for srcset (`--sizes` flag)
@@ -787,9 +799,11 @@ Define custom elements in `elements.json`:
 ### Pre-defined Elements
 
 **Form Elements:**
+
 - `form-field` - Form field wrapper with label, input, and output for validation
 
 **Components:**
+
 - `product-card` - Product display with sku/price attributes
 - `icon-element` - Void element for icons
 - `user-avatar` - User avatar with src/alt/size
@@ -798,6 +812,7 @@ Define custom elements in `elements.json`:
 - `nav-menu` - Navigation with orientation (horizontal, vertical)
 
 **Content Patterns:**
+
 - `faq-list` - FAQ container with category attribute
 - `faq-question` - Question text (phrasing content)
 - `faq-answer` - Answer content (flow content)
@@ -832,6 +847,7 @@ Pages are composed of reusable **blocks** - content patterns that appear across 
 | Custom elements | `<faq-question>` | Clear intent, validated structure |
 
 Benefits of custom elements:
+
 - **Self-documenting** - `<faq-question>` is clearer than `<dt class="faq-q">`
 - **Validated** - html-validate enforces correct usage
 - **Styleable** - CSS can target `faq-question { }` directly
@@ -883,6 +899,7 @@ node scripts/metadata-check.js --profile=article examples/press-release/index.ht
 ```
 
 Available profiles:
+
 - `default` - Essential metadata for all pages
 - `article` - Blog posts, news, press releases (adds author, published_time)
 - `product` - Product pages (adds price, availability)
@@ -909,12 +926,14 @@ See `.claude/skills/metadata/SKILL.md` for complete documentation.
 ## Adding Words to Dictionary
 
 ### Using the slash command
+
 ```
 /add-word ProductName
 /add-word OAuth OpenID
 ```
 
 ### Manual editing
+
 Add words to `project-words.txt` (one per line).
 
 ## Project Structure
@@ -1043,7 +1062,7 @@ npm test
 
 ### Test Coverage
 
-- **137 tests** across 16 validators + integration
+- **136 tests** across 16 validators + integration
 - **Positive tests**: Valid files pass all validators
 - **Negative tests**: Invalid files fail with expected errors
 - **Integration tests**: Full pipeline verification

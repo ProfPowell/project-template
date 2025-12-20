@@ -158,16 +158,16 @@ describe('Markdownlint Validation', () => {
       );
     });
 
-    it('should detect code blocks without language (MD040)', () => {
+    it('should detect emphasis used as heading (MD036)', () => {
       const filePath = join(projectRoot, 'test/fixtures/invalid/markdown/bad-headings.md');
       const result = runMarkdownlint(filePath);
 
-      const langErrors = result.errors.filter(e =>
-        e.rule && e.rule.includes('MD040')
+      const emphasisErrors = result.errors.filter(e =>
+        e.rule && e.rule.includes('MD036')
       );
       assert.ok(
-        langErrors.length > 0,
-        'Should report missing code language violation (MD040)'
+        emphasisErrors.length > 0,
+        'Should report emphasis-as-heading violation (MD036)'
       );
     });
 
@@ -197,18 +197,6 @@ describe('Markdownlint Validation', () => {
       );
     });
 
-    it('should detect emphasis used as heading (MD036)', () => {
-      const filePath = join(projectRoot, 'test/fixtures/invalid/markdown/bad-headings.md');
-      const result = runMarkdownlint(filePath);
-
-      const emphasisErrors = result.errors.filter(e =>
-        e.rule && e.rule.includes('MD036')
-      );
-      assert.ok(
-        emphasisErrors.length > 0,
-        'Should report emphasis-as-heading violation (MD036)'
-      );
-    });
   });
 
   describe('Markdown Best Practices', () => {

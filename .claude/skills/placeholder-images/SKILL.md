@@ -89,7 +89,33 @@ Grey background with descriptive text:
 
 ## Brand Placeholder
 
-Uses design tokens for brand-consistent placeholders:
+Uses design tokens for brand-consistent placeholders. The script automatically looks for CSS files in common locations and extracts color tokens.
+
+**Token Mapping:**
+
+| Placeholder Color | Tokens Searched |
+|-------------------|-----------------|
+| Background | `--background-alt`, `--background-main`, `--surface-color` |
+| Stroke | `--border-color`, `--border-light` |
+| Text | `--text-muted`, `--text-color` |
+| Accent | `--primary-color`, `--primary`, `--accent-color` |
+| Accent Text | `--text-inverted`, `--primary-text` |
+
+**Auto-detection paths:**
+- `src/styles/main.css`
+- `src/styles/_tokens.css`
+- `assets/styles/main.css`
+- `styles/main.css`
+
+```bash
+# Auto-detect CSS file
+node scripts/generate-placeholder.js --type brand --label "Product" --preset product
+
+# Specify CSS file explicitly
+node scripts/generate-placeholder.js --type brand --label "Hero" --size 1200x400 --tokens src/styles/main.css
+```
+
+**Example output:**
 
 ```xml
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"
@@ -150,6 +176,13 @@ node scripts/generate-placeholder.js --type simple --size 400x400
 
 # Labeled placeholder
 node scripts/generate-placeholder.js --type labeled --label "Hero Image" --size 1200x400
+
+# Brand placeholder (auto-detects CSS tokens)
+node scripts/generate-placeholder.js --type brand --label "Product" --preset product
+
+# Brand placeholder with specific CSS file
+node scripts/generate-placeholder.js --type brand --label "Hero" --size 1200x400 \
+  --tokens src/styles/main.css
 
 # Output to file
 node scripts/generate-placeholder.js --type labeled --label "Product" --size 400x400 \

@@ -16,11 +16,15 @@ site-name/
 ├── index.html              # Homepage
 ├── 404.html                # Not found error page
 ├── 500.html                # Server error page
+├── offline.html            # Service worker offline fallback
+├── noscript.html           # JS-disabled fallback (if needed)
 ├── robots.txt              # Search engine directives
 ├── humans.txt              # Credits and team info
 ├── sitemap.xml             # XML sitemap for crawlers
 ├── manifest.json           # PWA web app manifest
 ├── browserconfig.xml       # Windows tile configuration
+├── .well-known/
+│   └── security.txt        # Security contact info (RFC 9116)
 ├── assets/
 │   ├── css/
 │   │   └── main.css        # Stylesheet with @layer structure
@@ -267,6 +271,149 @@ IDE: Various
 </browserconfig>
 ```
 
+## security.txt Template
+
+Place in `.well-known/security.txt` (RFC 9116):
+
+```
+# Security contact for Site Name
+# https://example.com/.well-known/security.txt
+
+Contact: mailto:security@example.com
+Expires: 2026-12-31T23:59:00.000Z
+Preferred-Languages: en
+Canonical: https://example.com/.well-known/security.txt
+
+# Optional: Link to security policy
+Policy: https://example.com/security-policy
+
+# Optional: Acknowledgments page
+Acknowledgments: https://example.com/security-thanks
+
+# Optional: Hiring security researchers
+Hiring: https://example.com/careers
+```
+
+**Required fields:**
+- `Contact:` - Email or URL for security reports
+- `Expires:` - ISO 8601 date (must be renewed annually)
+
+## offline.html Template
+
+Service worker fallback page for when users are offline:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Offline - Site Name</title>
+  <meta name="robots" content="noindex"/>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 1rem;
+      text-align: center;
+      color: #1f2937;
+    }
+    h1 { color: #4b5563; }
+    .icon { font-size: 4rem; margin-bottom: 1rem; }
+    a { color: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="icon" aria-hidden="true">📡</div>
+  <h1>You're Offline</h1>
+  <p>It looks like you've lost your internet connection.</p>
+  <p>Please check your connection and <a href="/">try again</a>.</p>
+</body>
+</html>
+```
+
+Register in service worker:
+
+```javascript
+// In service worker (sw.js)
+const OFFLINE_PAGE = '/offline.html';
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open('offline-v1').then((cache) => cache.add(OFFLINE_PAGE))
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request).catch(() => caches.match(OFFLINE_PAGE))
+    );
+  }
+});
+```
+
+## noscript.html Template
+
+Fallback page for JavaScript-required applications:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>JavaScript Required - Site Name</title>
+  <meta name="robots" content="noindex"/>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 1rem;
+      text-align: center;
+      color: #1f2937;
+    }
+    h1 { color: #4b5563; }
+    .icon { font-size: 4rem; margin-bottom: 1rem; }
+    a { color: #2563eb; }
+    code {
+      background: #f3f4f6;
+      padding: 0.2em 0.4em;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="icon" aria-hidden="true">⚙️</div>
+  <h1>JavaScript Required</h1>
+  <p>This application requires JavaScript to function properly.</p>
+  <p>Please enable JavaScript in your browser settings and <a href="/">reload the page</a>.</p>
+
+  <details>
+    <summary>How to enable JavaScript</summary>
+    <ul style="text-align: left;">
+      <li><strong>Chrome:</strong> Settings → Privacy and security → Site settings → JavaScript</li>
+      <li><strong>Firefox:</strong> Type <code>about:config</code> in address bar, search for <code>javascript.enabled</code></li>
+      <li><strong>Safari:</strong> Preferences → Security → Enable JavaScript</li>
+      <li><strong>Edge:</strong> Settings → Cookies and site permissions → JavaScript</li>
+    </ul>
+  </details>
+</body>
+</html>
+```
+
+Use with `<noscript>` redirect in your main pages:
+
+```html
+<head>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/noscript.html"/>
+  </noscript>
+</head>
+```
+
 ## Error Pages
 
 ### 404.html
@@ -296,15 +443,31 @@ IDE: Various
 
 When scaffolding a new site:
 
+### Core Files
 - [ ] Create directory structure
 - [ ] Generate index.html with full meta tags
-- [ ] Generate 404.html and 500.html error pages
 - [ ] Create robots.txt with sitemap reference
 - [ ] Create sitemap.xml with homepage entry
 - [ ] Create humans.txt with team info
 - [ ] Create manifest.json for PWA
 - [ ] Create browserconfig.xml for Windows
+
+### Error & Fallback Pages
+- [ ] Generate 404.html error page
+- [ ] Generate 500.html error page (static, minimal dependencies)
+- [ ] Create offline.html for service worker (if using PWA)
+- [ ] Create noscript.html (if app requires JavaScript)
+
+### Security
+- [ ] Create .well-known/security.txt with contact info
+
+### Assets
 - [ ] Set up CSS with @layer structure
 - [ ] Set up JS with init pattern
-- [ ] Create/copy favicon set
+- [ ] Create/copy favicon set (svg, ico, apple-touch-icon, PWA icons)
+- [ ] Create og-image.png for social sharing
+
+### Validation
 - [ ] Validate all HTML files pass linters
+- [ ] Test 404 and 500 pages render correctly
+- [ ] Verify security.txt is accessible at /.well-known/security.txt

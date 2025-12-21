@@ -81,9 +81,13 @@ What are you creating?
 │  └─ Use: Forms Pre-Flight Checklist
 │     └─ Check: forms skill
 │
-└─ Image addition
-   └─ Use: Images Pre-Flight Checklist
-      └─ Check: responsive-images skill
+├─ Image addition
+│  └─ Use: Images Pre-Flight Checklist
+│     └─ Check: responsive-images skill
+│
+└─ New site/project
+   └─ Use: Site Essentials Pre-Flight Checklist
+      └─ Check: site-scaffold skill
 ```
 
 ---
@@ -244,6 +248,57 @@ Before adding images, verify:
 | No modern formats | Large file sizes |
 | Missing dimensions | Layout shift |
 | No lazy loading | Performance impact |
+
+---
+
+## Site Essentials Pre-Flight Checklist
+
+Before launching or when setting up a new site, verify these essentials exist:
+
+### Core Files
+- [ ] `robots.txt` - Search engine directives
+- [ ] `sitemap.xml` - XML sitemap for crawlers
+- [ ] `humans.txt` - Team credits and site info
+- [ ] `manifest.json` - PWA web app manifest
+
+### Error & Fallback Pages
+- [ ] `404.html` - Not found error page
+- [ ] `500.html` - Server error page (static, minimal dependencies)
+- [ ] `offline.html` - Service worker offline fallback
+- [ ] `noscript.html` - JavaScript-disabled fallback (if app requires JS)
+
+### Security
+- [ ] `.well-known/security.txt` - Security contact info (RFC 9116)
+
+### Favicon Set
+- [ ] `favicon.svg` - Vector favicon (modern browsers)
+- [ ] `favicon.ico` - Legacy favicon (32x32)
+- [ ] `apple-touch-icon.png` - iOS home screen (180x180)
+- [ ] `icon-192.png` - PWA icon small
+- [ ] `icon-512.png` - PWA icon large
+- [ ] `og-image.png` - Social sharing (1200x630)
+
+### Quick Check Command
+```bash
+# Check for essential files in site root
+ls -la robots.txt sitemap.xml humans.txt manifest.json 404.html 500.html 2>/dev/null
+ls -la .well-known/security.txt 2>/dev/null
+```
+
+### When to Create These
+
+| File | When Required |
+|------|---------------|
+| robots.txt | All public sites |
+| sitemap.xml | All public sites with multiple pages |
+| 404.html | All sites |
+| 500.html | All sites with server-side processing |
+| offline.html | Sites with service workers |
+| noscript.html | JS-required applications only |
+| security.txt | Production sites accepting security reports |
+| humans.txt | Optional, but good practice |
+
+See `site-scaffold` skill for templates.
 
 ---
 

@@ -14,7 +14,7 @@
           },
           {
             "type": "command",
-            "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.js$'; then (echo '=== eslint ===' ; npx eslint \"$file_path\" 2>&1) | node scripts/fix-suggestions.js --type=js ; fi"
+            "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.js$'; then (echo '=== eslint ===' ; npx eslint \"$file_path\" 2>&1) | node scripts/fix-suggestions.js --type=js; if echo \"$file_path\" | grep -qE '^scripts/[^/]+\\.js$'; then base=$(basename \"$file_path\" .js); test_file=\"test/validators/${base}.test.js\"; if [ ! -f \"$test_file\" ]; then echo ''; echo '=== test coverage ==='; echo \"Missing test file: $test_file\"; echo 'Create tests using: /skill unit-testing'; fi; fi; fi"
           },
           {
             "type": "command",

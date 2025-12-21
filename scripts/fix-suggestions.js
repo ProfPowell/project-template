@@ -138,6 +138,14 @@ function analyzeLinesAndSuggest(lines, type) {
         autoFixable: false,
       });
     }
+    if (fullOutput.includes('Missing test file:')) {
+      addSuggestion({
+        error: 'Missing tests',
+        message: 'Script in scripts/ directory has no corresponding test file',
+        fix: 'Use /skill unit-testing for test templates',
+        autoFixable: false,
+      });
+    }
   }
 
   // CSS/Stylelint patterns

@@ -43,7 +43,8 @@
     "lighthouse": "lhci autorun",
     "generate:patterns": "node scripts/generate-patterns.js",
     "generate:tokens": "node scripts/document-tokens.js",
-    "generate:a11y": "node scripts/generate-a11y-statement.js"
+    "generate:a11y": "node scripts/generate-a11y-statement.js",
+    "icons:sync": "node scripts/sync-icons.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
@@ -54,6 +55,7 @@
     "htmlhint": "^1.1.4",
     "link-checker": "^1.4.2",
     "linkinator": "^6.0.0",
+    "lucide-static": "^0.562.0",
     "markdownlint-cli": "^0.47.0",
     "pa11y": "^8.0.0",
     "sharp": "^0.34.5",

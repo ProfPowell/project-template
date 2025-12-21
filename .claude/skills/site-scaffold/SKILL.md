@@ -30,6 +30,9 @@ site-name/
 │   │   └── main.css        # Stylesheet with @layer structure
 │   ├── js/
 │   │   └── main.js         # Progressive enhancement script
+│   ├── icons/
+│   │   ├── lucide/         # Lucide icons (synced from npm)
+│   │   └── custom/         # Project-specific icons
 │   └── images/
 │       ├── favicon.svg     # Vector favicon (modern browsers)
 │       ├── favicon.ico     # Legacy favicon (16x16, 32x32)
@@ -466,6 +469,8 @@ When scaffolding a new site:
 - [ ] Set up JS with init pattern
 - [ ] Create/copy favicon set (svg, ico, apple-touch-icon, PWA icons)
 - [ ] Create og-image.png for social sharing
+- [ ] Run `npm run icons:sync` to set up Lucide icons
+- [ ] Copy x-icon component if using icons
 
 ### Validation
 - [ ] Validate all HTML files pass linters

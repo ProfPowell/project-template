@@ -1,13 +1,9 @@
 {
   "ci": {
     "collect": {
-      "staticDistDir": "./examples",
+      "staticDistDir": "./src",
       "url": [
-        "http://localhost/sample.html",
-        "http://localhost/constitution.html",
-        "http://localhost/homepage/original.html",
-        "http://localhost/about/index.html",
-        "http://localhost/faq/index.html"
+        "http://localhost/index.html"
       ],
       "numberOfRuns": 3
     },

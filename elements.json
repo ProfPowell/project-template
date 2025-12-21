@@ -8,27 +8,6 @@
       "data-invalid": { "required": false, "boolean": true }
     }
   },
-  "app-brand": {
-    "flow": true,
-    "phrasing": true,
-    "permittedContent": ["@phrasing"]
-  },
-  "app-credits": {
-    "flow": true,
-    "permittedContent": ["@flow"]
-  },
-  "app-help": {
-    "flow": true,
-    "permittedContent": ["@flow"]
-  },
-  "app-settings": {
-    "flow": true,
-    "permittedContent": ["@flow"]
-  },
-  "spacer-element": {
-    "flow": true,
-    "void": true
-  },
   "table-wrapper": {
     "flow": true,
     "permittedContent": ["table", "caption"]
@@ -36,62 +15,6 @@
   "theme-selector": {
     "flow": true,
     "permittedContent": ["fieldset", "label", "input"]
-  },
-  "blog-card": {
-    "flow": true,
-    "permittedContent": ["@flow"]
-  },
-  "tag-list": {
-    "flow": true,
-    "permittedContent": ["tag-topic"]
-  },
-  "tag-topic": {
-    "flow": true,
-    "phrasing": true,
-    "permittedContent": ["@phrasing"],
-    "attributes": {
-      "data-topic": { "required": false }
-    }
-  },
-  "tag-index": {
-    "flow": true,
-    "permittedContent": ["tag-index-item", "@flow"]
-  },
-  "tag-index-item": {
-    "flow": true,
-    "permittedContent": ["@flow"],
-    "attributes": {
-      "data-topic": { "required": false }
-    }
-  },
-  "gallery-grid": {
-    "flow": true,
-    "permittedContent": ["@flow"],
-    "attributes": {
-      "data-columns": { "required": false },
-      "data-gap": { "required": false }
-    }
-  },
-  "gallery-item": {
-    "flow": true,
-    "permittedContent": ["@flow"]
-  },
-  "product-card": {
-    "flow": true,
-    "phrasing": false,
-    "permittedContent": ["@flow"],
-    "attributes": {
-      "sku": { "required": false },
-      "price": { "required": false }
-    }
-  },
-  "icon-element": {
-    "flow": true,
-    "phrasing": true,
-    "void": true,
-    "attributes": {
-      "name": { "required": true }
-    }
   },
   "x-icon": {
     "flow": true,
@@ -103,16 +26,6 @@
       "size": { "required": false, "enum": ["xs", "sm", "md", "lg", "xl", "2xl"] },
       "label": { "required": false },
       "base-path": { "required": false }
-    }
-  },
-  "user-avatar": {
-    "flow": true,
-    "phrasing": true,
-    "void": true,
-    "attributes": {
-      "src": { "required": true },
-      "alt": { "required": true },
-      "size": { "required": false, "enum": ["small", "medium", "large"] }
     }
   },
   "status-badge": {

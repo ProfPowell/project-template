@@ -178,7 +178,7 @@ Mark content that should not be translated:
 ```html
 <!-- Brand names, code, proper nouns -->
 <p>Download <span translate="no">Claude Code</span> today.</p>
-<code translate="no">npm install xhtml-test</code>
+<code translate="no">npm install my-package</code>
 <p>Contact: <span translate="no">support@example.com</span></p>
 ```
 

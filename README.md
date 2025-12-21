@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**24 Skills** - Guidance that activates when Claude recognizes relevant context:
+**25 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -20,6 +20,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `data-attributes` | State management with `data-*` |
 | `responsive-images` | `<picture>`, `srcset`, modern formats |
 | `progressive-enhancement` | CSS-only interactivity |
+| `animation-motion` | Animations with prefers-reduced-motion |
 | `performance` | Resource hints, Core Web Vitals |
 | `print-styles` | `@media print` patterns for printable pages |
 | `security` | CSP, SRI, XSS prevention |

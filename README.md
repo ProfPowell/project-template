@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**26 Skills** - Guidance that activates when Claude recognizes relevant context:
+**27 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -19,6 +19,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `design-tokens` | CSS custom properties |
 | `data-attributes` | State management with `data-*` |
 | `responsive-images` | `<picture>`, `srcset`, modern formats |
+| `placeholder-images` | SVG placeholder generation for prototypes |
 | `progressive-enhancement` | CSS-only interactivity |
 | `animation-motion` | Animations with prefers-reduced-motion |
 | `performance` | Resource hints, Core Web Vitals |
@@ -37,13 +38,14 @@ A web project template with validation, automation, and Claude Code integration 
 | `pre-flight-check` | Checklists before work begins |
 | `site-scaffold` | Standard site structure |
 
-**13 Slash Commands**:
+**14 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
 | `/add-element` | Define custom HTML elements |
 | `/add-word` | Add words to spelling dictionary |
 | `/add-picture` | Convert `<img>` to `<picture>` |
+| `/placeholder-image` | Generate SVG placeholder images |
 | `/add-css-tokens` | Generate design token system |
 | `/add-css-file` | Create scoped CSS file |
 | `/add-form-field` | Generate accessible form field |

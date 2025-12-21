@@ -124,3 +124,4 @@ export { MyComponent };
 - [I18N.md](I18N.md) - Internationalization
 - [EVENTS.md](EVENTS.md) - Event handling
 - [ACCESSIBILITY.md](ACCESSIBILITY.md) - a11y in JavaScript
+- [DEFENSIVE.md](DEFENSIVE.md) - Type guards, error handling, feature detection

@@ -530,6 +530,125 @@ Even then, provide a baseline:
 
 ---
 
+## Graceful Degradation for JS-Required Applications
+
+When an application **requires** JavaScript to function (SPAs, complex editors, real-time apps), provide graceful degradation patterns.
+
+### The `<noscript>` Element
+
+#### Error Message in Body
+
+Display a clear message when JavaScript is disabled:
+
+```html
+<body>
+  <noscript>
+    <div class="js-required-notice">
+      <h2>JavaScript Required</h2>
+      <p>This application requires JavaScript to function.
+         Please enable JavaScript in your browser settings.</p>
+    </div>
+  </noscript>
+  <!-- App content -->
+</body>
+```
+
+#### Hide JS-Only UI in Head
+
+Use `<noscript>` in `<head>` to inject styles hiding JS-dependent elements:
+
+```html
+<head>
+  <noscript>
+    <style>
+      [data-js-required] { display: none !important; }
+      .js-required-notice { display: block !important; }
+    </style>
+  </noscript>
+</head>
+```
+
+```html
+<body>
+  <div class="js-required-notice" hidden>JavaScript is required.</div>
+  <main data-js-required>
+    <!-- JS-only app content -->
+  </main>
+</body>
+```
+
+#### Redirect with Fallback Link
+
+For full-page JS apps, redirect to a static fallback:
+
+```html
+<head>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=/no-javascript.html"/>
+  </noscript>
+</head>
+<body>
+  <noscript>
+    <p>Redirecting... <a href="/no-javascript.html">Click here</a> if not redirected.</p>
+  </noscript>
+</body>
+```
+
+### CSS Scripting Media Query
+
+Modern CSS can detect JavaScript availability:
+
+```css
+/* When JS is disabled */
+@media (scripting: none) {
+  [data-js-required] {
+    display: none;
+  }
+
+  .no-js-message {
+    display: block;
+  }
+}
+
+/* When JS is enabled */
+@media (scripting: enabled) {
+  .no-js-message {
+    display: none;
+  }
+}
+```
+
+**Browser support:** Chrome 120+, Firefox 113+, Safari 17+
+
+### Server-Side JS Detection
+
+Track JavaScript-disabled users for analytics:
+
+```html
+<!-- Image beacon in noscript -->
+<noscript>
+  <img src="/api/analytics?js=disabled" alt="" width="1" height="1"/>
+</noscript>
+```
+
+Or check for a JS-set cookie on the server:
+
+```javascript
+// In your app initialization
+document.cookie = 'js_enabled=true; path=/';
+```
+
+### When to Use These Patterns
+
+| Scenario | Recommended Pattern |
+|----------|---------------------|
+| Content-first pages | Don't need `<noscript>` - progressive enhancement handles it |
+| SPA/complex web apps | `<noscript>` message + CSS hiding |
+| Full-page JS apps | Redirect to static fallback |
+| Analytics needs | Image beacon |
+
+---
+
 ## Checklist
 
 When building interactive features:
@@ -544,3 +663,4 @@ When building interactive features:
 - [ ] Is `prefers-reduced-motion` respected?
 - [ ] Are focus states visible and clear?
 - [ ] Is View Transitions meta tag included?
+- [ ] If JS is required, does `<noscript>` provide a fallback message?

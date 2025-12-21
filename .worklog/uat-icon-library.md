@@ -15,7 +15,8 @@ Implemented a consistent icon library system using Lucide icons with local SVG f
 - Added `npm run icons:sync` script
 
 ### 2. `<x-icon>` Web Component
-- Location: `examples/demo-code/components/x-icon/`
+- Template location: `.claude/skills/icons/templates/x-icon/`
+- Scaffolded to: `assets/js/components/x-icon/` (per site-scaffold)
 - Fetches and inlines SVG icons
 - Supports: name, set, size, label, base-path attributes
 - Size presets: xs, sm, md, lg, xl, 2xl
@@ -58,8 +59,8 @@ Implemented a consistent icon library system using Lucide icons with local SVG f
 
 ```
 scripts/sync-icons.js
-examples/demo-code/components/x-icon/x-icon.js
-examples/demo-code/components/x-icon/x-icon-styles.js
+.claude/skills/icons/templates/x-icon/x-icon.js
+.claude/skills/icons/templates/x-icon/x-icon-styles.js
 .claude/skills/icons/SKILL.md
 .claude/commands/scaffold-icons.md
 elements.json (x-icon entry)

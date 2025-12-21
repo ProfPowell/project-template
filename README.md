@@ -106,6 +106,8 @@ A web project template with validation, automation, and Claude Code integration 
 | `npm run generate:tokens` | Document design tokens |
 | `npm run generate:a11y` | Generate a11y statement |
 | `npm run generate:patterns` | Generate pattern docs |
+| `npm run generate:placeholder` | Generate SVG placeholders |
+| `npm run generate:fake-content` | Generate fake content data |
 
 ### Issue Tracking
 

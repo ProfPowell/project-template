@@ -93,6 +93,18 @@
       "name": { "required": true }
     }
   },
+  "x-icon": {
+    "flow": true,
+    "phrasing": true,
+    "void": true,
+    "attributes": {
+      "name": { "required": true },
+      "set": { "required": false },
+      "size": { "required": false, "enum": ["xs", "sm", "md", "lg", "xl", "2xl"] },
+      "label": { "required": false },
+      "base-path": { "required": false }
+    }
+  },
   "user-avatar": {
     "flow": true,
     "phrasing": true,

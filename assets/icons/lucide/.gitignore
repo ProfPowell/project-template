@@ -1,0 +1,8 @@
+# Lucide icons are synced from npm, not committed
+# Run: npm run icons:sync
+
+*.svg
+index.json
+
+# Keep this .gitignore
+!.gitignore

@@ -47,11 +47,11 @@ Structured development workflow using git, conventional commits, and work loggin
 
 | Type | Use Case | Example |
 |------|----------|---------|
-| `feature/` | New functionality | `feature/xhtml-test-123-dark-mode` |
-| `fix/` | Bug fixes | `fix/xhtml-test-456-form-validation` |
-| `chore/` | Maintenance, deps | `chore/xhtml-test-789-update-deps` |
-| `docs/` | Documentation only | `docs/xhtml-test-101-api-reference` |
-| `refactor/` | Code restructuring | `refactor/xhtml-test-202-simplify-auth` |
+| `feature/` | New functionality | `feature/proj-123-dark-mode` |
+| `fix/` | Bug fixes | `fix/proj-456-form-validation` |
+| `chore/` | Maintenance, deps | `chore/proj-789-update-deps` |
+| `docs/` | Documentation only | `docs/proj-101-api-reference` |
+| `refactor/` | Code restructuring | `refactor/proj-202-simplify-auth` |
 
 ## Conventional Commits
 
@@ -95,7 +95,7 @@ feat(validation): add incremental file validation
 - Implement MD5-based result caching
 - Support staged-only mode for pre-commit hooks
 
-Closes: xhtml-test-59l
+Closes: proj-59l
 EOF
 )"
 ```
@@ -132,8 +132,8 @@ File: `.worklog/YYYY-MM-DD-issue-id-description.md`
 # Worklog: [Issue ID] - Short Description
 
 **Date**: YYYY-MM-DD HH:MM
-**Issue**: xhtml-test-xxx
-**Branch**: feature/xhtml-test-xxx-description
+**Issue**: {issue-id}
+**Branch**: feature/{issue-id}-description
 **Status**: in_progress | complete | blocked
 
 ## Summary
@@ -158,7 +158,7 @@ Any additional context for future reference.
 
 ## Recovery Instructions
 If this work needs to be recovered:
-1. Checkout branch: `git checkout feature/xhtml-test-xxx`
+1. Checkout branch: `git checkout feature/{issue-id}`
 2. Key commits: `abc1234`, `def5678`
 ```
 
@@ -173,10 +173,10 @@ git checkout main
 git pull origin main
 
 # Create feature branch
-git checkout -b feature/xhtml-test-xxx-description
+git checkout -b feature/{issue-id}-description
 
 # Claim the issue
-bd update xhtml-test-xxx --status in_progress
+bd update {issue-id} --status in_progress
 ```
 
 ### During Work
@@ -189,7 +189,7 @@ git add <files>
 git commit -m "feat(scope): description"
 
 # Push to remote (first time)
-git push -u origin feature/xhtml-test-xxx-description
+git push -u origin feature/{issue-id}-description
 
 # Push subsequent changes
 git push
@@ -210,15 +210,15 @@ npm test
 # After UAT approval, merge to main
 git checkout main
 git pull origin main
-git merge --no-ff feature/xhtml-test-xxx-description
+git merge --no-ff feature/{issue-id}-description
 git push origin main
 
 # Close the issue
-bd close xhtml-test-xxx --reason "Implemented and merged"
+bd close {issue-id} --reason "Implemented and merged"
 
 # Delete feature branch
-git branch -d feature/xhtml-test-xxx-description
-git push origin --delete feature/xhtml-test-xxx-description
+git branch -d feature/{issue-id}-description
+git push origin --delete feature/{issue-id}-description
 ```
 
 ## UAT (User Acceptance Testing)

@@ -2,7 +2,7 @@
 # Add one word per line (case-insensitive)
 # Lines starting with # are comments
 
-# Project terminology
+# Validation tools
 XHTML
 doctype
 WCAG
@@ -13,6 +13,11 @@ textlint
 textlintrc
 cspell
 linkinator
+stylelint
+eslint
+markdownlint
+
+# HTML elements/attributes
 tbody
 thead
 fieldset
@@ -21,9 +26,11 @@ hgroup
 blockquote
 frontmatter
 selfclosing
-yci
-sku
-Styleable
+srcset
+labelledby
+minlength
+fetchpriority
+decoding
 
 # Metadata terms
 charset
@@ -43,21 +50,14 @@ crossorigin
 SEO
 PWA
 
-# Modern CSS/HTML terms
-srcset
+# Modern formats/tech
 WebP
 AVIF
-fetchpriority
-decoding
-classless
-minlength
-labelledby
 LCP
 
-# Custom elements
-product-card
-icon-element
-user-avatar
+# Custom elements (edit as needed)
+form-field
+x-icon
 status-badge
 data-table
 nav-menu
@@ -65,46 +65,4 @@ faq-list
 faq-question
 faq-answer
 
-# Constitutional archaic spellings (intentional)
-chuse
-chusing
-behaviour
-defence
-colour
-honour
-favour
-encreased
-Offences
-offence
-Attainder
-Emoluments
-Enumeration
-Naturalization
-Tranquility
-Posterity
-
-# Legal/government terms
-Habeas
-Corpus
-Impeachment
-
-# DemoCompany example terms
-DemoCompany
-democompany
-Winkleberry
-thingamajig
-thingamajigs
-Thingamajig
-Thingamajigs
-Boogie
-Woogie
-NASDAQ
-IPO
-Q1
-Q2
-Q3
-Q4
-SolidWorks
-CNC
-WiFi
-BT
+# Add your project-specific terms below

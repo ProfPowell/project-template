@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**20 Skills** - Guidance that activates when Claude recognizes relevant context:
+**23 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -15,12 +15,13 @@ A web project template with validation, automation, and Claude Code integration 
 | `content-writer` | Spelling, grammar awareness |
 | `custom-elements` | Custom element definitions |
 | `forms` | Accessible form patterns with `<output>` |
-| `css-architecture` | `@layer`, `@import`, nesting |
+| `css-architecture` | `@layer`, `@import`, nesting, container queries |
 | `design-tokens` | CSS custom properties |
 | `data-attributes` | State management with `data-*` |
 | `responsive-images` | `<picture>`, `srcset`, modern formats |
 | `progressive-enhancement` | CSS-only interactivity |
 | `performance` | Resource hints, Core Web Vitals |
+| `print-styles` | `@media print` patterns for printable pages |
 | `security` | CSP, SRI, XSS prevention |
 | `metadata` | SEO, Open Graph, social sharing |
 | `i18n` | Internationalization, lang, RTL |
@@ -28,6 +29,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `icons` | Lucide icon library with `<x-icon>` |
 | `markdown-author` | Markdown structure and formatting |
 | `javascript-author` | Web Components, JSDoc |
+| `unit-testing` | Node.js native test runner patterns |
 | `git-workflow` | Conventional commits, branching |
 | `pre-flight-check` | Checklists before work begins |
 | `site-scaffold` | Standard site structure |
@@ -67,12 +69,32 @@ A web project template with validation, automation, and Claude Code integration 
 | `npm run lint:markdown` | Markdown linting |
 | `npm run lint:spelling` | Spell check |
 | `npm run lint:grammar` | Grammar check |
+| `npm run lint:readability` | Readability scoring |
+| `npm run lint:content` | Combined spelling+grammar+readability |
 | `npm run lint:images` | Image optimization check |
+| `npm run lint:links` | Local link validation |
+| `npm run lint:links:remote` | Remote URL validation |
 | `npm run lint:meta` | Metadata validation |
-| `npm run lint:a11y` | Accessibility testing |
+| `npm run lint:jsonld` | JSON-LD structured data |
+| `npm run lint:seo` | SEO content analysis |
+| `npm run lint:complexity` | JavaScript complexity |
+| `npm run lint:budget` | Resource budget checks |
+| `npm run lint:vitals` | Web Vitals analysis |
+| `npm run lint:site` | Site-wide checks |
+| `npm run lint:manifest` | PWA manifest validation |
+| `npm run a11y` | Accessibility testing |
 | `npm run lint:all` | All validators |
+| `npm run lint:changed` | Incremental (changed files) |
+| `npm run lint:staged` | Staged files only |
 | `npm run health` | Health dashboard |
+| `npm run lighthouse` | Lighthouse CI |
 | `npm test` | Run test suite |
+| `npm run test:watch` | Test with watch mode |
+| `npm run test:coverage` | Test coverage check |
+| `npm run optimize:images` | Optimize images |
+| `npm run generate:tokens` | Document design tokens |
+| `npm run generate:a11y` | Generate a11y statement |
+| `npm run generate:patterns` | Generate pattern docs |
 
 ### Issue Tracking
 
@@ -95,17 +117,17 @@ cd my-project
 npm install
 ```
 
-2. **Create your source files**
+1. **Create your source files**
 
 Create a `src/` directory with your HTML, CSS, and JavaScript files.
 
-3. **Sync icons** (optional)
+1. **Sync icons** (optional)
 
 ```bash
 npm run icons:sync
 ```
 
-4. **Start building**
+1. **Start building**
 
 Open in Claude Code. The skills and hooks will guide your development.
 

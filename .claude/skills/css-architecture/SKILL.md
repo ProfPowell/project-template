@@ -374,6 +374,228 @@ Define breakpoints as documentation (CSS can't use variables in media queries):
 
 ---
 
+## Container Queries (`@container`)
+
+Container queries enable **component-scoped responsive design**. Unlike media queries (which respond to viewport size), container queries respond to the size of a parent container.
+
+### Why Container Queries?
+
+| Media Queries | Container Queries |
+|---------------|-------------------|
+| Respond to viewport | Respond to container |
+| Global breakpoints | Component-specific |
+| Same component, same layout everywhere | Same component adapts to context |
+
+**Use case:** A card component that displays horizontally in a wide sidebar but stacks vertically in a narrow sidebar—without knowing where it's placed.
+
+### Defining a Container
+
+Use `container-type` to establish a containment context:
+
+```css
+/* Any element can be a container */
+sidebar-panel {
+  container-type: inline-size;  /* Width-based queries */
+  container-name: sidebar;      /* Optional: name for targeting */
+}
+
+/* Shorthand */
+main-content {
+  container: content / inline-size;  /* name / type */
+}
+```
+
+#### Container Types
+
+| Type | Queries On | Use When |
+|------|-----------|----------|
+| `inline-size` | Width only | Most common - responsive layouts |
+| `size` | Width and height | Rare - when height matters |
+| `normal` | No size queries | Style queries only |
+
+**Recommendation:** Use `inline-size` for 99% of cases.
+
+### Writing Container Queries
+
+```css
+/* Query any ancestor container */
+@container (min-width: 400px) {
+  blog-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+}
+
+/* Query a specific named container */
+@container sidebar (max-width: 300px) {
+  blog-card {
+    flex-direction: column;
+  }
+}
+```
+
+### Container Query Units
+
+Container-relative units for truly fluid components:
+
+| Unit | Meaning |
+|------|---------|
+| `cqw` | 1% of container width |
+| `cqh` | 1% of container height |
+| `cqi` | 1% of container inline size |
+| `cqb` | 1% of container block size |
+| `cqmin` | Smaller of `cqi` or `cqb` |
+| `cqmax` | Larger of `cqi` or `cqb` |
+
+```css
+blog-card h3 {
+  /* Font scales with container width */
+  font-size: clamp(1rem, 4cqi, 1.5rem);
+}
+```
+
+### Container Queries with Layers
+
+Container queries integrate naturally with the layer system:
+
+```css
+@layer components {
+  /* Define containers at the component wrapper level */
+  card-container {
+    container-type: inline-size;
+  }
+
+  /* Base card styles */
+  blog-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  /* Container-responsive layout */
+  @container (min-width: 500px) {
+    blog-card {
+      flex-direction: row;
+    }
+
+    blog-card img {
+      width: 40%;
+      flex-shrink: 0;
+    }
+  }
+}
+```
+
+### Pattern: Self-Contained Responsive Components
+
+Make components that adapt without external configuration:
+
+```css
+/* components/_product-card.css */
+@layer components {
+  product-card {
+    /* The card IS its own container */
+    container-type: inline-size;
+
+    display: grid;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+  }
+
+  /* Compact layout (narrow) */
+  @container (max-width: 299px) {
+    product-card {
+      text-align: center;
+
+      & img {
+        margin-inline: auto;
+        max-width: 150px;
+      }
+    }
+  }
+
+  /* Standard layout (medium) */
+  @container (min-width: 300px) and (max-width: 499px) {
+    product-card {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Wide layout (large) */
+  @container (min-width: 500px) {
+    product-card {
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: auto 1fr auto;
+
+      & img {
+        grid-row: 1 / -1;
+      }
+    }
+  }
+}
+```
+
+### Container Queries vs Media Queries
+
+Use both—they serve different purposes:
+
+```css
+@layer components {
+  blog-card {
+    container-type: inline-size;
+  }
+
+  /* Container query: responds to where card is placed */
+  @container (min-width: 400px) {
+    blog-card {
+      grid-template-columns: 150px 1fr;
+    }
+  }
+}
+
+@layer responsive {
+  /* Media query: global layout changes */
+  @media (max-width: 768px) {
+    .card-grid {
+      grid-template-columns: 1fr;  /* Stack cards on mobile */
+    }
+  }
+}
+```
+
+### Nesting Container Queries
+
+Container queries can be nested inside element selectors:
+
+```css
+sidebar-panel {
+  container-type: inline-size;
+
+  & blog-card {
+    padding: var(--spacing-md);
+
+    @container (min-width: 350px) {
+      padding: var(--spacing-lg);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+    }
+  }
+}
+```
+
+### Container Query Checklist
+
+When implementing container queries:
+
+- [ ] Set `container-type: inline-size` on the containing element
+- [ ] Use `container-name` when multiple containers need targeting
+- [ ] Prefer `min-width` for progressive enhancement
+- [ ] Use container units (`cqi`, `cqw`) for fluid typography/spacing
+- [ ] Keep container queries in the same layer as component styles
+- [ ] Test components in various container widths
+
+---
+
 ## Example: Complete Component File
 
 ```css
@@ -436,3 +658,5 @@ When setting up or reviewing CSS:
 - [ ] Nesting limited to 3-4 levels
 - [ ] Responsive styles in `responsive` layer
 - [ ] Design tokens in `_tokens.css`
+- [ ] Container queries used for component-scoped responsiveness
+- [ ] Components define `container-type` when children need to adapt

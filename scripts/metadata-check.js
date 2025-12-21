@@ -13,6 +13,9 @@
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
 import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -147,18 +150,180 @@ function escapeRegex(str) {
 }
 
 /**
+ * OG Image recommended dimensions
+ */
+const OG_IMAGE_REQUIREMENTS = {
+  recommended: { width: 1200, height: 630 },  // Facebook/LinkedIn optimal
+  minimum: { width: 600, height: 315 },        // Minimum for most platforms
+  twitter: { width: 1200, height: 600 },       // Twitter large card (2:1)
+  square: { width: 1200, height: 1200 }        // Square format
+};
+
+/**
+ * Get image dimensions using sharp (if available)
+ */
+async function getImageDimensions(imagePath) {
+  try {
+    const sharp = require('sharp');
+    const metadata = await sharp(imagePath).metadata();
+    return { width: metadata.width, height: metadata.height };
+  } catch {
+    // Sharp not available or image can't be read
+    return null;
+  }
+}
+
+/**
+ * Validate OG image dimensions and meta tags
+ */
+async function validateOgImage(head, filePath) {
+  const warnings = [];
+  const info = [];
+
+  // Get og:image content
+  const ogImage = getMetaContent(head, 'property', 'og:image');
+  if (!ogImage) {
+    return { warnings, info };
+  }
+
+  // Check for og:image:width and og:image:height meta tags
+  const declaredWidth = getMetaContent(head, 'property', 'og:image:width');
+  const declaredHeight = getMetaContent(head, 'property', 'og:image:height');
+
+  if (declaredWidth && declaredHeight) {
+    const w = parseInt(declaredWidth, 10);
+    const h = parseInt(declaredHeight, 10);
+
+    if (isNaN(w) || isNaN(h)) {
+      warnings.push('og:image:width or og:image:height has invalid value');
+    } else {
+      // Validate declared dimensions
+      const dimensionWarnings = checkOgDimensions(w, h);
+      warnings.push(...dimensionWarnings.warnings);
+      info.push(...dimensionWarnings.info);
+      info.push(`og:image dimensions declared: ${w}x${h}`);
+    }
+  } else if (declaredWidth || declaredHeight) {
+    warnings.push('og:image has width but no height (or vice versa) - include both');
+  } else {
+    // No dimensions declared, recommend adding them
+    info.push('Consider adding og:image:width and og:image:height meta tags');
+  }
+
+  // Check og:image:type
+  const ogImageType = getMetaContent(head, 'property', 'og:image:type');
+  if (!ogImageType) {
+    info.push('Consider adding og:image:type (e.g., image/jpeg, image/png)');
+  }
+
+  // Check og:image:alt
+  const ogImageAlt = getMetaContent(head, 'property', 'og:image:alt');
+  if (!ogImageAlt) {
+    warnings.push('Missing og:image:alt - important for accessibility');
+  }
+
+  // If local file, try to validate actual dimensions
+  if (!ogImage.startsWith('http://') && !ogImage.startsWith('https://')) {
+    const htmlDir = dirname(filePath);
+    const imagePath = ogImage.startsWith('/')
+      ? resolve(htmlDir, '..', ogImage.slice(1))  // Absolute from root
+      : resolve(htmlDir, ogImage);                 // Relative
+
+    if (existsSync(imagePath)) {
+      const dimensions = await getImageDimensions(imagePath);
+      if (dimensions) {
+        const { width, height } = dimensions;
+        info.push(`Actual image size: ${width}x${height}`);
+
+        // Check actual vs declared
+        if (declaredWidth && declaredHeight) {
+          const dw = parseInt(declaredWidth, 10);
+          const dh = parseInt(declaredHeight, 10);
+          if (dw !== width || dh !== height) {
+            warnings.push(`Declared dimensions (${dw}x${dh}) don't match actual (${width}x${height})`);
+          }
+        }
+
+        // Validate actual dimensions
+        const dimensionWarnings = checkOgDimensions(width, height);
+        warnings.push(...dimensionWarnings.warnings);
+        // Don't duplicate info if we already have declared dimensions
+        if (!declaredWidth) {
+          info.push(...dimensionWarnings.info);
+        }
+      }
+    } else {
+      warnings.push(`og:image file not found: ${ogImage}`);
+    }
+  }
+
+  // Check Twitter card image
+  const twitterImage = getMetaContent(head, 'name', 'twitter:image');
+  const twitterCard = getMetaContent(head, 'name', 'twitter:card');
+
+  if (twitterCard === 'summary_large_image' && !twitterImage) {
+    info.push('twitter:card is summary_large_image but no twitter:image (will use og:image)');
+  }
+
+  return { warnings, info };
+}
+
+/**
+ * Check OG image dimensions against requirements
+ */
+function checkOgDimensions(width, height) {
+  const warnings = [];
+  const info = [];
+  const ratio = width / height;
+
+  // Check minimum size
+  if (width < OG_IMAGE_REQUIREMENTS.minimum.width || height < OG_IMAGE_REQUIREMENTS.minimum.height) {
+    warnings.push(`OG image too small: ${width}x${height} (minimum: ${OG_IMAGE_REQUIREMENTS.minimum.width}x${OG_IMAGE_REQUIREMENTS.minimum.height})`);
+  }
+
+  // Check recommended size
+  if (width < OG_IMAGE_REQUIREMENTS.recommended.width || height < OG_IMAGE_REQUIREMENTS.recommended.height) {
+    if (width >= OG_IMAGE_REQUIREMENTS.minimum.width) {
+      info.push(`Consider larger image: ${width}x${height} (recommended: 1200x630)`);
+    }
+  }
+
+  // Check aspect ratio (should be close to 1.91:1 for Facebook or 2:1 for Twitter)
+  const fbRatio = 1.91;  // 1200/630
+  const twRatio = 2.0;   // 1200/600
+
+  if (Math.abs(ratio - fbRatio) < 0.1) {
+    info.push('Aspect ratio optimal for Facebook/LinkedIn (1.91:1)');
+  } else if (Math.abs(ratio - twRatio) < 0.1) {
+    info.push('Aspect ratio optimal for Twitter (2:1)');
+  } else if (Math.abs(ratio - 1) < 0.1) {
+    info.push('Square image - works but 1.91:1 recommended for better display');
+  } else if (ratio < 1) {
+    warnings.push(`Portrait orientation not recommended for social sharing (ratio: ${ratio.toFixed(2)}:1)`);
+  }
+
+  // Maximum file size note (can't check without loading, but mention it)
+  if (width > 2000 || height > 2000) {
+    info.push('Very large image - ensure file size is under 8MB for Facebook');
+  }
+
+  return { warnings, info };
+}
+
+/**
  * Validate a single file against a profile
  */
-function validateFile(filePath, profile) {
+async function validateFile(filePath, profile) {
   const html = readFileSync(filePath, 'utf-8');
   const head = extractHead(html);
 
   const errors = [];
   const warnings = [];
+  const info = [];
 
   if (!head) {
     errors.push('No <head> element found');
-    return { errors, warnings };
+    return { errors, warnings, info };
   }
 
   // Check required elements
@@ -216,7 +381,12 @@ function validateFile(filePath, profile) {
     }
   }
 
-  return { errors, warnings };
+  // Validate OG image dimensions
+  const ogImageResult = await validateOgImage(head, filePath);
+  warnings.push(...ogImageResult.warnings);
+  info.push(...ogImageResult.info);
+
+  return { errors, warnings, info };
 }
 
 /**
@@ -245,15 +415,18 @@ function findHtmlFiles(dir, files = []) {
 /**
  * Main function
  */
-function main() {
+async function main() {
   const args = process.argv.slice(2);
   let profileName = 'default';
   let files = [];
+  let verbose = false;
 
   // Parse arguments
   for (const arg of args) {
     if (arg.startsWith('--profile=')) {
       profileName = arg.split('=')[1];
+    } else if (arg === '--verbose' || arg === '-v') {
+      verbose = true;
     } else if (arg === '--help' || arg === '-h') {
       console.log(`
 ${colors.cyan}Metadata Validator${colors.reset}
@@ -263,12 +436,17 @@ Usage:
 
 Options:
   --profile=NAME    Use specific profile (default, article, product)
+  --verbose, -v     Show info messages (OG image details)
   --help, -h        Show this help
 
 Examples:
   node scripts/metadata-check.js examples/pages/**/*.html
   node scripts/metadata-check.js --profile=article examples/pages/press-release/index.html
   node scripts/metadata-check.js                    # Check all HTML in examples/pages/
+
+OG Image Validation:
+  Validates og:image dimensions, og:image:alt, and checks actual file sizes.
+  Recommended: 1200x630 (Facebook/LinkedIn) or 1200x600 (Twitter).
 `);
       process.exit(0);
     } else {
@@ -301,11 +479,11 @@ Examples:
       continue;
     }
 
-    const { errors, warnings } = validateFile(file, profile);
+    const { errors, warnings, info } = await validateFile(file, profile);
     totalErrors += errors.length;
     totalWarnings += warnings.length;
 
-    if (errors.length === 0 && warnings.length === 0) {
+    if (errors.length === 0 && warnings.length === 0 && (!verbose || info.length === 0)) {
       console.log(`${colors.green}✓${colors.reset} ${file}`);
     } else {
       console.log(`${colors.dim}─────────────────────────────────────────${colors.reset}`);
@@ -317,6 +495,12 @@ Examples:
 
       for (const warning of warnings) {
         console.log(`  ${colors.yellow}⚠ WARN:${colors.reset} ${warning}`);
+      }
+
+      if (verbose) {
+        for (const i of info) {
+          console.log(`  ${colors.dim}ℹ ${i}${colors.reset}`);
+        }
       }
     }
   }

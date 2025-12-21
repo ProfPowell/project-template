@@ -38,6 +38,7 @@
     "test": "node scripts/test-runner.js",
     "test:all": "node --test 'test/**/*.test.js'",
     "test:watch": "node --test --watch 'test/**/*.test.js'",
+    "test:coverage": "node scripts/test-coverage-check.js",
     "health": "node scripts/health-check.js",
     "lighthouse": "lhci autorun",
     "generate:patterns": "node scripts/generate-patterns.js",

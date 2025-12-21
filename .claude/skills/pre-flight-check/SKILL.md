@@ -311,9 +311,11 @@ npm run lint:all
 ```bash
 npm test
 npm run lint:all
+npm run test:coverage  # Check for missing tests
 ```
 - [ ] All tests pass
 - [ ] All linters pass
+- [ ] New scripts have corresponding test files
 
 ### 2. Worklog Updated
 - [ ] Worklog entry in `.worklog/` documents changes made

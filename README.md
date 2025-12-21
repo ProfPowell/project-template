@@ -39,7 +39,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `pre-flight-check` | Checklists before work begins |
 | `site-scaffold` | Standard site structure |
 
-**14 Slash Commands**:
+**17 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -47,6 +47,9 @@ A web project template with validation, automation, and Claude Code integration 
 | `/add-word` | Add words to spelling dictionary |
 | `/add-picture` | Convert `<img>` to `<picture>` |
 | `/placeholder-image` | Generate SVG placeholder images |
+| `/fake-content` | Generate realistic fake content |
+| `/fake-product` | Generate product data |
+| `/fake-testimonial` | Generate testimonials |
 | `/add-css-tokens` | Generate design token system |
 | `/add-css-file` | Create scoped CSS file |
 | `/add-form-field` | Generate accessible form field |

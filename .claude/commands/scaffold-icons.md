@@ -40,11 +40,18 @@ If `icons:sync` script doesn't exist, add it to package.json:
 }
 ```
 
-### 3. Verify x-icon component exists
+### 3. Copy x-icon component
 
-Check for `examples/demo-code/components/x-icon/x-icon.js`.
+Copy the component to your site's assets:
 
-If missing, copy from the xhtml-test project template.
+```bash
+mkdir -p assets/js/components/x-icon
+cp .claude/skills/icons/templates/x-icon/*.js assets/js/components/x-icon/
+```
+
+The component files are:
+- `x-icon.js` - Web Component class
+- `x-icon-styles.js` - Component styles
 
 ### 4. Update elements.json
 
@@ -96,7 +103,7 @@ Add custom icons to assets/icons/custom/
 1. Include x-icon component in your HTML:
 
 ```html
-<script type="module" src="/demo-code/components/x-icon/x-icon.js"></script>
+<script type="module" src="/assets/js/components/x-icon/x-icon.js"></script>
 ```
 
 2. Use icons:

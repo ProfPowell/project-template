@@ -32,6 +32,11 @@ Use the Lucide icon library with local SVG files and the `<x-icon>` Web Componen
 
 ```
 assets/
+├── js/
+│   └── components/
+│       └── x-icon/          # Icon Web Component
+│           ├── x-icon.js
+│           └── x-icon-styles.js
 └── icons/
     ├── lucide/              # Lucide icons (synced from npm)
     │   ├── index.json       # Icon manifest
@@ -40,6 +45,25 @@ assets/
     │   └── ...              # ~1900 icons
     └── custom/              # Project-specific icons
         └── logo.svg
+```
+
+## Setup
+
+Run `/scaffold-icons` to set up icons in a project, or manually:
+
+```bash
+# 1. Install lucide-static
+npm install lucide-static --save-dev
+
+# 2. Sync icons
+npm run icons:sync
+
+# 3. Copy x-icon component
+mkdir -p assets/js/components/x-icon
+cp .claude/skills/icons/templates/x-icon/*.js assets/js/components/x-icon/
+
+# 4. Include in HTML
+<script type="module" src="/assets/js/components/x-icon/x-icon.js"></script>
 ```
 
 ## The `<x-icon>` Component

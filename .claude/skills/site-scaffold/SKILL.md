@@ -29,7 +29,9 @@ site-name/
 │   ├── css/
 │   │   └── main.css        # Stylesheet with @layer structure
 │   ├── js/
-│   │   └── main.js         # Progressive enhancement script
+│   │   ├── main.js         # Progressive enhancement script
+│   │   └── components/     # Web Components
+│   │       └── x-icon/     # Icon component (from /scaffold-icons)
 │   ├── icons/
 │   │   ├── lucide/         # Lucide icons (synced from npm)
 │   │   └── custom/         # Project-specific icons
@@ -470,7 +472,7 @@ When scaffolding a new site:
 - [ ] Create/copy favicon set (svg, ico, apple-touch-icon, PWA icons)
 - [ ] Create og-image.png for social sharing
 - [ ] Run `npm run icons:sync` to set up Lucide icons
-- [ ] Copy x-icon component if using icons
+- [ ] Copy x-icon component to `assets/js/components/x-icon/`
 
 ### Validation
 - [ ] Validate all HTML files pass linters

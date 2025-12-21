@@ -114,4 +114,104 @@ Follow logical hierarchy:
 
 Never skip levels (h1 → h3 is wrong).
 
+## WCAG AAA Enhanced Accessibility (Optional)
+
+WCAG AAA provides enhanced accessibility beyond the AA baseline. Use when targeting users with more significant accessibility needs.
+
+### Contrast Requirements
+
+| Level | Normal Text | Large Text |
+|-------|-------------|------------|
+| AA (default) | 4.5:1 | 3:1 |
+| AAA (enhanced) | 7:1 | 4.5:1 |
+
+Large text is 18pt+ (24px) or 14pt+ bold (18.5px).
+
+### Enabling AAA in pa11y
+
+Edit `.pa11yci` to use AAA standard:
+
+```json
+{
+  "defaults": {
+    "standard": "WCAG2AAA",
+    "timeout": 30000,
+    "wait": 1000
+  }
+}
+```
+
+### AAA-Specific Requirements
+
+| Requirement | AAA Criterion |
+|-------------|---------------|
+| 7:1 contrast ratio | 1.4.6 Contrast (Enhanced) |
+| No images of text | 1.4.9 Images of Text (No Exception) |
+| Sign language for video | 1.2.6 Sign Language |
+| Extended audio description | 1.2.7 Extended Audio Description |
+| Live captions | 1.2.9 Audio-only (Live) |
+| Reading level (lower secondary) | 3.1.5 Reading Level |
+| Pronunciation help | 3.1.6 Pronunciation |
+| Context-sensitive help | 3.3.5 Help |
+| Error prevention (all) | 3.3.6 Error Prevention (All) |
+
+### CSS for AAA Contrast
+
+```css
+:root {
+  /* AAA-compliant color pairs */
+  --text-color: #1a1a1a;        /* On white: 16.1:1 */
+  --text-muted: #525252;        /* On white: 7.1:1 */
+  --background: #ffffff;
+
+  /* Links need 3:1 contrast against surrounding text */
+  --link-color: #0047ab;        /* On white: 8.5:1 */
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  :root {
+    --text-color: #000000;
+    --background: #ffffff;
+    --border-color: #000000;
+  }
+}
+```
+
+### When to Use AAA
+
+| Scenario | Recommendation |
+|----------|----------------|
+| Government/public services | Consider AAA |
+| Healthcare applications | Consider AAA |
+| Educational content | Consider AAA |
+| Elderly user base | Consider AAA |
+| Legal requirements | Check jurisdiction |
+| General websites | AA is sufficient |
+
+### Partial AAA Adoption
+
+You can adopt specific AAA criteria without full compliance:
+
+```json
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "rules": [
+      "WCAG2AAA.Principle1.Guideline1_4.1_4_6"
+    ]
+  }
+}
+```
+
+### Testing AAA Compliance
+
+```bash
+# Run with AAA standard
+npx pa11y --standard WCAG2AAA src/index.html
+
+# Check specific criterion
+npx pa11y --standard WCAG2AAA --include-notices src/index.html
+```
+
 See [FORMS.md](FORMS.md), [IMAGES.md](IMAGES.md), [NAVIGATION.md](NAVIGATION.md) for details.

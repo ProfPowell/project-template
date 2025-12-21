@@ -596,6 +596,166 @@ When implementing container queries:
 
 ---
 
+## CSS Subgrid
+
+Subgrid allows nested elements to participate in their parent's grid, enabling alignment across nested structures without duplicating track definitions.
+
+### Why Subgrid?
+
+| Without Subgrid | With Subgrid |
+|-----------------|--------------|
+| Nested grids are independent | Child inherits parent's tracks |
+| Must duplicate track sizes | Single source of truth |
+| Alignment breaks across nesting | Perfect alignment across levels |
+
+### Basic Subgrid Pattern
+
+```css
+/* Parent grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+}
+
+/* Card spans parent columns, subgrids rows */
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;  /* header, content, footer */
+}
+
+/* With subgrid: all cards align their internal rows */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto 1fr auto;  /* Define rows at parent level */
+  gap: var(--spacing-lg);
+}
+
+.card {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;  /* Inherit parent's row tracks */
+}
+```
+
+### Subgrid for Form Alignment
+
+Align labels and inputs across form fields:
+
+```css
+form {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--spacing-md);
+}
+
+form-field {
+  display: grid;
+  grid-column: span 2;
+  grid-template-columns: subgrid;
+}
+
+form-field label {
+  grid-column: 1;
+}
+
+form-field input {
+  grid-column: 2;
+}
+```
+
+### Subgrid for Card Components
+
+Cards with aligned headers, content, and footers:
+
+```css
+/* Define consistent structure at grid level */
+product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: auto 1fr auto;  /* image, details, actions */
+  gap: var(--spacing-lg);
+}
+
+product-card {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  gap: var(--spacing-md);
+}
+
+product-card img { grid-row: 1; }
+product-card .details { grid-row: 2; }
+product-card .actions { grid-row: 3; }
+```
+
+### Subgrid in Both Directions
+
+Inherit both column and row tracks:
+
+```css
+.parent {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
+}
+
+.child {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
+}
+```
+
+### Named Lines with Subgrid
+
+Named lines pass through to subgrid:
+
+```css
+.layout {
+  display: grid;
+  grid-template-columns:
+    [full-start] 1fr
+    [content-start] minmax(0, 60ch)
+    [content-end] 1fr
+    [full-end];
+}
+
+.content {
+  grid-column: full-start / full-end;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+/* Child can use parent's named lines */
+.content h1 {
+  grid-column: content-start / content-end;
+}
+
+.content .full-bleed {
+  grid-column: full-start / full-end;
+}
+```
+
+### When to Use Subgrid
+
+| Use Case | Benefit |
+|----------|---------|
+| Card grids | Aligned headers/footers across cards |
+| Form layouts | Labels and inputs align vertically |
+| Data tables | Column alignment in complex cells |
+| Multi-level navigation | Consistent column widths |
+| Article layouts | Full-bleed elements with named lines |
+
+### Browser Support Note
+
+Subgrid has good modern browser support (90%+). For older browsers, the fallback is a regular nested grid which may not align perfectly but remains functional.
+
+---
+
 ## CSS Logical Properties
 
 Logical properties replace physical direction properties (left, right, top, bottom) with **flow-relative** alternatives. This enables layouts that automatically adapt to different writing modes and text directions.

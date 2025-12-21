@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**25 Skills** - Guidance that activates when Claude recognizes relevant context:
+**26 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -32,6 +32,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `javascript-author` | Web Components, JSDoc |
 | `service-worker` | Offline support, caching strategies, PWA |
 | `unit-testing` | Node.js native test runner patterns |
+| `e2e-testing` | Playwright browser testing patterns |
 | `git-workflow` | Conventional commits, branching |
 | `pre-flight-check` | Checklists before work begins |
 | `site-scaffold` | Standard site structure |

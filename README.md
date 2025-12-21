@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**23 Skills** - Guidance that activates when Claude recognizes relevant context:
+**24 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -29,6 +29,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `icons` | Lucide icon library with `<x-icon>` |
 | `markdown-author` | Markdown structure and formatting |
 | `javascript-author` | Web Components, JSDoc |
+| `service-worker` | Offline support, caching strategies, PWA |
 | `unit-testing` | Node.js native test runner patterns |
 | `git-workflow` | Conventional commits, branching |
 | `pre-flight-check` | Checklists before work begins |

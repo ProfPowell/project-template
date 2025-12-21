@@ -27,6 +27,7 @@
     "lint:vitals": "node scripts/web-vitals-check.js",
     "lint:site": "node scripts/site-check.js",
     "lint:manifest": "node scripts/manifest-check.js",
+    "lint:darkmode": "node scripts/dark-mode-check.js",
     "lint:markdown": "markdownlint '**/*.md' --ignore node_modules --ignore .worklog",
     "lint:markdown:fix": "markdownlint '**/*.md' --ignore node_modules --ignore .worklog --ignore 'test/fixtures/invalid/**' --fix",
     "lint:content": "npm run lint:spelling && npm run lint:grammar && npm run lint:readability",

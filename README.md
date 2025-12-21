@@ -85,6 +85,8 @@ A web project template with validation, automation, and Claude Code integration 
 | `npm run lint:vitals` | Web Vitals analysis |
 | `npm run lint:site` | Site-wide checks |
 | `npm run lint:manifest` | PWA manifest validation |
+| `npm run lint:darkmode` | Dark mode token coverage |
+| `npm run lint:fonts` | Web font loading validation |
 | `npm run a11y` | Accessibility testing |
 | `npm run lint:all` | All validators |
 | `npm run lint:changed` | Incremental (changed files) |

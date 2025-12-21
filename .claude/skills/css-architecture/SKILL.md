@@ -596,6 +596,262 @@ When implementing container queries:
 
 ---
 
+## CSS Logical Properties
+
+Logical properties replace physical direction properties (left, right, top, bottom) with **flow-relative** alternatives. This enables layouts that automatically adapt to different writing modes and text directions.
+
+### Why Logical Properties?
+
+| Physical Properties | Logical Properties |
+|--------------------|-------------------|
+| Fixed to screen edges | Adapt to text direction |
+| Break in RTL languages | Work in any writing mode |
+| Require RTL overrides | Automatically flip |
+| `margin-left: 1rem` | `margin-inline-start: 1rem` |
+
+**Benefits:**
+
+- **Internationalization** - Layouts work in Arabic, Hebrew, and other RTL languages
+- **Future-proof** - Vertical writing modes (CJK) work automatically
+- **Consistency** - One codebase for all languages
+- **Semantic** - Properties describe intent, not position
+
+### The Logical Model
+
+CSS logical properties use two axes:
+
+| Axis | Direction | Physical Equivalent |
+|------|-----------|---------------------|
+| **Block** | Vertical (in LTR/RTL) | Top ↔ Bottom |
+| **Inline** | Horizontal (in LTR/RTL) | Left ↔ Right |
+
+Each axis has two edges:
+
+| Edge | Block Axis | Inline Axis (LTR) | Inline Axis (RTL) |
+|------|------------|-------------------|-------------------|
+| **Start** | Top | Left | Right |
+| **End** | Bottom | Right | Left |
+
+### Property Mappings
+
+#### Margins
+
+| Physical | Logical |
+|----------|---------|
+| `margin-top` | `margin-block-start` |
+| `margin-bottom` | `margin-block-end` |
+| `margin-left` | `margin-inline-start` |
+| `margin-right` | `margin-inline-end` |
+
+**Shorthand properties:**
+
+```css
+/* Two values: start and end */
+margin-block: 1rem 2rem;   /* top: 1rem, bottom: 2rem */
+margin-inline: 1rem 2rem;  /* left: 1rem (LTR), right: 1rem (RTL) */
+
+/* Single value: both start and end */
+margin-block: 1rem;        /* top and bottom */
+margin-inline: 1rem;       /* left and right */
+```
+
+#### Padding
+
+Same pattern as margins:
+
+```css
+padding-block: var(--spacing-lg);
+padding-inline: var(--spacing-md);
+
+/* Individual sides */
+padding-block-start: var(--spacing-lg);
+padding-inline-end: var(--spacing-sm);
+```
+
+#### Sizing
+
+| Physical | Logical |
+|----------|---------|
+| `width` | `inline-size` |
+| `height` | `block-size` |
+| `min-width` | `min-inline-size` |
+| `max-height` | `max-block-size` |
+
+```css
+blog-card {
+  inline-size: 100%;
+  max-inline-size: 40rem;
+  min-block-size: 200px;
+}
+```
+
+#### Positioning
+
+| Physical | Logical |
+|----------|---------|
+| `top` | `inset-block-start` |
+| `bottom` | `inset-block-end` |
+| `left` | `inset-inline-start` |
+| `right` | `inset-inline-end` |
+
+**Shorthand:**
+
+```css
+/* All four sides */
+inset: 0;  /* Same as top: 0; right: 0; bottom: 0; left: 0; */
+
+/* Block and inline axes */
+inset-block: 0;   /* top and bottom */
+inset-inline: 0;  /* left and right */
+```
+
+#### Borders
+
+```css
+/* Border on one logical side */
+border-inline-start: 3px solid var(--primary-color);
+
+/* Border radius */
+border-start-start-radius: var(--radius-lg);  /* top-left in LTR */
+border-end-start-radius: var(--radius-lg);    /* bottom-left in LTR */
+```
+
+#### Text Alignment
+
+| Physical | Logical |
+|----------|---------|
+| `text-align: left` | `text-align: start` |
+| `text-align: right` | `text-align: end` |
+
+### Common Patterns
+
+#### Centering with Logical Properties
+
+```css
+/* Center horizontally (works in RTL) */
+blog-card {
+  margin-inline: auto;
+  max-inline-size: 40rem;
+}
+```
+
+#### Icon + Text Spacing
+
+```css
+/* Space between icon and text, flips in RTL */
+button svg {
+  margin-inline-end: var(--spacing-sm);
+}
+```
+
+#### Sidebar Layout
+
+```css
+/* Sidebar on the start edge (left in LTR, right in RTL) */
+main-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
+
+sidebar-panel {
+  border-inline-end: 1px solid var(--border-color);
+  padding-inline-end: var(--spacing-lg);
+}
+```
+
+#### Card with Accent Border
+
+```css
+/* Accent border on start edge */
+blog-card[data-featured] {
+  border-inline-start: 4px solid var(--accent-color);
+  padding-inline-start: var(--spacing-lg);
+}
+```
+
+### Migration Guide
+
+When converting existing CSS:
+
+```css
+/* Before */
+.card {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  border-left: 3px solid blue;
+  text-align: left;
+}
+
+/* After */
+.card {
+  margin-inline: 1rem;
+  padding-block: 2rem 1rem;
+  border-inline-start: 3px solid blue;
+  text-align: start;
+}
+```
+
+### When to Keep Physical Properties
+
+Some properties should remain physical:
+
+| Property | Keep Physical When |
+|----------|-------------------|
+| `top`, `left`, etc. | Fixed position relative to viewport |
+| `transform` | Animations that shouldn't flip |
+| `box-shadow` | Light source should stay consistent |
+| `background-position` | Image positioning shouldn't flip |
+
+```css
+/* Physical: shadow direction stays consistent */
+blog-card {
+  box-shadow: 2px 2px 8px var(--shadow-color);
+}
+
+/* Logical: border flips with text direction */
+blog-card {
+  border-inline-start: 3px solid var(--accent-color);
+}
+```
+
+### Integration with Design Tokens
+
+Define spacing tokens and use them with logical properties:
+
+```css
+/* _tokens.css */
+:root {
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}
+
+/* Component using logical properties with tokens */
+article {
+  padding-block: var(--spacing-xl);
+  padding-inline: var(--spacing-lg);
+  margin-block-end: var(--spacing-lg);
+}
+```
+
+### Browser Support
+
+Logical properties have excellent browser support (95%+). For older browsers:
+
+```css
+/* Fallback pattern (only if supporting very old browsers) */
+blog-card {
+  margin-left: 1rem;  /* Fallback */
+  margin-inline-start: 1rem;  /* Modern browsers */
+}
+```
+
+---
+
 ## Example: Complete Component File
 
 ```css
@@ -660,3 +916,7 @@ When setting up or reviewing CSS:
 - [ ] Design tokens in `_tokens.css`
 - [ ] Container queries used for component-scoped responsiveness
 - [ ] Components define `container-type` when children need to adapt
+- [ ] Logical properties used for margins, padding, and borders
+- [ ] `margin-inline` / `padding-block` instead of physical directions
+- [ ] `text-align: start` instead of `text-align: left`
+- [ ] Physical properties only where semantically appropriate (shadows, transforms)

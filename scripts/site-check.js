@@ -89,8 +89,34 @@ function checkFavicons(siteRoot) {
   return results;
 }
 
+/** Valid robots.txt directives (case-insensitive) */
+const ROBOTS_DIRECTIVES = {
+  // Standard directives
+  'user-agent': { requiresValue: true, global: false, description: 'Bot identifier' },
+  'disallow': { requiresValue: false, global: false, description: 'Blocked path' },
+  'allow': { requiresValue: false, global: false, description: 'Allowed path (overrides Disallow)' },
+  'sitemap': { requiresValue: true, global: true, description: 'Sitemap URL' },
+  'crawl-delay': { requiresValue: true, global: false, description: 'Seconds between requests' },
+  // Extended directives (supported by some crawlers)
+  'host': { requiresValue: true, global: true, description: 'Preferred domain (Yandex)' },
+  'clean-param': { requiresValue: true, global: false, description: 'URL params to ignore (Yandex)' },
+  'request-rate': { requiresValue: true, global: false, description: 'Request rate limit' },
+  'visit-time': { requiresValue: true, global: false, description: 'Allowed crawl times' },
+  'noindex': { requiresValue: true, global: false, description: 'Noindex directive (non-standard)' },
+};
+
+/** Known bot user-agents */
+const KNOWN_BOTS = [
+  '*', 'googlebot', 'bingbot', 'yandex', 'baiduspider', 'duckduckbot',
+  'slurp', 'facebot', 'ia_archiver', 'msnbot', 'teoma', 'googlebot-image',
+  'googlebot-news', 'googlebot-video', 'mediapartners-google', 'adsbot-google',
+  // AI/LLM bots
+  'gptbot', 'chatgpt-user', 'ccbot', 'anthropic-ai', 'claude-web',
+  'google-extended', 'cohere-ai', 'perplexitybot', 'bytespider',
+];
+
 /**
- * Validate robots.txt content
+ * Validate robots.txt syntax and content
  * @param {string} siteRoot - Site root directory
  * @returns {object} Validation results
  */
@@ -113,45 +139,156 @@ function checkRobotsTxt(siteRoot) {
 
   try {
     const content = readFileSync(robotsPath, 'utf8');
-    const lines = content.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+    const rawLines = content.split('\n');
+    let currentUserAgent = null;
+    let hasAnyUserAgent = false;
+    let userAgentBlocks = new Map(); // Track rules per user-agent
+    let lineNum = 0;
 
-    // Check for User-agent directive
-    const hasUserAgent = lines.some(l => l.toLowerCase().startsWith('user-agent:'));
-    if (hasUserAgent) {
+    for (const rawLine of rawLines) {
+      lineNum++;
+      const line = rawLine.trim();
+
+      // Skip empty lines and comments
+      if (!line || line.startsWith('#')) {
+        continue;
+      }
+
+      // Check for valid directive format (field: value)
+      const colonIndex = line.indexOf(':');
+      if (colonIndex === -1) {
+        results.errors.push(`Line ${lineNum}: Invalid syntax - missing colon: "${line}"`);
+        continue;
+      }
+
+      const directive = line.substring(0, colonIndex).trim().toLowerCase();
+      const value = line.substring(colonIndex + 1).trim();
+
+      // Check if directive is recognized
+      if (!ROBOTS_DIRECTIVES[directive]) {
+        results.warnings.push(`Line ${lineNum}: Unknown directive "${directive}"`);
+        continue;
+      }
+
+      const directiveInfo = ROBOTS_DIRECTIVES[directive];
+
+      // Validate directive value requirements
+      if (directiveInfo.requiresValue && !value) {
+        results.errors.push(`Line ${lineNum}: ${directive} requires a value`);
+        continue;
+      }
+
+      // Handle User-agent directive
+      if (directive === 'user-agent') {
+        hasAnyUserAgent = true;
+        currentUserAgent = value.toLowerCase();
+
+        // Check for known bot
+        if (!KNOWN_BOTS.includes(currentUserAgent) && currentUserAgent !== '*') {
+          results.info.push(`Line ${lineNum}: Custom user-agent "${value}"`);
+        }
+
+        // Track user-agent blocks for duplicate detection
+        if (!userAgentBlocks.has(currentUserAgent)) {
+          userAgentBlocks.set(currentUserAgent, { line: lineNum, rules: [] });
+        }
+        continue;
+      }
+
+      // Check that Allow/Disallow come after User-agent
+      if ((directive === 'allow' || directive === 'disallow') && !currentUserAgent) {
+        if (!directiveInfo.global) {
+          results.errors.push(`Line ${lineNum}: ${directive} must follow a User-agent directive`);
+          continue;
+        }
+      }
+
+      // Validate Sitemap URL
+      if (directive === 'sitemap') {
+        if (!value.startsWith('http://') && !value.startsWith('https://')) {
+          results.errors.push(`Line ${lineNum}: Sitemap must be an absolute URL`);
+        } else if (!value.endsWith('.xml') && !value.includes('.xml?')) {
+          results.warnings.push(`Line ${lineNum}: Sitemap URL should end with .xml`);
+        } else {
+          results.passed.push('Valid Sitemap directive');
+        }
+        continue;
+      }
+
+      // Validate Crawl-delay (must be numeric)
+      if (directive === 'crawl-delay') {
+        const delay = parseFloat(value);
+        if (isNaN(delay) || delay < 0) {
+          results.errors.push(`Line ${lineNum}: Crawl-delay must be a positive number`);
+        } else if (delay > 60) {
+          results.warnings.push(`Line ${lineNum}: Crawl-delay of ${delay}s is very high`);
+        } else {
+          results.info.push(`Crawl-delay: ${delay}s for ${currentUserAgent || '*'}`);
+        }
+        continue;
+      }
+
+      // Validate Allow/Disallow path patterns
+      if (directive === 'allow' || directive === 'disallow') {
+        if (value && !value.startsWith('/') && value !== '') {
+          results.errors.push(`Line ${lineNum}: ${directive} path must start with /`);
+        }
+
+        // Check for problematic patterns
+        if (value.includes('..')) {
+          results.warnings.push(`Line ${lineNum}: Path contains ".." which may not work as expected`);
+        }
+
+        // Track the rule
+        if (currentUserAgent && userAgentBlocks.has(currentUserAgent)) {
+          userAgentBlocks.get(currentUserAgent).rules.push({ directive, value, line: lineNum });
+        }
+      }
+    }
+
+    // Overall validation results
+    if (hasAnyUserAgent) {
       results.passed.push('Has User-agent directive');
     } else {
       results.warnings.push('No User-agent directive found');
     }
 
-    // Check for Sitemap reference
-    const hasSitemap = lines.some(l => l.toLowerCase().startsWith('sitemap:'));
-    if (hasSitemap) {
-      results.passed.push('References sitemap');
-    } else {
-      results.info.push('No Sitemap directive (optional but recommended)');
+    // Check for wildcard user-agent
+    if (userAgentBlocks.has('*')) {
+      results.passed.push('Has wildcard User-agent: *');
+    } else if (hasAnyUserAgent) {
+      results.warnings.push('No wildcard User-agent: * (some bots may not be covered)');
     }
 
     // Check for common issues
-    const disallowAll = lines.some(l => l.toLowerCase() === 'disallow: /');
-    const allowAll = lines.some(l => l.toLowerCase() === 'allow: /');
+    const wildcardBlock = userAgentBlocks.get('*');
+    if (wildcardBlock) {
+      const disallowAll = wildcardBlock.rules.some(r =>
+        r.directive === 'disallow' && r.value === '/'
+      );
+      const hasAllow = wildcardBlock.rules.some(r => r.directive === 'allow');
 
-    if (disallowAll && !allowAll) {
-      results.warnings.push('Disallow: / blocks all crawlers - is this intentional?');
+      if (disallowAll && !hasAllow) {
+        results.warnings.push('Disallow: / blocks all crawlers - is this intentional?');
+      }
     }
 
     // Check for AI/LLM bot directives
-    const hasAIDirectives = lines.some(l => {
-      const lower = l.toLowerCase();
-      return lower.includes('gptbot') ||
-             lower.includes('chatgpt') ||
-             lower.includes('anthropic') ||
-             lower.includes('claude') ||
-             lower.includes('ccbot') ||
-             lower.includes('google-extended');
-    });
+    const aiBlocks = Array.from(userAgentBlocks.keys()).filter(ua =>
+      ['gptbot', 'chatgpt-user', 'ccbot', 'anthropic-ai', 'claude-web',
+       'google-extended', 'cohere-ai', 'perplexitybot', 'bytespider'].includes(ua)
+    );
 
-    if (hasAIDirectives) {
-      results.info.push('Contains AI/LLM crawler directives');
+    if (aiBlocks.length > 0) {
+      results.info.push(`Contains AI/LLM bot directives: ${aiBlocks.join(', ')}`);
+    }
+
+    // Check for sitemap
+    const hasSitemap = rawLines.some(l =>
+      l.trim().toLowerCase().startsWith('sitemap:')
+    );
+    if (!hasSitemap) {
+      results.info.push('No Sitemap directive (optional but recommended)');
     }
 
   } catch (err) {

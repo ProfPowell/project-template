@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**28 Skills** - Guidance that activates when Claude recognizes relevant context:
+**34 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -21,7 +21,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `responsive-images` | `<picture>`, `srcset`, modern formats |
 | `placeholder-images` | SVG placeholder generation for prototypes |
 | `fake-content` | Realistic fake content with @faker-js/faker |
-| `progressive-enhancement` | CSS-only interactivity |
+| `progressive-enhancement` | CSS-only interactivity, noscript patterns |
 | `animation-motion` | Animations with prefers-reduced-motion |
 | `performance` | Resource hints, Core Web Vitals |
 | `print-styles` | `@media print` patterns for printable pages |
@@ -38,8 +38,14 @@ A web project template with validation, automation, and Claude Code integration 
 | `git-workflow` | Conventional commits, branching |
 | `pre-flight-check` | Checklists before work begins |
 | `site-scaffold` | Standard site structure |
+| `rest-api` | HTTP methods, status codes, versioning, OpenAPI |
+| `nodejs-backend` | Express/Fastify, PostgreSQL, services pattern |
+| `data-storage` | localStorage, IndexedDB, SQLite WASM |
+| `authentication` | JWT, sessions, OAuth, password hashing |
+| `observability` | Error tracking, performance monitoring |
+| `dependency-wrapper` | Testable wrappers for third-party libs |
 
-**17 Slash Commands**:
+**23 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -60,6 +66,12 @@ A web project template with validation, automation, and Claude Code integration 
 | `/scaffold-icons` | Set up Lucide icon library |
 | `/health` | Project health dashboard |
 | `/uat` | User acceptance testing workflow |
+| `/add-endpoint` | Scaffold REST API endpoint with OpenAPI |
+| `/add-error-boundary` | Add error boundary component |
+| `/scaffold-backend` | Generate Node.js backend project |
+| `/add-storage` | Generate client-side storage module |
+| `/wrap-dependency` | Wrap third-party library for testing |
+| `/add-noscript` | Add noscript fallback patterns |
 
 **PostToolUse Hooks** - Validators run automatically when Claude edits files:
 
@@ -93,6 +105,9 @@ A web project template with validation, automation, and Claude Code integration 
 | `npm run lint:manifest` | PWA manifest validation |
 | `npm run lint:darkmode` | Dark mode token coverage |
 | `npm run lint:fonts` | Web font loading validation |
+| `npm run lint:api` | REST API endpoint checks |
+| `npm run lint:observability` | Error handling patterns |
+| `npm run lint:noscript` | Noscript fallback checks |
 | `npm run a11y` | Accessibility testing |
 | `npm run lint:all` | All validators |
 | `npm run lint:changed` | Incremental (changed files) |
@@ -202,15 +217,53 @@ Edit `.pa11yci`:
 
 ## Philosophy
 
-**HTML first, CSS for enhancement, JavaScript when necessary.**
+**For sites, HTML first, CSS for enhancement, JavaScript when necessary.**
 
 - Use semantic HTML5 elements
 - Apply XHTML-strict syntax (self-closing tags, lowercase, quoted attributes)
 - Use custom elements as semantic wrappers
 - Enforce WCAG2AA accessibility
+- Design with i18n in mind as much as possible
 - Use `data-*` attributes for state (not classes)
 - Apply CSS `@layer` for cascade control
 - Build responsive images with `<picture>` and `srcset`
+- Front-end is always considered insecure, so validation on user input is for the interface, and real validation is server-side.  State and storage are assumed to be tampered with, so only low-importance data is generally stored locally, such as user visual settings.
+- JavaScript is used to enhance primarily, and if it is required, we substitute or warn properly
+- Web components are used to extend functionality when needed
+
+**For apps, JavaScript can be first, but should never reinvent HTML or CSS, but emit quality versions of it and always gracefully degrade or fail.**
+
+- Utilize modern JavaScript with reasonable decomposition
+- JSDocs used throughout for type hints and documentation
+- Functional core with imperative shell philosophy using declarative JSON structures for configuration
+- Unit tests for quality of core functions
+- E2E tests for quality for executed features
+- Network is considered a progressive enhancement (offline possibility)
+- Backends are decoupled where possible.
+	- Backends written in NodeJS (preferred) or PHP (acceptable)
+	- Backend data stores are assumed to PostgeSQL ([https://www.postgresql.org/](https://www.postgresql.org/)) unless otherwise stated.
+		- Front-end data stores use an abstraction utilizing a simple key-value system for setting like localStorage or something more signification like SQLite (WASM based for browsers) for large data sets.
+	- REST endpoints
+		- This our assumed solution and not GraphQL.  If we see network cascade or significant spread we refactor or consolidate
+			- We allow for a RPC style where it makes sense
+		- REST endpoints should support `x-www-form-urlencoded` and JSON requests
+		- REST endpoints generally rely on the full HTTP method / verb list, but in degraded GET and POST only situations such as progressive enhancement use a special sent value of `API_METHOD` to represent the methods that can't be set in non-JavaScript enhancement HTML forms (`PUT`, `DELETE`, and `PATCH`) or may be blocked for security reasons.
+		- REST endpoints use appropriate status HTTP status codes
+		- REST endpoints are versioned using headers, unless major changes and then a URL change may be allowed
+		- REST endpoints respond with JSON or fully rendered HTML
+			- For large JSON use we may use a streamed JSON format
+		- REST endpoints are documented with OpenAPI and JSON Schema
+		- First party REST endpoints may front 3rd Party dependencies as proxies to keep secrets safe and allow for replacements
+		- REST endpoints have rate limitation and access controls such as token authentication
+	- Authentication
+		- We aim for simplicity in authentication and avoiding common security issues
+		- Use known systems
+		- Allow for OAuth but carefully
+- Favor the use of platform APIs first - use what the platform gives us
+- When using a dependency wrap the dependency for testing and replacement purposes with dependency injection style or wrapped approach
+- Favor low dependency or free of dependencies solutions
+- Use of `<noscript>`, JS polyfills, and capability detection for no support or degraded support situations
+- Observability scripts to catch run-time errors, user issues, and performance problems
 
 ## Requirements
 

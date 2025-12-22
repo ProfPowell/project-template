@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**35 Skills** - Guidance that activates when Claude recognizes relevant context:
+**36 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -45,6 +45,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `observability` | Error tracking, performance monitoring |
 | `dependency-wrapper` | Testable wrappers for third-party libs |
 | `database` | PostgreSQL schemas, migrations, seeding |
+| `backend-testing` | API testing, database mocking, integration tests |
 
 **32 Slash Commands**:
 

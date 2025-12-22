@@ -758,10 +758,412 @@ Complete observability setup:
 
 ---
 
+## Server-Side Structured Logging
+
+### Logger with Correlation IDs
+
+Track requests across services with correlation IDs:
+
+```javascript
+// src/lib/logger.js
+
+/**
+ * Structured logger with correlation ID support
+ */
+
+const LOG_LEVELS = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  debug: 3
+};
+
+const currentLevel = LOG_LEVELS[process.env.LOG_LEVEL || 'info'];
+
+/**
+ * Create structured log entry
+ * @param {string} level - Log level
+ * @param {string} message - Log message
+ * @param {Object} data - Additional context
+ * @returns {Object}
+ */
+function createLogEntry(level, message, data = {}) {
+  return {
+    timestamp: new Date().toISOString(),
+    level,
+    message,
+    ...data,
+    // Include correlation ID if available
+    correlationId: data.correlationId || getCorrelationId(),
+    // Service identification
+    service: process.env.SERVICE_NAME || 'api',
+    environment: process.env.NODE_ENV || 'development'
+  };
+}
+
+/**
+ * Get correlation ID from async context
+ * @returns {string|undefined}
+ */
+function getCorrelationId() {
+  // Uses AsyncLocalStorage - see middleware below
+  return asyncContext?.getStore()?.correlationId;
+}
+
+/**
+ * Logger interface
+ */
+export const logger = {
+  error(message, data) {
+    if (currentLevel >= LOG_LEVELS.error) {
+      const entry = createLogEntry('error', message, data);
+      console.error(JSON.stringify(entry));
+    }
+  },
+
+  warn(message, data) {
+    if (currentLevel >= LOG_LEVELS.warn) {
+      const entry = createLogEntry('warn', message, data);
+      console.warn(JSON.stringify(entry));
+    }
+  },
+
+  info(message, data) {
+    if (currentLevel >= LOG_LEVELS.info) {
+      const entry = createLogEntry('info', message, data);
+      console.log(JSON.stringify(entry));
+    }
+  },
+
+  debug(message, data) {
+    if (currentLevel >= LOG_LEVELS.debug) {
+      const entry = createLogEntry('debug', message, data);
+      console.log(JSON.stringify(entry));
+    }
+  },
+
+  /**
+   * Create child logger with bound context
+   * @param {Object} context - Context to bind
+   * @returns {Object}
+   */
+  child(context) {
+    return {
+      error: (msg, data) => logger.error(msg, { ...context, ...data }),
+      warn: (msg, data) => logger.warn(msg, { ...context, ...data }),
+      info: (msg, data) => logger.info(msg, { ...context, ...data }),
+      debug: (msg, data) => logger.debug(msg, { ...context, ...data })
+    };
+  }
+};
+```
+
+### Correlation ID Middleware
+
+Propagate correlation IDs through request lifecycle:
+
+```javascript
+// src/api/middleware/correlation.js
+import { AsyncLocalStorage } from 'node:async_hooks';
+import { randomUUID } from 'node:crypto';
+
+export const asyncContext = new AsyncLocalStorage();
+
+/**
+ * Correlation ID middleware
+ * Extracts from header or generates new ID
+ */
+export function correlationMiddleware(req, res, next) {
+  const correlationId = req.headers['x-correlation-id']
+    || req.headers['x-request-id']
+    || randomUUID();
+
+  // Set on response for client tracking
+  res.setHeader('X-Correlation-ID', correlationId);
+
+  // Store in async context for logger access
+  asyncContext.run({ correlationId, requestId: randomUUID() }, () => {
+    next();
+  });
+}
+```
+
+### Request/Response Logging
+
+Log all HTTP requests with timing:
+
+```javascript
+// src/api/middleware/requestLogger.js
+import { logger } from '../../lib/logger.js';
+
+/**
+ * Request logging middleware
+ */
+export function requestLogger(req, res, next) {
+  const startTime = Date.now();
+
+  // Log request
+  logger.info('Request received', {
+    method: req.method,
+    path: req.path,
+    query: req.query,
+    userAgent: req.headers['user-agent'],
+    ip: req.ip
+  });
+
+  // Capture response
+  const originalEnd = res.end;
+  res.end = function(...args) {
+    const duration = Date.now() - startTime;
+
+    logger.info('Response sent', {
+      method: req.method,
+      path: req.path,
+      statusCode: res.statusCode,
+      duration,
+      contentLength: res.getHeader('content-length')
+    });
+
+    // Log slow requests as warnings
+    if (duration > 1000) {
+      logger.warn('Slow request detected', {
+        method: req.method,
+        path: req.path,
+        duration
+      });
+    }
+
+    originalEnd.apply(res, args);
+  };
+
+  next();
+}
+```
+
+### Error Logging
+
+Structured error logging with stack traces:
+
+```javascript
+// src/api/middleware/errorLogger.js
+import { logger } from '../../lib/logger.js';
+
+/**
+ * Error logging middleware
+ * Place after routes, before error handler
+ */
+export function errorLogger(err, req, res, next) {
+  const errorData = {
+    method: req.method,
+    path: req.path,
+    error: {
+      name: err.name,
+      message: err.message,
+      code: err.code,
+      // Only include stack in development
+      ...(process.env.NODE_ENV !== 'production' && {
+        stack: err.stack
+      })
+    },
+    user: req.user?.id
+  };
+
+  // Log at appropriate level
+  if (err.statusCode >= 500 || !err.statusCode) {
+    logger.error('Server error', errorData);
+  } else if (err.statusCode >= 400) {
+    logger.warn('Client error', errorData);
+  }
+
+  next(err);
+}
+```
+
+### Database Query Logging
+
+Log database queries with timing:
+
+```javascript
+// src/db/client.js
+import { logger } from '../lib/logger.js';
+
+/**
+ * Query wrapper with logging
+ * @param {pg.Pool} pool
+ * @returns {Function}
+ */
+export function createQueryLogger(pool) {
+  return async function query(sql, params = []) {
+    const startTime = Date.now();
+
+    try {
+      const result = await pool.query(sql, params);
+      const duration = Date.now() - startTime;
+
+      logger.debug('Database query executed', {
+        sql: sql.slice(0, 200),
+        paramCount: params.length,
+        rowCount: result.rowCount,
+        duration
+      });
+
+      // Warn on slow queries
+      if (duration > 500) {
+        logger.warn('Slow database query', {
+          sql: sql.slice(0, 500),
+          duration
+        });
+      }
+
+      return result;
+    } catch (error) {
+      logger.error('Database query failed', {
+        sql: sql.slice(0, 200),
+        error: error.message,
+        code: error.code
+      });
+      throw error;
+    }
+  };
+}
+```
+
+### Distributed Tracing Context
+
+Pass trace context to downstream services:
+
+```javascript
+// src/lib/tracing.js
+
+/**
+ * Create trace headers for outgoing requests
+ * @returns {Object}
+ */
+export function getTraceHeaders() {
+  const store = asyncContext.getStore();
+  if (!store) return {};
+
+  return {
+    'X-Correlation-ID': store.correlationId,
+    'X-Request-ID': store.requestId,
+    // W3C Trace Context format (if using full tracing)
+    // 'traceparent': `00-${store.traceId}-${store.spanId}-01`
+  };
+}
+
+/**
+ * Fetch wrapper with trace propagation
+ * @param {string} url
+ * @param {Object} options
+ * @returns {Promise<Response>}
+ */
+export async function tracedFetch(url, options = {}) {
+  const headers = {
+    ...options.headers,
+    ...getTraceHeaders()
+  };
+
+  logger.debug('Outgoing request', {
+    url,
+    method: options.method || 'GET'
+  });
+
+  const startTime = Date.now();
+  try {
+    const response = await fetch(url, { ...options, headers });
+    const duration = Date.now() - startTime;
+
+    logger.debug('Outgoing request completed', {
+      url,
+      statusCode: response.status,
+      duration
+    });
+
+    return response;
+  } catch (error) {
+    logger.error('Outgoing request failed', {
+      url,
+      error: error.message
+    });
+    throw error;
+  }
+}
+```
+
+### Application Setup
+
+Wire up logging middleware:
+
+```javascript
+// src/index.js
+import express from 'express';
+import { correlationMiddleware } from './api/middleware/correlation.js';
+import { requestLogger } from './api/middleware/requestLogger.js';
+import { errorLogger } from './api/middleware/errorLogger.js';
+import { logger } from './lib/logger.js';
+
+const app = express();
+
+// Logging middleware (order matters)
+app.use(correlationMiddleware);  // First: establish correlation ID
+app.use(requestLogger);          // Second: log requests
+
+// ... routes ...
+
+// Error logging (before error handler)
+app.use(errorLogger);
+
+// Error handler
+app.use((err, req, res, next) => {
+  res.status(err.statusCode || 500).json({
+    error: {
+      code: err.code || 'INTERNAL_ERROR',
+      message: err.message
+    }
+  });
+});
+
+// Startup logging
+app.listen(3000, () => {
+  logger.info('Server started', {
+    port: 3000,
+    nodeVersion: process.version,
+    pid: process.pid
+  });
+});
+
+// Graceful shutdown logging
+process.on('SIGTERM', () => {
+  logger.info('Shutdown signal received');
+});
+```
+
+### Log Output Examples
+
+Structured logs for easy parsing:
+
+```json
+{"timestamp":"2025-01-15T10:30:00.000Z","level":"info","message":"Request received","method":"POST","path":"/api/auth/login","correlationId":"abc-123","service":"api","environment":"production"}
+{"timestamp":"2025-01-15T10:30:00.050Z","level":"debug","message":"Database query executed","sql":"SELECT * FROM users WHERE email = $1","duration":45,"correlationId":"abc-123","service":"api","environment":"production"}
+{"timestamp":"2025-01-15T10:30:00.100Z","level":"info","message":"Response sent","method":"POST","path":"/api/auth/login","statusCode":200,"duration":100,"correlationId":"abc-123","service":"api","environment":"production"}
+```
+
+### Environment Configuration
+
+```bash
+# .env
+LOG_LEVEL=info          # error, warn, info, debug
+SERVICE_NAME=task-api   # Service identifier in logs
+NODE_ENV=production     # Controls stack trace exposure
+```
+
+---
+
 ## Checklist
 
 When implementing observability:
 
+### Client-Side
 - [ ] Add global window.onerror handler
 - [ ] Add unhandledrejection handler
 - [ ] Wrap async functions with error handling
@@ -774,3 +1176,14 @@ When implementing observability:
 - [ ] Set up error reporting endpoint
 - [ ] Test error handling in development
 - [ ] Don't expose stack traces to end users
+
+### Server-Side
+- [ ] Implement structured JSON logging
+- [ ] Add correlation ID middleware
+- [ ] Log all requests with timing
+- [ ] Log errors with appropriate levels
+- [ ] Add database query logging
+- [ ] Configure log levels via environment
+- [ ] Propagate trace context to downstream services
+- [ ] Log application startup/shutdown events
+- [ ] Warn on slow operations (queries, requests)

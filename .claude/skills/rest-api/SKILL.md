@@ -493,19 +493,405 @@ app.post('/api/users', validate(createUserSchema), createUser);
 
 ---
 
+## Health Check Endpoints
+
+Provide endpoints for operational monitoring and container orchestration.
+
+### Basic Health Check
+
+```javascript
+/**
+ * Simple health check - returns 200 if server is running
+ * Use for: Load balancer health checks, uptime monitoring
+ */
+app.get('/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
+  });
+});
+```
+
+### Readiness Check with Dependencies
+
+```javascript
+/**
+ * Readiness check - verifies all dependencies are available
+ * Use for: Kubernetes readiness probes, deployment verification
+ * Returns 503 if any dependency is unhealthy
+ */
+app.get('/ready', async (req, res) => {
+  const checks = {};
+  let healthy = true;
+
+  // Database check
+  try {
+    const start = Date.now();
+    await db.query('SELECT 1');
+    checks.database = {
+      status: 'ok',
+      latency: Date.now() - start
+    };
+  } catch (error) {
+    checks.database = {
+      status: 'error',
+      message: error.message
+    };
+    healthy = false;
+  }
+
+  // Redis check (if used)
+  if (redis) {
+    try {
+      const start = Date.now();
+      await redis.ping();
+      checks.redis = {
+        status: 'ok',
+        latency: Date.now() - start
+      };
+    } catch (error) {
+      checks.redis = {
+        status: 'error',
+        message: error.message
+      };
+      healthy = false;
+    }
+  }
+
+  // External service check (optional)
+  // checks.externalApi = await checkExternalService();
+
+  res.status(healthy ? 200 : 503).json({
+    status: healthy ? 'ok' : 'degraded',
+    timestamp: new Date().toISOString(),
+    checks
+  });
+});
+```
+
+### Liveness Check
+
+```javascript
+/**
+ * Liveness check - indicates if the process should be restarted
+ * Use for: Kubernetes liveness probes
+ * Returns 503 if the process is in a bad state
+ */
+app.get('/live', (req, res) => {
+  // Check for conditions that require restart
+  const memoryUsage = process.memoryUsage();
+  const heapUsedPercent = memoryUsage.heapUsed / memoryUsage.heapTotal;
+
+  // Example: restart if heap is 95%+ full
+  if (heapUsedPercent > 0.95) {
+    return res.status(503).json({
+      status: 'unhealthy',
+      reason: 'memory_pressure',
+      heapUsedPercent: Math.round(heapUsedPercent * 100)
+    });
+  }
+
+  res.json({
+    status: 'ok',
+    pid: process.pid,
+    memory: {
+      heapUsed: Math.round(memoryUsage.heapUsed / 1024 / 1024),
+      heapTotal: Math.round(memoryUsage.heapTotal / 1024 / 1024),
+      rss: Math.round(memoryUsage.rss / 1024 / 1024)
+    }
+  });
+});
+```
+
+### Startup Check
+
+```javascript
+/**
+ * Track startup completion for Kubernetes startupProbe
+ */
+let startupComplete = false;
+
+async function initializeApp() {
+  // Run migrations
+  await runMigrations();
+
+  // Warm caches
+  await warmCaches();
+
+  // Mark startup complete
+  startupComplete = true;
+}
+
+app.get('/startup', (req, res) => {
+  if (startupComplete) {
+    res.json({ status: 'ok', started: true });
+  } else {
+    res.status(503).json({ status: 'starting', started: false });
+  }
+});
+```
+
+### Health Check Response Patterns
+
+```javascript
+/**
+ * Health check response schema (OpenAPI)
+ */
+const HealthResponse = {
+  type: 'object',
+  properties: {
+    status: {
+      type: 'string',
+      enum: ['ok', 'degraded', 'unhealthy']
+    },
+    timestamp: {
+      type: 'string',
+      format: 'date-time'
+    },
+    version: {
+      type: 'string',
+      description: 'Application version'
+    },
+    checks: {
+      type: 'object',
+      additionalProperties: {
+        type: 'object',
+        properties: {
+          status: { type: 'string', enum: ['ok', 'error'] },
+          latency: { type: 'number' },
+          message: { type: 'string' }
+        }
+      }
+    }
+  }
+};
+```
+
+---
+
+## HTTP Caching Headers
+
+Use caching headers to improve performance and reduce server load.
+
+### Cache-Control Header
+
+```javascript
+/**
+ * Set Cache-Control for different resource types
+ */
+
+// Static, immutable content (versioned assets)
+app.get('/api/static/:hash', (req, res) => {
+  res.set('Cache-Control', 'public, max-age=31536000, immutable');
+  res.json(staticData);
+});
+
+// Dynamic but cacheable (user-independent)
+app.get('/api/products', (req, res) => {
+  res.set('Cache-Control', 'public, max-age=300'); // 5 minutes
+  res.json(products);
+});
+
+// User-specific, cacheable
+app.get('/api/users/me/preferences', authenticate, (req, res) => {
+  res.set('Cache-Control', 'private, max-age=60'); // 1 minute, user only
+  res.json(preferences);
+});
+
+// Never cache sensitive data
+app.get('/api/users/me', authenticate, (req, res) => {
+  res.set('Cache-Control', 'no-store');
+  res.json(user);
+});
+```
+
+### Cache-Control Values
+
+| Value | Use Case |
+|-------|----------|
+| `public, max-age=N` | CDN + browser cache for N seconds |
+| `private, max-age=N` | Browser-only cache (user-specific) |
+| `no-cache` | Must revalidate before using cache |
+| `no-store` | Never cache (sensitive data) |
+| `immutable` | Content will never change |
+| `stale-while-revalidate=N` | Serve stale while fetching fresh |
+
+### ETag for Conditional Requests
+
+```javascript
+import { createHash } from 'node:crypto';
+
+/**
+ * Generate ETag from response body
+ * @param {object} data - Response data
+ * @returns {string}
+ */
+function generateEtag(data) {
+  const content = JSON.stringify(data);
+  const hash = createHash('md5').update(content).digest('hex');
+  return `"${hash}"`;
+}
+
+/**
+ * ETag middleware for conditional responses
+ */
+function conditionalGet(getData) {
+  return async (req, res) => {
+    const data = await getData(req);
+    const etag = generateEtag(data);
+
+    res.set('ETag', etag);
+    res.set('Cache-Control', 'private, max-age=0, must-revalidate');
+
+    // Check if client has current version
+    const clientEtag = req.get('If-None-Match');
+    if (clientEtag === etag) {
+      return res.status(304).end(); // Not Modified
+    }
+
+    res.json(data);
+  };
+}
+
+// Usage
+app.get('/api/users/:id', conditionalGet(async (req) => {
+  return await getUserById(req.params.id);
+}));
+```
+
+### Last-Modified Header
+
+```javascript
+/**
+ * Last-Modified for time-based caching
+ */
+app.get('/api/articles/:id', async (req, res) => {
+  const article = await getArticle(req.params.id);
+  const lastModified = new Date(article.updatedAt);
+
+  res.set('Last-Modified', lastModified.toUTCString());
+  res.set('Cache-Control', 'private, max-age=0, must-revalidate');
+
+  // Check If-Modified-Since header
+  const ifModifiedSince = req.get('If-Modified-Since');
+  if (ifModifiedSince) {
+    const clientDate = new Date(ifModifiedSince);
+    if (lastModified <= clientDate) {
+      return res.status(304).end(); // Not Modified
+    }
+  }
+
+  res.json(article);
+});
+```
+
+### Conditional PUT/PATCH (Optimistic Concurrency)
+
+```javascript
+/**
+ * Prevent lost updates with If-Match header
+ */
+app.patch('/api/articles/:id', authenticate, async (req, res) => {
+  const article = await getArticle(req.params.id);
+  const currentEtag = generateEtag(article);
+
+  // Require If-Match header for updates
+  const clientEtag = req.get('If-Match');
+  if (!clientEtag) {
+    return sendError(res, 428, 'PRECONDITION_REQUIRED',
+      'If-Match header required for updates');
+  }
+
+  // Check for concurrent modification
+  if (clientEtag !== currentEtag) {
+    return sendError(res, 412, 'PRECONDITION_FAILED',
+      'Resource has been modified, please refresh');
+  }
+
+  // Safe to update
+  const updated = await updateArticle(req.params.id, req.body);
+  res.set('ETag', generateEtag(updated));
+  res.json(updated);
+});
+```
+
+### Vary Header for Cache Keys
+
+```javascript
+/**
+ * Use Vary to differentiate cached responses
+ */
+app.get('/api/content', (req, res) => {
+  // Response varies based on these headers
+  res.set('Vary', 'Accept-Language, Accept-Encoding');
+  res.set('Cache-Control', 'public, max-age=300');
+
+  const lang = req.get('Accept-Language')?.split(',')[0] || 'en';
+  res.json(getContentForLanguage(lang));
+});
+```
+
+### Caching Middleware
+
+```javascript
+/**
+ * Reusable caching middleware
+ * @param {object} options
+ */
+function cache(options = {}) {
+  const {
+    maxAge = 300,
+    scope = 'public',
+    staleWhileRevalidate = 0
+  } = options;
+
+  let cacheControl = `${scope}, max-age=${maxAge}`;
+  if (staleWhileRevalidate) {
+    cacheControl += `, stale-while-revalidate=${staleWhileRevalidate}`;
+  }
+
+  return (req, res, next) => {
+    res.set('Cache-Control', cacheControl);
+    next();
+  };
+}
+
+// Usage
+app.get('/api/catalog', cache({ maxAge: 600 }), getCatalog);
+app.get('/api/user/feed', cache({ scope: 'private', maxAge: 60 }), getFeed);
+```
+
+---
+
 ## Checklist
 
 When creating REST endpoints:
 
+### Core API Design
 - [ ] Use appropriate HTTP methods (GET/POST/PUT/PATCH/DELETE)
 - [ ] Support API_METHOD for form fallback if progressive enhancement needed
 - [ ] Accept both JSON and form-urlencoded content types
 - [ ] Return appropriate status codes (2xx, 4xx, 5xx)
 - [ ] Use consistent error response format
 - [ ] Implement header-based versioning
-- [ ] Add rate limiting
 - [ ] Validate input at the boundary
+- [ ] Document with OpenAPI
+
+### Security & Performance
+- [ ] Add rate limiting
 - [ ] Use token authentication for protected routes
 - [ ] Proxy third-party APIs to hide secrets
 - [ ] Stream large responses when appropriate
-- [ ] Document with OpenAPI (see OPENAPI.md)
+
+### Health & Monitoring
+- [ ] Implement /health endpoint (basic liveness)
+- [ ] Implement /ready endpoint (dependency checks)
+- [ ] Return 503 when dependencies unavailable
+
+### Caching
+- [ ] Set Cache-Control headers appropriately
+- [ ] Use ETag for conditional GET requests
+- [ ] Use If-Match for safe concurrent updates
+- [ ] Set Vary header when response depends on request headers
+- [ ] Never cache sensitive user data (use no-store)

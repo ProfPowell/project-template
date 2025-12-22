@@ -1,3 +1,9 @@
+---
+name: observability
+description: Implement error tracking, performance monitoring, and user issue detection. Use when adding error handling, Web Vitals reporting, or debugging production issues.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # Observability Skill
 
 Implement runtime error tracking, performance monitoring, and user issue detection to catch problems in production.

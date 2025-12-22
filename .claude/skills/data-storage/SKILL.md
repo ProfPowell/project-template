@@ -1,3 +1,9 @@
+---
+name: data-storage
+description: Implement client-side data storage with localStorage, IndexedDB, or SQLite WASM. Use when storing user preferences, caching data, or building offline-first applications.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # Frontend Data Storage Skill
 
 Implement client-side data storage using localStorage, IndexedDB, or SQLite WASM for offline-capable web applications.

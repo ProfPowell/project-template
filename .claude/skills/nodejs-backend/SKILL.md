@@ -1,3 +1,9 @@
+---
+name: nodejs-backend
+description: Build Node.js backend services with Express/Fastify, PostgreSQL, and services pattern. Use when creating backend APIs, setting up servers, or connecting to databases.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # NodeJS Backend Skill
 
 Build backend services with Node.js following project conventions for structure, database access, and error handling.

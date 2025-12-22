@@ -1,3 +1,9 @@
+---
+name: rest-api
+description: Write REST API endpoints with HTTP methods, status codes, versioning, and OpenAPI documentation. Use when creating API endpoints or implementing backend services.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # REST API Skill
 
 Write REST API endpoints following project conventions for consistency, security, and progressive enhancement.

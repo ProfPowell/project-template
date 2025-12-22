@@ -35,6 +35,7 @@
     "lint:js": "eslint '**/*.js' --ignore-pattern 'node_modules' --ignore-pattern 'test/fixtures/invalid/**'",
     "lint:js:fix": "eslint '**/*.js' --fix --ignore-pattern 'node_modules' --ignore-pattern 'test/fixtures/invalid/**'",
     "lint:api": "node scripts/api-check.js",
+    "lint:schema": "node scripts/schema-check.js",
     "lint:observability": "node scripts/observability-check.js",
     "lint:noscript": "node scripts/noscript-check.js",
     "lint:complexity": "node scripts/complexity-check.js",

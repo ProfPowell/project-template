@@ -6,7 +6,7 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**34 Skills** - Guidance that activates when Claude recognizes relevant context:
+**35 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -44,8 +44,9 @@ A web project template with validation, automation, and Claude Code integration 
 | `authentication` | JWT, sessions, OAuth, password hashing |
 | `observability` | Error tracking, performance monitoring |
 | `dependency-wrapper` | Testable wrappers for third-party libs |
+| `database` | PostgreSQL schemas, migrations, seeding |
 
-**23 Slash Commands**:
+**32 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -72,6 +73,15 @@ A web project template with validation, automation, and Claude Code integration 
 | `/add-storage` | Generate client-side storage module |
 | `/wrap-dependency` | Wrap third-party library for testing |
 | `/add-noscript` | Add noscript fallback patterns |
+| `/add-migration` | Create database migration file |
+| `/scaffold-database` | Initialize database structure |
+| `/add-seed` | Create database seed file |
+| `/add-auth` | Scaffold JWT authentication flow |
+| `/add-oauth` | Add OAuth provider integration |
+| `/add-openapi` | Generate OpenAPI specification |
+| `/add-schema` | Create JSON Schema for validation |
+| `/add-proxy` | Scaffold third-party API proxy |
+| `/add-rate-limit` | Add rate limiting to endpoints |
 
 **PostToolUse Hooks** - Validators run automatically when Claude edits files:
 
@@ -106,6 +116,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `npm run lint:darkmode` | Dark mode token coverage |
 | `npm run lint:fonts` | Web font loading validation |
 | `npm run lint:api` | REST API endpoint checks |
+| `npm run lint:schema` | Database schema validation |
 | `npm run lint:observability` | Error handling patterns |
 | `npm run lint:noscript` | Noscript fallback checks |
 | `npm run a11y` | Accessibility testing |

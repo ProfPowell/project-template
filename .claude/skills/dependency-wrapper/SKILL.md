@@ -1,3 +1,9 @@
+---
+name: dependency-wrapper
+description: Wrap third-party libraries for testability and replaceability. Use when integrating external APIs, creating testable code, or building swappable implementations.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # Dependency Wrapper Skill
 
 Wrap third-party libraries for testability, replaceability, and controlled dependency injection.

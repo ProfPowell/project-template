@@ -1,3 +1,9 @@
+---
+name: site-scaffold
+description: Generate standardized static site structures. Use when creating new websites, setting up demos, or need consistent site structure with SEO, PWA, and accessibility foundations.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # Site Scaffold Skill
 
 Generate standardized static site structures with all essential files for production deployment.

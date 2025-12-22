@@ -1,3 +1,9 @@
+---
+name: authentication
+description: Implement secure authentication with JWT, sessions, OAuth, and password hashing. Use when adding login/logout, token auth, or integrating OAuth providers.
+allowed-tools: Read, Write, Edit, Glob, Grep
+---
+
 # Authentication Skill
 
 Implement secure authentication patterns for web applications including JWT tokens, sessions, OAuth, and password handling.

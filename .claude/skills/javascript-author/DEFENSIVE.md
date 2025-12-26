@@ -504,6 +504,151 @@ function safeArrayAccess(array, index, defaultValue) {
 
 ---
 
+## DOM Injection and Sanitization
+
+### Text Content (Safest)
+
+For text-only content, always use `textContent`:
+
+```javascript
+// Safe - automatically escapes HTML
+element.textContent = userInput;
+
+// Also safe for attributes
+element.setAttribute('data-name', userInput);
+```
+
+### insertAdjacentHTML (Preferred for HTML)
+
+Prefer `insertAdjacentHTML()` over `innerHTML` for HTML injection:
+
+```javascript
+// Preferred - more control over insertion position
+element.insertAdjacentHTML('beforeend', sanitizedHTML);
+
+// Positions:
+// 'beforebegin' - Before the element
+// 'afterbegin'  - Inside, before first child
+// 'beforeend'   - Inside, after last child
+// 'afterend'    - After the element
+```
+
+**Why prefer insertAdjacentHTML:**
+
+| Method | Behavior | Use Case |
+|--------|----------|----------|
+| `innerHTML =` | Replaces all content, destroys event listeners | Avoid when possible |
+| `insertAdjacentHTML()` | Adds without affecting existing content | Adding content |
+| `textContent =` | Safe text only, no HTML parsing | User-provided text |
+
+### The Sanitizer API (Emerging Standard)
+
+The browser-native Sanitizer API provides XSS-safe HTML injection:
+
+```javascript
+// Feature detection
+if ('Sanitizer' in window) {
+    // Safe - automatically removes XSS-unsafe elements
+    element.setHTML(untrustedHTML);
+
+    // With custom configuration
+    const sanitizer = new Sanitizer({
+        elements: ['p', 'b', 'i', 'a'],
+        attributes: ['href', 'class']
+    });
+    element.setHTML(untrustedHTML, { sanitizer });
+} else {
+    // Fallback required (see below)
+}
+```
+
+**Browser Support (Late 2025):** Limited - Firefox Nightly, Chrome Canary (behind flag). Use DOMPurify as fallback.
+
+### DOMPurify Fallback
+
+Until Sanitizer API is widely supported, use DOMPurify:
+
+```javascript
+import DOMPurify from 'dompurify';
+
+/**
+ * Safely inject HTML content
+ * @param {HTMLElement} element
+ * @param {string} html - Untrusted HTML
+ */
+function safeSetHTML(element, html) {
+    if ('Sanitizer' in window) {
+        element.setHTML(html);
+    } else {
+        element.innerHTML = DOMPurify.sanitize(html);
+    }
+}
+
+// With configuration
+const cleanHTML = DOMPurify.sanitize(dirty, {
+    ALLOWED_TAGS: ['p', 'b', 'i', 'a'],
+    ALLOWED_ATTR: ['href', 'class']
+});
+```
+
+### Safe DOM Manipulation Patterns
+
+```javascript
+// Pattern 1: Text content only (safest)
+function setUserName(element, name) {
+    element.textContent = name;
+}
+
+// Pattern 2: Build elements programmatically
+function createLink(href, text) {
+    const link = document.createElement('a');
+    link.href = href;           // Automatically handled
+    link.textContent = text;    // Escaped
+    return link;
+}
+
+// Pattern 3: Template with sanitization
+function renderCard(data) {
+    const template = `
+        <article>
+            <h2>${escapeHTML(data.title)}</h2>
+            <p>${escapeHTML(data.description)}</p>
+        </article>
+    `;
+    container.insertAdjacentHTML('beforeend', template);
+}
+
+/**
+ * Escape HTML entities
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+```
+
+### Avoid These Patterns
+
+```javascript
+// DANGEROUS - Direct innerHTML with user input
+element.innerHTML = userInput;
+
+// DANGEROUS - Template literals with unescaped data
+element.innerHTML = `<div>${userData.name}</div>`;
+
+// DANGEROUS - document.write
+document.write(userContent);
+
+// RISKY - eval or Function constructor
+eval(userCode);
+new Function(userCode)();
+```
+
+---
+
 ## Checklist
 
 When writing defensive JavaScript:
@@ -518,3 +663,7 @@ When writing defensive JavaScript:
 - [ ] Global error handlers set up for uncaught errors
 - [ ] Explicit type coercion (no implicit `+value` or `!!value`)
 - [ ] BigInt considered for large integers or database IDs
+- [ ] `textContent` used for text-only DOM updates (not `innerHTML`)
+- [ ] `insertAdjacentHTML()` preferred over `innerHTML` for HTML injection
+- [ ] User-provided HTML sanitized via Sanitizer API or DOMPurify
+- [ ] No `eval()`, `new Function()`, or `document.write()` with user data

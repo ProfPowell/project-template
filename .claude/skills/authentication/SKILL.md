@@ -583,3 +583,10 @@ When implementing authentication:
 - [ ] Set appropriate security headers
 - [ ] Validate OAuth state parameter
 - [ ] Never log passwords or tokens
+
+## Related Skills
+
+- **rest-api** - Write REST API endpoints with HTTP methods, status codes,...
+- **security** - Write secure web pages and applications
+- **database** - Design PostgreSQL schemas with migrations, seeding, and d...
+- **nodejs-backend** - Build Node.js backend services with Express/Fastify, Post...

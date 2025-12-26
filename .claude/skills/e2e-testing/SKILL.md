@@ -514,3 +514,10 @@ When writing E2E tests:
 - [ ] Keep tests independent (no shared state)
 - [ ] Use meaningful test descriptions
 - [ ] Run tests in CI with retries
+
+## Related Skills
+
+- **unit-testing** - Write unit tests for JavaScript files using Node.js nativ...
+- **forms** - HTML-first form patterns with CSS-only validation
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **vitest** - Write and run tests with Vitest for Vite-based projects

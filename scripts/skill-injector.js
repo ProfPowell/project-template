@@ -30,6 +30,11 @@ const SKILL_MAP = {
   '.astro': 'astro',
   '.njk': 'eleventy',
   '.liquid': 'eleventy',
+  // TypeScript
+  '.ts': 'typescript-author',
+  '.tsx': 'typescript-author',
+  '.mts': 'typescript-author',
+  '.cts': 'typescript-author',
 };
 
 // Special filename patterns that override extension-based matching
@@ -38,6 +43,12 @@ const FILENAME_PATTERNS = [
   { pattern: /\.11ty\.cjs$/, skill: 'eleventy' },
   { pattern: /eleventy\.config\.(js|mjs|cjs)$/, skill: 'eleventy' },
   { pattern: /astro\.config\.(js|mjs|ts)$/, skill: 'astro' },
+  // TypeScript configuration
+  { pattern: /tsconfig(\..+)?\.json$/, skill: 'typescript-author' },
+  // Containerization
+  { pattern: /Dockerfile(\..*)?$/, skill: 'containerization' },
+  { pattern: /docker-compose(\..*)?\.ya?ml$/, skill: 'containerization' },
+  { pattern: /\.dockerignore$/, skill: 'containerization' },
 ];
 
 /**

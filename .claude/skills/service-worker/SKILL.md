@@ -686,3 +686,10 @@ When implementing a service worker:
 - [ ] Cache size limits prevent unbounded growth
 - [ ] Cross-origin requests are not cached
 - [ ] Debug logging available for development
+
+## Related Skills
+
+- **data-storage** - Implement client-side data storage with localStorage, Ind...
+- **performance** - Write performance-friendly HTML pages
+- **api-client** - Fetch API patterns with error handling, retry logic, and ...
+- **progressive-enhancement** - HTML-first development with CSS-only interactivity patterns

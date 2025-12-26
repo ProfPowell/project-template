@@ -225,3 +225,10 @@ When using icons:
 - [ ] Icon size appropriate for context
 - [ ] Color inherits from parent (uses `currentColor`)
 - [ ] Custom icons saved to `assets/icons/custom/`
+
+## Related Skills
+
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **performance** - Write performance-friendly HTML pages

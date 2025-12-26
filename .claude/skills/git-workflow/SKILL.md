@@ -285,3 +285,8 @@ git push -u origin HEAD
 # /uat request <feature>
 # After approval: merge, close issue, cleanup
 ```
+
+## Related Skills
+
+- **pre-flight-check** - "INVOKE FIRST before any code work
+- **ci-cd** - Configure GitHub Actions for automated testing, building,...

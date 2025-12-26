@@ -147,3 +147,10 @@ See [FIXTURES.md](FIXTURES.md) for fixture organization patterns.
 - [PATTERNS.md](PATTERNS.md) - Common test patterns
 - [FIXTURES.md](FIXTURES.md) - Fixture organization
 - [javascript-author skill](../javascript-author/SKILL.md) - Code style
+
+## Related Skills
+
+- **javascript-author** - Write vanilla JavaScript for Web Components with function...
+- **backend-testing** - Write tests for backend services, APIs, and database access
+- **dependency-wrapper** - Wrap third-party libraries for testability and replaceabi...
+- **vitest** - Write and run tests with Vitest for Vite-based projects

@@ -1187,3 +1187,10 @@ When implementing observability:
 - [ ] Propagate trace context to downstream services
 - [ ] Log application startup/shutdown events
 - [ ] Warn on slow operations (queries, requests)
+
+## Related Skills
+
+- **logging** - Structured client-side logging and error reporting
+- **performance** - Write performance-friendly HTML pages
+- **api-client** - Fetch API patterns with error handling, retry logic, and ...
+- **nodejs-backend** - Build Node.js backend services with Express/Fastify, Post...

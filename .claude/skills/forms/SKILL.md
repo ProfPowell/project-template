@@ -434,3 +434,10 @@ The `<form-field>` element is defined in `elements.json`:
   }
 }
 ```
+
+## Related Skills
+
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **security** - Write secure web pages and applications
+- **progressive-enhancement** - HTML-first development with CSS-only interactivity patterns

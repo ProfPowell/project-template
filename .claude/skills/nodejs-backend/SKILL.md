@@ -612,3 +612,10 @@ When building Node.js backends:
 - [ ] Add request logging
 - [ ] Write tests for services
 - [ ] Document API with OpenAPI
+
+## Related Skills
+
+- **database** - Design PostgreSQL schemas with migrations, seeding, and d...
+- **rest-api** - Write REST API endpoints with HTTP methods, status codes,...
+- **authentication** - Implement secure authentication with JWT, sessions, OAuth...
+- **backend-testing** - Write tests for backend services, APIs, and database access

@@ -206,3 +206,10 @@ Usage:
 - Names must contain a hyphen (web component spec)
 - Be descriptive: `product-card` not `pc`
 - Use consistent prefixes for related elements: `form-input`, `form-select`, `form-button`
+
+## Related Skills
+
+- **javascript-author** - Write vanilla JavaScript for Web Components with function...
+- **data-attributes** - Using data-* attributes as the HTML/CSS/JS bridge for sta...
+- **state-management** - Client-side state patterns for Web Components
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance

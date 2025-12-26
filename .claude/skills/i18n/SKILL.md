@@ -359,3 +359,10 @@ Before finalizing internationalized content:
 | Text in images | Cannot be translated | Use HTML text with CSS styling |
 | Concatenation | Word order varies by language | Use complete translatable phrases |
 | Entity overuse | Harder to read/edit | Use actual Unicode characters |
+
+## Related Skills
+
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **javascript-author** - Write vanilla JavaScript for Web Components with function...
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **metadata** - HTML metadata and head content

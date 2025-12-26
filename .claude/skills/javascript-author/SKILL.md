@@ -125,3 +125,10 @@ export { MyComponent };
 - [EVENTS.md](EVENTS.md) - Event handling
 - [ACCESSIBILITY.md](ACCESSIBILITY.md) - a11y in JavaScript
 - [DEFENSIVE.md](DEFENSIVE.md) - Type guards, error handling, feature detection
+
+## Related Skills
+
+- **typescript-author** - Write TypeScript for Web Components and Node.js with stri...
+- **custom-elements** - Define and use custom HTML elements
+- **unit-testing** - Write unit tests for JavaScript files using Node.js nativ...
+- **api-client** - Fetch API patterns with error handling, retry logic, and ...

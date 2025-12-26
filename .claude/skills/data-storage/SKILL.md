@@ -590,3 +590,10 @@ When implementing data storage:
 - [ ] Test with storage cleared/disabled
 - [ ] Monitor storage usage
 - [ ] Provide clear all/reset functionality
+
+## Related Skills
+
+- **state-management** - Client-side state patterns for Web Components
+- **service-worker** - Service worker patterns for offline support, caching stra...
+- **api-client** - Fetch API patterns with error handling, retry logic, and ...
+- **security** - Write secure web pages and applications

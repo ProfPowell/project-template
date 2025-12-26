@@ -231,3 +231,10 @@ When adding placeholder images:
 - [ ] Include meaningful alt text
 - [ ] Place in `assets/images/placeholder/` directory
 - [ ] Use consistent naming: `{type}-{width}x{height}.svg`
+
+## Related Skills
+
+- **responsive-images** - Modern responsive image techniques using picture element,...
+- **fake-content** - Generate realistic fake content for HTML prototypes
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **performance** - Write performance-friendly HTML pages

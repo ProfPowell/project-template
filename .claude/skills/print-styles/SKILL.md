@@ -970,3 +970,9 @@ When creating print styles:
 - [ ] Images sized appropriately and don't break
 - [ ] Tested in Print Preview
 - [ ] Added .no-print and .print-only utilities
+
+## Related Skills
+
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **responsive-images** - Modern responsive image techniques using picture element,...

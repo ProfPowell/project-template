@@ -215,3 +215,10 @@ npx pa11y --standard WCAG2AAA --include-notices src/index.html
 ```
 
 See [FORMS.md](FORMS.md), [IMAGES.md](IMAGES.md), [NAVIGATION.md](NAVIGATION.md) for details.
+
+## Related Skills
+
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **forms** - HTML-first form patterns with CSS-only validation
+- **custom-elements** - Define and use custom HTML elements
+- **i18n** - Write internationalization-friendly HTML pages

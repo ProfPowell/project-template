@@ -483,3 +483,10 @@ npm run lighthouse
 | Everything preloaded | Wastes bandwidth | Only preload critical |
 | No lazy loading | Slow initial load | Add `loading="lazy"` |
 | Large hero image | Slow LCP | Optimize, use modern formats |
+
+## Related Skills
+
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **responsive-images** - Modern responsive image techniques using picture element,...
+- **build-tooling** - Configure Vite for development and production builds
+- **service-worker** - Service worker patterns for offline support, caching stra...

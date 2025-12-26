@@ -178,3 +178,10 @@ Beyond component blocks, entire page types follow patterns:
 | Legal | Numbered sections, definitions, effective date |
 
 See individual examples in the `examples/pages/` directory.
+
+## Related Skills
+
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **progressive-enhancement** - HTML-first development with CSS-only interactivity patterns
+- **forms** - HTML-first form patterns with CSS-only validation

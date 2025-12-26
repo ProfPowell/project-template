@@ -484,3 +484,10 @@ When scaffolding a new site:
 - [ ] Validate all HTML files pass linters
 - [ ] Test 404 and 500 pages render correctly
 - [ ] Verify security.txt is accessible at /.well-known/security.txt
+
+## Related Skills
+
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **metadata** - HTML metadata and head content
+- **performance** - Write performance-friendly HTML pages

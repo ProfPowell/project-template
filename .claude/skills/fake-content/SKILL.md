@@ -472,3 +472,10 @@ When generating fake content:
 - [ ] Use realistic value ranges
 - [ ] Consider using seed for reproducibility
 - [ ] Generate appropriate count for the UI
+
+## Related Skills
+
+- **content-author** - Write quality content for HTML documents
+- **patterns** - Reusable HTML page patterns and component blocks
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **placeholder-images** - Generate SVG placeholder images for prototypes

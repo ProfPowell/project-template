@@ -140,3 +140,10 @@ These elements MUST use self-closing syntax:
 See [SYNTAX.md](SYNTAX.md) for complete syntax rules.
 See [ELEMENTS.md](ELEMENTS.md) for semantic element guidance.
 See [EXAMPLES.md](EXAMPLES.md) for code examples.
+
+## Related Skills
+
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **javascript-author** - Write vanilla JavaScript for Web Components with function...
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **forms** - HTML-first form patterns with CSS-only validation

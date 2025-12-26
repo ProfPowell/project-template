@@ -71,7 +71,7 @@ What are you creating?
 │
 ├─ CSS file
 │  └─ Use: CSS Pre-Flight Checklist
-│     └─ Check: css-architecture, design-tokens skills
+│     └─ Check: css-author, design-tokens skills
 │
 ├─ JavaScript file
 │  └─ Use: JavaScript Pre-Flight Checklist
@@ -386,15 +386,24 @@ git commit -m "type(scope): description"
 - [ ] Commit message references issue if applicable
 
 ### 4. Request UAT
-```
+```bash
 /uat request <feature-name>
+# This adds uat:requested label to the issue
 ```
-- [ ] UAT file created in `.worklog/uat-<feature>.md`
-- [ ] Testing instructions provided for human
+- [ ] UAT requested via `/uat request <feature-name>`
+- [ ] Issue has `uat:requested` label
+- [ ] Testing instructions provided for human in `.worklog/uat-<feature>.md`
 
 ### 5. Wait for Approval
-- [ ] DO NOT merge to main until `/uat approve` received
-- [ ] If denied, address feedback and re-request UAT
+```bash
+# Check UAT status
+/uat status <feature-name>
+# Or check issue labels
+bd show <issue-id>
+```
+- [ ] DO NOT close issue until `uat:approved` label is present
+- [ ] If denied (`uat:denied` label), address feedback and re-request UAT
+- [ ] Only close when approved: `bd close <issue-id>`
 
 ### Completion Red Flags:
 | Situation | Action Required |
@@ -402,5 +411,11 @@ git commit -m "type(scope): description"
 | Tests failing | Fix before proceeding |
 | No worklog entry | Create one now |
 | On main branch | Should have been on feature branch |
-| No UAT requested | Run `/uat request` |
-| Merging without approval | STOP - wait for UAT
+| No UAT requested | Run `/uat request <feature-name>` |
+| Closing without approval | STOP - check `bd show <id>` for `uat:approved` label |
+| `uat:denied` label present | Address feedback, then `/uat request` again |
+
+## Related Skills
+
+- **git-workflow** - Enforce structured git workflow with conventional commits...
+- **unit-testing** - Write unit tests for JavaScript files using Node.js nativ...

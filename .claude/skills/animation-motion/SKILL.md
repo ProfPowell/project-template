@@ -1,12 +1,14 @@
 ---
 name: animation-motion
-description: CSS animations and transitions with accessibility (prefers-reduced-motion) and performance best practices. Use when adding motion, transitions, or animated effects.
+description: CSS animations, transitions, and scroll-driven effects with accessibility (prefers-reduced-motion). Use when adding motion, hover effects, loading states, or scroll-based animations.
 allowed-tools: Read, Write, Edit
 ---
 
 # Animation & Motion Skill
 
 This skill covers CSS animations and transitions with a focus on accessibility (respecting user motion preferences) and performance (avoiding jank and layout thrashing).
+
+> **Related:** For CSS-only interactive patterns (tabs, accordions, toggles without JavaScript), see the **`progressive-enhancement`** skill.
 
 ## Philosophy
 
@@ -626,3 +628,10 @@ When adding animations or transitions:
 - [ ] Parallax and large motion are optional enhancements
 - [ ] Loading states work without animation
 - [ ] Animation enhances rather than distracts
+
+## Related Skills
+
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **progressive-enhancement** - HTML-first development with CSS-only interactivity patterns
+- **performance** - Write performance-friendly HTML pages
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance

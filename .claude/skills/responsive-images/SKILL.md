@@ -450,3 +450,10 @@ When adding images:
 - [ ] Use `<picture>` for format fallbacks (AVIF > WebP > JPEG)
 - [ ] Use `<picture>` for art direction (different crops)
 - [ ] Test with network throttling to verify lazy loading
+
+## Related Skills
+
+- **performance** - Write performance-friendly HTML pages
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **placeholder-images** - Generate SVG placeholder images for prototypes
+- **css-author** - Modern CSS organization with native @import, @layer casca...

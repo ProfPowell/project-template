@@ -437,3 +437,10 @@ When using data attributes:
 - [ ] Prefer `data-state` for multi-state components
 - [ ] Use `dataset` API in JavaScript, not `getAttribute`
 - [ ] Document attribute purposes in component skills
+
+## Related Skills
+
+- **custom-elements** - Define and use custom HTML elements
+- **javascript-author** - Write vanilla JavaScript for Web Components with function...
+- **css-author** - Modern CSS organization with native @import, @layer casca...
+- **progressive-enhancement** - HTML-first development with CSS-only interactivity patterns

@@ -398,3 +398,10 @@ Create custom profiles by:
 1. Adding a new JSON file to `profiles/`
 2. Setting `extends` to inherit from another profile
 3. Adding `required` and `recommended` arrays
+
+## Related Skills
+
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **performance** - Write performance-friendly HTML pages
+- **security** - Write secure web pages and applications
+- **i18n** - Write internationalization-friendly HTML pages

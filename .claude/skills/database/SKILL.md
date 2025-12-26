@@ -554,3 +554,10 @@ When designing databases:
 - [ ] Use TIMESTAMPTZ (not TIMESTAMP) for times
 - [ ] Consider soft deletes for important data
 - [ ] Use parameterized queries (prevent SQL injection)
+
+## Related Skills
+
+- **nodejs-backend** - Build Node.js backend services with Express/Fastify, Post...
+- **rest-api** - Write REST API endpoints with HTTP methods, status codes,...
+- **authentication** - Implement secure authentication with JWT, sessions, OAuth...
+- **security** - Write secure web pages and applications

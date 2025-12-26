@@ -6,6 +6,10 @@
         "hooks": [
           {
             "type": "command",
+            "command": "node scripts/skill-injector.js 2>/dev/null || true"
+          },
+          {
+            "type": "command",
             "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.(html|xhtml|htm)$'; then (echo '=== html-validate ===' ; npx html-validate \"$file_path\" 2>&1 ; echo '=== htmlhint ===' ; npx htmlhint \"$file_path\" 2>&1 ; echo '=== pa11y (WCAG2AA) ===' ; npx pa11y \"$file_path\" 2>&1 ; node scripts/semantic-check.js \"$file_path\" 2>&1) | node scripts/fix-suggestions.js --type=html ; fi"
           },
           {
@@ -19,6 +23,19 @@
           {
             "type": "command",
             "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.md$' && ! echo \"$file_path\" | grep -qE '(\\.worklog|node_modules)/'; then (echo '=== markdownlint ===' ; npx markdownlint \"$file_path\" 2>&1 ; echo '=== cspell ===' ; npx cspell \"$file_path\" --no-progress 2>&1) | node scripts/fix-suggestions.js --type=md ; fi"
+          },
+          {
+            "type": "command",
+            "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.(json|yaml|yml)$' && ! echo \"$file_path\" | grep -qE '(node_modules|package-lock\\.json)'; then node scripts/config-validator.js \"$file_path\" 2>&1 | node scripts/fix-suggestions.js --type=config ; fi"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cmd=$(jq -r '.tool_input.command // empty' 2>/dev/null); if echo \"$cmd\" | grep -qE 'git commit'; then node scripts/uat-reminder.js 2>/dev/null || true; fi"
           }
         ]
       }

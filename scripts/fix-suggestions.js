@@ -332,6 +332,66 @@ function analyzeLinesAndSuggest(lines, type) {
     }
   }
 
+  // JSON/YAML/Config patterns
+  if (type === 'json' || type === 'yaml' || type === 'config') {
+    if (fullOutput.includes('Trailing comma')) {
+      addSuggestion({
+        error: 'Trailing comma',
+        message: 'Remove trailing comma (not valid in JSON)',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('JSON parse error')) {
+      addSuggestion({
+        error: 'JSON syntax error',
+        message: 'Check for missing quotes, brackets, or commas',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('tabs not allowed')) {
+      addSuggestion({
+        error: 'Tabs in YAML',
+        message: 'Replace tabs with spaces (2-space indentation recommended)',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('missing space after colon')) {
+      addSuggestion({
+        error: 'YAML formatting',
+        message: 'Add space after colon in key: value pairs',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('package.json: missing')) {
+      addSuggestion({
+        error: 'Missing package.json field',
+        message: 'Add required fields to package.json',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('consider adding "type": "module"')) {
+      addSuggestion({
+        error: 'ESM not configured',
+        message: 'Add "type": "module" to package.json for ESM support',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+    if (fullOutput.includes('both dependencies and devDependencies')) {
+      addSuggestion({
+        error: 'Duplicate dependency',
+        message: 'Package appears in both dependencies and devDependencies',
+        fix: null,
+        autoFixable: false,
+      });
+    }
+  }
+
   // Markdown patterns
   if (type === 'md') {
     // Heading structure issues

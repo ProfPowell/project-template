@@ -68,6 +68,7 @@ const CONTENT_PATTERNS = [
   // CSS content patterns
   { pattern: /@keyframes|animation:/i, skill: 'animation-motion', reason: 'Animation detected - check reduced-motion' },
   { pattern: /@media\s+print/i, skill: 'print-styles', reason: 'Print styles detected' },
+  { pattern: /font-size:|line-height:|text-wrap:|font-family:/i, skill: 'typography', reason: 'Typography detected - consider type scale and rhythm' },
 ];
 
 /**

@@ -1669,6 +1669,7 @@ See the **icons** skill before adding any visual indicators to HTML.
 
 ## Related Skills
 
+- **typography** - Type scale, hierarchy, rhythm, text-wrap, font pairing
 - **animation-motion** - CSS animations, transitions, and scroll-driven effects
 - **print-styles** - Write print-friendly CSS using @media print
 - **icons** - Lucide icon library with `<x-icon>` Web Component

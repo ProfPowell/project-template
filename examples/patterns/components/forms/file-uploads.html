@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Upload Component - Component Library</title>
+  <link rel="stylesheet" href="../components.css" />
+</head>
+<body>
+  <div class="demo-page">
+    <h1>File Upload Component</h1>
+    <p>File input controls with styled button and dropzone variants.</p>
+
+    <section class="demo-section">
+      <h2>Basic File Input</h2>
+      <p>Styled file input using <code>&lt;form-field data-type="file"&gt;</code>.</p>
+
+      <div style="max-width: 24rem;">
+        <form-field data-type="file">
+          <label for="file-basic">Upload file</label>
+          <div data-file-input>
+            <input type="file" id="file-basic" />
+            <button type="button" data-button="secondary">Choose File</button>
+            <span data-file-name>No file chosen</span>
+          </div>
+        </form-field>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Multiple Files</h2>
+
+      <div style="max-width: 24rem;">
+        <form-field data-type="file">
+          <label for="file-multiple">Upload files</label>
+          <div data-file-input>
+            <input type="file" id="file-multiple" multiple />
+            <button type="button" data-button="secondary">Choose Files</button>
+            <span data-file-name>No files chosen</span>
+          </div>
+          <span data-hint>You can select multiple files</span>
+        </form-field>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>With File Type Restrictions</h2>
+
+      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1.5rem;">
+        <form-field data-type="file">
+          <label for="file-images">Upload images</label>
+          <div data-file-input>
+            <input type="file" id="file-images" accept="image/*" multiple />
+            <button type="button" data-button="secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+              </svg>
+              Choose Images
+            </button>
+            <span data-file-name>No images chosen</span>
+          </div>
+          <span data-hint>Accepts: JPG, PNG, GIF, WebP</span>
+        </form-field>
+
+        <form-field data-type="file">
+          <label for="file-docs">Upload document</label>
+          <div data-file-input>
+            <input type="file" id="file-docs" accept=".pdf,.doc,.docx" />
+            <button type="button" data-button="secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.5rem;">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+              </svg>
+              Choose Document
+            </button>
+            <span data-file-name>No document chosen</span>
+          </div>
+          <span data-hint>Accepts: PDF, DOC, DOCX</span>
+        </form-field>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Dropzone</h2>
+      <p>Drag-and-drop file upload area.</p>
+
+      <div style="max-width: 28rem;">
+        <form-field data-type="file">
+          <label for="file-dropzone">Upload files</label>
+          <div data-dropzone>
+            <input type="file" id="file-dropzone" multiple />
+            <div data-dropzone-content>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--text-muted);">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <p style="margin: 1rem 0 0.5rem; font-weight: 500;">Drop files here or click to upload</p>
+              <p style="margin: 0; font-size: 0.875rem; color: var(--text-muted);">PNG, JPG, PDF up to 10MB</p>
+            </div>
+          </div>
+        </form-field>
+      </div>
+
+      <h3>Dropzone with Icon Variant</h3>
+      <div style="max-width: 28rem;">
+        <form-field data-type="file">
+          <div data-dropzone data-style="compact">
+            <input type="file" id="file-dropzone-compact" accept="image/*" />
+            <div data-dropzone-content>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Add image</span>
+            </div>
+          </div>
+        </form-field>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>With Upload Progress</h2>
+
+      <div style="max-width: 28rem;">
+        <form-field data-type="file">
+          <label>Uploading files</label>
+          <div data-file-list>
+            <div data-file-item>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted); flex-shrink: 0;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                </svg>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 0.875rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">document.pdf</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">2.4 MB</div>
+                </div>
+                <span style="font-size: 0.875rem; color: var(--text-muted);">75%</span>
+              </div>
+              <progress-bar style="margin-top: 0.5rem;">
+                <progress value="75" max="100">75%</progress>
+              </progress-bar>
+            </div>
+
+            <div data-file-item>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted); flex-shrink: 0;">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 0.875rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">photo.jpg</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">1.8 MB</div>
+                </div>
+                <span style="font-size: 0.875rem; color: var(--success);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <div data-file-item>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted); flex-shrink: 0;">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+                </svg>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 0.875rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">spreadsheet.xlsx</div>
+                  <div style="font-size: 0.75rem; color: var(--error);">Upload failed - file too large</div>
+                </div>
+                <button type="button" data-button="ghost" data-size="small" aria-label="Remove file">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form-field>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>In Context</h2>
+
+      <h3>Profile Photo Upload</h3>
+      <div class="demo-card" style="max-width: 20rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <user-avatar data-size="xl">
+            <img src="https://i.pravatar.cc/80?img=50" alt="Current photo" />
+          </user-avatar>
+          <div>
+            <form-field data-type="file" style="margin: 0;">
+              <div data-file-input>
+                <input type="file" id="avatar-upload" accept="image/*" />
+                <button type="button" data-button="secondary" data-size="small">Change Photo</button>
+              </div>
+            </form-field>
+            <p style="margin: 0.5rem 0 0; font-size: 0.75rem; color: var(--text-muted);">JPG, PNG. Max 2MB.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Attachment Field</h3>
+      <div class="demo-card" style="max-width: 28rem;">
+        <form-field>
+          <label for="message">Message</label>
+          <textarea id="message" rows="3" placeholder="Type your message..."></textarea>
+        </form-field>
+
+        <form-field data-type="file" style="margin-top: 1rem;">
+          <div data-file-input>
+            <input type="file" id="attachment" multiple />
+            <button type="button" data-button="ghost" data-size="small">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 0.25rem;">
+                <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+              </svg>
+              Attach files
+            </button>
+          </div>
+        </form-field>
+
+        <div style="margin-top: 1rem; text-align: right;">
+          <button type="button" data-button="primary">Send Message</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre><code>&lt;!-- Basic file input --&gt;
+&lt;form-field data-type="file"&gt;
+  &lt;label for="file"&gt;Upload file&lt;/label&gt;
+  &lt;div data-file-input&gt;
+    &lt;input type="file" id="file" /&gt;
+    &lt;button type="button" data-button="secondary"&gt;Choose File&lt;/button&gt;
+    &lt;span data-file-name&gt;No file chosen&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/form-field&gt;
+
+&lt;!-- Dropzone --&gt;
+&lt;form-field data-type="file"&gt;
+  &lt;div data-dropzone&gt;
+    &lt;input type="file" id="dropzone" multiple /&gt;
+    &lt;div data-dropzone-content&gt;
+      &lt;p&gt;Drop files here or click to upload&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/form-field&gt;
+
+&lt;!-- With file restrictions --&gt;
+&lt;input type="file" accept="image/*" multiple /&gt;
+&lt;input type="file" accept=".pdf,.doc,.docx" /&gt;</code></pre>
+    </section>
+  </div>
+
+  <script>
+    // Update file name display when files are selected
+    document.querySelectorAll('[data-file-input] input[type="file"]').forEach(input => {
+      input.addEventListener('change', () => {
+        const nameSpan = input.closest('[data-file-input]').querySelector('[data-file-name]');
+        if (nameSpan) {
+          if (input.files.length === 0) {
+            nameSpan.textContent = 'No file chosen';
+          } else if (input.files.length === 1) {
+            nameSpan.textContent = input.files[0].name;
+          } else {
+            nameSpan.textContent = `${input.files.length} files selected`;
+          }
+        }
+      });
+    });
+
+    // Dropzone drag-and-drop visual feedback
+    document.querySelectorAll('[data-dropzone]').forEach(dropzone => {
+      ['dragenter', 'dragover'].forEach(event => {
+        dropzone.addEventListener(event, (e) => {
+          e.preventDefault();
+          dropzone.setAttribute('data-dragover', '');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(event => {
+        dropzone.addEventListener(event, (e) => {
+          e.preventDefault();
+          dropzone.removeAttribute('data-dragover');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

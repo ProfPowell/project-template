@@ -192,5 +192,22 @@
     },
     "pattern": "pagination",
     "category": "component"
+  },
+  "meter-display": {
+    "flow": true,
+    "permittedContent": ["label", "meter", "span", "@phrasing"],
+    "attributes": {
+      "data-size": { "required": false, "enum": ["small", "medium", "large"] }
+    },
+    "pattern": "meter",
+    "category": "component"
+  },
+  "tooltip-wrapper": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["button", "a", "div", "@phrasing"],
+    "attributes": {},
+    "pattern": "tooltip",
+    "category": "component"
   }
 }

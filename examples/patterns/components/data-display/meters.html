@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meter Component - Component Library</title>
+  <link rel="stylesheet" href="../components.css" />
+</head>
+<body>
+  <div class="demo-page">
+    <h1>Meter Component</h1>
+    <p>Visual indicator for scalar values within a known range. Uses the native <code>&lt;meter&gt;</code> element.</p>
+
+    <section class="demo-section">
+      <h2>Basic Meter</h2>
+      <p>The meter element displays a value within a range using automatic color coding.</p>
+
+      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1rem;">
+        <meter-display>
+          <label>Disk Usage</label>
+          <meter value="0.3" min="0" max="1">30%</meter>
+          <span data-value>30%</span>
+        </meter-display>
+
+        <meter-display>
+          <label>Memory Usage</label>
+          <meter value="0.6" min="0" max="1">60%</meter>
+          <span data-value>60%</span>
+        </meter-display>
+
+        <meter-display>
+          <label>CPU Load</label>
+          <meter value="0.85" min="0" max="1">85%</meter>
+          <span data-value>85%</span>
+        </meter-display>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Value Ranges</h2>
+      <p>Use <code>low</code>, <code>high</code>, and <code>optimum</code> to define acceptable value ranges.</p>
+
+      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1.5rem;">
+        <div>
+          <p style="margin: 0 0 0.5rem; font-size: 0.875rem; font-weight: 500;">Good (value in optimum range)</p>
+          <meter-display>
+            <label>Battery</label>
+            <meter value="0.8" min="0" max="1" low="0.2" high="0.8" optimum="0.9">80%</meter>
+            <span data-value>80%</span>
+          </meter-display>
+        </div>
+
+        <div>
+          <p style="margin: 0 0 0.5rem; font-size: 0.875rem; font-weight: 500;">Warning (value between low and optimum)</p>
+          <meter-display>
+            <label>Battery</label>
+            <meter value="0.4" min="0" max="1" low="0.2" high="0.8" optimum="0.9">40%</meter>
+            <span data-value>40%</span>
+          </meter-display>
+        </div>
+
+        <div>
+          <p style="margin: 0 0 0.5rem; font-size: 0.875rem; font-weight: 500;">Critical (value below low)</p>
+          <meter-display>
+            <label>Battery</label>
+            <meter value="0.1" min="0" max="1" low="0.2" high="0.8" optimum="0.9">10%</meter>
+            <span data-value>10%</span>
+          </meter-display>
+        </div>
+      </div>
+
+      <h3>Inverted Ranges</h3>
+      <p>When lower is better (e.g., error rates), set optimum near 0.</p>
+
+      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1rem;">
+        <meter-display>
+          <label>Error Rate (low is good)</label>
+          <meter value="0.02" min="0" max="1" low="0.05" high="0.15" optimum="0">2%</meter>
+          <span data-value>2%</span>
+        </meter-display>
+
+        <meter-display>
+          <label>Error Rate (warning)</label>
+          <meter value="0.1" min="0" max="1" low="0.05" high="0.15" optimum="0">10%</meter>
+          <span data-value>10%</span>
+        </meter-display>
+
+        <meter-display>
+          <label>Error Rate (critical)</label>
+          <meter value="0.25" min="0" max="1" low="0.05" high="0.15" optimum="0">25%</meter>
+          <span data-value>25%</span>
+        </meter-display>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Sizes</h2>
+
+      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1rem;">
+        <meter-display data-size="small">
+          <label>Small</label>
+          <meter value="0.6" min="0" max="1">60%</meter>
+        </meter-display>
+
+        <meter-display>
+          <label>Default</label>
+          <meter value="0.6" min="0" max="1">60%</meter>
+        </meter-display>
+
+        <meter-display data-size="large">
+          <label>Large</label>
+          <meter value="0.6" min="0" max="1">60%</meter>
+        </meter-display>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>In Context</h2>
+
+      <h3>Storage Overview</h3>
+      <div class="demo-card" style="max-width: 28rem;">
+        <h4 style="margin: 0 0 1rem;">Storage Usage</h4>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <meter-display>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+              <label>Documents</label>
+              <span style="font-size: 0.875rem; color: var(--text-muted);">2.4 GB / 5 GB</span>
+            </div>
+            <meter value="2.4" min="0" max="5" low="1" high="4" optimum="0">48%</meter>
+          </meter-display>
+
+          <meter-display>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+              <label>Photos</label>
+              <span style="font-size: 0.875rem; color: var(--text-muted);">8.2 GB / 10 GB</span>
+            </div>
+            <meter value="8.2" min="0" max="10" low="2" high="8" optimum="0">82%</meter>
+          </meter-display>
+
+          <meter-display>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+              <label>Backups</label>
+              <span style="font-size: 0.875rem; color: var(--text-muted);">0.8 GB / 2 GB</span>
+            </div>
+            <meter value="0.8" min="0" max="2" low="0.5" high="1.5" optimum="0">40%</meter>
+          </meter-display>
+        </div>
+      </div>
+
+      <h3>Health Dashboard</h3>
+      <div class="demo-card" style="max-width: 28rem;">
+        <h4 style="margin: 0 0 1rem;">System Health</h4>
+
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+          <div style="text-align: center;">
+            <meter-display>
+              <meter value="0.45" min="0" max="1" low="0.3" high="0.7" optimum="0.5" style="width: 100%; height: 0.75rem;">45%</meter>
+            </meter-display>
+            <div style="margin-top: 0.5rem;">
+              <div style="font-weight: 500;">CPU</div>
+              <div style="font-size: 0.875rem; color: var(--text-muted);">45%</div>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <meter-display>
+              <meter value="0.68" min="0" max="1" low="0.3" high="0.8" optimum="0.5" style="width: 100%; height: 0.75rem;">68%</meter>
+            </meter-display>
+            <div style="margin-top: 0.5rem;">
+              <div style="font-weight: 500;">Memory</div>
+              <div style="font-size: 0.875rem; color: var(--text-muted);">68%</div>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <meter-display>
+              <meter value="0.92" min="0" max="1" low="0.3" high="0.85" optimum="0.5" style="width: 100%; height: 0.75rem;">92%</meter>
+            </meter-display>
+            <div style="margin-top: 0.5rem;">
+              <div style="font-weight: 500;">Disk</div>
+              <div style="font-size: 0.875rem; color: var(--text-muted);">92%</div>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <meter-display>
+              <meter value="0.12" min="0" max="1" low="0.3" high="0.7" optimum="0.5" style="width: 100%; height: 0.75rem;">12%</meter>
+            </meter-display>
+            <div style="margin-top: 0.5rem;">
+              <div style="font-weight: 500;">Network</div>
+              <div style="font-size: 0.875rem; color: var(--text-muted);">12%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Password Strength</h3>
+      <div class="demo-card" style="max-width: 24rem;">
+        <form-field>
+          <label for="new-password">New Password</label>
+          <input type="password" id="new-password" value="MySecure123!" />
+        </form-field>
+
+        <meter-display style="margin-top: 0.75rem;">
+          <meter value="0.75" min="0" max="1" low="0.3" high="0.6" optimum="1">Strong</meter>
+        </meter-display>
+        <div style="font-size: 0.75rem; color: var(--success); margin-top: 0.25rem;">Strong password</div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Meter vs Progress</h2>
+      <p>Choose the right element for your use case:</p>
+
+      <table style="width: 100%; max-width: 32rem; font-size: 0.875rem;">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border);">Use</th>
+            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border);">Element</th>
+            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--border);">Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Task completion</td>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><code>&lt;progress&gt;</code></td>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">File upload</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Scalar measurement</td>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><code>&lt;meter&gt;</code></td>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Disk usage</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Loading state</td>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><code>&lt;progress&gt;</code></td>
+            <td style="padding: 0.5rem; border-bottom: 1px solid var(--border);">Page loading</td>
+          </tr>
+          <tr>
+            <td style="padding: 0.5rem;">Quality rating</td>
+            <td style="padding: 0.5rem;"><code>&lt;meter&gt;</code></td>
+            <td style="padding: 0.5rem;">Signal strength</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre><code>&lt;!-- Basic meter --&gt;
+&lt;meter-display&gt;
+  &lt;label&gt;Disk Usage&lt;/label&gt;
+  &lt;meter value="0.6" min="0" max="1"&gt;60%&lt;/meter&gt;
+  &lt;span data-value&gt;60%&lt;/span&gt;
+&lt;/meter-display&gt;
+
+&lt;!-- With value ranges --&gt;
+&lt;meter value="0.8"
+       min="0"
+       max="1"
+       low="0.2"
+       high="0.8"
+       optimum="0.9"&gt;
+  80%
+&lt;/meter&gt;
+
+&lt;!-- Inverted (lower is better) --&gt;
+&lt;meter value="0.02"
+       min="0"
+       max="1"
+       low="0.05"
+       high="0.15"
+       optimum="0"&gt;
+  2% error rate
+&lt;/meter&gt;</code></pre>
+    </section>
+  </div>
+</body>
+</html>

@@ -870,6 +870,11 @@
      Tooltip (using Popover API)
      Usage: <button popovertarget="tip-1">
      -------------------------------------------- */
+  tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
   [data-tooltip] {
     position: fixed;
     margin: 0;
@@ -881,10 +886,167 @@
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
     max-width: 20rem;
+    z-index: 1000;
 
     &::backdrop {
       background: transparent;
     }
+  }
+
+  /* --------------------------------------------
+     Meter Component
+     Usage: <meter-display>
+     -------------------------------------------- */
+  meter-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  meter-display label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text);
+  }
+
+  meter-display meter {
+    width: 100%;
+    height: 0.5rem;
+    border: none;
+    border-radius: var(--radius-full);
+    background: var(--surface-alt);
+
+    &::-webkit-meter-bar {
+      background: var(--surface-alt);
+      border-radius: var(--radius-full);
+      border: none;
+    }
+
+    &::-webkit-meter-optimum-value {
+      background: var(--success);
+      border-radius: var(--radius-full);
+    }
+
+    &::-webkit-meter-suboptimum-value {
+      background: var(--warning);
+      border-radius: var(--radius-full);
+    }
+
+    &::-webkit-meter-even-less-good-value {
+      background: var(--error);
+      border-radius: var(--radius-full);
+    }
+
+    &::-moz-meter-bar {
+      border-radius: var(--radius-full);
+    }
+  }
+
+  meter-display [data-value] {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+  }
+
+  /* Meter sizes */
+  meter-display[data-size="small"] meter {
+    height: 0.25rem;
+  }
+
+  meter-display[data-size="large"] meter {
+    height: 0.75rem;
+  }
+
+  /* --------------------------------------------
+     File Upload Component
+     Usage: <form-field data-type="file">
+     -------------------------------------------- */
+  [data-type="file"] [data-file-input] {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  [data-type="file"] [data-file-input] input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  [data-type="file"] [data-file-name] {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  [data-type="file"] [data-hint] {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+  }
+
+  /* Dropzone */
+  [data-dropzone] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    cursor: pointer;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+
+    &:hover,
+    &[data-dragover] {
+      border-color: var(--primary);
+      background: oklch(from var(--primary) l c h / 0.05);
+    }
+  }
+
+  [data-dropzone] input[type="file"] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  [data-dropzone] [data-dropzone-content] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  [data-dropzone][data-style="compact"] {
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  [data-dropzone][data-style="compact"] [data-dropzone-content] {
+    flex-direction: row;
+  }
+
+  /* File list */
+  [data-file-list] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  [data-file-item] {
+    padding: var(--spacing-md);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
   }
 }
 

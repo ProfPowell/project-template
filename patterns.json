@@ -1461,6 +1461,89 @@
         { "name": "Basic Input", "html": "<form-field>\n  <label for=\"email\">Email</label>\n  <input type=\"email\" id=\"email\" required />\n</form-field>" },
         { "name": "With Hint", "html": "<form-field>\n  <label for=\"password\">Password</label>\n  <input type=\"password\" id=\"password\" required minlength=\"8\" />\n  <span data-hint>At least 8 characters</span>\n</form-field>" }
       ]
+    },
+    {
+      "name": "file-upload",
+      "category": "component",
+      "description": "File input control with styled button and dropzone variants",
+      "status": "stable",
+      "element": "form-field[data-type=file]",
+      "anatomy": [
+        { "name": "container", "description": "Form field wrapper", "element": "form-field" },
+        { "name": "label", "description": "Upload label", "element": "label", "required": false },
+        { "name": "input", "description": "Hidden file input", "element": "input[type=file]" },
+        { "name": "button", "description": "Styled trigger button", "element": "button" },
+        { "name": "filename", "description": "Selected file name display", "element": "span[data-file-name]" },
+        { "name": "hint", "description": "File type/size hints", "element": "span[data-hint]", "required": false }
+      ],
+      "states": ["default", "hover", "focus", "disabled", "dragover"],
+      "variants": [
+        { "name": "style", "attribute": "data-type", "values": ["file"], "default": "file" }
+      ],
+      "accessibility": {
+        "aria": ["label associated with input via for/id"],
+        "keyboard": [
+          { "key": "Enter/Space", "action": "Open file picker" }
+        ]
+      },
+      "related": ["input", "button", "progress-bar"],
+      "examples": [
+        { "name": "Basic File Input", "html": "<form-field data-type=\"file\">\n  <label for=\"file\">Upload file</label>\n  <div data-file-input>\n    <input type=\"file\" id=\"file\" />\n    <button type=\"button\" data-button=\"secondary\">Choose File</button>\n    <span data-file-name>No file chosen</span>\n  </div>\n</form-field>" },
+        { "name": "Dropzone", "html": "<form-field data-type=\"file\">\n  <div data-dropzone>\n    <input type=\"file\" multiple />\n    <div data-dropzone-content>\n      <p>Drop files here or click to upload</p>\n    </div>\n  </div>\n</form-field>" }
+      ]
+    },
+    {
+      "name": "meter",
+      "category": "component",
+      "description": "Visual indicator for scalar values within a known range using native meter element",
+      "status": "stable",
+      "element": "meter-display",
+      "anatomy": [
+        { "name": "container", "description": "Meter wrapper", "element": "meter-display" },
+        { "name": "label", "description": "Meter label", "element": "label", "required": false },
+        { "name": "meter", "description": "Native meter element", "element": "meter" },
+        { "name": "value", "description": "Numeric value display", "element": "span[data-value]", "required": false }
+      ],
+      "states": ["optimum", "suboptimum", "even-less-good"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" }
+      ],
+      "accessibility": {
+        "aria": ["Native meter semantics", "Fallback text inside meter element"]
+      },
+      "related": ["progress-bar", "stats", "card"],
+      "examples": [
+        { "name": "Basic Meter", "html": "<meter-display>\n  <label>Disk Usage</label>\n  <meter value=\"0.6\" min=\"0\" max=\"1\">60%</meter>\n  <span data-value>60%</span>\n</meter-display>" },
+        { "name": "With Ranges", "html": "<meter value=\"0.8\" min=\"0\" max=\"1\" low=\"0.2\" high=\"0.8\" optimum=\"0.9\">80%</meter>" }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "category": "component",
+      "description": "Contextual hints that appear on hover/focus using native Popover API",
+      "status": "stable",
+      "element": "tooltip-wrapper",
+      "anatomy": [
+        { "name": "container", "description": "Tooltip wrapper", "element": "tooltip-wrapper" },
+        { "name": "trigger", "description": "Element that shows tooltip", "element": "button" },
+        { "name": "tooltip", "description": "Tooltip content with popover attribute", "element": "div[popover][data-tooltip]" }
+      ],
+      "states": ["hidden", "visible"],
+      "variants": [
+        { "name": "position", "attribute": "data-position", "values": ["top", "bottom", "left", "right"], "default": "top" }
+      ],
+      "accessibility": {
+        "aria": ["aria-describedby linking tooltip to trigger", "popover=\"hint\" for tooltip behavior"],
+        "keyboard": [
+          { "key": "Focus", "action": "Show tooltip" },
+          { "key": "Blur", "action": "Hide tooltip" }
+        ]
+      },
+      "related": ["popover", "button", "badge"],
+      "examples": [
+        { "name": "Basic Tooltip", "html": "<tooltip-wrapper>\n  <button popovertarget=\"tip\" aria-describedby=\"tip\">Hover me</button>\n  <div id=\"tip\" popover=\"hint\" data-tooltip>Tooltip content</div>\n</tooltip-wrapper>" },
+        { "name": "Icon Button Tooltip", "html": "<tooltip-wrapper>\n  <button aria-label=\"Edit\" popovertarget=\"edit-tip\" aria-describedby=\"edit-tip\">\n    <x-icon name=\"edit\"></x-icon>\n  </button>\n  <div id=\"edit-tip\" popover=\"hint\" data-tooltip>Edit</div>\n</tooltip-wrapper>" }
+      ]
     }
   ]
 }

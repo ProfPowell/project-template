@@ -1,0 +1,93 @@
+{
+  "$schema": "./schemas/pattern.schema.json",
+  "patterns": [
+    {
+      "name": "faq-list",
+      "category": "content",
+      "description": "Accordion-style FAQ list using native details/summary elements",
+      "status": "stable",
+      "element": "faq-list",
+      "anatomy": [
+        {
+          "name": "list",
+          "description": "Container for FAQ items",
+          "element": "faq-list"
+        },
+        {
+          "name": "question",
+          "description": "Question wrapper with toggle",
+          "element": "faq-question"
+        },
+        {
+          "name": "answer",
+          "description": "Collapsible answer content",
+          "element": "faq-answer"
+        }
+      ],
+      "states": ["default", "expanded", "collapsed"],
+      "accessibility": {
+        "keyboard": [
+          { "key": "Enter/Space", "action": "Toggle expanded state" }
+        ]
+      },
+      "related": ["tabs", "accordion"],
+      "examples": [
+        {
+          "name": "Basic FAQ",
+          "html": "<faq-list>\n  <faq-question>What is your return policy?</faq-question>\n  <faq-answer>We offer 30-day returns on all items.</faq-answer>\n</faq-list>"
+        }
+      ]
+    },
+    {
+      "name": "product-card",
+      "category": "content",
+      "description": "Product display card with image, title, price, and action",
+      "status": "stable",
+      "element": "product-card",
+      "anatomy": [
+        {
+          "name": "image",
+          "description": "Product image",
+          "element": "img"
+        },
+        {
+          "name": "title",
+          "description": "Product name",
+          "element": "h3"
+        },
+        {
+          "name": "price",
+          "description": "Product price",
+          "element": "data"
+        },
+        {
+          "name": "description",
+          "description": "Brief product description",
+          "element": "p",
+          "required": false
+        },
+        {
+          "name": "action",
+          "description": "Call-to-action button",
+          "element": "button"
+        }
+      ],
+      "states": ["default", "hover", "focus"],
+      "variants": [
+        {
+          "name": "featured",
+          "attribute": "data-featured",
+          "values": ["true"],
+          "default": null
+        }
+      ],
+      "related": ["card", "blog-card"],
+      "examples": [
+        {
+          "name": "Basic Product Card",
+          "html": "<product-card>\n  <img src=\"product.jpg\" alt=\"Product Name\" />\n  <h3>Product Name</h3>\n  <data value=\"29.99\">$29.99</data>\n  <button>Add to Cart</button>\n</product-card>"
+        }
+      ]
+    }
+  ]
+}

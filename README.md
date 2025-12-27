@@ -63,11 +63,13 @@ A web project template with validation, automation, and Claude Code integration 
 | `sanity-cms` | Sanity CMS integration |
 | `open-props` | Open Props CSS framework |
 
-**33 Slash Commands**:
+**35 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
 | `/add-element` | Define custom HTML elements |
+| `/add-pattern` | Create new UI pattern with documentation |
+| `/scaffold-page` | Create page using pattern compositions |
 | `/add-word` | Add words to spelling dictionary |
 | `/add-picture` | Convert `<img>` to `<picture>` |
 | `/placeholder-image` | Generate SVG placeholder images |

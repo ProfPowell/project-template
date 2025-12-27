@@ -50,6 +50,7 @@
     "health": "node scripts/health-check.js",
     "lighthouse": "lhci autorun",
     "generate:patterns": "node scripts/generate-patterns.js",
+    "generate:pattern-docs": "node scripts/generate-pattern-docs.js",
     "generate:tokens": "node scripts/document-tokens.js",
     "generate:a11y": "node scripts/generate-a11y-statement.js",
     "generate:placeholder": "node scripts/generate-placeholder.js",

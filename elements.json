@@ -1,4 +1,5 @@
 {
+  "$schema": "./schemas/elements.schema.json",
   "form-field": {
     "flow": true,
     "permittedContent": ["label", "input", "textarea", "select", "output", "@phrasing"],
@@ -6,15 +7,20 @@
       "data-required": { "required": false, "boolean": true },
       "data-valid": { "required": false, "boolean": true },
       "data-invalid": { "required": false, "boolean": true }
-    }
+    },
+    "pattern": "text-field",
+    "category": "form"
   },
   "table-wrapper": {
     "flow": true,
-    "permittedContent": ["table", "caption"]
+    "permittedContent": ["table", "caption"],
+    "pattern": "data-table",
+    "category": "data"
   },
   "theme-selector": {
     "flow": true,
-    "permittedContent": ["fieldset", "label", "input"]
+    "permittedContent": ["fieldset", "label", "input"],
+    "category": "form"
   },
   "x-icon": {
     "flow": true,
@@ -26,7 +32,8 @@
       "size": { "required": false, "enum": ["xs", "sm", "md", "lg", "xl", "2xl"] },
       "label": { "required": false },
       "base-path": { "required": false }
-    }
+    },
+    "category": "content"
   },
   "status-badge": {
     "flow": true,
@@ -34,7 +41,9 @@
     "permittedContent": ["@phrasing"],
     "attributes": {
       "type": { "required": false, "enum": ["success", "warning", "error", "info"] }
-    }
+    },
+    "pattern": "badge",
+    "category": "feedback"
   },
   "data-table": {
     "flow": true,
@@ -42,32 +51,84 @@
     "attributes": {
       "source": { "required": false },
       "sortable": { "required": false, "boolean": true }
-    }
+    },
+    "pattern": "data-table",
+    "category": "data"
   },
   "nav-menu": {
     "flow": true,
     "permittedContent": ["@flow"],
     "attributes": {
       "orientation": { "required": false, "enum": ["horizontal", "vertical"] }
-    }
+    },
+    "pattern": "nav-menu",
+    "category": "navigation"
   },
   "faq-list": {
     "flow": true,
     "permittedContent": ["faq-question", "faq-answer"],
     "attributes": {
       "category": { "required": false }
-    }
+    },
+    "pattern": "faq-list",
+    "category": "content"
   },
   "faq-question": {
     "flow": true,
     "permittedContent": ["@phrasing"],
     "attributes": {
       "id": { "required": false }
-    }
+    },
+    "partOf": "faq-list"
   },
   "faq-answer": {
     "flow": true,
     "permittedContent": ["@flow"],
-    "attributes": {}
+    "attributes": {},
+    "partOf": "faq-list"
+  },
+  "product-card": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "data-featured": { "required": false, "boolean": true }
+    },
+    "pattern": "product-card",
+    "category": "content"
+  },
+  "site-header": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "data-sticky": { "required": false, "boolean": true }
+    },
+    "pattern": "site-header",
+    "category": "navigation"
+  },
+  "site-footer": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {},
+    "pattern": "site-footer",
+    "category": "navigation"
+  },
+  "hero-section": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "data-size": { "required": false, "enum": ["small", "medium", "large"] },
+      "data-align": { "required": false, "enum": ["left", "center", "right"] }
+    },
+    "pattern": "hero",
+    "category": "content"
+  },
+  "card-grid": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "data-columns": { "required": false, "enum": ["2", "3", "4", "auto"] }
+    },
+    "pattern": "card-grid",
+    "category": "layout"
   }
 }

@@ -6,13 +6,14 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**52 Skills** - Guidance that activates when Claude recognizes relevant context:
+**53 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
 | `xhtml-author` | XHTML-strict syntax, semantic HTML5 |
 | `css-author` | `@layer`, `@import`, nesting, container queries, design tokens |
 | `typography` | Type scale, hierarchy, rhythm, text-wrap, font pairing |
+| `layout-grid` | Fluid grid systems, responsive columns, resolution-independent |
 | `javascript-author` | Web Components, JSDoc, functional core |
 | `typescript-author` | TypeScript patterns for Web Components and Node.js |
 | `markdown-author` | Markdown structure and formatting |

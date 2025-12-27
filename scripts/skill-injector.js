@@ -69,6 +69,7 @@ const CONTENT_PATTERNS = [
   { pattern: /@keyframes|animation:/i, skill: 'animation-motion', reason: 'Animation detected - check reduced-motion' },
   { pattern: /@media\s+print/i, skill: 'print-styles', reason: 'Print styles detected' },
   { pattern: /font-size:|line-height:|text-wrap:|font-family:/i, skill: 'typography', reason: 'Typography detected - consider type scale and rhythm' },
+  { pattern: /grid-template|auto-fit|auto-fill|minmax\(/i, skill: 'layout-grid', reason: 'Grid layout detected - use fluid scaling patterns' },
 ];
 
 /**

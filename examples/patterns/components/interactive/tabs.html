@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabs Component - Component Library</title>
+  <link rel="stylesheet" href="../components.css" />
+</head>
+<body>
+  <div class="demo-page">
+    <h1>Tabs Component</h1>
+    <p>Tabbed interface for organizing content. Uses <code>&lt;tab-group&gt;</code> custom element.</p>
+
+    <section class="demo-section">
+      <h2>Default Style (Underline)</h2>
+
+      <tab-group>
+        <div data-tablist role="tablist" aria-label="Account settings">
+          <button role="tab" id="tab-profile" aria-selected="true" aria-controls="panel-profile">Profile</button>
+          <button role="tab" id="tab-security" aria-selected="false" aria-controls="panel-security" tabindex="-1">Security</button>
+          <button role="tab" id="tab-notifications" aria-selected="false" aria-controls="panel-notifications" tabindex="-1">Notifications</button>
+        </div>
+        <div role="tabpanel" id="panel-profile" aria-labelledby="tab-profile">
+          <div class="demo-card">
+            <h3 style="margin: 0 0 0.5rem;">Profile Settings</h3>
+            <p style="margin: 0; color: var(--text-muted);">Manage your profile information and preferences.</p>
+          </div>
+        </div>
+        <div role="tabpanel" id="panel-security" aria-labelledby="tab-security" hidden>
+          <div class="demo-card">
+            <h3 style="margin: 0 0 0.5rem;">Security Settings</h3>
+            <p style="margin: 0; color: var(--text-muted);">Update your password and security preferences.</p>
+          </div>
+        </div>
+        <div role="tabpanel" id="panel-notifications" aria-labelledby="tab-notifications" hidden>
+          <div class="demo-card">
+            <h3 style="margin: 0 0 0.5rem;">Notification Settings</h3>
+            <p style="margin: 0; color: var(--text-muted);">Configure how you receive notifications.</p>
+          </div>
+        </div>
+      </tab-group>
+    </section>
+
+    <section class="demo-section">
+      <h2>Pills Style</h2>
+
+      <tab-group data-style="pills">
+        <div data-tablist role="tablist" aria-label="View options">
+          <button role="tab" id="tab-all" aria-selected="true" aria-controls="panel-all">All</button>
+          <button role="tab" id="tab-active" aria-selected="false" aria-controls="panel-active" tabindex="-1">Active</button>
+          <button role="tab" id="tab-completed" aria-selected="false" aria-controls="panel-completed" tabindex="-1">Completed</button>
+        </div>
+        <div role="tabpanel" id="panel-all" aria-labelledby="tab-all">
+          <div class="demo-card">
+            <p style="margin: 0;">Showing all items</p>
+          </div>
+        </div>
+        <div role="tabpanel" id="panel-active" aria-labelledby="tab-active" hidden>
+          <div class="demo-card">
+            <p style="margin: 0;">Showing active items only</p>
+          </div>
+        </div>
+        <div role="tabpanel" id="panel-completed" aria-labelledby="tab-completed" hidden>
+          <div class="demo-card">
+            <p style="margin: 0;">Showing completed items only</p>
+          </div>
+        </div>
+      </tab-group>
+    </section>
+
+    <section class="demo-section">
+      <h2>In Context: Product Details</h2>
+
+      <div class="demo-card">
+        <h3 style="margin: 0 0 1rem;">Product Name</h3>
+
+        <tab-group>
+          <div data-tablist role="tablist" aria-label="Product information">
+            <button role="tab" id="tab-description" aria-selected="true" aria-controls="panel-description">Description</button>
+            <button role="tab" id="tab-specs" aria-selected="false" aria-controls="panel-specs" tabindex="-1">Specifications</button>
+            <button role="tab" id="tab-reviews" aria-selected="false" aria-controls="panel-reviews" tabindex="-1">Reviews (24)</button>
+          </div>
+          <div role="tabpanel" id="panel-description" aria-labelledby="tab-description">
+            <p style="color: var(--text-muted); line-height: 1.6;">
+              This is a detailed product description that explains the features and benefits of the product.
+              It provides customers with all the information they need to make an informed purchase decision.
+            </p>
+          </div>
+          <div role="tabpanel" id="panel-specs" aria-labelledby="tab-specs" hidden>
+            <dl style="margin: 0;">
+              <div style="display: flex; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                <dt style="width: 8rem; color: var(--text-muted);">Dimensions</dt>
+                <dd style="margin: 0;">10 × 5 × 3 inches</dd>
+              </div>
+              <div style="display: flex; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                <dt style="width: 8rem; color: var(--text-muted);">Weight</dt>
+                <dd style="margin: 0;">1.5 lbs</dd>
+              </div>
+              <div style="display: flex; padding: 0.5rem 0;">
+                <dt style="width: 8rem; color: var(--text-muted);">Material</dt>
+                <dd style="margin: 0;">Aluminum</dd>
+              </div>
+            </dl>
+          </div>
+          <div role="tabpanel" id="panel-reviews" aria-labelledby="tab-reviews" hidden>
+            <div style="display: flex; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+              <user-avatar data-size="sm">JD</user-avatar>
+              <div>
+                <div style="font-weight: 500;">Jane Doe</div>
+                <p style="margin: 0.25rem 0 0; font-size: 0.875rem;">Great product! Exactly what I was looking for.</p>
+              </div>
+            </div>
+          </div>
+        </tab-group>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li>Uses proper ARIA roles: <code>tablist</code>, <code>tab</code>, <code>tabpanel</code></li>
+        <li><code>aria-selected</code> indicates the active tab</li>
+        <li><code>aria-controls</code> links tabs to their panels</li>
+        <li>Inactive tabs have <code>tabindex="-1"</code></li>
+        <li>Keyboard navigation: Arrow keys between tabs, Enter to activate</li>
+      </ul>
+    </section>
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre><code>&lt;tab-group&gt;
+  &lt;div data-tablist role="tablist" aria-label="Settings"&gt;
+    &lt;button role="tab"
+            id="tab-1"
+            aria-selected="true"
+            aria-controls="panel-1"&gt;
+      Tab 1
+    &lt;/button&gt;
+    &lt;button role="tab"
+            id="tab-2"
+            aria-selected="false"
+            aria-controls="panel-2"
+            tabindex="-1"&gt;
+      Tab 2
+    &lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div role="tabpanel" id="panel-1" aria-labelledby="tab-1"&gt;
+    Content for tab 1
+  &lt;/div&gt;
+
+  &lt;div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden&gt;
+    Content for tab 2
+  &lt;/div&gt;
+&lt;/tab-group&gt;
+
+&lt;!-- Pills style --&gt;
+&lt;tab-group data-style="pills"&gt;
+  ...
+&lt;/tab-group&gt;</code></pre>
+    </section>
+  </div>
+
+  <script>
+    // Simple tab switching for demo (production would use Web Component)
+    document.querySelectorAll('[role="tab"]').forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tablist = tab.closest('[role="tablist"]');
+        const tabgroup = tab.closest('tab-group');
+
+        // Deselect all tabs
+        tablist.querySelectorAll('[role="tab"]').forEach(t => {
+          t.setAttribute('aria-selected', 'false');
+          t.setAttribute('tabindex', '-1');
+        });
+
+        // Hide all panels
+        tabgroup.querySelectorAll('[role="tabpanel"]').forEach(p => {
+          p.hidden = true;
+        });
+
+        // Select clicked tab
+        tab.setAttribute('aria-selected', 'true');
+        tab.removeAttribute('tabindex');
+
+        // Show corresponding panel
+        const panelId = tab.getAttribute('aria-controls');
+        document.getElementById(panelId).hidden = false;
+      });
+    });
+  </script>
+</body>
+</html>

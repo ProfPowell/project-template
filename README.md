@@ -212,6 +212,63 @@ npm run generate:patterns
 /scaffold-page
 ```
 
+### Component Library
+
+**Atomic UI Components** in `examples/patterns/components/` bridging design tokens and patterns:
+
+```
+Templates (pages)
+    ↓ composed of
+Patterns (card, hero, sidebar)
+    ↓ composed of
+Components (button, badge, input)   ← Component Library
+    ↓ styled by
+Tokens (colors, spacing, type)
+```
+
+| Category | Components |
+|----------|------------|
+| **Core** | button, link, badge, avatar |
+| **Forms** | input, select, textarea, checkbox, radio, toggle |
+| **Data Display** | tag, spinner, progress-bar |
+| **Interactive** | tabs, pagination |
+
+**Key Principles:**
+
+- **HTML-first**: Native elements work without JavaScript
+- **Data Attributes**: Variants via `data-*` not CSS classes (e.g., `data-button="primary"`)
+- **Token-based**: All values from design tokens
+- **Accessible**: WCAG2AA, keyboard navigation, screen reader support
+- **Custom Elements**: Semantic wrappers like `<user-avatar>`, `<tag-item>`, `<tab-group>`
+
+**Usage:**
+
+```html
+<!-- Button variants -->
+<button data-button="primary">Save</button>
+<button data-button="secondary">Cancel</button>
+<button data-button="ghost">Reset</button>
+
+<!-- Status badge -->
+<status-badge data-status="success">Active</status-badge>
+
+<!-- Avatar with status -->
+<user-avatar data-size="large" data-status="online">JD</user-avatar>
+
+<!-- Toggle switch -->
+<form-field data-type="toggle">
+  <label>
+    <span>Enable notifications</span>
+    <input type="checkbox" role="switch" />
+    <span data-toggle-track>
+      <span data-toggle-thumb></span>
+    </span>
+  </label>
+</form-field>
+```
+
+Browse the [Component Gallery](examples/patterns/components/index.html) for all components with examples.
+
 ## Quick Start
 
 1. **Clone or copy this template**

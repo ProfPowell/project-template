@@ -1215,6 +1215,252 @@
       "examples": [
         { "name": "Bar Chart", "html": "<chart-wrapper data-ratio=\"16:9\">\n  <header data-header><h3 data-title>Monthly Revenue</h3></header>\n  <div data-chart role=\"img\" aria-label=\"Bar chart showing monthly revenue\">\n    <canvas></canvas>\n  </div>\n</chart-wrapper>" }
       ]
+    },
+    {
+      "name": "button",
+      "category": "component",
+      "description": "Clickable button element with semantic variants for different actions",
+      "status": "stable",
+      "element": "[data-button]",
+      "anatomy": [
+        { "name": "button", "description": "Button element with data-button attribute", "element": "button" },
+        { "name": "icon", "description": "Optional leading or trailing icon", "element": "x-icon", "required": false },
+        { "name": "label", "description": "Button text", "element": "span", "required": false }
+      ],
+      "states": ["default", "hover", "focus", "active", "disabled", "loading"],
+      "variants": [
+        { "name": "variant", "attribute": "data-button", "values": ["primary", "secondary", "ghost", "danger"], "default": "primary" },
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" },
+        { "name": "loading", "attribute": "data-loading", "values": ["true"], "default": null }
+      ],
+      "accessibility": {
+        "aria": ["Semantic button element", "aria-disabled for disabled state"],
+        "keyboard": [
+          { "key": "Enter/Space", "action": "Activate button" }
+        ]
+      },
+      "related": ["link", "badge", "form-field"],
+      "examples": [
+        { "name": "Primary Button", "html": "<button data-button=\"primary\">Save Changes</button>" },
+        { "name": "With Icon", "html": "<button data-button=\"secondary\">\n  <x-icon name=\"plus\"></x-icon>\n  <span>Add Item</span>\n</button>" }
+      ]
+    },
+    {
+      "name": "link",
+      "category": "component",
+      "description": "Styled anchor element for navigation with variant styles",
+      "status": "stable",
+      "element": "[data-link]",
+      "anatomy": [
+        { "name": "anchor", "description": "Anchor element with data-link attribute", "element": "a" },
+        { "name": "icon", "description": "Optional external link icon", "element": "x-icon", "required": false }
+      ],
+      "states": ["default", "hover", "focus", "visited", "active"],
+      "variants": [
+        { "name": "variant", "attribute": "data-link", "values": ["default", "nav", "subtle", "external"], "default": "default" }
+      ],
+      "accessibility": {
+        "aria": ["Semantic anchor element", "target=\"_blank\" with rel=\"noopener\""],
+        "keyboard": [
+          { "key": "Enter", "action": "Navigate to link" }
+        ]
+      },
+      "related": ["button", "breadcrumbs", "nav-menu"],
+      "examples": [
+        { "name": "Default Link", "html": "<a href=\"/page\" data-link>Learn more</a>" },
+        { "name": "External Link", "html": "<a href=\"https://example.com\" data-link=\"external\" target=\"_blank\" rel=\"noopener\">External Site</a>" }
+      ]
+    },
+    {
+      "name": "avatar",
+      "category": "component",
+      "description": "User avatar with image, initials fallback, and optional status indicator",
+      "status": "stable",
+      "element": "user-avatar",
+      "anatomy": [
+        { "name": "container", "description": "Avatar wrapper element", "element": "user-avatar" },
+        { "name": "image", "description": "User photo", "element": "img", "required": false },
+        { "name": "initials", "description": "Text initials fallback", "element": "@text", "required": false },
+        { "name": "status", "description": "Online/offline indicator", "element": "::after", "required": false }
+      ],
+      "states": ["default", "hover"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["xs", "small", "medium", "large", "xl"], "default": "medium" },
+        { "name": "status", "attribute": "data-status", "values": ["online", "offline", "busy", "away"], "default": null },
+        { "name": "shape", "attribute": "data-shape", "values": ["circle", "square"], "default": "circle" }
+      ],
+      "related": ["badge", "card", "data-list"],
+      "examples": [
+        { "name": "With Image", "html": "<user-avatar data-size=\"large\">\n  <img src=\"avatar.jpg\" alt=\"Jane Doe\" />\n</user-avatar>" },
+        { "name": "With Initials", "html": "<user-avatar data-size=\"medium\" data-status=\"online\">JD</user-avatar>" }
+      ]
+    },
+    {
+      "name": "tag",
+      "category": "component",
+      "description": "Label for categorization and filtering with optional remove action",
+      "status": "stable",
+      "element": "tag-item",
+      "anatomy": [
+        { "name": "container", "description": "Tag wrapper element", "element": "tag-item" },
+        { "name": "label", "description": "Tag text", "element": "span" },
+        { "name": "remove", "description": "Optional remove button", "element": "button", "required": false }
+      ],
+      "states": ["default", "hover", "focus"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "default", "large"], "default": "default" }
+      ],
+      "accessibility": {
+        "aria": ["aria-label on remove button describing action"],
+        "keyboard": [
+          { "key": "Enter/Space", "action": "Activate remove button" }
+        ]
+      },
+      "related": ["badge", "button", "data-list"],
+      "examples": [
+        { "name": "Basic Tag", "html": "<tag-item>JavaScript</tag-item>" },
+        { "name": "Removable Tag", "html": "<tag-item>\n  <span>Filter</span>\n  <button data-remove aria-label=\"Remove filter\">×</button>\n</tag-item>" }
+      ]
+    },
+    {
+      "name": "spinner",
+      "category": "component",
+      "description": "Loading indicator for async operations",
+      "status": "stable",
+      "element": "loading-spinner",
+      "anatomy": [
+        { "name": "spinner", "description": "Animated spinner element", "element": "loading-spinner" }
+      ],
+      "states": ["animating"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" }
+      ],
+      "accessibility": {
+        "aria": ["aria-label describing loading state"]
+      },
+      "related": ["progress-bar", "skeleton", "button"],
+      "examples": [
+        { "name": "Basic Spinner", "html": "<loading-spinner aria-label=\"Loading...\"></loading-spinner>" },
+        { "name": "In Button", "html": "<button data-button=\"primary\" data-loading>\n  <loading-spinner data-size=\"small\"></loading-spinner>\n  Saving...\n</button>" }
+      ]
+    },
+    {
+      "name": "tabs",
+      "category": "component",
+      "description": "Tabbed interface for organizing content into switchable panels",
+      "status": "stable",
+      "element": "tab-group",
+      "anatomy": [
+        { "name": "container", "description": "Tab group wrapper", "element": "tab-group" },
+        { "name": "tablist", "description": "Container for tab buttons", "element": "div[role=tablist]" },
+        { "name": "tab", "description": "Individual tab button", "element": "button[role=tab]" },
+        { "name": "tabpanel", "description": "Content panel for each tab", "element": "div[role=tabpanel]" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "style", "attribute": "data-style", "values": ["underline", "pills"], "default": "underline" },
+        { "name": "orientation", "attribute": "data-orientation", "values": ["horizontal", "vertical"], "default": "horizontal" }
+      ],
+      "accessibility": {
+        "aria": ["role=\"tablist\"", "role=\"tab\"", "role=\"tabpanel\"", "aria-selected", "aria-controls", "aria-labelledby"],
+        "keyboard": [
+          { "key": "ArrowLeft/Right", "action": "Navigate tabs" },
+          { "key": "Enter/Space", "action": "Activate tab" },
+          { "key": "Home/End", "action": "First/last tab" }
+        ]
+      },
+      "related": ["accordion", "nav-menu", "card"],
+      "examples": [
+        { "name": "Basic Tabs", "html": "<tab-group>\n  <div data-tablist role=\"tablist\" aria-label=\"Settings\">\n    <button role=\"tab\" id=\"tab-1\" aria-selected=\"true\" aria-controls=\"panel-1\">Tab 1</button>\n    <button role=\"tab\" id=\"tab-2\" aria-selected=\"false\" aria-controls=\"panel-2\" tabindex=\"-1\">Tab 2</button>\n  </div>\n  <div role=\"tabpanel\" id=\"panel-1\" aria-labelledby=\"tab-1\">Content 1</div>\n  <div role=\"tabpanel\" id=\"panel-2\" aria-labelledby=\"tab-2\" hidden>Content 2</div>\n</tab-group>" }
+      ]
+    },
+    {
+      "name": "pagination",
+      "category": "component",
+      "description": "Page navigation for lists and tables",
+      "status": "stable",
+      "element": "nav-pagination",
+      "anatomy": [
+        { "name": "container", "description": "Pagination wrapper", "element": "nav-pagination" },
+        { "name": "nav", "description": "Navigation element", "element": "nav" },
+        { "name": "prev", "description": "Previous page link", "element": "a[data-page=prev]" },
+        { "name": "next", "description": "Next page link", "element": "a[data-page=next]" },
+        { "name": "page", "description": "Page number links", "element": "a" },
+        { "name": "current", "description": "Current page indicator", "element": "a[aria-current=page]" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "style", "attribute": "data-style", "values": ["default", "simple", "dots"], "default": "default" }
+      ],
+      "accessibility": {
+        "aria": ["aria-label on nav-pagination", "aria-current=\"page\" on current page"],
+        "keyboard": [
+          { "key": "Tab", "action": "Navigate between page links" },
+          { "key": "Enter", "action": "Go to page" }
+        ]
+      },
+      "related": ["data-table", "data-list", "button"],
+      "examples": [
+        { "name": "Basic Pagination", "html": "<nav-pagination aria-label=\"Page navigation\">\n  <nav>\n    <a href=\"?page=1\" data-page=\"prev\">Previous</a>\n    <a href=\"?page=1\">1</a>\n    <a href=\"?page=2\" aria-current=\"page\">2</a>\n    <a href=\"?page=3\">3</a>\n    <a href=\"?page=3\" data-page=\"next\">Next</a>\n  </nav>\n</nav-pagination>" }
+      ]
+    },
+    {
+      "name": "toggle",
+      "category": "component",
+      "description": "Switch control for binary on/off settings",
+      "status": "stable",
+      "element": "form-field[data-type=toggle]",
+      "anatomy": [
+        { "name": "container", "description": "Form field wrapper", "element": "form-field" },
+        { "name": "label", "description": "Toggle label", "element": "label" },
+        { "name": "input", "description": "Checkbox input with role=switch", "element": "input[type=checkbox][role=switch]" },
+        { "name": "track", "description": "Toggle track background", "element": "span[data-toggle-track]" },
+        { "name": "thumb", "description": "Toggle thumb indicator", "element": "span[data-toggle-thumb]" }
+      ],
+      "states": ["off", "on", "disabled"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" }
+      ],
+      "accessibility": {
+        "aria": ["role=\"switch\"", "aria-checked"],
+        "keyboard": [
+          { "key": "Space", "action": "Toggle state" }
+        ]
+      },
+      "related": ["checkbox", "button", "form-field"],
+      "examples": [
+        { "name": "Basic Toggle", "html": "<form-field data-type=\"toggle\">\n  <label>\n    <span>Enable notifications</span>\n    <input type=\"checkbox\" role=\"switch\" />\n    <span data-toggle-track>\n      <span data-toggle-thumb></span>\n    </span>\n  </label>\n</form-field>" }
+      ]
+    },
+    {
+      "name": "input",
+      "category": "component",
+      "description": "Text input field with label and validation support",
+      "status": "stable",
+      "element": "form-field",
+      "anatomy": [
+        { "name": "container", "description": "Form field wrapper", "element": "form-field" },
+        { "name": "label", "description": "Input label", "element": "label" },
+        { "name": "input", "description": "Text input element", "element": "input" },
+        { "name": "hint", "description": "Helper text", "element": "span", "required": false },
+        { "name": "error", "description": "Error message", "element": "output", "required": false }
+      ],
+      "states": ["default", "focus", "valid", "invalid", "disabled"],
+      "variants": [
+        { "name": "layout", "attribute": "data-layout", "values": ["stacked", "inline"], "default": "stacked" },
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" }
+      ],
+      "accessibility": {
+        "aria": ["label associated with input via for/id", "aria-describedby for hints/errors"],
+        "keyboard": [
+          { "key": "Tab", "action": "Focus input" }
+        ]
+      },
+      "related": ["select", "textarea", "toggle", "checkbox"],
+      "examples": [
+        { "name": "Basic Input", "html": "<form-field>\n  <label for=\"email\">Email</label>\n  <input type=\"email\" id=\"email\" required />\n</form-field>" },
+        { "name": "With Hint", "html": "<form-field>\n  <label for=\"password\">Password</label>\n  <input type=\"password\" id=\"password\" required minlength=\"8\" />\n  <span data-hint>At least 8 characters</span>\n</form-field>" }
+      ]
     }
   ]
 }

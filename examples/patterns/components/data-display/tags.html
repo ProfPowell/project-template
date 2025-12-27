@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tag Component - Component Library</title>
+  <link rel="stylesheet" href="../components.css" />
+</head>
+<body>
+  <div class="demo-page">
+    <h1>Tag/Chip Component</h1>
+    <p>Labels for categorization and filtering. Uses <code>&lt;tag-item&gt;</code> custom element.</p>
+
+    <section class="demo-section">
+      <h2>Basic Tags</h2>
+
+      <div class="demo-row">
+        <tag-item>Default</tag-item>
+        <tag-item>HTML</tag-item>
+        <tag-item>CSS</tag-item>
+        <tag-item>JavaScript</tag-item>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Sizes</h2>
+
+      <div class="demo-row">
+        <tag-item data-size="small">Small</tag-item>
+        <tag-item>Default</tag-item>
+        <tag-item data-size="large">Large</tag-item>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Removable Tags</h2>
+      <p>Add a remove button for filter tags.</p>
+
+      <div class="demo-row">
+        <tag-item>
+          <span>React</span>
+          <button data-remove aria-label="Remove React tag">×</button>
+        </tag-item>
+        <tag-item>
+          <span>Vue</span>
+          <button data-remove aria-label="Remove Vue tag">×</button>
+        </tag-item>
+        <tag-item>
+          <span>Angular</span>
+          <button data-remove aria-label="Remove Angular tag">×</button>
+        </tag-item>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>In Context</h2>
+
+      <h3>Blog Post Tags</h3>
+      <div class="demo-card">
+        <h4 style="margin: 0 0 0.5rem;">Building Accessible Web Components</h4>
+        <p style="margin: 0 0 1rem; color: var(--text-muted); font-size: 0.875rem;">Learn how to create custom elements that work for everyone.</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <tag-item data-size="small">Accessibility</tag-item>
+          <tag-item data-size="small">Web Components</tag-item>
+          <tag-item data-size="small">HTML</tag-item>
+        </div>
+      </div>
+
+      <h3>Filter Selection</h3>
+      <div class="demo-card">
+        <div style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.75rem;">Active filters:</div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <tag-item>
+            <span>Category: Design</span>
+            <button data-remove aria-label="Remove category filter">×</button>
+          </tag-item>
+          <tag-item>
+            <span>Status: Active</span>
+            <button data-remove aria-label="Remove status filter">×</button>
+          </tag-item>
+          <tag-item>
+            <span>Date: Last 7 days</span>
+            <button data-remove aria-label="Remove date filter">×</button>
+          </tag-item>
+        </div>
+        <button type="button" data-button="ghost" data-size="small" style="margin-top: 0.75rem;">Clear all</button>
+      </div>
+
+      <h3>Skill Tags</h3>
+      <div class="demo-card">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+          <user-avatar>
+            <img src="https://i.pravatar.cc/80?img=50" alt="User" />
+          </user-avatar>
+          <div>
+            <div style="font-weight: 500;">Jane Doe</div>
+            <div style="font-size: 0.875rem; color: var(--text-muted);">Full Stack Developer</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <tag-item data-size="small">JavaScript</tag-item>
+          <tag-item data-size="small">TypeScript</tag-item>
+          <tag-item data-size="small">React</tag-item>
+          <tag-item data-size="small">Node.js</tag-item>
+          <tag-item data-size="small">PostgreSQL</tag-item>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre><code>&lt;!-- Basic tag --&gt;
+&lt;tag-item&gt;Label&lt;/tag-item&gt;
+
+&lt;!-- Small size --&gt;
+&lt;tag-item data-size="small"&gt;Small&lt;/tag-item&gt;
+
+&lt;!-- Removable tag --&gt;
+&lt;tag-item&gt;
+  &lt;span&gt;Filter&lt;/span&gt;
+  &lt;button data-remove aria-label="Remove filter"&gt;×&lt;/button&gt;
+&lt;/tag-item&gt;</code></pre>
+    </section>
+  </div>
+</body>
+</html>

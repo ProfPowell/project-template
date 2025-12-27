@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Badge Component - Component Library</title>
+  <link rel="stylesheet" href="../components.css" />
+</head>
+<body>
+  <div class="demo-page">
+    <h1>Badge Component</h1>
+    <p>Status indicators and labels. Uses <code>&lt;status-badge&gt;</code> custom element or <code>data-badge</code> attribute.</p>
+
+    <section class="demo-section">
+      <h2>Status Types</h2>
+      <p>Semantic colors for different status meanings.</p>
+
+      <div class="demo-row">
+        <status-badge>Default</status-badge>
+        <status-badge data-type="success">Success</status-badge>
+        <status-badge data-type="warning">Warning</status-badge>
+        <status-badge data-type="error">Error</status-badge>
+        <status-badge data-type="info">Info</status-badge>
+      </div>
+
+      <h3>Alternative Syntax</h3>
+      <p>Using <code>data-badge</code> on any element.</p>
+      <div class="demo-row">
+        <span data-badge>Default</span>
+        <span data-badge="success">Success</span>
+        <span data-badge="warning">Warning</span>
+        <span data-badge="error">Error</span>
+        <span data-badge="info">Info</span>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>With Status Dot</h2>
+      <p>Add <code>data-dot</code> for a visual status indicator.</p>
+
+      <div class="demo-row">
+        <status-badge data-dot>Pending</status-badge>
+        <status-badge data-type="success" data-dot>Active</status-badge>
+        <status-badge data-type="warning" data-dot>Away</status-badge>
+        <status-badge data-type="error" data-dot>Offline</status-badge>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Sizes</h2>
+      <p>Three sizes using <code>data-size</code> attribute.</p>
+
+      <div class="demo-row">
+        <status-badge data-type="success" data-size="small">Small</status-badge>
+        <status-badge data-type="success">Default</status-badge>
+        <status-badge data-type="success" data-size="large">Large</status-badge>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>In Context</h2>
+
+      <h3>Table Status</h3>
+      <div class="demo-card">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="text-align: left; border-bottom: 1px solid var(--border);">
+              <th style="padding: 0.75rem 0;">Name</th>
+              <th style="padding: 0.75rem 0;">Status</th>
+              <th style="padding: 0.75rem 0;">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 0.75rem 0;">Jane Doe</td>
+              <td style="padding: 0.75rem 0;"><status-badge data-type="success" data-dot>Active</status-badge></td>
+              <td style="padding: 0.75rem 0;">Admin</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border);">
+              <td style="padding: 0.75rem 0;">John Smith</td>
+              <td style="padding: 0.75rem 0;"><status-badge data-type="warning" data-dot>Away</status-badge></td>
+              <td style="padding: 0.75rem 0;">Editor</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem 0;">Alex Johnson</td>
+              <td style="padding: 0.75rem 0;"><status-badge data-type="error" data-dot>Offline</status-badge></td>
+              <td style="padding: 0.75rem 0;">Viewer</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Card Labels</h3>
+      <div class="demo-grid">
+        <div class="demo-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+            <strong>Feature Request</strong>
+            <status-badge data-type="info" data-size="small">New</status-badge>
+          </div>
+          <p style="margin: 0; color: var(--text-muted); font-size: 0.875rem;">Add dark mode support</p>
+        </div>
+        <div class="demo-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+            <strong>Bug Fix</strong>
+            <status-badge data-type="success" data-size="small">Resolved</status-badge>
+          </div>
+          <p style="margin: 0; color: var(--text-muted); font-size: 0.875rem;">Login button not working</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre><code>&lt;!-- Custom element --&gt;
+&lt;status-badge data-type="success"&gt;Active&lt;/status-badge&gt;
+
+&lt;!-- With dot indicator --&gt;
+&lt;status-badge data-type="warning" data-dot&gt;Pending&lt;/status-badge&gt;
+
+&lt;!-- Small size --&gt;
+&lt;status-badge data-type="error" data-size="small"&gt;Failed&lt;/status-badge&gt;
+
+&lt;!-- Alternative: data-badge on any element --&gt;
+&lt;span data-badge="info"&gt;New&lt;/span&gt;</code></pre>
+    </section>
+  </div>
+</body>
+</html>

@@ -130,5 +130,67 @@
     },
     "pattern": "card-grid",
     "category": "layout"
+  },
+  "user-avatar": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["img", "@phrasing"],
+    "attributes": {
+      "data-size": { "required": false, "enum": ["xs", "small", "medium", "large", "xl"] },
+      "data-status": { "required": false, "enum": ["online", "offline", "busy", "away"] },
+      "data-shape": { "required": false, "enum": ["circle", "square"] }
+    },
+    "pattern": "avatar",
+    "category": "component"
+  },
+  "tag-item": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": ["span", "button", "@phrasing"],
+    "attributes": {
+      "data-size": { "required": false, "enum": ["small", "default", "large"] },
+      "data-removable": { "required": false, "boolean": true }
+    },
+    "pattern": "tag",
+    "category": "component"
+  },
+  "loading-spinner": {
+    "flow": true,
+    "phrasing": true,
+    "void": true,
+    "attributes": {
+      "data-size": { "required": false, "enum": ["small", "medium", "large"] }
+    },
+    "pattern": "spinner",
+    "category": "component"
+  },
+  "progress-bar": {
+    "flow": true,
+    "permittedContent": ["label", "progress", "span", "@phrasing"],
+    "attributes": {
+      "data-color": { "required": false, "enum": ["default", "success", "warning", "error"] },
+      "data-size": { "required": false, "enum": ["small", "medium", "large"] }
+    },
+    "pattern": "progress",
+    "category": "component"
+  },
+  "tab-group": {
+    "flow": true,
+    "permittedContent": ["@flow"],
+    "attributes": {
+      "data-style": { "required": false, "enum": ["underline", "pills"] },
+      "data-orientation": { "required": false, "enum": ["horizontal", "vertical"] }
+    },
+    "pattern": "tabs",
+    "category": "component"
+  },
+  "nav-pagination": {
+    "flow": true,
+    "permittedContent": ["nav", "a", "button", "@phrasing"],
+    "attributes": {
+      "data-style": { "required": false, "enum": ["default", "simple", "dots"] }
+    },
+    "pattern": "pagination",
+    "category": "component"
   }
 }

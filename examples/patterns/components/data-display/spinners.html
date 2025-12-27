@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spinner &amp; Progress Components - Component Library</title>
+  <link rel="stylesheet" href="../components.css" />
+</head>
+<body>
+  <div class="demo-page">
+    <h1>Spinner &amp; Progress Components</h1>
+    <p>Loading indicators for async operations.</p>
+
+    <section class="demo-section">
+      <h2>Loading Spinner</h2>
+      <p>Uses <code>&lt;loading-spinner&gt;</code> custom element.</p>
+
+      <h3>Sizes</h3>
+      <div class="demo-row">
+        <loading-spinner data-size="small" aria-label="Loading..."></loading-spinner>
+        <loading-spinner aria-label="Loading..."></loading-spinner>
+        <loading-spinner data-size="large" aria-label="Loading..."></loading-spinner>
+      </div>
+
+      <h3>In Buttons</h3>
+      <div class="demo-row">
+        <button type="button" data-button="primary" data-loading>
+          <loading-spinner data-size="small"></loading-spinner>
+          Saving...
+        </button>
+        <button type="button" data-button="secondary" data-loading>
+          <loading-spinner data-size="small"></loading-spinner>
+          Loading
+        </button>
+      </div>
+
+      <h3>Centered Loading</h3>
+      <div class="demo-card" style="min-height: 8rem; display: flex; align-items: center; justify-content: center;">
+        <div style="text-align: center;">
+          <loading-spinner data-size="large" aria-label="Loading content..."></loading-spinner>
+          <p style="margin: 1rem 0 0; color: var(--text-muted); font-size: 0.875rem;">Loading content...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Progress Bar</h2>
+      <p>Uses <code>&lt;progress-bar&gt;</code> with native <code>&lt;progress&gt;</code> element.</p>
+
+      <h3>Basic Progress</h3>
+      <div style="max-width: 24rem;">
+        <progress-bar>
+          <label>Uploading file...</label>
+          <progress value="75" max="100">75%</progress>
+          <span data-value>75%</span>
+        </progress-bar>
+      </div>
+
+      <h3>Different Values</h3>
+      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1rem;">
+        <progress-bar>
+          <progress value="25" max="100">25%</progress>
+        </progress-bar>
+
+        <progress-bar>
+          <progress value="50" max="100">50%</progress>
+        </progress-bar>
+
+        <progress-bar>
+          <progress value="100" max="100">100%</progress>
+        </progress-bar>
+      </div>
+
+      <h3>Colors</h3>
+      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1rem;">
+        <progress-bar>
+          <label>Default</label>
+          <progress value="60" max="100">60%</progress>
+        </progress-bar>
+
+        <progress-bar data-color="success">
+          <label>Success</label>
+          <progress value="100" max="100">100%</progress>
+        </progress-bar>
+
+        <progress-bar data-color="warning">
+          <label>Warning</label>
+          <progress value="75" max="100">75%</progress>
+        </progress-bar>
+
+        <progress-bar data-color="error">
+          <label>Error</label>
+          <progress value="30" max="100">30%</progress>
+        </progress-bar>
+      </div>
+
+      <h3>Indeterminate</h3>
+      <p>Without a value, shows indeterminate loading state.</p>
+      <div style="max-width: 24rem;">
+        <progress-bar>
+          <label>Processing...</label>
+          <progress>Loading...</progress>
+        </progress-bar>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>In Context</h2>
+
+      <h3>File Upload</h3>
+      <div class="demo-card" style="max-width: 24rem;">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/>
+          </svg>
+          <div style="flex: 1;">
+            <div style="font-size: 0.875rem; font-weight: 500;">document.pdf</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">2.4 MB</div>
+          </div>
+          <span style="font-size: 0.875rem; color: var(--text-muted);">75%</span>
+        </div>
+        <progress-bar>
+          <progress value="75" max="100">75%</progress>
+        </progress-bar>
+      </div>
+
+      <h3>Step Progress</h3>
+      <div class="demo-card" style="max-width: 32rem;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+          <span>Step 2 of 4</span>
+          <span style="color: var(--text-muted);">50% complete</span>
+        </div>
+        <progress-bar>
+          <progress value="50" max="100">50%</progress>
+        </progress-bar>
+        <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
+          <span>Account</span>
+          <span>Profile</span>
+          <span>Settings</span>
+          <span>Review</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre><code>&lt;!-- Spinner --&gt;
+&lt;loading-spinner aria-label="Loading..."&gt;&lt;/loading-spinner&gt;
+
+&lt;!-- Spinner sizes --&gt;
+&lt;loading-spinner data-size="small"&gt;&lt;/loading-spinner&gt;
+&lt;loading-spinner data-size="large"&gt;&lt;/loading-spinner&gt;
+
+&lt;!-- Progress bar --&gt;
+&lt;progress-bar&gt;
+  &lt;label&gt;Uploading...&lt;/label&gt;
+  &lt;progress value="75" max="100"&gt;75%&lt;/progress&gt;
+  &lt;span data-value&gt;75%&lt;/span&gt;
+&lt;/progress-bar&gt;
+
+&lt;!-- Progress with color --&gt;
+&lt;progress-bar data-color="success"&gt;
+  &lt;progress value="100" max="100"&gt;100%&lt;/progress&gt;
+&lt;/progress-bar&gt;</code></pre>
+    </section>
+  </div>
+</body>
+</html>

@@ -999,6 +999,222 @@
       "examples": [
         { "name": "Section Spacing", "html": "<layout-spacer data-size=\"2xl\"></layout-spacer>" }
       ]
+    },
+    {
+      "name": "data-table",
+      "category": "data",
+      "description": "Semantic table for displaying tabular data with sorting, filtering, and pagination",
+      "status": "stable",
+      "element": "data-table",
+      "anatomy": [
+        { "name": "wrapper", "description": "Responsive scroll container", "element": "data-table" },
+        { "name": "table", "description": "Native table element", "element": "table" },
+        { "name": "header", "description": "Column headers with optional sorting", "element": "thead" },
+        { "name": "body", "description": "Data rows", "element": "tbody" },
+        { "name": "footer", "description": "Summary or pagination row", "element": "tfoot", "required": false }
+      ],
+      "states": ["default", "loading", "empty", "sorting"],
+      "variants": [
+        { "name": "density", "attribute": "data-density", "values": ["compact", "default", "relaxed"], "default": "default" },
+        { "name": "style", "attribute": "data-style", "values": ["default", "striped", "bordered", "minimal"], "default": "default" },
+        { "name": "hover", "attribute": "data-hover", "values": ["true"], "default": null },
+        { "name": "sortable", "attribute": "data-sortable", "values": ["true"], "default": null },
+        { "name": "selectable", "attribute": "data-selectable", "values": ["true"], "default": null }
+      ],
+      "accessibility": {
+        "aria": ["Semantic table structure", "aria-sort on sortable columns", "aria-selected for selected rows"],
+        "keyboard": [
+          { "key": "ArrowUp/Down", "action": "Navigate rows" },
+          { "key": "Space", "action": "Toggle row selection" }
+        ]
+      },
+      "related": ["data-list", "comparison-table", "definition-list"],
+      "examples": [
+        { "name": "Striped Table", "html": "<data-table data-style=\"striped\" data-hover>\n  <table>\n    <thead><tr><th data-sort>Name</th><th>Status</th></tr></thead>\n    <tbody><tr><td>Item 1</td><td>Active</td></tr></tbody>\n  </table>\n</data-table>" }
+      ]
+    },
+    {
+      "name": "data-list",
+      "category": "data",
+      "description": "Flexible list display for records with multiple layout options",
+      "status": "stable",
+      "element": "data-list",
+      "anatomy": [
+        { "name": "container", "description": "List wrapper", "element": "data-list" },
+        { "name": "item", "description": "Individual record", "element": "article" },
+        { "name": "media", "description": "Image or avatar", "element": "img", "required": false },
+        { "name": "content", "description": "Text content area", "element": "div" },
+        { "name": "actions", "description": "Action buttons", "element": "div", "required": false }
+      ],
+      "states": ["default", "loading", "empty", "selected"],
+      "variants": [
+        { "name": "layout", "attribute": "data-layout", "values": ["list", "grid", "compact"], "default": "list" },
+        { "name": "dividers", "attribute": "data-dividers", "values": ["true"], "default": null },
+        { "name": "selectable", "attribute": "data-selectable", "values": ["true"], "default": null }
+      ],
+      "related": ["data-table", "card-grid", "definition-list"],
+      "examples": [
+        { "name": "User List", "html": "<data-list data-layout=\"list\" data-dividers>\n  <article data-item>\n    <img data-media src=\"avatar.jpg\" alt=\"\" />\n    <div data-content>\n      <h3 data-title>John Doe</h3>\n      <p data-description>Engineer</p>\n    </div>\n  </article>\n</data-list>" }
+      ]
+    },
+    {
+      "name": "definition-list",
+      "category": "data",
+      "description": "Semantic display for key-value pairs using native dl/dt/dd elements",
+      "status": "stable",
+      "element": "definition-list",
+      "anatomy": [
+        { "name": "container", "description": "Definition list wrapper", "element": "definition-list" },
+        { "name": "list", "description": "Native dl element", "element": "dl" },
+        { "name": "group", "description": "Term-definition pair", "element": "div" },
+        { "name": "term", "description": "Label/key", "element": "dt" },
+        { "name": "definition", "description": "Value/data", "element": "dd" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "layout", "attribute": "data-layout", "values": ["stacked", "inline", "grid", "table"], "default": "stacked" },
+        { "name": "dividers", "attribute": "data-dividers", "values": ["true"], "default": null },
+        { "name": "striped", "attribute": "data-striped", "values": ["true"], "default": null }
+      ],
+      "related": ["key-value", "data-table", "card"],
+      "examples": [
+        { "name": "Grid Layout", "html": "<definition-list data-layout=\"grid\">\n  <dl>\n    <div data-group><dt>Name</dt><dd>John Doe</dd></div>\n    <div data-group><dt>Email</dt><dd>john@example.com</dd></div>\n  </dl>\n</definition-list>" }
+      ]
+    },
+    {
+      "name": "key-value",
+      "category": "data",
+      "description": "Single key-value pair display for showing labeled data",
+      "status": "stable",
+      "element": "key-value",
+      "anatomy": [
+        { "name": "container", "description": "Key-value wrapper", "element": "key-value" },
+        { "name": "key", "description": "The label", "element": "span" },
+        { "name": "value", "description": "The data", "element": "span" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "layout", "attribute": "data-layout", "values": ["stacked", "inline", "centered"], "default": "stacked" },
+        { "name": "size", "attribute": "data-size", "values": ["small", "default", "large"], "default": "default" }
+      ],
+      "related": ["definition-list", "stats", "card"],
+      "examples": [
+        { "name": "Large Stat", "html": "<key-value data-size=\"large\" data-layout=\"centered\">\n  <span data-key>Total Users</span>\n  <span data-value>12,847</span>\n</key-value>" }
+      ]
+    },
+    {
+      "name": "comparison-table",
+      "category": "data",
+      "description": "Side-by-side feature comparison table for products, plans, or options",
+      "status": "stable",
+      "element": "comparison-table",
+      "anatomy": [
+        { "name": "wrapper", "description": "Responsive scroll container", "element": "comparison-table" },
+        { "name": "table", "description": "Comparison table", "element": "table" },
+        { "name": "header", "description": "Plan names and pricing", "element": "thead" },
+        { "name": "feature-row", "description": "Individual feature comparison", "element": "tr" },
+        { "name": "cta", "description": "Call-to-action buttons", "element": "tfoot" }
+      ],
+      "states": ["default", "sticky"],
+      "variants": [
+        { "name": "columns", "attribute": "data-columns", "values": ["2", "3", "4", "5"], "default": "3" },
+        { "name": "style", "attribute": "data-style", "values": ["default", "cards", "minimal"], "default": "default" }
+      ],
+      "related": ["data-table", "card-grid", "stats"],
+      "examples": [
+        { "name": "Pricing Comparison", "html": "<comparison-table data-columns=\"3\">\n  <table>\n    <thead><tr><th>Features</th><th data-plan>Basic</th><th data-plan data-recommended>Pro</th></tr></thead>\n    <tbody><tr><td data-feature>Storage</td><td>5GB</td><td data-recommended>50GB</td></tr></tbody>\n  </table>\n</comparison-table>" }
+      ]
+    },
+    {
+      "name": "tree-view",
+      "category": "data",
+      "description": "Hierarchical data display with expandable/collapsible nodes",
+      "status": "stable",
+      "element": "tree-view",
+      "anatomy": [
+        { "name": "container", "description": "Tree wrapper", "element": "tree-view" },
+        { "name": "node", "description": "Individual tree item", "element": "li" },
+        { "name": "toggle", "description": "Expand/collapse control", "element": "span" },
+        { "name": "icon", "description": "Optional file/folder icon", "element": "span", "required": false },
+        { "name": "label", "description": "Node text", "element": "span" },
+        { "name": "children", "description": "Nested child nodes", "element": "ul" }
+      ],
+      "states": ["collapsed", "expanded", "selected", "disabled", "loading"],
+      "variants": [
+        { "name": "style", "attribute": "data-style", "values": ["default", "lines", "compact"], "default": "default" },
+        { "name": "icons", "attribute": "data-icons", "values": ["true"], "default": null },
+        { "name": "selectable", "attribute": "data-selectable", "values": ["true"], "default": null }
+      ],
+      "accessibility": {
+        "aria": ["role=\"tree\"", "role=\"treeitem\"", "aria-expanded"],
+        "keyboard": [
+          { "key": "ArrowRight", "action": "Expand or focus child" },
+          { "key": "ArrowLeft", "action": "Collapse or focus parent" },
+          { "key": "ArrowUp/Down", "action": "Navigate siblings" },
+          { "key": "Enter", "action": "Select node" }
+        ]
+      },
+      "related": ["nav-menu", "sidebar-layout", "data-list"],
+      "examples": [
+        { "name": "File Browser", "html": "<tree-view data-icons data-selectable>\n  <ul role=\"tree\">\n    <li role=\"treeitem\" aria-expanded=\"true\" data-node>\n      <span data-toggle></span>\n      <span data-icon=\"folder-open\"></span>\n      <span data-label>Documents</span>\n      <ul role=\"group\"><li role=\"treeitem\" data-leaf><span data-label>file.txt</span></li></ul>\n    </li>\n  </ul>\n</tree-view>" }
+      ]
+    },
+    {
+      "name": "calendar",
+      "category": "data",
+      "description": "Date grid display for viewing and selecting dates",
+      "status": "stable",
+      "element": "date-calendar",
+      "anatomy": [
+        { "name": "container", "description": "Calendar wrapper", "element": "date-calendar" },
+        { "name": "header", "description": "Month/year navigation", "element": "header" },
+        { "name": "weekdays", "description": "Day name headers", "element": "thead" },
+        { "name": "grid", "description": "Date cells grid", "element": "tbody" },
+        { "name": "day", "description": "Individual day cell", "element": "td" }
+      ],
+      "states": ["default", "selected", "today", "disabled", "has-events"],
+      "variants": [
+        { "name": "view", "attribute": "data-view", "values": ["month", "week", "day"], "default": "month" },
+        { "name": "size", "attribute": "data-size", "values": ["compact", "default", "large"], "default": "default" },
+        { "name": "selection", "attribute": "data-selection", "values": ["single", "range", "multiple"], "default": "single" }
+      ],
+      "accessibility": {
+        "aria": ["role=\"grid\"", "aria-current=\"date\"", "aria-selected"],
+        "keyboard": [
+          { "key": "ArrowKeys", "action": "Navigate dates" },
+          { "key": "Enter/Space", "action": "Select date" }
+        ]
+      },
+      "related": ["data-table", "popover"],
+      "examples": [
+        { "name": "Date Picker", "html": "<date-calendar data-selection=\"single\">\n  <header data-header>\n    <button data-nav=\"prev\">←</button>\n    <h2 data-title>January 2025</h2>\n    <button data-nav=\"next\">→</button>\n  </header>\n  <table data-grid role=\"grid\">...</table>\n</date-calendar>" }
+      ]
+    },
+    {
+      "name": "chart-wrapper",
+      "category": "data",
+      "description": "Container pattern for embedding charts and data visualizations",
+      "status": "stable",
+      "element": "chart-wrapper",
+      "anatomy": [
+        { "name": "container", "description": "Chart wrapper", "element": "chart-wrapper" },
+        { "name": "header", "description": "Title and description", "element": "header", "required": false },
+        { "name": "chart", "description": "Chart area for library output", "element": "div" },
+        { "name": "legend", "description": "Optional legend", "element": "div", "required": false },
+        { "name": "footer", "description": "Source/notes", "element": "footer", "required": false }
+      ],
+      "states": ["loading", "loaded", "error", "empty"],
+      "variants": [
+        { "name": "ratio", "attribute": "data-ratio", "values": ["16:9", "4:3", "1:1", "auto"], "default": "16:9" },
+        { "name": "size", "attribute": "data-size", "values": ["compact", "default", "full"], "default": "default" }
+      ],
+      "accessibility": {
+        "aria": ["role=\"img\" on chart area", "aria-label describing chart content"]
+      },
+      "related": ["stats", "card", "data-table"],
+      "examples": [
+        { "name": "Bar Chart", "html": "<chart-wrapper data-ratio=\"16:9\">\n  <header data-header><h3 data-title>Monthly Revenue</h3></header>\n  <div data-chart role=\"img\" aria-label=\"Bar chart showing monthly revenue\">\n    <canvas></canvas>\n  </div>\n</chart-wrapper>" }
+      ]
     }
   ]
 }

@@ -465,6 +465,180 @@ Layers provide **explicit cascade control** regardless of selector specificity:
 
 ---
 
+## CSS Scope (`@scope`)
+
+The `@scope` at-rule limits selector reach to a specific DOM subtree without increasing specificity. While `@layer` controls cascade order, `@scope` controls where selectors can match.
+
+### Why `@scope`?
+
+| Without @scope | With @scope |
+|----------------|-------------|
+| Selectors leak globally | Selectors limited to subtree |
+| Need long descendant chains | Short selectors, explicit boundaries |
+| High specificity for isolation | Low specificity preserved |
+
+### Basic Syntax
+
+```css
+@scope (product-card) {
+  /* These only match inside <product-card> */
+  img {
+    border-radius: var(--radius-md);
+  }
+
+  h3 {
+    font-size: var(--font-size-lg);
+  }
+}
+```
+
+The scoping root (`product-card`) doesn't add to selector specificity—`img` remains `(0,0,1)`.
+
+### The `:scope` Pseudo-Class
+
+Reference the scoping root itself:
+
+```css
+@scope (blog-card) {
+  :scope {
+    /* Styles the <blog-card> element */
+    display: grid;
+    gap: var(--spacing-md);
+  }
+
+  h3 {
+    /* Styles <h3> inside <blog-card> */
+    margin: 0;
+  }
+}
+```
+
+### Donut Scope Pattern
+
+Exclude nested sections with a lower boundary using `to`:
+
+```css
+/* Style card chrome, but not user content inside */
+@scope (blog-card) to (.card-content) {
+  img {
+    /* Only matches images in card header/footer, not in content */
+    border: 2px solid var(--border);
+  }
+}
+```
+
+Use cases for donut scope:
+- Style component wrapper but not slotted content
+- Style card header/footer but not body
+- Apply theme to shell but let content inherit differently
+
+### `@scope` with `@layer`
+
+Combine scope and layers for full control:
+
+```css
+@layer components {
+  @scope (product-card) {
+    :scope {
+      container-type: inline-size;
+      padding: var(--spacing-lg);
+    }
+
+    img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+    }
+
+    @container (min-width: 400px) {
+      :scope {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+      }
+    }
+  }
+}
+```
+
+### `@scope` vs Element Selectors
+
+Both work for our custom element approach:
+
+```css
+/* Element selector (our typical pattern) */
+product-card {
+  display: grid;
+}
+
+product-card img {
+  border-radius: var(--radius-md);
+}
+
+/* @scope equivalent - cleaner for many child rules */
+@scope (product-card) {
+  :scope {
+    display: grid;
+  }
+
+  img {
+    border-radius: var(--radius-md);
+  }
+
+  h3 { }
+  p { }
+  footer { }
+}
+```
+
+**When to use `@scope`:**
+- Component has many child element rules
+- Need donut scope to exclude nested content
+- Want to group all component styles in one block
+
+**When element selectors suffice:**
+- Simple components with few rules
+- Already using nesting effectively
+
+### Prelude-less Scope (Inline Styles)
+
+In component HTML, scope without a selector:
+
+```html
+<product-card>
+  <style>
+    @scope {
+      :scope { display: grid; }
+      img { border-radius: var(--radius-md); }
+    }
+  </style>
+  <img src="..." alt="..." />
+  <h3>Product Name</h3>
+</product-card>
+```
+
+The scope automatically targets the parent element.
+
+### Important Limitation
+
+`@scope` limits selector reach, **not inheritance**. Inherited properties like `color` still cascade into excluded donut holes:
+
+```css
+@scope (.card) to (.content) {
+  :scope {
+    color: blue;  /* .content still inherits blue! */
+  }
+}
+```
+
+To prevent inheritance, reset properties explicitly on the excluded element.
+
+### Browser Support
+
+- Chrome 118+, Edge 118+, Safari 17.4+, Firefox 146+
+- Wide support (90%+) - safe to use without fallbacks
+
+---
+
 ## Native CSS Nesting
 
 Modern browsers support CSS nesting, reducing repetition:
@@ -1407,6 +1581,7 @@ When setting up or reviewing CSS:
 - [ ] Nesting limited to 3-4 levels
 - [ ] Responsive styles in `responsive` layer
 - [ ] Design tokens in `_tokens.css`
+- [ ] Consider `@scope` for components with many child rules or donut patterns
 
 ### Colors
 - [ ] Colors defined in OKLCH format, not hex or RGB

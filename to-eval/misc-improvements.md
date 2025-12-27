@@ -1,0 +1,3 @@
+Using hex or RGB colors in CSS is considered limiting in many cases because of the reduced color space.  Articles discussing what we should do instead are becoming more common, such as https://piccalil.li/blog/a-pragmatic-guide-to-modern-css-colours-part-one/ and https://piccalil.li/blog/a-pragmatic-guide-to-modern-css-colours-part-two/.
+
+We should evaluate this content and consider modifying our skills to account for better color value use in CSS and tokens.

@@ -63,10 +63,17 @@ A web project template with validation, automation, and Claude Code integration 
 | `sanity-cms` | Sanity CMS integration |
 | `open-props` | Open Props CSS framework |
 
-**38 Slash Commands**:
+**45 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
+| `/scaffold` | Interactive project scaffolding wizard |
+| `/scaffold-site` | Scaffold static HTML/CSS/JS website |
+| `/scaffold-astro` | Scaffold Astro site with content collections |
+| `/scaffold-spa` | Scaffold PWA/SPA with Web Components |
+| `/scaffold-api` | Scaffold Node.js REST API |
+| `/scaffold-dashboard` | Scaffold admin dashboard |
+| `/scaffold-extension` | Scaffold Chrome extension |
 | `/add-element` | Define custom HTML elements |
 | `/add-pattern` | Create new UI pattern with documentation |
 | `/scaffold-page` | Create page using pattern compositions |
@@ -271,6 +278,35 @@ Tokens (colors, spacing, type)
 ```
 
 Browse the [Component Gallery](examples/patterns/components/index.html) for all components with examples.
+
+### Project Scaffolds
+
+**6 Project Starters** in `starters/` for quickly scaffolding new projects:
+
+| Starter | Description | Command |
+|---------|-------------|---------|
+| **Static Website** | Multi-page HTML/CSS/JS site | `/scaffold-site` |
+| **Astro Site** | Astro framework with content collections | `/scaffold-astro` |
+| **PWA/SPA** | Single-page app with Web Components + router | `/scaffold-spa` |
+| **REST API** | Node.js backend with Express/PostgreSQL | `/scaffold-api` |
+| **Dashboard** | Admin interface with sidebar layout | `/scaffold-dashboard` |
+| **Chrome Extension** | Browser extension with Manifest V3 | `/scaffold-extension` |
+
+Each starter includes:
+- `manifest.yaml` defining prompts and configuration
+- Template files with `{{PLACEHOLDER}}` variables
+- Shared resources from `starters/_shared/`
+- Skills integration for consistent development
+
+**Usage:**
+
+```bash
+/scaffold           # Interactive wizard
+/scaffold-site      # Static website
+/scaffold-spa       # PWA/SPA application
+```
+
+See [starters/README.md](starters/README.md) for detailed documentation.
 
 ### Design Token System
 

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{SITE_NAME}} - Home</title>
+  <meta name="description" content="{{DESCRIPTION}}" />
+  <meta name="author" content="{{AUTHOR}}" />
+  <meta name="theme-color" content="{{THEME_COLOR}}" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{SITE_NAME}}" />
+  <meta property="og:description" content="{{DESCRIPTION}}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{SITE_URL}}" />
+  <meta property="og:image" content="{{SITE_URL}}/images/og-image.png" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="nav-container" aria-label="Main navigation">
+      <a href="/" class="logo" aria-label="{{SITE_NAME}} home">
+        <img src="/images/logo.svg" alt="" width="32" height="32" />
+        <span>{{SITE_NAME}}</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Welcome to {{SITE_NAME}}</h1>
+        <p class="hero-description">{{DESCRIPTION}}</p>
+        <div class="hero-actions">
+          <a href="/about.html" class="button-primary">Learn More</a>
+          <a href="/contact.html" class="button-secondary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-labelledby="features-heading">
+      <h2 id="features-heading" class="section-heading">Features</h2>
+      <div class="features-grid">
+        <article class="feature-card">
+          <h3>Semantic HTML</h3>
+          <p>Built with accessibility and SEO in mind using proper HTML5 elements.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Design Tokens</h3>
+          <p>Consistent styling with CSS custom properties and a token-based system.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Responsive</h3>
+          <p>Mobile-first design that works beautifully on all screen sizes.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Ready to get started?</h2>
+      <p>Get in touch with us today.</p>
+      <a href="/contact.html" class="button-primary">Contact Us</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <a href="/" aria-label="{{SITE_NAME}} home">{{SITE_NAME}}</a>
+        <p>{{DESCRIPTION}}</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <ul role="list">
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{CURRENT_YEAR}} {{SITE_NAME}}. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="/scripts/main.js" defer=""></script>
+</body>
+</html>

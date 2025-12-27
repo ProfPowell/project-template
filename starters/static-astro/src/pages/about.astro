@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About">
+  <article class="page-content">
+    <h1>About</h1>
+    <p class="lead">Learn more about {{SITE_NAME}} and what we do.</p>
+
+    <section>
+      <h2>Our Mission</h2>
+      <p>
+        We are dedicated to creating fast, accessible, and beautiful web experiences.
+        Built with Astro for optimal performance.
+      </p>
+    </section>
+
+    <section>
+      <h2>Technology</h2>
+      <ul>
+        <li><strong>Astro</strong> - Static site generation with component islands</li>
+        <li><strong>Content Collections</strong> - Type-safe Markdown content</li>
+        <li><strong>Zero JavaScript</strong> - Ships no JS by default</li>
+      </ul>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-content {
+    max-width: var(--content-prose);
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+  }
+
+  .lead {
+    font-size: var(--font-size-lg);
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  section {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  ul {
+    padding-left: var(--spacing-lg);
+  }
+
+  li {
+    margin-bottom: var(--spacing-sm);
+  }
+</style>

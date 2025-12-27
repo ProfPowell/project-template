@@ -1,0 +1,147 @@
+/**
+ * Options Page Styles
+ */
+
+.options-page {
+  max-inline-size: 600px;
+  margin-inline: auto;
+  padding: var(--space-6);
+}
+
+.options-header {
+  margin-block-end: var(--space-6);
+}
+
+.options-header h1 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  margin: 0;
+}
+
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-block-end: var(--space-4);
+}
+
+.section h2 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  margin: 0 0 var(--space-4);
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid var(--border);
+}
+
+.form-group {
+  margin-block-end: var(--space-4);
+}
+
+.form-group:last-child {
+  margin-block-end: 0;
+}
+
+.form-label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  margin-block-end: var(--space-1);
+}
+
+.form-input {
+  inline-size: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+}
+
+.form-input:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.form-help {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  margin-block-start: var(--space-1);
+}
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle {
+  inline-size: 2.5rem;
+  block-size: 1.25rem;
+  appearance: none;
+  background: var(--gray-300);
+  border-radius: 9999px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle::before {
+  content: '';
+  position: absolute;
+  inset-block-start: 2px;
+  inset-inline-start: 2px;
+  inline-size: 1rem;
+  block-size: 1rem;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.2s;
+}
+
+.toggle:checked {
+  background: var(--primary);
+}
+
+.toggle:checked::before {
+  transform: translateX(1.25rem);
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.btn {
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.save-status {
+  font-size: var(--text-sm);
+}
+
+.save-status.success {
+  color: var(--success);
+}
+
+.save-status.error {
+  color: var(--error);
+}

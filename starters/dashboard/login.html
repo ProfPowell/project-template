@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - {{DISPLAY_NAME}}</title>
+  <meta name="description" content="Login to {{DISPLAY_NAME}}" />
+  <meta name="theme-color" content="{{THEME_COLOR}}" />
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <style>
+    .login-page {
+      display: grid;
+      place-items: center;
+      min-block-size: 100dvh;
+      padding: var(--space-4);
+      background: var(--background);
+    }
+
+    .login-card {
+      inline-size: 100%;
+      max-inline-size: 24rem;
+      padding: var(--space-6);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-block-end: var(--space-6);
+    }
+
+    .login-header h1 {
+      font-size: var(--text-2xl);
+      font-weight: var(--font-bold);
+      color: var(--text);
+    }
+
+    .login-header p {
+      color: var(--text-muted);
+      margin-block-start: var(--space-2);
+    }
+
+    .form-group {
+      margin-block-end: var(--space-4);
+    }
+
+    .form-group label {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: var(--font-medium);
+      color: var(--text);
+      margin-block-end: var(--space-1);
+    }
+
+    .form-group input {
+      inline-size: 100%;
+      padding: var(--space-2) var(--space-3);
+      font-size: var(--text-base);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--background);
+      color: var(--text);
+    }
+
+    .form-group input:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+
+    .login-button {
+      inline-size: 100%;
+      padding: var(--space-2) var(--space-4);
+      font-size: var(--text-base);
+      font-weight: var(--font-medium);
+      color: var(--primary-foreground);
+      background: var(--primary);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      background: var(--primary-hover);
+    }
+
+    .login-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .error-message {
+      padding: var(--space-3);
+      margin-block-end: var(--space-4);
+      color: var(--error);
+      background: var(--error-bg);
+      border: 1px solid var(--error);
+      border-radius: var(--radius-md);
+    }
+
+    .error-message:empty {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main class="login-page">
+    <form class="login-card" id="login-form">
+      <header class="login-header">
+        <h1>{{DISPLAY_NAME}}</h1>
+        <p>Sign in to your account</p>
+      </header>
+
+      <output class="error-message" id="error-message" role="alert"></output>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+          autofocus
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          autocomplete="current-password"
+          minlength="8"
+        />
+      </div>
+
+      <button type="submit" class="login-button">
+        Sign in
+      </button>
+    </form>
+  </main>
+
+  <script type="module">
+    import { auth } from '/src/app/auth.js';
+
+    const form = document.getElementById('login-form');
+    const errorMessage = document.getElementById('error-message');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      errorMessage.textContent = '';
+
+      const formData = new FormData(form);
+      const email = formData.get('email');
+      const password = formData.get('password');
+
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = true;
+      button.textContent = 'Signing in...';
+
+      try {
+        await auth.login(email, password);
+        window.location.replace('/app.html');
+      } catch (error) {
+        errorMessage.textContent = error.message || 'Login failed';
+        button.disabled = false;
+        button.textContent = 'Sign in';
+      }
+    });
+  </script>
+</body>
+</html>

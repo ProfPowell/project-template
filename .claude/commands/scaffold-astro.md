@@ -1,0 +1,36 @@
+# Scaffold Astro Site
+
+Generate an Astro-powered static site using the `starters/static-astro/` template.
+
+## Template Location
+`starters/static-astro/`
+
+## Prompts to Collect
+
+Read `starters/static-astro/manifest.yaml` for the full prompt configuration.
+
+Key prompts:
+- `PROJECT_NAME` - Folder name (required, lowercase with hyphens)
+- `SITE_NAME` - Display name (required)
+- `SITE_URL` - Production URL (required)
+- `DESCRIPTION` - Site description (required, max 160 chars)
+- `OUTPUT_MODE` - static/server/hybrid (default: static)
+- `ADAPTER` - none/cloudflare/node/netlify/vercel (default: none)
+- `CONTENT_COLLECTIONS` - Comma-separated collection names (default: blog)
+
+## Instructions
+
+1. Use AskUserQuestion to collect the required prompts
+2. Create the project directory at `examples/[PROJECT_NAME]/`
+3. Copy all files from `starters/static-astro/` to the project
+4. Replace all `{{PLACEHOLDER}}` values with collected prompts
+5. Configure astro.config.mjs based on OUTPUT_MODE and ADAPTER
+6. Generate content collection directories based on CONTENT_COLLECTIONS
+7. Run `npm install` in the generated project
+
+## Skills to Apply
+- xhtml-author
+- css-author
+- performance
+- i18n
+- accessibility-checker

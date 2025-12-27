@@ -39,7 +39,13 @@ const colors = {
 const TOKEN_CATEGORIES = {
   colors: {
     name: 'Colors',
-    patterns: [/^--color-/, /^--primary/, /^--secondary/, /^--background/, /^--text/, /^--border/, /^--overlay/, /^--tag-/, /^--form-.*-color/, /^--dialog-backdrop/],
+    patterns: [
+      /^--gray-/, /^--white$/, /^--black$/,
+      /^--hue-/, /^--primary/, /^--secondary/, /^--accent/,
+      /^--success/, /^--warning/, /^--error/, /^--info/,
+      /^--background/, /^--surface/, /^--text/, /^--border/, /^--overlay/,
+      /^--color-/, /^--tag-/, /^--form-.*-color/, /^--dialog-backdrop/
+    ],
     icon: '🎨'
   },
   spacing: {
@@ -49,18 +55,23 @@ const TOKEN_CATEGORIES = {
   },
   typography: {
     name: 'Typography',
-    patterns: [/^--font/, /^--line-height/, /^--letter-spacing/],
+    patterns: [/^--font/, /^--text-/, /^--weight-/, /^--leading-/, /^--tracking-/, /^--line-height/, /^--letter-spacing/],
     icon: '🔤'
   },
   effects: {
     name: 'Effects',
-    patterns: [/^--shadow/, /^--transition/, /^--radius/, /^--border-radius/, /^--opacity/],
+    patterns: [/^--shadow/, /^--transition/, /^--radius/, /^--border-radius/, /^--opacity/, /^--duration-/, /^--ease-/],
     icon: '✨'
   },
   layout: {
     name: 'Layout',
-    patterns: [/^--max-/, /^--min-/, /^--content-width/, /^--sidebar/, /^--header/, /^--z-/],
+    patterns: [/^--max-/, /^--min-/, /^--content-/, /^--sidebar/, /^--header/, /^--z-/, /^--modal-/, /^--card-/],
     icon: '📐'
+  },
+  components: {
+    name: 'Components',
+    patterns: [/^--button-/, /^--input-/, /^--badge-/, /^--avatar-/, /^--spinner-/, /^--progress-/, /^--tab-/, /^--tooltip-/, /^--alert-/, /^--focus-/],
+    icon: '🧩'
   },
   other: {
     name: 'Other',
@@ -609,10 +620,17 @@ ${sections.join('\n\n')}
  * @returns {string|null} Path to CSS file
  */
 function findDefaultCssFile() {
+  // First check for the new token system
+  const tokensDir = join(ROOT, 'styles', 'tokens');
+  if (existsSync(tokensDir)) {
+    return tokensDir; // Return directory path for multi-file scanning
+  }
+
   const candidates = [
     'examples/demo-site/assets/styles/main.css',
     'examples/demo-site-claude-2/styles/main.css',
-    'examples/demo-code/styles/main.css'
+    'examples/demo-code/styles/main.css',
+    'examples/patterns/components/components.css'
   ];
 
   for (const candidate of candidates) {
@@ -623,6 +641,31 @@ function findDefaultCssFile() {
   }
 
   return null;
+}
+
+/**
+ * Read all CSS files from a directory (recursively)
+ * @param {string} dir - Directory path
+ * @returns {string} Combined CSS content
+ */
+function readTokensDirectory(dir) {
+  const { readdirSync, statSync } = require('fs');
+  let combined = '';
+
+  const files = readdirSync(dir);
+  for (const file of files) {
+    const filePath = join(dir, file);
+    const stat = statSync(filePath);
+
+    if (stat.isDirectory()) {
+      combined += readTokensDirectory(filePath);
+    } else if (file.endsWith('.css')) {
+      combined += `\n/* === ${file} === */\n`;
+      combined += readFileSync(filePath, 'utf-8');
+    }
+  }
+
+  return combined;
 }
 
 /**
@@ -680,10 +723,20 @@ Output:
 
   console.log(`${colors.cyan}Design Token Documentation Generator${colors.reset}\n`);
 
-  // Read and parse CSS
-  console.log(`${colors.dim}Reading CSS file...${colors.reset}`);
+  // Read and parse CSS (support both single file and directory)
+  const { statSync } = require('fs');
+  const isDirectory = statSync(cssFile).isDirectory();
+
+  console.log(`${colors.dim}Reading CSS ${isDirectory ? 'directory' : 'file'}...${colors.reset}`);
   console.log(`  Source: ${relative(ROOT, cssFile)}`);
-  const cssContent = readFileSync(cssFile, 'utf-8');
+
+  let cssContent;
+  if (isDirectory) {
+    cssContent = readTokensDirectory(cssFile);
+    console.log(`  ${colors.dim}(scanning all .css files recursively)${colors.reset}`);
+  } else {
+    cssContent = readFileSync(cssFile, 'utf-8');
+  }
 
   console.log(`\n${colors.dim}Parsing tokens...${colors.reset}`);
   const tokens = parseTokens(cssContent);

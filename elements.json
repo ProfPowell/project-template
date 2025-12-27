@@ -209,5 +209,14 @@
     "attributes": {},
     "pattern": "tooltip",
     "category": "component"
+  },
+  "theme-selector": {
+    "flow": true,
+    "permittedContent": ["fieldset", "div", "@flow"],
+    "attributes": {
+      "data-style": { "required": false, "enum": ["default", "compact", "icons"] }
+    },
+    "pattern": "theme-toggle",
+    "category": "component"
   }
 }

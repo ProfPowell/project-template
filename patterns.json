@@ -391,6 +391,187 @@
           "html": "<skip-link href=\"#main\">Skip to main content</skip-link>\n<!-- navigation -->\n<main id=\"main\" tabindex=\"-1\">...</main>"
         }
       ]
+    },
+    {
+      "name": "hero",
+      "category": "content",
+      "description": "Large prominent section for page introduction with headline, supporting text, and call-to-action",
+      "status": "stable",
+      "element": "hero-section",
+      "anatomy": [
+        { "name": "background", "description": "Optional background image/video", "element": "picture", "required": false },
+        { "name": "content", "description": "Text content area", "element": "div" },
+        { "name": "headline", "description": "Primary heading", "element": "h1" },
+        { "name": "subhead", "description": "Supporting text", "element": "p" },
+        { "name": "actions", "description": "CTA buttons", "element": "div" }
+      ],
+      "states": ["default", "loading"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large", "full"], "default": "large" },
+        { "name": "align", "attribute": "data-align", "values": ["start", "center", "end"], "default": "center" },
+        { "name": "layout", "attribute": "data-layout", "values": ["stacked", "split", "overlay"], "default": "stacked" }
+      ],
+      "related": ["cta", "feature-grid", "page-shell"],
+      "examples": [
+        { "name": "Centered Hero", "html": "<hero-section data-size=\"large\" data-align=\"center\">\n  <div data-content>\n    <h1>Welcome</h1>\n    <p>Build something amazing.</p>\n    <div data-actions>\n      <a href=\"/start\" data-button=\"primary\">Get Started</a>\n    </div>\n  </div>\n</hero-section>" }
+      ]
+    },
+    {
+      "name": "feature-grid",
+      "category": "content",
+      "description": "Grid of feature highlights with icons, titles, and descriptions",
+      "status": "stable",
+      "element": "feature-grid",
+      "anatomy": [
+        { "name": "header", "description": "Section title and intro", "element": "header", "required": false },
+        { "name": "grid", "description": "Grid of feature items", "element": "div" },
+        { "name": "feature", "description": "Individual feature card", "element": "article" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "columns", "attribute": "data-columns", "values": ["2", "3", "4"], "default": "3" },
+        { "name": "style", "attribute": "data-style", "values": ["cards", "minimal", "centered"], "default": "cards" }
+      ],
+      "related": ["hero", "stats", "card"],
+      "examples": [
+        { "name": "Three-Column Cards", "html": "<feature-grid data-columns=\"3\" data-style=\"cards\">\n  <div data-grid>\n    <article>\n      <x-icon name=\"zap\"></x-icon>\n      <h3>Fast</h3>\n      <p>Lightning performance.</p>\n    </article>\n  </div>\n</feature-grid>" }
+      ]
+    },
+    {
+      "name": "card",
+      "category": "content",
+      "description": "Versatile content container for grouped information with optional media",
+      "status": "stable",
+      "element": "content-card",
+      "anatomy": [
+        { "name": "media", "description": "Optional image/video header", "element": "picture", "required": false },
+        { "name": "body", "description": "Main content area", "element": "div" },
+        { "name": "title", "description": "Card heading", "element": "h3" },
+        { "name": "description", "description": "Supporting text", "element": "p" },
+        { "name": "actions", "description": "Action buttons", "element": "div", "required": false }
+      ],
+      "states": ["default", "hover", "focus", "disabled"],
+      "variants": [
+        { "name": "style", "attribute": "data-style", "values": ["default", "outlined", "elevated", "flat"], "default": "default" },
+        { "name": "direction", "attribute": "data-direction", "values": ["vertical", "horizontal"], "default": "vertical" },
+        { "name": "clickable", "attribute": "data-clickable", "values": ["true"], "default": null }
+      ],
+      "related": ["product-card", "blog-card", "feature-grid"],
+      "examples": [
+        { "name": "Basic Card", "html": "<content-card data-style=\"elevated\">\n  <picture data-media><img src=\"image.jpg\" alt=\"Preview\" /></picture>\n  <div data-body>\n    <h3>Card Title</h3>\n    <p>Description text.</p>\n  </div>\n</content-card>" }
+      ]
+    },
+    {
+      "name": "blog-card",
+      "category": "content",
+      "description": "Card for blog post previews with featured image, category, excerpt, and author",
+      "status": "stable",
+      "element": "blog-card",
+      "anatomy": [
+        { "name": "image", "description": "Featured image", "element": "picture" },
+        { "name": "category", "description": "Post category/tag", "element": "span" },
+        { "name": "title", "description": "Post headline", "element": "h3" },
+        { "name": "excerpt", "description": "Brief summary", "element": "p" },
+        { "name": "meta", "description": "Author and date", "element": "footer" }
+      ],
+      "states": ["default", "hover", "focus"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" },
+        { "name": "featured", "attribute": "data-featured", "values": ["true"], "default": null }
+      ],
+      "related": ["card", "product-card", "feature-grid"],
+      "examples": [
+        { "name": "Standard Blog Card", "html": "<blog-card>\n  <a href=\"/blog/post\" data-card-link>\n    <picture data-image><img src=\"post.jpg\" alt=\"Post\" /></picture>\n    <div data-body>\n      <span data-category>Design</span>\n      <h3>Post Title</h3>\n      <p data-excerpt>Excerpt...</p>\n    </div>\n  </a>\n</blog-card>" }
+      ]
+    },
+    {
+      "name": "testimonial",
+      "category": "content",
+      "description": "Customer quote with attribution, avatar, and optional rating",
+      "status": "stable",
+      "element": "testimonial-card",
+      "anatomy": [
+        { "name": "quote", "description": "Testimonial text", "element": "blockquote" },
+        { "name": "avatar", "description": "Customer photo", "element": "img" },
+        { "name": "name", "description": "Customer name", "element": "cite" },
+        { "name": "role", "description": "Job title", "element": "span" },
+        { "name": "rating", "description": "Star rating", "element": "div", "required": false }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "style", "attribute": "data-style", "values": ["default", "card", "featured", "minimal"], "default": "card" },
+        { "name": "align", "attribute": "data-align", "values": ["start", "center"], "default": "start" }
+      ],
+      "related": ["card", "stats", "logo-cloud"],
+      "examples": [
+        { "name": "Card Style", "html": "<testimonial-card data-style=\"card\">\n  <blockquote><p>\"Amazing product!\"</p></blockquote>\n  <footer data-attribution>\n    <img data-avatar src=\"avatar.jpg\" alt=\"\" />\n    <div>\n      <cite data-name>Jane Doe</cite>\n      <span data-role>CEO</span>\n    </div>\n  </footer>\n</testimonial-card>" }
+      ]
+    },
+    {
+      "name": "stats",
+      "category": "content",
+      "description": "Display of key metrics and numbers for social proof",
+      "status": "stable",
+      "element": "stats-section",
+      "anatomy": [
+        { "name": "header", "description": "Section title", "element": "header", "required": false },
+        { "name": "grid", "description": "Grid of stat items", "element": "dl" },
+        { "name": "stat", "description": "Individual stat", "element": "div" },
+        { "name": "value", "description": "The metric", "element": "dd" },
+        { "name": "label", "description": "Stat description", "element": "dt" }
+      ],
+      "states": ["default", "animated"],
+      "variants": [
+        { "name": "columns", "attribute": "data-columns", "values": ["2", "3", "4"], "default": "4" },
+        { "name": "style", "attribute": "data-style", "values": ["default", "cards", "minimal", "highlight"], "default": "cards" }
+      ],
+      "related": ["feature-grid", "hero", "testimonial"],
+      "examples": [
+        { "name": "Four-Column Cards", "html": "<stats-section data-style=\"cards\" data-columns=\"4\">\n  <dl data-grid>\n    <div data-stat>\n      <dd data-value>10K+</dd>\n      <dt data-label>Users</dt>\n    </div>\n  </dl>\n</stats-section>" }
+      ]
+    },
+    {
+      "name": "cta",
+      "category": "content",
+      "description": "Call-to-action section encouraging user action with headline and buttons",
+      "status": "stable",
+      "element": "cta-section",
+      "anatomy": [
+        { "name": "content", "description": "Text content area", "element": "div" },
+        { "name": "headline", "description": "Primary message", "element": "h2" },
+        { "name": "subhead", "description": "Supporting text", "element": "p" },
+        { "name": "actions", "description": "Action buttons", "element": "div" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "style", "attribute": "data-style", "values": ["default", "highlight", "minimal", "banner"], "default": "default" },
+        { "name": "align", "attribute": "data-align", "values": ["start", "center", "split"], "default": "center" }
+      ],
+      "related": ["hero", "banner", "feature-grid"],
+      "examples": [
+        { "name": "Highlight CTA", "html": "<cta-section data-style=\"highlight\" data-align=\"center\">\n  <div data-content>\n    <h2>Ready to start?</h2>\n    <p>Join thousands of teams.</p>\n    <div data-actions>\n      <a href=\"/signup\" data-button=\"primary\">Get Started</a>\n    </div>\n  </div>\n</cta-section>" }
+      ]
+    },
+    {
+      "name": "logo-cloud",
+      "category": "content",
+      "description": "Grid or row of partner, client, or integration logos for social proof",
+      "status": "stable",
+      "element": "logo-cloud",
+      "anatomy": [
+        { "name": "heading", "description": "Section title", "element": "h2", "required": false },
+        { "name": "logos", "description": "Logo container", "element": "ul" },
+        { "name": "logo", "description": "Individual logo", "element": "li" }
+      ],
+      "states": ["default", "animated"],
+      "variants": [
+        { "name": "layout", "attribute": "data-layout", "values": ["grid", "row", "marquee"], "default": "row" },
+        { "name": "style", "attribute": "data-style", "values": ["default", "muted", "dark"], "default": "muted" }
+      ],
+      "related": ["testimonial", "stats", "feature-grid"],
+      "examples": [
+        { "name": "Muted Row", "html": "<logo-cloud data-layout=\"row\" data-style=\"muted\">\n  <h2>Trusted by</h2>\n  <ul data-logos>\n    <li><img src=\"logo1.svg\" alt=\"Company 1\" /></li>\n    <li><img src=\"logo2.svg\" alt=\"Company 2\" /></li>\n  </ul>\n</logo-cloud>" }
+      ]
     }
   ]
 }

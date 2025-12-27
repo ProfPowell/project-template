@@ -36,8 +36,8 @@ No JavaScript needed for expand/collapse:
 
 ```css
 details {
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   padding: var(--spacing-md);
 
   & summary {
@@ -45,7 +45,7 @@ details {
     font-weight: var(--font-weight-semibold);
 
     &::marker {
-      color: var(--primary-color);
+      color: var(--primary);
     }
   }
 
@@ -57,37 +57,160 @@ details {
 
 ### `<dialog>` for Modals
 
-Native modal with backdrop and focus trapping:
+Native modal with backdrop and focus trapping—**fully declarative with `command`/`commandfor`**:
 
 ```html
+<button commandfor="settings-dialog" command="show-modal">
+  Open Settings
+</button>
+
 <dialog id="settings-dialog">
   <h2>Settings</h2>
   <form method="dialog">
     <!-- Form content -->
     <button type="submit">Close</button>
+    <!-- Or explicit close button -->
+    <button commandfor="settings-dialog" command="close">Cancel</button>
   </form>
 </dialog>
-
-<button onclick="document.getElementById('settings-dialog').showModal()">
-  Open Settings
-</button>
 ```
 
 ```css
 dialog {
   border: none;
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   max-width: 32rem;
   padding: var(--spacing-lg);
 
   &::backdrop {
-    background: rgba(0, 0, 0, 0.5);
+    background: oklch(0% 0 0 / 0.5);
   }
 }
 ```
 
-**Note:** `<dialog>` requires minimal JS to open (`showModal()`), but closing with `method="dialog"` is native.
+**No JavaScript required.** The browser handles:
+- Opening/closing
+- Focus management
+- `aria-expanded` states
+- Backdrop clicks (with `method="dialog"`)
+
+### Popover API
+
+Popovers provide lightweight, non-modal overlays:
+
+```html
+<button commandfor="user-menu" command="toggle-popover">
+  Menu
+</button>
+
+<div popover id="user-menu">
+  <nav>
+    <a href="/profile">Profile</a>
+    <a href="/settings">Settings</a>
+    <a href="/logout">Logout</a>
+  </nav>
+</div>
+```
+
+```css
+[popover] {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-md);
+
+  /* Entry animation */
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  transition: opacity 0.2s, transform 0.2s, display 0.2s allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Starting style for animation */
+  @starting-style {
+    &:popover-open {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+  }
+}
+```
+
+#### Popover Commands
+
+| Command | Behavior |
+|---------|----------|
+| `toggle-popover` | Toggle open/closed |
+| `show-popover` | Open only |
+| `hide-popover` | Close only |
+
+#### Dialog vs Popover
+
+| Feature | `<dialog>` | `popover` |
+|---------|-----------|-----------|
+| Modal blocking | Yes (with `show-modal`) | No |
+| Backdrop | Yes | Optional |
+| Light dismiss | With `method="dialog"` | Yes (click outside) |
+| Focus trapping | Yes | No |
+| Use case | Confirmations, forms | Menus, tooltips, dropdowns |
+
+### The `command` and `commandfor` Attributes
+
+These attributes enable **declarative button behaviors** without JavaScript:
+
+```html
+<button commandfor="target-id" command="action">Label</button>
+```
+
+#### Built-in Commands
+
+| Command | Target | Effect |
+|---------|--------|--------|
+| `show-modal` | `<dialog>` | Opens as modal |
+| `close` | `<dialog>` | Closes dialog |
+| `toggle-popover` | `[popover]` | Toggles popover |
+| `show-popover` | `[popover]` | Opens popover |
+| `hide-popover` | `[popover]` | Closes popover |
+
+#### Custom Commands
+
+Define custom behaviors with `--` prefix:
+
+```html
+<button commandfor="gallery" command="--next-slide">Next</button>
+<button commandfor="gallery" command="--prev-slide">Previous</button>
+
+<div id="gallery">
+  <!-- Gallery content -->
+</div>
+```
+
+```javascript
+// JavaScript handles custom commands
+document.getElementById('gallery').addEventListener('command', (event) => {
+  switch (event.command) {
+    case '--next-slide':
+      // Next slide logic
+      break;
+    case '--prev-slide':
+      // Previous slide logic
+      break;
+  }
+});
+```
+
+#### Benefits Over onclick
+
+| `onclick` | `command`/`commandfor` |
+|-----------|------------------------|
+| Inline JavaScript | Declarative HTML |
+| CSP violations possible | CSP-friendly |
+| Manual aria management | Automatic accessibility |
+| Framework state needed | Browser handles state |
 
 ### `<datalist>` for Autocomplete
 
@@ -226,7 +349,7 @@ body {
   &:has(#tab-1:checked) label[for="tab-1"],
   &:has(#tab-2:checked) label[for="tab-2"],
   &:has(#tab-3:checked) label[for="tab-3"] {
-    background: var(--primary-color);
+    background: var(--primary);
     color: white;
   }
 }
@@ -250,12 +373,12 @@ article:has(img) {
 /* Form field styling based on input state */
 form-field:has(input:required) label::after {
   content: " *";
-  color: var(--error-color);
+  color: var(--error);
 }
 
 /* Card highlight when checkbox is checked */
 product-card:has(input:checked) {
-  border-color: var(--primary-color);
+  border-color: var(--primary);
 }
 ```
 
@@ -284,21 +407,21 @@ These apply only **after user interaction**, preventing premature error states:
 ```css
 /* Only show valid state after user has typed */
 input:user-valid {
-  border-color: var(--success-color);
+  border-color: var(--success);
 }
 
 /* Only show error after user has interacted */
 input:user-invalid {
-  border-color: var(--error-color);
+  border-color: var(--error);
 }
 
 /* Parent styling based on input state */
 form-field:has(input:user-valid) output {
-  color: var(--success-color);
+  color: var(--success);
 }
 
 form-field:has(input:user-invalid) output {
-  color: var(--error-color);
+  color: var(--error);
 }
 ```
 
@@ -340,7 +463,7 @@ input:required {
 
 label:has(+ input:required)::after {
   content: " *";
-  color: var(--error-color);
+  color: var(--error);
 }
 ```
 
@@ -467,7 +590,7 @@ CSS can style focus, but focus order requires HTML structure or JS:
 ```css
 /* Visible focus indicators */
 :focus-visible {
-  outline: 2px solid var(--primary-color);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -661,7 +784,8 @@ When building interactive features:
 
 - [ ] Does it work without JavaScript?
 - [ ] Is there semantic HTML structure?
-- [ ] Are native elements used where applicable (`<details>`, `<dialog>`)?
+- [ ] Are native elements used where applicable (`<details>`, `<dialog>`, `[popover]`)?
+- [ ] Are `command`/`commandfor` used for dialogs and popovers (not `onclick`)?
 - [ ] Is state managed via checkboxes/radios for CSS access?
 - [ ] Are data attributes used instead of classes for state?
 - [ ] Is `:has()` used appropriately for parent styling?

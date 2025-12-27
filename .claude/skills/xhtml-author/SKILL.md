@@ -151,6 +151,7 @@ When creating HTML, also invoke these skills based on content:
 | Form elements | **forms** | Use `<form-field>` custom element |
 | Images | **responsive-images** | Use `<picture>` with srcset |
 | Page head content | **metadata** | SEO, social, performance hints |
+| Dialogs, popovers, toggles | **progressive-enhancement** | Use `command`/`commandfor` attributes |
 | Interactive elements | **accessibility-checker** | WCAG2AA compliance |
 
 ### Critical: Icons
@@ -167,12 +168,51 @@ When creating HTML, also invoke these skills based on content:
 
 See the **icons** skill for the full pattern.
 
+### Critical: Interactive Elements
+
+**Use declarative `command`/`commandfor` attributes** for dialogs and popovers—never `onclick`:
+
+```html
+<!-- WRONG - inline JavaScript -->
+<button onclick="document.getElementById('modal').showModal()">
+  Open
+</button>
+
+<!-- CORRECT - declarative attributes -->
+<button commandfor="modal" command="show-modal">
+  Open
+</button>
+<dialog id="modal">
+  <h2>Modal Title</h2>
+  <button commandfor="modal" command="close">Close</button>
+</dialog>
+
+<!-- CORRECT - popover pattern -->
+<button commandfor="menu" command="toggle-popover">
+  Menu
+</button>
+<nav popover id="menu">
+  <!-- Navigation items -->
+</nav>
+```
+
+| Command | Target | Effect |
+|---------|--------|--------|
+| `show-modal` | `<dialog>` | Opens as modal |
+| `close` | `<dialog>` | Closes dialog |
+| `toggle-popover` | `[popover]` | Toggles popover |
+| `show-popover` | `[popover]` | Opens popover |
+| `hide-popover` | `[popover]` | Closes popover |
+
+See the **progressive-enhancement** skill for complete patterns.
+
 ## Related Skills
 
 - **icons** - Lucide icon library with `<x-icon>` Web Component
 - **forms** - HTML-first form patterns with CSS-only validation
 - **responsive-images** - Modern responsive image techniques
 - **metadata** - HTML metadata and head content
+- **progressive-enhancement** - Declarative dialogs/popovers with `command`/`commandfor`
 - **accessibility-checker** - Ensure WCAG2AA accessibility compliance
 - **css-author** - Modern CSS organization with @layer
 - **javascript-author** - Vanilla JavaScript for Web Components

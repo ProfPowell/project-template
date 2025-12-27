@@ -127,15 +127,17 @@ Use `<nav>` with aria-label when multiple navs exist:
 
 ## Menu Disclosure
 
+**Modern approach: Use `popover` with `command`/`commandfor`** for automatic accessibility:
+
 ```html
 <nav aria-label="Main navigation">
   <ul>
     <li><a href="/">Home</a></li>
     <li>
-      <button aria-expanded="false" aria-controls="products-menu">
+      <button commandfor="products-menu" command="toggle-popover">
         Products
       </button>
-      <ul id="products-menu" hidden="">
+      <ul popover id="products-menu">
         <li><a href="/products/software">Software</a></li>
         <li><a href="/products/hardware">Hardware</a></li>
       </ul>
@@ -143,6 +145,24 @@ Use `<nav>` with aria-label when multiple navs exist:
     <li><a href="/about">About</a></li>
   </ul>
 </nav>
+```
+
+The browser automatically handles:
+- `aria-expanded` state on the button
+- `aria-details` relationship
+- Focus management
+- Escape key dismissal
+- Click-outside dismissal
+
+**Legacy pattern** (requires JavaScript for state management):
+
+```html
+<button aria-expanded="false" aria-controls="products-menu">
+  Products
+</button>
+<ul id="products-menu" hidden="">
+  <!-- Menu items -->
+</ul>
 ```
 
 ## Link Accessibility

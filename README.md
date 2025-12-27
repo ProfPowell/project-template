@@ -170,6 +170,48 @@ bd update <id> --status in_progress
 bd close <id>
 ```
 
+### Pattern Library
+
+**50+ UI Patterns** defined in `patterns.json` with examples in `examples/patterns/`:
+
+| Category | Patterns |
+|----------|----------|
+| **Navigation** | site-header, site-footer, breadcrumbs, skip-link |
+| **Layout** | page-shell, sidebar-layout, dashboard-layout, split-layout, card-grid, masonry, stack, cluster, content-width, full-bleed, divider, spacer |
+| **Content** | hero, card, blog-card, product-card, testimonial, stats, cta, logo-cloud, feature-grid, faq-list |
+| **Feedback** | alert, banner, toast, modal, popover, empty-state, skeleton, progress-bar |
+| **Data** | data-table, data-list, definition-list, key-value, comparison-table, tree-view, calendar, chart-wrapper |
+
+Each pattern includes:
+- Semantic HTML structure with custom element wrappers
+- Anatomy documentation (required/optional parts)
+- State definitions (default, hover, loading, etc.)
+- Variants via `data-*` attributes
+- Accessibility requirements (ARIA, keyboard navigation)
+- Related patterns for composition
+
+**20 Page Templates** in `examples/patterns/pages/`:
+
+| Type | Templates |
+|------|-----------|
+| **Marketing** | homepage, about, contact, pricing, faq, legal, product-listing, product-detail, blog-listing, blog-post, press |
+| **Application** | login, signup, dashboard, settings, profile, list-view, detail-view, error-404, error-500 |
+
+Templates demonstrate pattern composition with shared CSS in `templates.css`.
+
+**Usage:**
+
+```bash
+# Generate pattern documentation
+npm run generate:patterns
+
+# Create a new pattern
+/add-pattern
+
+# Scaffold a page using patterns
+/scaffold-page
+```
+
 ## Quick Start
 
 1. **Clone or copy this template**

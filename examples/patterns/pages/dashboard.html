@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Company</title>
+  <link rel="stylesheet" href="templates.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-sidebar__header">
+        <a href="/" style="font-size: var(--text-xl); font-weight: var(--font-weight-bold); color: var(--text); text-decoration: none;">Company</a>
+      </div>
+      <nav class="dashboard-sidebar__nav" aria-label="Dashboard">
+        <ul>
+          <li><a href="/dashboard" class="active">Dashboard</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/team">Team</a></li>
+          <li><a href="/reports">Reports</a></li>
+          <li><a href="/analytics">Analytics</a></li>
+        </ul>
+        <hr style="border: none; border-top: 1px solid var(--border); margin: var(--spacing-md) 0;" />
+        <ul>
+          <li><a href="/settings">Settings</a></li>
+          <li><a href="/help">Help &amp; Support</a></li>
+        </ul>
+      </nav>
+      <div class="dashboard-sidebar__footer">
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <div style="width: 2rem; height: 2rem; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: var(--text-sm); font-weight: var(--font-weight-semibold);">JD</div>
+          <div>
+            <div style="font-size: var(--text-sm); font-weight: var(--font-weight-medium);">Jane Doe</div>
+            <div style="font-size: var(--text-xs); color: var(--text-muted);">Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+        <h1 style="margin: 0; font-size: var(--text-xl);">Dashboard</h1>
+      </div>
+      <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+        <button type="button" class="btn btn--secondary">Export</button>
+        <button type="button" class="btn btn--primary">New Project</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main" class="dashboard-main">
+      <!-- Stats Row -->
+      <div class="stats-grid" style="margin-bottom: var(--spacing-xl);">
+        <div class="stat-card">
+          <div class="stat-card__label">Total Revenue</div>
+          <div class="stat-card__value">$45,231</div>
+          <div class="stat-card__change stat-card__change--positive">+12.5% from last month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">Active Projects</div>
+          <div class="stat-card__value">23</div>
+          <div class="stat-card__change stat-card__change--positive">+3 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">Team Members</div>
+          <div class="stat-card__value">12</div>
+          <div class="stat-card__change">No change</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">Completion Rate</div>
+          <div class="stat-card__value">87%</div>
+          <div class="stat-card__change stat-card__change--positive">+5% from last month</div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+        <div class="chart-wrapper">
+          <div class="chart-wrapper__header">
+            <h2 class="chart-wrapper__title">Revenue Overview</h2>
+            <select class="form-select" style="width: auto;">
+              <option>Last 7 days</option>
+              <option selected>Last 30 days</option>
+              <option>Last 90 days</option>
+            </select>
+          </div>
+          <div class="chart-wrapper__body">
+            <div class="chart-wrapper__placeholder">Chart: Revenue trend line</div>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <div class="chart-wrapper__header">
+            <h2 class="chart-wrapper__title">Project Status</h2>
+          </div>
+          <div class="chart-wrapper__body">
+            <div class="chart-wrapper__placeholder">Chart: Status breakdown</div>
+          </div>
+          <div class="chart-wrapper__legend">
+            <div class="chart-wrapper__legend-item">
+              <span class="chart-wrapper__legend-dot" style="background: var(--success);"></span>
+              Completed (45%)
+            </div>
+            <div class="chart-wrapper__legend-item">
+              <span class="chart-wrapper__legend-dot" style="background: var(--primary);"></span>
+              In Progress (35%)
+            </div>
+            <div class="chart-wrapper__legend-item">
+              <span class="chart-wrapper__legend-dot" style="background: var(--text-muted);"></span>
+              Pending (20%)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity Table -->
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
+        <div style="padding: var(--spacing-lg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+          <h2 style="margin: 0; font-size: var(--text-lg);">Recent Projects</h2>
+          <a href="/projects" style="font-size: var(--text-sm);">View all</a>
+        </div>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Team</th>
+                <th>Due Date</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div style="font-weight: var(--font-weight-medium);">Website Redesign</div>
+                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Marketing</div>
+                </td>
+                <td><span class="badge badge--success">Active</span></td>
+                <td>
+                  <div style="display: flex;">
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--primary); border-radius: 50%; border: 2px solid var(--surface);"></div>
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--success); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--warning); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
+                  </div>
+                </td>
+                <td>Dec 31, 2025</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 75%; height: 100%; background: var(--success);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm);">75%</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: var(--font-weight-medium);">Mobile App v2</div>
+                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Engineering</div>
+                </td>
+                <td><span class="badge badge--success">Active</span></td>
+                <td>
+                  <div style="display: flex;">
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--error); border-radius: 50%; border: 2px solid var(--surface);"></div>
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--primary); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
+                  </div>
+                </td>
+                <td>Jan 15, 2026</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 45%; height: 100%; background: var(--primary);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm);">45%</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: var(--font-weight-medium);">Q1 Campaign</div>
+                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Marketing</div>
+                </td>
+                <td><span class="badge badge--warning">Planning</span></td>
+                <td>
+                  <div style="display: flex;">
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--success); border-radius: 50%; border: 2px solid var(--surface);"></div>
+                  </div>
+                </td>
+                <td>Feb 1, 2026</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 10%; height: 100%; background: var(--warning);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm);">10%</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="font-weight: var(--font-weight-medium);">API Integration</div>
+                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Engineering</div>
+                </td>
+                <td><span class="badge">Completed</span></td>
+                <td>
+                  <div style="display: flex;">
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--primary); border-radius: 50%; border: 2px solid var(--surface);"></div>
+                    <div style="width: 1.5rem; height: 1.5rem; background: var(--warning); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
+                  </div>
+                </td>
+                <td>Dec 15, 2025</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 100%; height: 100%; background: var(--success);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm);">100%</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

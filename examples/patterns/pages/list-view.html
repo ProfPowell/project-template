@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects - Company</title>
+  <link rel="stylesheet" href="templates.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar">
+      <div class="dashboard-sidebar__header">
+        <a href="/" style="font-size: var(--text-xl); font-weight: var(--font-weight-bold); color: var(--text); text-decoration: none;">Company</a>
+      </div>
+      <nav class="dashboard-sidebar__nav" aria-label="Dashboard">
+        <ul>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/projects" class="active">Projects</a></li>
+          <li><a href="/team">Team</a></li>
+          <li><a href="/reports">Reports</a></li>
+          <li><a href="/analytics">Analytics</a></li>
+        </ul>
+        <hr style="border: none; border-top: 1px solid var(--border); margin: var(--spacing-md) 0;" />
+        <ul>
+          <li><a href="/settings">Settings</a></li>
+          <li><a href="/help">Help &amp; Support</a></li>
+        </ul>
+      </nav>
+      <div class="dashboard-sidebar__footer">
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <div style="width: 2rem; height: 2rem; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: var(--text-sm); font-weight: var(--font-weight-semibold);">JD</div>
+          <div>
+            <div style="font-size: var(--text-sm); font-weight: var(--font-weight-medium);">Jane Doe</div>
+            <div style="font-size: var(--text-xs); color: var(--text-muted);">Admin</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+        <h1 style="margin: 0; font-size: var(--text-xl);">Projects</h1>
+        <span class="badge">23 total</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+        <button type="button" class="btn btn--secondary">Export</button>
+        <button type="button" class="btn btn--primary">New Project</button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main" class="dashboard-main">
+      <!-- Filters Bar -->
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--spacing-md); margin-bottom: var(--spacing-lg);">
+        <form style="display: flex; gap: var(--spacing-md); align-items: center; flex-wrap: wrap;">
+          <!-- Search -->
+          <div style="flex: 1; min-width: 200px;">
+            <input type="search" class="form-input" placeholder="Search projects..." aria-label="Search projects" />
+          </div>
+
+          <!-- Status Filter -->
+          <div>
+            <select class="form-select" aria-label="Filter by status">
+              <option value="">All statuses</option>
+              <option value="active">Active</option>
+              <option value="planning">Planning</option>
+              <option value="completed">Completed</option>
+              <option value="on-hold">On Hold</option>
+            </select>
+          </div>
+
+          <!-- Team Filter -->
+          <div>
+            <select class="form-select" aria-label="Filter by team">
+              <option value="">All teams</option>
+              <option value="engineering">Engineering</option>
+              <option value="marketing">Marketing</option>
+              <option value="design">Design</option>
+              <option value="sales">Sales</option>
+            </select>
+          </div>
+
+          <!-- Date Range -->
+          <div>
+            <select class="form-select" aria-label="Filter by date">
+              <option value="">All time</option>
+              <option value="7">Last 7 days</option>
+              <option value="30">Last 30 days</option>
+              <option value="90">Last 90 days</option>
+            </select>
+          </div>
+
+          <!-- Clear Filters -->
+          <button type="reset" class="btn btn--ghost">Clear filters</button>
+        </form>
+      </div>
+
+      <!-- Results Info -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+        <p style="margin: 0; color: var(--text-muted); font-size: var(--text-sm);">Showing 1-10 of 23 projects</p>
+        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+          <span style="font-size: var(--text-sm); color: var(--text-muted);">Sort by:</span>
+          <select class="form-select" style="width: auto;" aria-label="Sort projects">
+            <option>Last updated</option>
+            <option>Name (A-Z)</option>
+            <option>Name (Z-A)</option>
+            <option>Due date</option>
+            <option>Progress</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Projects Table -->
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; margin-bottom: var(--spacing-lg);">
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="width: 2rem;"><input type="checkbox" aria-label="Select all" /></th>
+                <th>Project</th>
+                <th>Status</th>
+                <th>Team</th>
+                <th>Due Date</th>
+                <th>Progress</th>
+                <th style="width: 3rem;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" aria-label="Select Website Redesign" /></td>
+                <td>
+                  <a href="/projects/website-redesign" style="text-decoration: none;">
+                    <div style="font-weight: var(--font-weight-medium); color: var(--text);">Website Redesign</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-muted);">Complete overhaul of marketing site</div>
+                  </a>
+                </td>
+                <td><span class="badge badge--success">Active</span></td>
+                <td>Marketing</td>
+                <td>Dec 31, 2025</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 75%; height: 100%; background: var(--success);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm); min-width: 2.5rem;">75%</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn--ghost btn--small" aria-label="More actions">⋮</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" aria-label="Select Mobile App v2" /></td>
+                <td>
+                  <a href="/projects/mobile-app-v2" style="text-decoration: none;">
+                    <div style="font-weight: var(--font-weight-medium); color: var(--text);">Mobile App v2</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-muted);">iOS and Android app redesign</div>
+                  </a>
+                </td>
+                <td><span class="badge badge--success">Active</span></td>
+                <td>Engineering</td>
+                <td>Jan 15, 2026</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 45%; height: 100%; background: var(--primary);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm); min-width: 2.5rem;">45%</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn--ghost btn--small" aria-label="More actions">⋮</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" aria-label="Select Q1 Campaign" /></td>
+                <td>
+                  <a href="/projects/q1-campaign" style="text-decoration: none;">
+                    <div style="font-weight: var(--font-weight-medium); color: var(--text);">Q1 Marketing Campaign</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-muted);">New year product launch</div>
+                  </a>
+                </td>
+                <td><span class="badge badge--warning">Planning</span></td>
+                <td>Marketing</td>
+                <td>Feb 1, 2026</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 10%; height: 100%; background: var(--warning);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm); min-width: 2.5rem;">10%</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn--ghost btn--small" aria-label="More actions">⋮</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" aria-label="Select API Integration" /></td>
+                <td>
+                  <a href="/projects/api-integration" style="text-decoration: none;">
+                    <div style="font-weight: var(--font-weight-medium); color: var(--text);">API Integration</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-muted);">Third-party payment gateway</div>
+                  </a>
+                </td>
+                <td><span class="badge">Completed</span></td>
+                <td>Engineering</td>
+                <td>Dec 15, 2025</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 100%; height: 100%; background: var(--success);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm); min-width: 2.5rem;">100%</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn--ghost btn--small" aria-label="More actions">⋮</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" aria-label="Select Design System" /></td>
+                <td>
+                  <a href="/projects/design-system" style="text-decoration: none;">
+                    <div style="font-weight: var(--font-weight-medium); color: var(--text);">Design System</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-muted);">Component library and documentation</div>
+                  </a>
+                </td>
+                <td><span class="badge badge--success">Active</span></td>
+                <td>Design</td>
+                <td>Mar 1, 2026</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 60%; height: 100%; background: var(--primary);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm); min-width: 2.5rem;">60%</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn--ghost btn--small" aria-label="More actions">⋮</button>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" aria-label="Select Customer Portal" /></td>
+                <td>
+                  <a href="/projects/customer-portal" style="text-decoration: none;">
+                    <div style="font-weight: var(--font-weight-medium); color: var(--text);">Customer Portal</div>
+                    <div style="font-size: var(--text-sm); color: var(--text-muted);">Self-service dashboard for customers</div>
+                  </a>
+                </td>
+                <td><span class="badge badge--error">On Hold</span></td>
+                <td>Engineering</td>
+                <td>TBD</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
+                      <div style="width: 25%; height: 100%; background: var(--text-muted);"></div>
+                    </div>
+                    <span style="font-size: var(--text-sm); min-width: 2.5rem;">25%</span>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn--ghost btn--small" aria-label="More actions">⋮</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <nav aria-label="Pagination" style="display: flex; justify-content: space-between; align-items: center;">
+        <p style="margin: 0; color: var(--text-muted); font-size: var(--text-sm);">
+          Showing <strong>1</strong> to <strong>10</strong> of <strong>23</strong> results
+        </p>
+        <div style="display: flex; gap: var(--spacing-xs);">
+          <button type="button" class="btn btn--secondary btn--small" disabled>Previous</button>
+          <button type="button" class="btn btn--primary btn--small">1</button>
+          <button type="button" class="btn btn--secondary btn--small">2</button>
+          <button type="button" class="btn btn--secondary btn--small">3</button>
+          <button type="button" class="btn btn--secondary btn--small">Next</button>
+        </div>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

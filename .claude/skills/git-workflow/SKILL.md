@@ -252,7 +252,7 @@ If UAT is denied:
 
 ## Pre-Session Checklist
 
-When starting a Claude Code session:
+When starting an AI assistant session:
 
 1. **Check git status**: Any uncommitted changes?
 2. **Review open issues**: `bd ready` or `bd list --status open`

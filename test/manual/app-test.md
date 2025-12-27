@@ -17,7 +17,7 @@ Test the backend development workflow for building a Node.js API application.
 
 ### Step 1.1: Scaffold the backend
 
-Ask Claude:
+Prompt:
 ```
 /scaffold-backend
 ```
@@ -70,7 +70,7 @@ Check that core dependencies are added:
 
 ### Step 2.1: Scaffold database structure
 
-Ask Claude:
+Prompt:
 ```
 /scaffold-database
 ```
@@ -89,7 +89,7 @@ src/db/
 
 ### Step 2.2: Create a migration
 
-Ask Claude:
+Prompt:
 ```
 /add-migration create_users
 ```
@@ -101,7 +101,7 @@ Ask Claude:
 
 ### Step 2.3: Edit the migration
 
-Ask Claude:
+Prompt:
 ```
 Edit the migration to create a users table with: id (uuid), email (unique), name, password_hash, created_at, updated_at
 ```
@@ -120,7 +120,7 @@ CREATE TABLE users (
 
 ### Step 2.4: Create a seed file
 
-Ask Claude:
+Prompt:
 ```
 /add-seed users
 ```
@@ -154,7 +154,7 @@ npm run db:migrate
 
 ### Step 3.1: Create a POST endpoint
 
-Ask Claude:
+Prompt:
 ```
 /add-endpoint POST /api/users "Create a new user"
 ```
@@ -167,7 +167,7 @@ Ask Claude:
 
 ### Step 3.2: Create a GET endpoint with parameter
 
-Ask Claude:
+Prompt:
 ```
 /add-endpoint GET /api/users/:id "Get user by ID"
 ```
@@ -180,7 +180,7 @@ Ask Claude:
 
 ### Step 3.3: Create a list endpoint with pagination
 
-Ask Claude:
+Prompt:
 ```
 /add-endpoint GET /api/users "List all users with pagination"
 ```
@@ -193,7 +193,7 @@ Ask Claude:
 
 ### Step 3.4: Verify OpenAPI documentation
 
-Ask Claude:
+Prompt:
 ```
 Show me the OpenAPI spec for these endpoints
 ```
@@ -218,7 +218,7 @@ Show me the OpenAPI spec for these endpoints
 
 ### Step 4.1: Add JWT authentication
 
-Ask Claude:
+Prompt:
 ```
 /add-auth jwt
 ```
@@ -240,7 +240,7 @@ Check that these endpoints are created:
 
 ### Step 4.3: Test protected route pattern
 
-Ask Claude:
+Prompt:
 ```
 Show me how to protect the GET /api/users endpoint with authentication
 ```
@@ -273,7 +273,7 @@ Check that passwords are:
 
 ### Step 5.1: Create handler missing status code
 
-Ask Claude:
+Prompt:
 ```
 Create src/api/routes/test.js with a handler that does res.json({ data }) without res.status()
 ```
@@ -283,7 +283,7 @@ Create src/api/routes/test.js with a handler that does res.json({ data }) withou
 
 ### Step 5.2: Create handler with SQL string interpolation
 
-Ask Claude:
+Prompt:
 ```
 Edit the test route to include:
 const result = await db.query(`SELECT * FROM users WHERE id = '${req.params.id}'`);
@@ -295,7 +295,7 @@ const result = await db.query(`SELECT * FROM users WHERE id = '${req.params.id}'
 
 ### Step 5.3: Create handler without error handling
 
-Ask Claude:
+Prompt:
 ```
 Create an async handler without try/catch
 ```
@@ -305,7 +305,7 @@ Create an async handler without try/catch
 
 ### Step 5.4: Create handler exposing stack trace
 
-Ask Claude:
+Prompt:
 ```
 Add error handling that sends err.stack to the client
 ```
@@ -315,7 +315,7 @@ Add error handling that sends err.stack to the client
 
 ### Step 5.5: Fix all issues
 
-Ask Claude:
+Prompt:
 ```
 Fix all the API issues in the test route
 ```
@@ -339,14 +339,14 @@ Fix all the API issues in the test route
 
 ### Step 6.1: Create a utility script
 
-Ask Claude:
+Prompt:
 ```
 Create scripts/hash-password.js that exports a function to hash passwords
 ```
 
 ### Step 6.2: Scaffold tests for the script
 
-Ask Claude:
+Prompt:
 ```
 /add-test scripts/hash-password.js
 ```
@@ -372,7 +372,7 @@ node --test test/validators/hash-password.test.js
 
 ### Step 6.4: Add real test assertions
 
-Ask Claude:
+Prompt:
 ```
 Fill in the test file with real assertions for the hash-password function
 ```
@@ -402,7 +402,7 @@ git checkout -b feature/beads-test-uat-workflow
 
 ### Step 7.2: Request UAT
 
-Ask Claude:
+Prompt:
 ```
 /uat request test-feature
 ```
@@ -417,7 +417,7 @@ Ask Claude:
 
 ### Step 7.3: Check UAT status
 
-Ask Claude:
+Prompt:
 ```
 /uat status test-feature
 ```
@@ -428,7 +428,7 @@ Ask Claude:
 
 ### Step 7.4: Approve UAT
 
-Ask Claude:
+Prompt:
 ```
 /uat approve test-feature
 ```
@@ -466,7 +466,7 @@ Create another branch and test denial:
 
 ### Step 8.1: Create .env file
 
-Ask Claude:
+Prompt:
 ```
 Create .env.example with all required environment variables for the backend
 ```
@@ -495,7 +495,7 @@ Check that:
 
 ### Step 8.3: Test missing environment variable
 
-Ask Claude:
+Prompt:
 ```
 Edit src/config/index.js to require DATABASE_URL and throw if missing
 ```
@@ -522,7 +522,7 @@ Create a config file and verify the env-config skill guidance appears.
 
 ### Step 9.1: Generate OpenAPI spec
 
-Ask Claude:
+Prompt:
 ```
 /add-openapi
 ```

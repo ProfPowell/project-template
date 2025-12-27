@@ -1,12 +1,12 @@
 # Project Template
 
-A web project template with validation, automation, and Claude Code integration for building accessible, semantic HTML websites and webapps.
+A web project template with validation, automation, and AI-assisted development for building accessible, semantic HTML websites and webapps.
 
 ## What This Template Provides
 
-### Claude Code Integration
+### AI Skills Integration
 
-**53 Skills** - Guidance that activates when Claude recognizes relevant context:
+**53 Skills** - Guidance that activates when AI recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -182,7 +182,7 @@ bd close <id>
 
 ### Pattern Library
 
-**50+ UI Patterns** defined in `patterns.json` with examples in `examples/patterns/`:
+**50+ UI Patterns** defined in `patterns.json` with examples in `patterns/`:
 
 | Category | Patterns |
 |----------|----------|
@@ -200,7 +200,7 @@ Each pattern includes:
 - Accessibility requirements (ARIA, keyboard navigation)
 - Related patterns for composition
 
-**20 Page Templates** in `examples/patterns/pages/`:
+**20 Page Templates** in `patterns/pages/`:
 
 | Type | Templates |
 |------|-----------|
@@ -224,7 +224,7 @@ npm run generate:patterns
 
 ### Component Library
 
-**Atomic UI Components** in `examples/patterns/components/` bridging design tokens and patterns:
+**Atomic UI Components** in `patterns/components/` bridging design tokens and patterns:
 
 ```
 Templates (pages)
@@ -277,7 +277,7 @@ Tokens (colors, spacing, type)
 </form-field>
 ```
 
-Browse the [Component Gallery](examples/patterns/components/index.html) for all components with examples.
+Browse the [Component Gallery](patterns/components/index.html) for all components with examples.
 
 ### Project Scaffolds
 
@@ -306,7 +306,7 @@ Each starter includes:
 /scaffold-spa       # PWA/SPA application
 ```
 
-See [starters/README.md](starters/README.md) for detailed documentation.
+See the [starters/README.md](starters/README.md) for detailed documentation.
 
 ### Design Token System
 
@@ -397,20 +397,20 @@ npm run icons:sync
 
 1. **Start building**
 
-Open in Claude Code. The skills and hooks will guide your development.
+Open with an AI assistant. The skills and hooks will guide your development.
 
 ## Configuration Files
 
 | File | Purpose |
 |------|---------|
-| `.htmlvalidate.json` | XHTML validation rules |
-| `.htmlhintrc` | HTML linting |
-| `.pa11yci` | Accessibility (WCAG2AA) |
-| `.stylelintrc.json` | CSS linting |
+| `.config/htmlvalidate.json` | XHTML validation rules |
+| `.config/htmlhint.json` | HTML linting |
+| `.config/pa11yci.json` | Accessibility (WCAG2AA) |
+| `.config/stylelint.json` | CSS linting |
 | `eslint.config.js` | JavaScript linting |
-| `.cspell.json` | Spell checking |
-| `.textlintrc.json` | Grammar checking |
-| `.markdownlint.json` | Markdown linting |
+| `.config/cspell.json` | Spell checking |
+| `.config/textlint.json` | Grammar checking |
+| `.config/markdownlint.json` | Markdown linting |
 | `elements.json` | Custom element definitions |
 | `project-words.txt` | Custom dictionary |
 | `lighthouserc.json` | Lighthouse CI |
@@ -445,7 +445,7 @@ microservice
 
 ### Adjust Accessibility Standard
 
-Edit `.pa11yci`:
+Edit `.config/pa11yci.json`:
 
 ```json
 {
@@ -509,5 +509,5 @@ Edit `.pa11yci`:
 
 - Node.js 18+
 - npm
-- Claude Code (for skill and hook integration)
+- AI assistant with `.claude/` support (for skill and hook integration)
 - bd (beads) for issue tracking: `brew install steveyegge/beads/bd`

@@ -10,8 +10,8 @@ Create a new page using pattern compositions.
 1. Identify the page type and look up its composition in `patterns-plan.md`
 
 2. Create the page file at the appropriate location:
-   - Marketing pages: `src/{page-name}.html` or `examples/patterns/pages/{page-name}.html`
-   - App pages: `src/app/{page-name}.html` or `examples/patterns/pages/{page-name}.html`
+   - Marketing pages: `src/{page-name}.html` or `patterns/pages/{page-name}.html`
+   - App pages: `src/app/{page-name}.html` or `patterns/pages/{page-name}.html`
 
 3. Include the standard page structure:
    - DOCTYPE and lang attribute

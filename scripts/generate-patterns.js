@@ -563,7 +563,7 @@ ${contextualHtml}
  */
 function main() {
   const args = process.argv.slice(2);
-  let outputDir = join(ROOT, 'docs', 'patterns');
+  let outputDir = join(ROOT, 'patterns');
 
   // Parse arguments
   for (const arg of args) {
@@ -579,11 +579,11 @@ Usage:
   node scripts/generate-patterns.js [options]
 
 Options:
-  --output=PATH   Output directory (default: docs/patterns)
+  --output=PATH   Output directory (default: patterns)
   --help, -h      Show this help
 
 Output:
-  docs/patterns/index.html - Main pattern library page
+  patterns/index.html - Main pattern library page
 `);
       process.exit(0);
     }

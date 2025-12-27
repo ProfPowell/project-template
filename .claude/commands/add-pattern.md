@@ -17,7 +17,7 @@ Create a new pattern in the pattern library.
 
 2. Read `patterns.json` to check for existing patterns
 
-3. Create the pattern documentation file at `docs/patterns/{category}/{pattern-name}.md` using the template structure
+3. Create the pattern documentation file at `patterns/{category}/{pattern-name}.md` using the template structure
 
 4. Add the pattern entry to `patterns.json` with:
    - Basic metadata (name, category, description, status: "draft")
@@ -29,7 +29,7 @@ Create a new pattern in the pattern library.
    - Add it to `elements.json` using the add-element pattern
    - Link it in the pattern definition
 
-6. Create an example HTML file at `examples/patterns/components/{pattern-name}.html`
+6. Create an example HTML file at `patterns/components/{pattern-name}.html`
 
 ## Pattern Documentation Template
 

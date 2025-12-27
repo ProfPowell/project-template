@@ -19,7 +19,7 @@ A quick test to verify the fundamental features of the project template work cor
    npm install
    ```
 
-3. Start Claude Code in the project:
+3. Start your AI assistant in the project:
    ```bash
    claude
    ```
@@ -32,7 +32,7 @@ A quick test to verify the fundamental features of the project template work cor
 
 ### Step 1.1: Create a simple HTML file
 
-Ask Claude:
+Prompt:
 ```
 Create a file examples/hello.html with a basic HTML5 page that says "Hello World"
 ```
@@ -60,7 +60,7 @@ The file should look similar to:
 
 ### Step 1.3: Trigger validation errors (intentional)
 
-Ask Claude:
+Prompt:
 ```
 Edit examples/hello.html to add an image without an alt attribute: <img src="photo.jpg">
 ```
@@ -71,7 +71,7 @@ Edit examples/hello.html to add an image without an alt attribute: <img src="pho
 
 ### Step 1.4: Fix and verify
 
-Ask Claude:
+Prompt:
 ```
 Fix the image to have proper alt text
 ```
@@ -91,7 +91,7 @@ Fix the image to have proper alt text
 
 ### Step 2.1: Create a CSS file
 
-Ask Claude:
+Prompt:
 ```
 Create examples/hello.css with styles for the hello.html page
 ```
@@ -102,7 +102,7 @@ Create examples/hello.css with styles for the hello.html page
 
 ### Step 2.2: Trigger nesting depth warning (intentional)
 
-Ask Claude:
+Prompt:
 ```
 Edit examples/hello.css to add deeply nested selectors like:
 .container {
@@ -124,7 +124,7 @@ Edit examples/hello.css to add deeply nested selectors like:
 
 ### Step 2.3: Fix and verify
 
-Ask Claude:
+Prompt:
 ```
 Refactor the CSS to reduce nesting depth
 ```
@@ -144,7 +144,7 @@ Refactor the CSS to reduce nesting depth
 
 ### Step 3.1: Create a JavaScript file
 
-Ask Claude:
+Prompt:
 ```
 Create examples/hello.js with a simple function that logs a greeting
 ```
@@ -155,7 +155,7 @@ Create examples/hello.js with a simple function that logs a greeting
 
 ### Step 3.2: Trigger ESLint warnings (intentional)
 
-Ask Claude:
+Prompt:
 ```
 Edit examples/hello.js to use var instead of const and add console.log:
 var message = "Hello";
@@ -169,7 +169,7 @@ console.log(message);
 
 ### Step 3.3: Fix and verify
 
-Ask Claude:
+Prompt:
 ```
 Fix the JavaScript to follow the project conventions
 ```
@@ -191,7 +191,7 @@ Fix the JavaScript to follow the project conventions
 
 ### Step 4.1: Create a markdown file
 
-Ask Claude:
+Prompt:
 ```
 Create examples/hello.md with documentation about the hello example
 ```
@@ -202,7 +202,7 @@ Create examples/hello.md with documentation about the hello example
 
 ### Step 4.2: Trigger structure warning (intentional)
 
-Ask Claude:
+Prompt:
 ```
 Edit examples/hello.md to start with an H2 heading instead of H1:
 ## Documentation
@@ -215,7 +215,7 @@ This is the hello example.
 
 ### Step 4.3: Trigger spelling check
 
-Ask Claude:
+Prompt:
 ```
 Add a paragraph with a misspelled word: "This is an exampel of hello world"
 ```
@@ -226,7 +226,7 @@ Add a paragraph with a misspelled word: "This is an exampel of hello world"
 
 ### Step 4.4: Fix with /add-word command
 
-Ask Claude:
+Prompt:
 ```
 /add-word exampel
 ```
@@ -249,7 +249,7 @@ Fix the spelling of "exampel" to "example"
 
 ### Step 5.1: Add a custom word to dictionary
 
-Ask Claude:
+Prompt:
 ```
 /add-word MyProjectName
 ```
@@ -260,7 +260,7 @@ Ask Claude:
 
 ### Step 5.2: Run health check
 
-Ask Claude:
+Prompt:
 ```
 /health
 ```
@@ -287,7 +287,7 @@ Ask Claude:
 
 ### Step 6.1: Create a JSON config with errors
 
-Ask Claude:
+Prompt:
 ```
 Create examples/config.json with this content (note the trailing comma):
 {
@@ -302,7 +302,7 @@ Create examples/config.json with this content (note the trailing comma):
 
 ### Step 6.2: Fix and verify
 
-Ask Claude:
+Prompt:
 ```
 Fix the JSON syntax error
 ```

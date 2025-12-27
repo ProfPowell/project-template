@@ -14,7 +14,7 @@ Test the frontend development workflow for building a static website.
 
 ### Step 1.1: Scaffold the icon system
 
-Ask Claude:
+Prompt:
 ```
 /scaffold-icons
 ```
@@ -36,7 +36,7 @@ ls assets/icons/lucide/*.svg | wc -l
 
 ### Step 1.3: Use an icon in HTML
 
-Ask Claude:
+Prompt:
 ```
 Create examples/icons.html that demonstrates using x-icon with home, settings, and user icons
 ```
@@ -62,7 +62,7 @@ Create examples/icons.html that demonstrates using x-icon with home, settings, a
 
 ### Step 2.1: Generate an email field
 
-Ask Claude:
+Prompt:
 ```
 /add-form-field email
 ```
@@ -76,7 +76,7 @@ Ask Claude:
 
 ### Step 2.2: Generate a password field with validation
 
-Ask Claude:
+Prompt:
 ```
 /add-form-field password with minimum 8 characters
 ```
@@ -88,7 +88,7 @@ Ask Claude:
 
 ### Step 2.3: Create a complete form
 
-Ask Claude:
+Prompt:
 ```
 Create examples/contact-form.html with a contact form using form-field elements for:
 - Name (required)
@@ -105,7 +105,7 @@ Create examples/contact-form.html with a contact form using form-field elements 
 
 ### Step 2.4: Test accessibility validation
 
-Ask Claude:
+Prompt:
 ```
 Edit examples/contact-form.html to remove the label from the email field
 ```
@@ -127,7 +127,7 @@ Edit examples/contact-form.html to remove the label from the email field
 
 ### Step 3.1: Generate placeholder images
 
-Ask Claude:
+Prompt:
 ```
 /placeholder-image hero 1920x600
 ```
@@ -140,7 +140,7 @@ Ask Claude:
 
 ### Step 3.2: Generate a labeled placeholder
 
-Ask Claude:
+Prompt:
 ```
 /placeholder-image product 400x400 "Product Photo"
 ```
@@ -151,7 +151,7 @@ Ask Claude:
 
 ### Step 3.3: Convert to responsive picture element
 
-Ask Claude:
+Prompt:
 ```
 /add-picture for a hero image that should be 1920px on desktop, 1200px on tablet, 800px on mobile
 ```
@@ -167,7 +167,7 @@ Ask Claude:
 
 ### Step 3.4: Test alt text validation
 
-Ask Claude:
+Prompt:
 ```
 Create examples/gallery.html with a picture element missing alt text
 ```
@@ -189,7 +189,7 @@ Create examples/gallery.html with a picture element missing alt text
 
 ### Step 4.1: Generate design tokens
 
-Ask Claude:
+Prompt:
 ```
 /add-css-tokens
 ```
@@ -203,7 +203,7 @@ Ask Claude:
 
 ### Step 4.2: Create a component using tokens
 
-Ask Claude:
+Prompt:
 ```
 Create examples/card.css that styles a card component using the design tokens
 ```
@@ -215,7 +215,7 @@ Create examples/card.css that styles a card component using the design tokens
 
 ### Step 4.3: Test nesting depth limits
 
-Ask Claude:
+Prompt:
 ```
 Edit examples/card.css to have 5 levels of nesting
 ```
@@ -245,7 +245,7 @@ Check that CSS follows the layer order:
 
 ### Step 5.1: Generate testimonials
 
-Ask Claude:
+Prompt:
 ```
 /fake-testimonial 3
 ```
@@ -259,7 +259,7 @@ Ask Claude:
 
 ### Step 5.2: Generate products
 
-Ask Claude:
+Prompt:
 ```
 /fake-product 5
 ```
@@ -274,7 +274,7 @@ Ask Claude:
 
 ### Step 5.3: Use generated content in HTML
 
-Ask Claude:
+Prompt:
 ```
 Create examples/testimonials.html that displays the generated testimonials in a grid layout
 ```
@@ -286,7 +286,7 @@ Create examples/testimonials.html that displays the generated testimonials in a 
 
 ### Step 5.4: Generate mixed content
 
-Ask Claude:
+Prompt:
 ```
 /fake-content article with title, author, date, and 3 paragraphs
 ```
@@ -310,7 +310,7 @@ Ask Claude:
 
 ### Step 6.1: Create a page with accessibility issues
 
-Ask Claude:
+Prompt:
 ```
 Create examples/bad-a11y.html with these intentional issues:
 1. Low contrast text (light gray on white)
@@ -333,7 +333,7 @@ The validators should automatically run and catch:
 
 ### Step 6.3: Fix each issue
 
-Ask Claude:
+Prompt:
 ```
 Fix all accessibility issues in examples/bad-a11y.html
 ```
@@ -365,7 +365,7 @@ Run validation again - should pass with no errors.
 
 ### Step 7.1: Create page with div-itis
 
-Ask Claude:
+Prompt:
 ```
 Create examples/semantic-test.html with:
 <div class="nav">Navigation links</div>
@@ -385,7 +385,7 @@ Create examples/semantic-test.html with:
 
 ### Step 7.2: Apply semantic fixes
 
-Ask Claude:
+Prompt:
 ```
 Replace all the divs with their semantic equivalents
 ```
@@ -397,7 +397,7 @@ Replace all the divs with their semantic equivalents
 
 ### Step 7.3: Test time element suggestion
 
-Ask Claude:
+Prompt:
 ```
 Edit the page to add "Published in 2024" as plain text
 ```
@@ -421,7 +421,7 @@ Edit the page to add "Published in 2024" as plain text
 
 ### Step 8.1: Run health check
 
-Ask Claude:
+Prompt:
 ```
 /health
 ```
@@ -445,7 +445,7 @@ npm run lint
 
 ### Step 8.3: Fix any remaining issues
 
-Ask Claude to fix any issues found in the lint run.
+Prompt to fix any issues found in the lint run.
 
 **Pass Criteria**:
 - [ ] Health dashboard runs successfully

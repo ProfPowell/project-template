@@ -254,7 +254,7 @@ function checkImages() {
  */
 function checkSpelling() {
   try {
-    const result = runCommand("npx cspell '**/*.html' --config .cspell.json --quiet 2>&1 || true");
+    const result = runCommand("npx cspell '**/*.html' --config .config/cspell.json --quiet 2>&1 || true");
     const issues = (result.output.match(/Unknown word/gi) || []).length;
 
     return {

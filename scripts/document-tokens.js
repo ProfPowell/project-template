@@ -630,7 +630,7 @@ function findDefaultCssFile() {
     'examples/demo-site/assets/styles/main.css',
     'examples/demo-site-claude-2/styles/main.css',
     'examples/demo-code/styles/main.css',
-    'examples/patterns/components/components.css'
+    'patterns/components/components.css'
   ];
 
   for (const candidate of candidates) {

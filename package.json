@@ -72,6 +72,7 @@
     "sharp": "^0.34.5",
     "stylelint": "^16.26.1",
     "stylelint-config-standard": "^39.0.1",
+    "stylelint-plugin-use-baseline": "^1.1.5",
     "text-readability": "^1.1.1",
     "textlint": "^14.0.0",
     "textlint-plugin-html": "^1.0.0",

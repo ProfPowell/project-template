@@ -1643,6 +1643,66 @@ blog-card {
 
 ---
 
+## CSS Baseline
+
+[Baseline](https://web.dev/baseline) defines which CSS features are available across all major browsers. Our linter warns when using features outside Baseline Newly available status.
+
+### Baseline Tiers
+
+| Status | Meaning | Our Approach |
+|--------|---------|--------------|
+| **Widely available** | 30+ months in all browsers | Use freely |
+| **Newly available** | Recently in all browsers | Use freely (our threshold) |
+| **Limited availability** | Not in all browsers | Requires `@supports` |
+
+### Progressive Enhancement for Non-Baseline
+
+Features outside Baseline must be wrapped in `@supports`:
+
+```css
+/* Base: Baseline-safe fallback */
+p {
+  word-break: break-word;
+}
+
+/* Enhancement: non-Baseline feature */
+@supports (text-wrap: pretty) {
+  p {
+    text-wrap: pretty;
+  }
+}
+```
+
+The linter allows non-Baseline CSS inside `@supports` blocks.
+
+### Common Non-Baseline Features
+
+Some features we document may not yet be Baseline. Always check and use `@supports`:
+
+```css
+/* contrast-color() - Safari Tech Preview only */
+@supports (color: contrast-color(red)) {
+  .dynamic-bg {
+    color: contrast-color(var(--bg));
+  }
+}
+
+/* text-wrap: pretty - recently Baseline */
+@supports (text-wrap: pretty) {
+  article p {
+    text-wrap: pretty;
+  }
+}
+```
+
+### Checking Baseline Status
+
+- [web.dev/baseline](https://web.dev/baseline) - Feature status lookup
+- [caniuse.com](https://caniuse.com) - Detailed browser support
+- Run `npm run lint:css` - Linter warns on non-Baseline features
+
+---
+
 ## Checklist for CSS Architecture
 
 When setting up or reviewing CSS:
@@ -1673,6 +1733,11 @@ When setting up or reviewing CSS:
 - [ ] `margin-inline` / `padding-block` instead of physical directions
 - [ ] `text-align: start` instead of `text-align: left`
 - [ ] Physical properties only where semantically appropriate (shadows, transforms)
+
+### Baseline
+- [ ] Non-Baseline features wrapped in `@supports`
+- [ ] Baseline-safe fallback provided before enhancement
+- [ ] `npm run lint:css` passes without baseline warnings
 
 ## Skills to Consider Before Writing
 

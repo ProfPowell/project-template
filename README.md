@@ -117,7 +117,7 @@ A web project template with validation, automation, and Claude Code integration 
 | Command | Purpose |
 |---------|---------|
 | `npm run lint` | HTML validation |
-| `npm run lint:css` | CSS linting |
+| `npm run lint:css` | CSS linting + Baseline checking |
 | `npm run lint:js` | JavaScript linting |
 | `npm run lint:markdown` | Markdown linting |
 | `npm run lint:spelling` | Spell check |

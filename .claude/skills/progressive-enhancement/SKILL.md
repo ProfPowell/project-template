@@ -778,6 +778,90 @@ document.cookie = 'js_enabled=true; path=/';
 
 ---
 
+## CSS Feature Detection with `@supports`
+
+Use `@supports` for non-Baseline CSS features. This applies the same progressive enhancement philosophy to CSS itself.
+
+### Pattern: Baseline Fallback + Enhancement
+
+```css
+/* Base: Baseline-safe fallback */
+p {
+  word-break: break-word;
+}
+
+/* Enhancement: non-Baseline feature */
+@supports (text-wrap: pretty) {
+  p {
+    text-wrap: pretty;
+  }
+}
+```
+
+### Common Progressive CSS Enhancements
+
+```css
+/* Typography enhancement */
+@supports (text-wrap: balance) {
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}
+
+/* Color enhancement */
+@supports (color: oklch(50% 0.2 260)) {
+  :root {
+    --primary: oklch(55% 0.22 260);
+  }
+}
+
+/* Container query fallback */
+@supports not (container-type: inline-size) {
+  /* Fallback layout when container queries unavailable */
+  product-card {
+    display: block;
+  }
+}
+```
+
+### Multiple Feature Detection
+
+```css
+/* Combine features with and/or */
+@supports (display: grid) and (container-type: inline-size) {
+  product-grid {
+    display: grid;
+    container-type: inline-size;
+  }
+}
+
+/* Negation for fallbacks */
+@supports not (gap: 1rem) {
+  .flex-container > * + * {
+    margin-inline-start: 1rem;
+  }
+}
+```
+
+### JavaScript Feature Detection
+
+For features that can't be detected with `@supports`, use JavaScript with data attributes:
+
+```javascript
+// Detect and expose to CSS
+if (CSS.supports('view-transition-name', 'test')) {
+  document.documentElement.dataset.viewTransitions = 'supported';
+}
+```
+
+```css
+[data-view-transitions="supported"] {
+  /* Enhanced styles */
+}
+```
+
+---
+
 ## Checklist
 
 When building interactive features:
@@ -794,6 +878,7 @@ When building interactive features:
 - [ ] Are focus states visible and clear?
 - [ ] Is View Transitions meta tag included?
 - [ ] If JS is required, does `<noscript>` provide a fallback message?
+- [ ] Are non-Baseline CSS features wrapped in `@supports`?
 
 ## Related Skills
 

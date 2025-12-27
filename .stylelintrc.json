@@ -1,7 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/stylelintrc",
   "extends": ["stylelint-config-standard"],
+  "plugins": ["stylelint-plugin-use-baseline"],
   "rules": {
+    "plugin/use-baseline": ["warn", { "available": "newly" }],
     "max-nesting-depth": [3, {
       "ignoreAtRules": ["media", "supports", "layer", "container"]
     }],

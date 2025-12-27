@@ -217,6 +217,42 @@ For older browsers, provide hex fallback first:
 }
 ```
 
+#### Automatic Contrast with `contrast-color()`
+
+The `contrast-color()` function automatically selects black or white text based on background:
+
+```css
+/* Button with any background color */
+button {
+  background: var(--primary);
+  color: contrast-color(var(--primary));
+}
+
+/* Dynamic accent backgrounds */
+[data-accent] {
+  background: var(--accent);
+  color: contrast-color(var(--accent));
+}
+```
+
+**Combining with `light-dark()`:**
+
+```css
+.badge {
+  --bg: light-dark(var(--primary-light), var(--primary-dark));
+  background: var(--bg);
+  color: contrast-color(var(--bg));
+}
+```
+
+**Limitations:**
+- Returns only black (`#000`) or white (`#fff`)
+- Uses WCAG 2 algorithm (may not be perceptually optimal for mid-tones)
+- **Browser support:** Safari Technology Preview only (use as progressive enhancement)
+- Does not guarantee WCAG compliance—verify contrast ratios for critical UI
+
+**Best practice:** Use `contrast-color()` for dynamic/user-selected colors. For design system colors, manually define text colors to ensure optimal readability.
+
 ### Complete Token System
 
 ```css

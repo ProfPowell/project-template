@@ -8,6 +8,47 @@ allowed-tools: Read, Write, Edit, Bash
 
 Use the Lucide icon library with local SVG files and the `<x-icon>` Web Component for consistent, accessible icons.
 
+## CRITICAL: When to Use This Skill
+
+**ALWAYS use the `<x-icon>` component. NEVER use inline SVGs.**
+
+| You Are Adding... | USE THIS SKILL |
+|-------------------|----------------|
+| Icon button (close, menu, etc.) | YES |
+| Navigation icons | YES |
+| Status indicators (success, error, warning) | YES |
+| Toggle switches with icons (theme, settings) | YES |
+| Action buttons (save, delete, edit) | YES |
+| Social sharing icons | YES |
+| ANY visual indicator or icon | YES |
+
+### Bad (Do NOT do this):
+
+```html
+<!-- WRONG: Inline SVG -->
+<button>
+  <svg viewBox="0 0 24 24"><path d="M12 3v1m0 16v1..."/></svg>
+</button>
+```
+
+### Good (Do this instead):
+
+```html
+<!-- CORRECT: x-icon component -->
+<button>
+  <x-icon name="sun" label="Light theme"></x-icon>
+</button>
+```
+
+**Why?** The `<x-icon>` component:
+- Ensures consistent sizing across the app
+- Handles accessibility automatically
+- Uses optimized, cached SVG loading
+- Inherits color from CSS (no hardcoded colors)
+- Works with any icon set (Lucide, custom, etc.)
+
+---
+
 ## Quick Start
 
 ```html

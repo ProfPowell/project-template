@@ -141,9 +141,38 @@ See [SYNTAX.md](SYNTAX.md) for complete syntax rules.
 See [ELEMENTS.md](ELEMENTS.md) for semantic element guidance.
 See [EXAMPLES.md](EXAMPLES.md) for code examples.
 
+## Skills to Consider Before Writing
+
+When creating HTML, also invoke these skills based on content:
+
+| Content Type | Invoke Skill | Why |
+|--------------|--------------|-----|
+| Any icon or visual indicator | **icons** | Use `<x-icon>`, never inline SVG |
+| Form elements | **forms** | Use `<form-field>` custom element |
+| Images | **responsive-images** | Use `<picture>` with srcset |
+| Page head content | **metadata** | SEO, social, performance hints |
+| Interactive elements | **accessibility-checker** | WCAG2AA compliance |
+
+### Critical: Icons
+
+**NEVER use inline SVGs.** When adding any visual indicator, icon button, or toggle with an icon:
+
+```html
+<!-- WRONG -->
+<svg viewBox="0 0 24 24">...</svg>
+
+<!-- CORRECT - invoke icons skill first -->
+<x-icon name="menu" label="Menu"></x-icon>
+```
+
+See the **icons** skill for the full pattern.
+
 ## Related Skills
 
-- **css-author** - Modern CSS organization with native @import, @layer casca...
-- **javascript-author** - Write vanilla JavaScript for Web Components with function...
-- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **icons** - Lucide icon library with `<x-icon>` Web Component
 - **forms** - HTML-first form patterns with CSS-only validation
+- **responsive-images** - Modern responsive image techniques
+- **metadata** - HTML metadata and head content
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance
+- **css-author** - Modern CSS organization with @layer
+- **javascript-author** - Vanilla JavaScript for Web Components

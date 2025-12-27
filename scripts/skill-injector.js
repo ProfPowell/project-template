@@ -51,6 +51,25 @@ const FILENAME_PATTERNS = [
   { pattern: /\.dockerignore$/, skill: 'containerization' },
 ];
 
+// Content patterns that trigger supplementary skills
+// These are checked against file content to suggest additional relevant skills
+const CONTENT_PATTERNS = [
+  // HTML content patterns
+  { pattern: /<form[\s>]/i, skill: 'forms', reason: 'Form detected - use <form-field> pattern' },
+  { pattern: /<x-icon|lucide-|icon/i, skill: 'icons', reason: 'Icon pattern detected - use <x-icon> component' },
+  { pattern: /<picture[\s>]/i, skill: 'responsive-images', reason: 'Picture element detected' },
+  { pattern: /<img[\s>]/i, skill: 'responsive-images', reason: 'Image detected - consider responsive patterns' },
+
+  // JavaScript content patterns
+  { pattern: /class\s+\w+\s+extends\s+HTMLElement/i, skill: 'custom-elements', reason: 'Web Component detected' },
+  { pattern: /fetch\s*\(/i, skill: 'api-client', reason: 'Fetch API detected - add retry/error handling' },
+  { pattern: /localStorage|sessionStorage|IndexedDB/i, skill: 'data-storage', reason: 'Storage API detected' },
+
+  // CSS content patterns
+  { pattern: /@keyframes|animation:/i, skill: 'animation-motion', reason: 'Animation detected - check reduced-motion' },
+  { pattern: /@media\s+print/i, skill: 'print-styles', reason: 'Print styles detected' },
+];
+
 /**
  * Extract key sections from skill content (first 2 major sections after frontmatter)
  */
@@ -83,6 +102,82 @@ function extractSkillSummary(content) {
 }
 
 /**
+ * Extract a brief excerpt from skill content (3-5 key points)
+ * Used for supplementary skill suggestions
+ */
+function extractSkillExcerpt(content) {
+  const lines = content.split('\n');
+  let inFrontmatter = false;
+  let passedFrontmatter = false;
+  const excerpt = [];
+  let inList = false;
+  let listItems = 0;
+  let foundFirstSection = false;
+
+  for (const line of lines) {
+    // Handle frontmatter
+    if (line === '---' && !passedFrontmatter) {
+      inFrontmatter = !inFrontmatter;
+      if (!inFrontmatter) passedFrontmatter = true;
+      continue;
+    }
+    if (inFrontmatter) continue;
+
+    // Skip until we find first ## section
+    if (!foundFirstSection) {
+      if (line.startsWith('## ')) {
+        foundFirstSection = true;
+        excerpt.push(line);
+      }
+      continue;
+    }
+
+    // Stop at second ## section
+    if (line.startsWith('## ') && excerpt.length > 1) {
+      break;
+    }
+
+    // Collect list items (up to 5)
+    if (line.match(/^[-*]\s/) || line.match(/^\d+\.\s/)) {
+      if (listItems < 5) {
+        excerpt.push(line);
+        listItems++;
+        inList = true;
+      }
+    } else if (line.startsWith('|') && excerpt.length < 8) {
+      // Include table rows (for quick reference tables)
+      excerpt.push(line);
+    } else if (!inList && excerpt.length < 6) {
+      // Include non-list content up to a limit
+      excerpt.push(line);
+    }
+  }
+
+  return excerpt.join('\n').trim();
+}
+
+/**
+ * Load supplementary skill excerpt
+ */
+function loadSkillExcerpt(skillName, reason) {
+  const skillPath = join(SKILLS_DIR, skillName, 'SKILL.md');
+
+  try {
+    const content = readFileSync(skillPath, 'utf-8');
+    const excerpt = extractSkillExcerpt(content);
+
+    return `
+--- Also consider: ${skillName} ---
+${reason}
+
+${excerpt}
+`;
+  } catch {
+    return `\n--- Also consider: ${skillName} ---\n${reason}\n`;
+  }
+}
+
+/**
  * Load and format skill guidance
  */
 function loadSkillGuidance(skillName) {
@@ -104,6 +199,24 @@ ${summary}
     // Skill file not found - silent fail
     return null;
   }
+}
+
+/**
+ * Check file content for patterns and return supplementary skills
+ */
+function detectSupplementarySkills(content, primarySkill) {
+  const supplementary = [];
+  const seenSkills = new Set([primarySkill]);
+
+  for (const { pattern, skill, reason } of CONTENT_PATTERNS) {
+    if (seenSkills.has(skill)) continue;
+    if (pattern.test(content)) {
+      supplementary.push({ skill, reason });
+      seenSkills.add(skill);
+    }
+  }
+
+  return supplementary;
 }
 
 /**
@@ -146,9 +259,29 @@ async function main() {
 
     if (!skillName) return;
 
+    // Output primary skill guidance
     const guidance = loadSkillGuidance(skillName);
     if (guidance) {
       console.log(guidance);
+    }
+
+    // Check content for supplementary skills
+    // Content may be in new_string (Edit) or content (Write)
+    const fileContent = hookData.tool_input?.new_string ||
+                        hookData.tool_input?.content ||
+                        '';
+
+    if (fileContent) {
+      const supplementary = detectSupplementarySkills(fileContent, skillName);
+
+      if (supplementary.length > 0) {
+        console.log('\n=== SUPPLEMENTARY SKILLS DETECTED ===');
+        for (const { skill, reason } of supplementary) {
+          const excerpt = loadSkillExcerpt(skill, reason);
+          console.log(excerpt);
+        }
+        console.log('=== END SUPPLEMENTARY SKILLS ===\n');
+      }
     }
   } catch {
     // JSON parse error or other issue - silent fail to not break hook chain

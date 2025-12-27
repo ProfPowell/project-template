@@ -92,6 +92,43 @@ What are you creating?
 
 ---
 
+## Auto-Invoke Rules
+
+These skills should be invoked automatically based on context:
+
+| Context | Auto-invoke Skills |
+|---------|-------------------|
+| Any code change | **pre-flight-check** (this skill) - ALWAYS FIRST |
+| Creating/editing .html | **xhtml-author**, **accessibility-checker** |
+| Creating/editing .css | **css-author** |
+| Creating/editing .js | **javascript-author** |
+| Adding icons/visual indicators | **icons** - NEVER use inline SVGs |
+| Adding images | **responsive-images**, **placeholder-images** |
+| Creating forms | **forms** - Use `<form-field>` pattern |
+| API calls in code | **api-client** - Retry logic, error handling |
+| Web Components | **custom-elements**, **state-management** |
+
+### Common Multi-Skill Patterns
+
+When building these features, invoke ALL listed skills:
+
+| Feature | Skills to Invoke |
+|---------|------------------|
+| Theme toggle (dark/light) | css-author, javascript-author, data-storage, **icons**, progressive-enhancement |
+| Contact form | xhtml-author, forms, accessibility-checker, javascript-author |
+| Product card grid | xhtml-author, css-author, responsive-images, **icons** |
+| Navigation menu | xhtml-author, css-author, **icons**, accessibility-checker |
+| API integration | javascript-author, api-client, error-handling, state-management |
+| User authentication | authentication, security, forms, javascript-author |
+
+### Critical: Icons
+
+**ALWAYS invoke the icons skill when adding visual indicators.** Theme toggles, buttons with icons, navigation icons, status indicators - ALL should use `<x-icon>`, never inline SVGs.
+
+See [COMPOSITIONS.md](../COMPOSITIONS.md) for more multi-skill patterns.
+
+---
+
 ## HTML Pre-Flight Checklist
 
 Before writing HTML, verify:
@@ -417,5 +454,11 @@ bd show <issue-id>
 
 ## Related Skills
 
-- **git-workflow** - Enforce structured git workflow with conventional commits...
-- **unit-testing** - Write unit tests for JavaScript files using Node.js nativ...
+- **git-workflow** - Enforce structured git workflow with conventional commits
+- **unit-testing** - Write unit tests for JavaScript files
+- **xhtml-author** - Write valid XHTML-strict HTML5 markup
+- **css-author** - Modern CSS organization with @layer
+- **javascript-author** - Vanilla JavaScript for Web Components
+- **icons** - Lucide icon library with `<x-icon>` Web Component
+- **forms** - HTML-first form patterns with CSS-only validation
+- **accessibility-checker** - Ensure WCAG2AA accessibility compliance

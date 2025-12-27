@@ -126,9 +126,37 @@ export { MyComponent };
 - [ACCESSIBILITY.md](ACCESSIBILITY.md) - a11y in JavaScript
 - [DEFENSIVE.md](DEFENSIVE.md) - Type guards, error handling, feature detection
 
+## Skills to Consider Before Writing
+
+When authoring JavaScript, consider invoking these related skills:
+
+| Code Pattern | Invoke Skill | Why |
+|--------------|--------------|-----|
+| `class X extends HTMLElement` | **custom-elements** | Full Web Component lifecycle, slots, shadow DOM |
+| `fetch()` or API calls | **api-client** | Retry logic, error handling, caching patterns |
+| Component state, reactivity | **state-management** | Observable patterns, undo/redo, sync strategies |
+| `localStorage`, `IndexedDB` | **data-storage** | Persistence patterns, offline-first |
+| Error handling | **error-handling** | Error boundaries, global handlers, reporting |
+
+### When Creating Web Components
+
+If your JavaScript file defines a custom element (`extends HTMLElement`), also invoke:
+- **custom-elements** - For registration patterns, slots, attribute handling
+- **state-management** - If component manages internal state
+- **accessibility-checker** - For keyboard navigation, ARIA
+
+### When Making API Calls
+
+If your code uses `fetch()` or makes network requests:
+- **api-client** - Retry logic, timeout handling, typed responses
+- **error-handling** - Network error recovery, user feedback
+
 ## Related Skills
 
-- **typescript-author** - Write TypeScript for Web Components and Node.js with stri...
 - **custom-elements** - Define and use custom HTML elements
-- **unit-testing** - Write unit tests for JavaScript files using Node.js nativ...
-- **api-client** - Fetch API patterns with error handling, retry logic, and ...
+- **state-management** - Client-side state patterns for Web Components
+- **api-client** - Fetch API patterns with error handling and caching
+- **data-storage** - localStorage, IndexedDB, SQLite WASM patterns
+- **error-handling** - Consistent error handling across frontend and backend
+- **unit-testing** - Write unit tests with Node.js native test runner
+- **typescript-author** - TypeScript for Web Components and Node.js

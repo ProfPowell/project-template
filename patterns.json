@@ -572,6 +572,222 @@
       "examples": [
         { "name": "Muted Row", "html": "<logo-cloud data-layout=\"row\" data-style=\"muted\">\n  <h2>Trusted by</h2>\n  <ul data-logos>\n    <li><img src=\"logo1.svg\" alt=\"Company 1\" /></li>\n    <li><img src=\"logo2.svg\" alt=\"Company 2\" /></li>\n  </ul>\n</logo-cloud>" }
       ]
+    },
+    {
+      "name": "alert",
+      "category": "feedback",
+      "description": "Inline message component for displaying feedback, warnings, errors, or informational content",
+      "status": "stable",
+      "element": "alert-message",
+      "anatomy": [
+        { "name": "icon", "description": "Visual indicator of message type", "element": "x-icon", "required": false },
+        { "name": "content", "description": "Message body with title and description", "element": "div" },
+        { "name": "title", "description": "Brief message heading", "element": "strong", "required": false },
+        { "name": "description", "description": "Detailed message text", "element": "p" },
+        { "name": "dismiss", "description": "Optional close button", "element": "button", "required": false }
+      ],
+      "states": ["default", "dismissing"],
+      "variants": [
+        { "name": "type", "attribute": "data-type", "values": ["info", "success", "warning", "error"], "default": "info" },
+        { "name": "style", "attribute": "data-style", "values": ["subtle", "filled", "outlined"], "default": "subtle" }
+      ],
+      "accessibility": {
+        "aria": ["role=\"alert\" for important messages", "aria-live=\"polite\" for non-urgent"],
+        "keyboard": [{ "key": "Escape", "action": "Dismiss alert if dismissible" }]
+      },
+      "related": ["banner", "toast", "empty-state"],
+      "examples": [
+        { "name": "Error Alert", "html": "<alert-message data-type=\"error\" data-style=\"filled\">\n  <x-icon name=\"alert-circle\" data-icon></x-icon>\n  <div data-content>\n    <strong data-title>Error</strong>\n    <p>Please check your input.</p>\n  </div>\n</alert-message>" }
+      ]
+    },
+    {
+      "name": "banner",
+      "category": "feedback",
+      "description": "Site-wide announcement bar for important messages, promotions, or alerts",
+      "status": "stable",
+      "element": "site-banner",
+      "anatomy": [
+        { "name": "icon", "description": "Optional icon", "element": "x-icon", "required": false },
+        { "name": "content", "description": "Message text with optional link", "element": "div" },
+        { "name": "action", "description": "Optional CTA button", "element": "a", "required": false },
+        { "name": "dismiss", "description": "Close button", "element": "button", "required": false }
+      ],
+      "states": ["visible", "dismissed", "minimized"],
+      "variants": [
+        { "name": "type", "attribute": "data-type", "values": ["info", "promo", "warning", "error"], "default": "info" },
+        { "name": "position", "attribute": "data-position", "values": ["top", "bottom"], "default": "top" },
+        { "name": "sticky", "attribute": "data-sticky", "values": ["true"], "default": null }
+      ],
+      "accessibility": {
+        "aria": ["role=\"banner\"", "aria-label describing banner"],
+        "keyboard": [{ "key": "Escape", "action": "Dismiss banner" }]
+      },
+      "related": ["alert", "toast", "site-header"],
+      "examples": [
+        { "name": "Promo Banner", "html": "<site-banner data-type=\"promo\" data-position=\"top\">\n  <div data-content>\n    <p>Black Friday Sale! <a href=\"/pricing\">Shop now</a></p>\n  </div>\n  <button data-dismiss aria-label=\"Dismiss banner\"><x-icon name=\"x\"></x-icon></button>\n</site-banner>" }
+      ]
+    },
+    {
+      "name": "toast",
+      "category": "feedback",
+      "description": "Temporary notification that appears briefly to provide feedback on an action",
+      "status": "stable",
+      "element": "toast-notification",
+      "anatomy": [
+        { "name": "icon", "description": "Status icon", "element": "x-icon", "required": false },
+        { "name": "content", "description": "Message content", "element": "div" },
+        { "name": "title", "description": "Toast heading", "element": "strong", "required": false },
+        { "name": "message", "description": "Toast body", "element": "p" },
+        { "name": "action", "description": "Optional action button", "element": "button", "required": false },
+        { "name": "dismiss", "description": "Close button", "element": "button", "required": false }
+      ],
+      "states": ["entering", "visible", "exiting", "dismissed"],
+      "variants": [
+        { "name": "type", "attribute": "data-type", "values": ["info", "success", "warning", "error"], "default": "info" },
+        { "name": "position", "attribute": "data-position", "values": ["top-right", "top-center", "bottom-right", "bottom-center"], "default": "bottom-right" }
+      ],
+      "accessibility": {
+        "aria": ["role=\"status\"", "aria-live=\"polite\""],
+        "keyboard": [{ "key": "Escape", "action": "Dismiss toast" }]
+      },
+      "related": ["alert", "banner", "progress-bar"],
+      "examples": [
+        { "name": "Success Toast", "html": "<toast-notification data-type=\"success\">\n  <x-icon name=\"check-circle\" data-icon></x-icon>\n  <div data-content>\n    <p>Changes saved successfully!</p>\n  </div>\n</toast-notification>" }
+      ]
+    },
+    {
+      "name": "modal",
+      "category": "feedback",
+      "description": "Dialog overlay for focused interactions requiring user attention",
+      "status": "stable",
+      "element": "modal-dialog",
+      "anatomy": [
+        { "name": "backdrop", "description": "Semi-transparent overlay", "element": "::backdrop" },
+        { "name": "dialog", "description": "Content container", "element": "dialog" },
+        { "name": "header", "description": "Title and close button", "element": "header" },
+        { "name": "body", "description": "Main content area", "element": "div" },
+        { "name": "footer", "description": "Action buttons", "element": "footer" }
+      ],
+      "states": ["closed", "opening", "open", "closing"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large", "full"], "default": "medium" },
+        { "name": "type", "attribute": "data-type", "values": ["default", "alert", "confirm"], "default": "default" }
+      ],
+      "accessibility": {
+        "aria": ["aria-labelledby pointing to title", "aria-modal=\"true\""],
+        "keyboard": [
+          { "key": "Escape", "action": "Close modal" },
+          { "key": "Tab", "action": "Trapped within modal" }
+        ]
+      },
+      "related": ["popover", "alert", "toast"],
+      "examples": [
+        { "name": "Confirmation Modal", "html": "<modal-dialog data-size=\"small\">\n  <dialog>\n    <header data-header><h2>Confirm</h2></header>\n    <div data-body><p>Are you sure?</p></div>\n    <footer data-footer>\n      <button data-action=\"cancel\">Cancel</button>\n      <button data-action=\"confirm\">Confirm</button>\n    </footer>\n  </dialog>\n</modal-dialog>" }
+      ]
+    },
+    {
+      "name": "popover",
+      "category": "feedback",
+      "description": "Contextual overlay triggered by user action using the native Popover API",
+      "status": "stable",
+      "element": "popover-menu",
+      "anatomy": [
+        { "name": "trigger", "description": "Element that opens the popover", "element": "button" },
+        { "name": "popover", "description": "Content container with popover attribute", "element": "div" },
+        { "name": "content", "description": "Popover body content", "element": "nav" },
+        { "name": "arrow", "description": "Optional pointing arrow", "element": "::before", "required": false }
+      ],
+      "states": ["closed", "open"],
+      "variants": [
+        { "name": "type", "attribute": "popover", "values": ["auto", "manual"], "default": "auto" },
+        { "name": "position", "attribute": "data-position", "values": ["top", "bottom", "left", "right"], "default": "bottom" }
+      ],
+      "accessibility": {
+        "aria": ["aria-expanded on trigger", "aria-haspopup"],
+        "keyboard": [
+          { "key": "Escape", "action": "Close popover" },
+          { "key": "ArrowDown/Up", "action": "Navigate menu items" }
+        ]
+      },
+      "related": ["modal", "toast", "site-header"],
+      "examples": [
+        { "name": "Dropdown Menu", "html": "<popover-menu>\n  <button popovertarget=\"menu\">Actions</button>\n  <div id=\"menu\" popover data-position=\"bottom\">\n    <nav>\n      <a href=\"#edit\">Edit</a>\n      <a href=\"#delete\">Delete</a>\n    </nav>\n  </div>\n</popover-menu>" }
+      ]
+    },
+    {
+      "name": "empty-state",
+      "category": "feedback",
+      "description": "Placeholder content shown when there's no data to display",
+      "status": "stable",
+      "element": "empty-state",
+      "anatomy": [
+        { "name": "illustration", "description": "Optional visual icon or image", "element": "x-icon", "required": false },
+        { "name": "title", "description": "Brief description of empty state", "element": "h3" },
+        { "name": "description", "description": "Helpful context or instructions", "element": "p" },
+        { "name": "actions", "description": "Primary CTA to resolve empty state", "element": "div", "required": false }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" },
+        { "name": "type", "attribute": "data-type", "values": ["default", "no-results", "error", "success"], "default": "default" }
+      ],
+      "accessibility": {
+        "aria": ["Semantic headings", "Descriptive action labels"]
+      },
+      "related": ["skeleton", "alert", "progress-bar"],
+      "examples": [
+        { "name": "No Results", "html": "<empty-state data-type=\"no-results\">\n  <x-icon name=\"search\" data-illustration></x-icon>\n  <h3 data-title>No results found</h3>\n  <p data-description>Try different keywords.</p>\n</empty-state>" }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "category": "feedback",
+      "description": "Loading placeholder that mimics content structure while data loads",
+      "status": "stable",
+      "element": "skeleton-loader",
+      "anatomy": [
+        { "name": "container", "description": "Wrapper matching content dimensions", "element": "skeleton-loader" },
+        { "name": "shapes", "description": "Placeholder shapes", "element": "div" }
+      ],
+      "states": ["loading", "loaded"],
+      "variants": [
+        { "name": "type", "attribute": "data-type", "values": ["text", "heading", "avatar", "image", "card", "table-row", "list-item", "profile"], "default": null },
+        { "name": "animation", "attribute": "data-animation", "values": ["pulse", "shimmer", "none"], "default": "shimmer" }
+      ],
+      "accessibility": {
+        "aria": ["aria-busy=\"true\"", "aria-label describing loading content"]
+      },
+      "related": ["empty-state", "progress-bar", "card"],
+      "examples": [
+        { "name": "Card Skeleton", "html": "<skeleton-loader data-type=\"card\" data-animation=\"shimmer\">\n  <div data-skeleton=\"image\"></div>\n  <div data-skeleton=\"heading\"></div>\n  <div data-skeleton=\"text\"></div>\n</skeleton-loader>" }
+      ]
+    },
+    {
+      "name": "progress-bar",
+      "category": "feedback",
+      "description": "Visual indicator of operation progress using the native progress element",
+      "status": "stable",
+      "element": "progress-bar",
+      "anatomy": [
+        { "name": "container", "description": "Progress wrapper", "element": "progress-bar" },
+        { "name": "bar", "description": "Native progress element", "element": "progress" },
+        { "name": "label", "description": "Optional text describing progress", "element": "label", "required": false },
+        { "name": "value", "description": "Optional percentage indicator", "element": "span", "required": false }
+      ],
+      "states": ["determinate", "indeterminate", "complete"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["small", "medium", "large"], "default": "medium" },
+        { "name": "color", "attribute": "data-color", "values": ["default", "success", "warning", "error"], "default": "default" },
+        { "name": "striped", "attribute": "data-striped", "values": ["true"], "default": null },
+        { "name": "animated", "attribute": "data-animated", "values": ["true"], "default": null }
+      ],
+      "accessibility": {
+        "aria": ["Native progress semantics", "aria-labelledby for label association"]
+      },
+      "related": ["skeleton", "toast", "empty-state"],
+      "examples": [
+        { "name": "Upload Progress", "html": "<progress-bar data-size=\"medium\">\n  <label>Uploading...</label>\n  <progress value=\"75\" max=\"100\">75%</progress>\n  <span data-value>75%</span>\n</progress-bar>" }
+      ]
     }
   ]
 }

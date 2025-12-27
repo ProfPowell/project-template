@@ -88,6 +88,309 @@
           "html": "<product-card>\n  <img src=\"product.jpg\" alt=\"Product Name\" />\n  <h3>Product Name</h3>\n  <data value=\"29.99\">$29.99</data>\n  <button>Add to Cart</button>\n</product-card>"
         }
       ]
+    },
+    {
+      "name": "site-header",
+      "category": "navigation",
+      "description": "Primary navigation bar with logo, main navigation, and optional actions",
+      "status": "stable",
+      "element": "site-header",
+      "anatomy": [
+        {
+          "name": "logo",
+          "description": "Site logo/branding linking to homepage",
+          "element": "a"
+        },
+        {
+          "name": "nav",
+          "description": "Primary navigation with main links",
+          "element": "nav"
+        },
+        {
+          "name": "actions",
+          "description": "Optional utility buttons",
+          "element": "div",
+          "required": false
+        },
+        {
+          "name": "mobile-toggle",
+          "description": "Hamburger button for mobile menu",
+          "element": "button",
+          "required": false
+        }
+      ],
+      "states": ["default", "sticky", "mobile-open", "mobile-closed"],
+      "variants": [
+        {
+          "name": "size",
+          "attribute": "size",
+          "values": ["compact", "default", "large"],
+          "default": "default"
+        },
+        {
+          "name": "style",
+          "attribute": "style",
+          "values": ["transparent", "solid", "blur"],
+          "default": "solid"
+        }
+      ],
+      "accessibility": {
+        "aria": ["aria-label on nav", "aria-current on active link"],
+        "keyboard": [
+          { "key": "Tab", "action": "Navigate between links" },
+          { "key": "Enter", "action": "Activate link or toggle" }
+        ]
+      },
+      "related": ["site-footer", "nav-menu", "breadcrumbs"],
+      "examples": [
+        {
+          "name": "Basic Header",
+          "html": "<site-header>\n  <a href=\"/\">Company</a>\n  <nav aria-label=\"Main\">\n    <ul>\n      <li><a href=\"/about\">About</a></li>\n      <li><a href=\"/contact\">Contact</a></li>\n    </ul>\n  </nav>\n</site-header>"
+        }
+      ]
+    },
+    {
+      "name": "site-footer",
+      "category": "navigation",
+      "description": "Primary footer with navigation links, contact info, legal notices, and optional newsletter",
+      "status": "stable",
+      "element": "site-footer",
+      "anatomy": [
+        {
+          "name": "nav-sections",
+          "description": "Multiple navigation columns with grouped links",
+          "element": "nav"
+        },
+        {
+          "name": "contact",
+          "description": "Contact information section",
+          "element": "section",
+          "required": false
+        },
+        {
+          "name": "social",
+          "description": "Social media links",
+          "element": "div",
+          "required": false
+        },
+        {
+          "name": "legal",
+          "description": "Copyright and legal links",
+          "element": "div"
+        },
+        {
+          "name": "newsletter",
+          "description": "Newsletter signup form",
+          "element": "form",
+          "required": false
+        }
+      ],
+      "states": ["default"],
+      "variants": [
+        {
+          "name": "style",
+          "attribute": "data-style",
+          "values": ["minimal", "default", "extended"],
+          "default": "default"
+        }
+      ],
+      "accessibility": {
+        "aria": ["aria-label on nav", "aria-label on social links"],
+        "keyboard": [
+          { "key": "Tab", "action": "Navigate between links and form elements" }
+        ]
+      },
+      "related": ["site-header", "nav-menu", "newsletter-form"],
+      "examples": [
+        {
+          "name": "Basic Footer",
+          "html": "<site-footer>\n  <nav aria-label=\"Footer\">\n    <section>\n      <h2>Links</h2>\n      <ul>\n        <li><a href=\"/about\">About</a></li>\n        <li><a href=\"/contact\">Contact</a></li>\n      </ul>\n    </section>\n  </nav>\n  <div data-legal>\n    <p>&copy; 2025 Company</p>\n  </div>\n</site-footer>"
+        }
+      ]
+    },
+    {
+      "name": "page-shell",
+      "category": "layout",
+      "description": "Standard page layout container with header, main content, and footer",
+      "status": "stable",
+      "element": "page-shell",
+      "anatomy": [
+        {
+          "name": "skip-link",
+          "description": "Hidden link to skip to main content",
+          "element": "skip-link"
+        },
+        {
+          "name": "header",
+          "description": "Site header slot",
+          "element": "site-header"
+        },
+        {
+          "name": "main",
+          "description": "Primary content area",
+          "element": "main"
+        },
+        {
+          "name": "footer",
+          "description": "Site footer slot",
+          "element": "site-footer"
+        }
+      ],
+      "states": ["default", "scrolled"],
+      "variants": [
+        {
+          "name": "layout",
+          "attribute": "data-layout",
+          "values": ["standard", "full-width", "centered"],
+          "default": "standard"
+        }
+      ],
+      "accessibility": {
+        "aria": ["main landmark", "banner landmark", "contentinfo landmark"],
+        "keyboard": [
+          { "key": "Tab", "action": "Focus skip link first" }
+        ]
+      },
+      "related": ["site-header", "site-footer", "skip-link", "sidebar-layout"],
+      "examples": [
+        {
+          "name": "Standard Page",
+          "html": "<page-shell data-layout=\"standard\">\n  <skip-link href=\"#main\">Skip to main content</skip-link>\n  <site-header data-sticky>...</site-header>\n  <main id=\"main\">...</main>\n  <site-footer>...</site-footer>\n</page-shell>"
+        }
+      ]
+    },
+    {
+      "name": "sidebar-layout",
+      "category": "layout",
+      "description": "Two-column layout with primary content and sidebar for navigation, filters, or table of contents",
+      "status": "stable",
+      "element": "sidebar-layout",
+      "anatomy": [
+        {
+          "name": "sidebar",
+          "description": "Secondary content area",
+          "element": "aside"
+        },
+        {
+          "name": "content",
+          "description": "Primary content area",
+          "element": "main"
+        },
+        {
+          "name": "toggle",
+          "description": "Mobile sidebar toggle button",
+          "element": "button",
+          "required": false
+        }
+      ],
+      "states": ["default", "sidebar-open", "sidebar-closed"],
+      "variants": [
+        {
+          "name": "position",
+          "attribute": "data-sidebar",
+          "values": ["start", "end"],
+          "default": "start"
+        },
+        {
+          "name": "sticky",
+          "attribute": "data-sticky-sidebar",
+          "values": ["true"],
+          "default": null
+        }
+      ],
+      "accessibility": {
+        "aria": ["aria-label on nav", "aria-current on active link"],
+        "keyboard": [
+          { "key": "Tab", "action": "Navigate sidebar links" }
+        ]
+      },
+      "related": ["page-shell", "nav-menu", "table-of-contents"],
+      "examples": [
+        {
+          "name": "Documentation Sidebar",
+          "html": "<sidebar-layout data-sidebar=\"start\" data-sticky-sidebar>\n  <aside>\n    <nav aria-label=\"Section\">...</nav>\n  </aside>\n  <main>...</main>\n</sidebar-layout>"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumbs",
+      "category": "navigation",
+      "description": "Navigation trail showing user's location within site hierarchy",
+      "status": "stable",
+      "element": "breadcrumbs",
+      "anatomy": [
+        {
+          "name": "nav",
+          "description": "Container with navigation landmark",
+          "element": "nav"
+        },
+        {
+          "name": "list",
+          "description": "Ordered list of breadcrumb items",
+          "element": "ol"
+        },
+        {
+          "name": "item",
+          "description": "Individual breadcrumb link",
+          "element": "li"
+        },
+        {
+          "name": "current",
+          "description": "Current page (not a link)",
+          "element": "li"
+        }
+      ],
+      "states": ["default", "truncated"],
+      "variants": [
+        {
+          "name": "separator",
+          "attribute": "data-separator",
+          "values": ["slash", "chevron", "arrow"],
+          "default": "slash"
+        }
+      ],
+      "accessibility": {
+        "aria": ["aria-label=\"Breadcrumb\"", "aria-current=\"page\" on current item"],
+        "keyboard": [
+          { "key": "Tab", "action": "Navigate between links" }
+        ]
+      },
+      "related": ["site-header", "page-shell", "nav-menu"],
+      "examples": [
+        {
+          "name": "Basic Breadcrumbs",
+          "html": "<breadcrumbs>\n  <nav aria-label=\"Breadcrumb\">\n    <ol>\n      <li><a href=\"/\">Home</a></li>\n      <li><a href=\"/docs\">Documentation</a></li>\n      <li aria-current=\"page\">Getting Started</li>\n    </ol>\n  </nav>\n</breadcrumbs>"
+        }
+      ]
+    },
+    {
+      "name": "skip-link",
+      "category": "navigation",
+      "description": "Hidden link visible on focus to skip navigation and jump to main content",
+      "status": "stable",
+      "element": "skip-link",
+      "anatomy": [
+        {
+          "name": "link",
+          "description": "Anchor element targeting main content",
+          "element": "a"
+        }
+      ],
+      "states": ["hidden", "focused"],
+      "accessibility": {
+        "aria": ["First focusable element on page"],
+        "keyboard": [
+          { "key": "Tab", "action": "Focus skip link" },
+          { "key": "Enter", "action": "Jump to main content" }
+        ]
+      },
+      "related": ["page-shell", "site-header"],
+      "examples": [
+        {
+          "name": "Basic Skip Link",
+          "html": "<skip-link href=\"#main\">Skip to main content</skip-link>\n<!-- navigation -->\n<main id=\"main\" tabindex=\"-1\">...</main>"
+        }
+      ]
     }
   ]
 }

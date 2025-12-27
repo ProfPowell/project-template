@@ -63,7 +63,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `sanity-cms` | Sanity CMS integration |
 | `open-props` | Open Props CSS framework |
 
-**35 Slash Commands**:
+**38 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -77,6 +77,9 @@ A web project template with validation, automation, and Claude Code integration 
 | `/fake-product` | Generate product data |
 | `/fake-testimonial` | Generate testimonials |
 | `/add-css-tokens` | Generate design token system |
+| `/add-theme` | Create new brand theme with hue-based generation |
+| `/switch-theme` | Apply theme or generate toggle component |
+| `/list-themes` | Display available themes and configuration |
 | `/add-css-file` | Create scoped CSS file |
 | `/add-form-field` | Generate accessible form field |
 | `/add-toc` | Generate table of contents |
@@ -268,6 +271,73 @@ Tokens (colors, spacing, type)
 ```
 
 Browse the [Component Gallery](examples/patterns/components/index.html) for all components with examples.
+
+### Design Token System
+
+**Layered token architecture** in `styles/tokens/` providing a neutral foundation with multi-theme support:
+
+```
+styles/tokens/
+├── _base.css           # Neutral primitives (grays, spacing, typography)
+├── _semantic.css       # Purpose-driven aliases using light-dark()
+├── _components.css     # Component-specific tokens
+├── themes/
+│   ├── _light.css      # Light mode (default)
+│   ├── _dark.css       # Dark mode + system preference
+│   ├── _brand-ocean.css    # Teal-blue theme
+│   ├── _brand-forest.css   # Green/earthy theme
+│   └── _brand-sunset.css   # Warm orange theme
+└── tokens.json         # Programmatic access
+```
+
+**Token Layers:**
+
+| Layer | Purpose |
+|-------|---------|
+| Base | Neutral primitives - vanilla foundation with no opinions |
+| Semantic | Purpose-driven aliases (`--primary`, `--text`, `--surface`) |
+| Components | Derived tokens for specific UI components |
+| Theme | Brand variants that override semantic tokens |
+
+**Key Features:**
+
+- **OKLCH colors** for perceptual uniformity
+- **`light-dark()` function** for automatic theme switching
+- **Hue variables** (`--hue-primary`) for easy theme generation
+- **CSS `:has()` selector** for JavaScript-free theme toggling
+- **Data attributes** (`data-theme`, `data-mode`) for theme application
+
+**Available Themes:**
+
+| Theme | Attribute | Description |
+|-------|-----------|-------------|
+| Light | `data-mode="light"` | Force light color scheme |
+| Dark | `data-mode="dark"` | Force dark color scheme |
+| Auto | (default) | Follow system preference |
+| Ocean | `data-theme="ocean"` | Calm teal-blue (hue: 200) |
+| Forest | `data-theme="forest"` | Natural green (hue: 145) |
+| Sunset | `data-theme="sunset"` | Warm orange (hue: 25) |
+
+**Usage:**
+
+```html
+<!-- Default (system preference) -->
+<html lang="en">
+
+<!-- Force dark mode -->
+<html lang="en" data-mode="dark">
+
+<!-- Brand theme with dark mode -->
+<html lang="en" data-theme="ocean" data-mode="dark">
+```
+
+**Commands:**
+
+```bash
+/list-themes          # Show available themes
+/add-theme {name}     # Create new brand theme
+/switch-theme {name}  # Apply theme or generate toggle
+```
 
 ## Quick Start
 

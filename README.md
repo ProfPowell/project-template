@@ -6,17 +6,19 @@ A web project template with validation, automation, and Claude Code integration 
 
 ### Claude Code Integration
 
-**36 Skills** - Guidance that activates when Claude recognizes relevant context:
+**51 Skills** - Guidance that activates when Claude recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
 | `xhtml-author` | XHTML-strict syntax, semantic HTML5 |
+| `css-author` | `@layer`, `@import`, nesting, container queries, design tokens |
+| `javascript-author` | Web Components, JSDoc, functional core |
+| `typescript-author` | TypeScript patterns for Web Components and Node.js |
+| `markdown-author` | Markdown structure and formatting |
+| `content-author` | Quality content writing, spelling, grammar |
 | `accessibility-checker` | WCAG2AA patterns |
-| `content-writer` | Spelling, grammar awareness |
 | `custom-elements` | Custom element definitions |
 | `forms` | Accessible form patterns with `<output>` |
-| `css-architecture` | `@layer`, `@import`, nesting, container queries |
-| `design-tokens` | CSS custom properties |
 | `data-attributes` | State management with `data-*` |
 | `responsive-images` | `<picture>`, `srcset`, modern formats |
 | `placeholder-images` | SVG placeholder generation for prototypes |
@@ -30,24 +32,36 @@ A web project template with validation, automation, and Claude Code integration 
 | `i18n` | Internationalization, lang, RTL |
 | `patterns` | Reusable page patterns |
 | `icons` | Lucide icon library with `<x-icon>` |
-| `markdown-author` | Markdown structure and formatting |
-| `javascript-author` | Web Components, JSDoc |
 | `service-worker` | Offline support, caching strategies, PWA |
 | `unit-testing` | Node.js native test runner patterns |
 | `e2e-testing` | Playwright browser testing patterns |
+| `vitest` | Vitest testing framework patterns |
 | `git-workflow` | Conventional commits, branching |
-| `pre-flight-check` | Checklists before work begins |
+| `pre-flight-check` | Checklists and auto-invoke rules |
 | `site-scaffold` | Standard site structure |
 | `rest-api` | HTTP methods, status codes, versioning, OpenAPI |
 | `nodejs-backend` | Express/Fastify, PostgreSQL, services pattern |
+| `api-client` | Fetch API patterns, retry logic, caching |
 | `data-storage` | localStorage, IndexedDB, SQLite WASM |
+| `state-management` | Client-side state patterns for Web Components |
 | `authentication` | JWT, sessions, OAuth, password hashing |
 | `observability` | Error tracking, performance monitoring |
+| `error-handling` | Consistent error patterns frontend and backend |
+| `logging` | Structured client-side logging |
 | `dependency-wrapper` | Testable wrappers for third-party libs |
 | `database` | PostgreSQL schemas, migrations, seeding |
 | `backend-testing` | API testing, database mocking, integration tests |
+| `env-config` | Environment variable handling |
+| `containerization` | Docker, docker-compose patterns |
+| `deployment` | Deployment strategies and patterns |
+| `ci-cd` | CI/CD pipeline patterns |
+| `build-tooling` | Build tool configuration |
+| `astro` | Astro framework patterns |
+| `eleventy` | 11ty static site generator |
+| `sanity-cms` | Sanity CMS integration |
+| `open-props` | Open Props CSS framework |
 
-**32 Slash Commands**:
+**33 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -77,6 +91,7 @@ A web project template with validation, automation, and Claude Code integration 
 | `/add-migration` | Create database migration file |
 | `/scaffold-database` | Initialize database structure |
 | `/add-seed` | Create database seed file |
+| `/add-test` | Scaffold test file for a script |
 | `/add-auth` | Scaffold JWT authentication flow |
 | `/add-oauth` | Add OAuth provider integration |
 | `/add-openapi` | Generate OpenAPI specification |
@@ -84,12 +99,16 @@ A web project template with validation, automation, and Claude Code integration 
 | `/add-proxy` | Scaffold third-party API proxy |
 | `/add-rate-limit` | Add rate limiting to endpoints |
 
-**PostToolUse Hooks** - Validators run automatically when Claude edits files:
+**PostToolUse Hooks** - Run automatically when Claude edits files:
 
-- **HTML**: html-validate, htmlhint, pa11y (accessibility)
+- **Skill Injection**: Injects relevant skill guidance based on file type + content patterns
+  - Detects forms, icons, fetch calls, Web Components, animations
+  - Suggests supplementary skills when patterns match
+- **HTML**: html-validate, htmlhint, pa11y (accessibility), semantic checks
 - **CSS**: stylelint
-- **JavaScript**: eslint
-- **Markdown**: markdownlint
+- **JavaScript**: eslint, API checks
+- **Markdown**: markdownlint, cspell
+- **Config**: JSON/YAML validation
 
 ### Validation Scripts
 

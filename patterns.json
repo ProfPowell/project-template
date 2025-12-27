@@ -788,6 +788,217 @@
       "examples": [
         { "name": "Upload Progress", "html": "<progress-bar data-size=\"medium\">\n  <label>Uploading...</label>\n  <progress value=\"75\" max=\"100\">75%</progress>\n  <span data-value>75%</span>\n</progress-bar>" }
       ]
+    },
+    {
+      "name": "content-width",
+      "category": "layout",
+      "description": "Container utility that constrains content to a maximum width and centers it horizontally",
+      "status": "stable",
+      "element": "content-width",
+      "anatomy": [
+        { "name": "container", "description": "Width-constraining wrapper", "element": "content-width" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "width", "attribute": "data-width", "values": ["narrow", "default", "wide", "full"], "default": "default" },
+        { "name": "padding", "attribute": "data-padding", "values": ["none", "default", "large"], "default": "default" }
+      ],
+      "related": ["full-bleed", "page-shell", "stack"],
+      "examples": [
+        { "name": "Standard Width", "html": "<content-width>\n  <h1>Page Title</h1>\n  <p>Content...</p>\n</content-width>" }
+      ]
+    },
+    {
+      "name": "full-bleed",
+      "category": "layout",
+      "description": "Layout utility that allows content to break out of its container and span the full viewport width",
+      "status": "stable",
+      "element": "full-bleed",
+      "anatomy": [
+        { "name": "container", "description": "Full-width wrapper", "element": "full-bleed" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "style", "attribute": "data-style", "values": ["default", "contained"], "default": "default" },
+        { "name": "background", "attribute": "data-bg", "values": ["none", "surface", "accent", "dark"], "default": "none" }
+      ],
+      "related": ["content-width", "hero", "page-shell"],
+      "examples": [
+        { "name": "Accent Section", "html": "<full-bleed data-bg=\"accent\" data-style=\"contained\">\n  <section>\n    <h2>Full Width Section</h2>\n  </section>\n</full-bleed>" }
+      ]
+    },
+    {
+      "name": "split-layout",
+      "category": "layout",
+      "description": "Two-column layout that divides content into primary and secondary areas",
+      "status": "stable",
+      "element": "split-layout",
+      "anatomy": [
+        { "name": "primary", "description": "Main content area", "element": "div" },
+        { "name": "secondary", "description": "Supporting content area", "element": "div" }
+      ],
+      "states": ["default", "stacked"],
+      "variants": [
+        { "name": "ratio", "attribute": "data-ratio", "values": ["equal", "wide-left", "wide-right"], "default": "equal" },
+        { "name": "order", "attribute": "data-order", "values": ["default", "reverse"], "default": "default" },
+        { "name": "align", "attribute": "data-align", "values": ["start", "center", "end", "stretch"], "default": "center" },
+        { "name": "gap", "attribute": "data-gap", "values": ["none", "small", "default", "large"], "default": "default" }
+      ],
+      "related": ["sidebar-layout", "feature-grid", "hero"],
+      "examples": [
+        { "name": "Feature Split", "html": "<split-layout data-align=\"center\">\n  <div data-primary>\n    <h2>Feature</h2>\n    <p>Description</p>\n  </div>\n  <div data-secondary>\n    <img src=\"feature.jpg\" alt=\"Feature\" />\n  </div>\n</split-layout>" }
+      ]
+    },
+    {
+      "name": "dashboard-layout",
+      "category": "layout",
+      "description": "Application shell layout with fixed header, optional sidebar navigation, and scrollable main content",
+      "status": "stable",
+      "element": "dashboard-layout",
+      "anatomy": [
+        { "name": "header", "description": "Fixed top navigation bar", "element": "header" },
+        { "name": "sidebar", "description": "Collapsible side navigation", "element": "aside" },
+        { "name": "main", "description": "Scrollable content area", "element": "main" }
+      ],
+      "states": ["default", "collapsed", "mobile"],
+      "variants": [
+        { "name": "sidebar", "attribute": "data-sidebar", "values": ["start", "end", "none"], "default": "start" },
+        { "name": "collapsed", "attribute": "data-sidebar-collapsed", "values": ["true", "false"], "default": "false" }
+      ],
+      "accessibility": {
+        "aria": ["Landmarks for header, nav, main"],
+        "keyboard": [{ "key": "Escape", "action": "Close mobile sidebar" }]
+      },
+      "related": ["sidebar-layout", "site-header", "page-shell"],
+      "examples": [
+        { "name": "Standard Dashboard", "html": "<dashboard-layout data-sidebar=\"start\">\n  <header data-header>...</header>\n  <aside data-sidebar>...</aside>\n  <main data-main>...</main>\n</dashboard-layout>" }
+      ]
+    },
+    {
+      "name": "card-grid",
+      "category": "layout",
+      "description": "Responsive grid layout for displaying cards using CSS Grid auto-fit",
+      "status": "stable",
+      "element": "card-grid",
+      "anatomy": [
+        { "name": "container", "description": "Grid wrapper", "element": "card-grid" },
+        { "name": "items", "description": "Card children", "element": "article" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "columns", "attribute": "data-columns", "values": ["auto", "2", "3", "4", "5", "6"], "default": "auto" },
+        { "name": "min", "attribute": "data-min", "values": ["small", "default", "large"], "default": "default" },
+        { "name": "gap", "attribute": "data-gap", "values": ["none", "small", "default", "large"], "default": "default" },
+        { "name": "align", "attribute": "data-align", "values": ["start", "center", "stretch"], "default": "stretch" }
+      ],
+      "related": ["card", "product-card", "masonry"],
+      "examples": [
+        { "name": "Auto-Fit Grid", "html": "<card-grid data-columns=\"auto\" data-gap=\"default\">\n  <article>Card 1</article>\n  <article>Card 2</article>\n</card-grid>" }
+      ]
+    },
+    {
+      "name": "masonry",
+      "category": "layout",
+      "description": "Pinterest-style layout using CSS columns for variable-height items",
+      "status": "stable",
+      "element": "masonry-grid",
+      "anatomy": [
+        { "name": "container", "description": "Masonry wrapper", "element": "masonry-grid" },
+        { "name": "items", "description": "Variable-height content blocks", "element": "article" }
+      ],
+      "states": ["default", "enhanced"],
+      "variants": [
+        { "name": "columns", "attribute": "data-columns", "values": ["2", "3", "4", "auto"], "default": "3" },
+        { "name": "gap", "attribute": "data-gap", "values": ["none", "small", "default", "large"], "default": "default" }
+      ],
+      "related": ["card-grid", "gallery", "blog-card"],
+      "examples": [
+        { "name": "Photo Gallery", "html": "<masonry-grid data-columns=\"3\" data-gap=\"default\">\n  <article data-item><img src=\"photo.jpg\" alt=\"Photo\" /></article>\n</masonry-grid>" }
+      ]
+    },
+    {
+      "name": "stack",
+      "category": "layout",
+      "description": "Vertical layout utility that adds consistent spacing between child elements",
+      "status": "stable",
+      "element": "layout-stack",
+      "anatomy": [
+        { "name": "container", "description": "Stack wrapper", "element": "layout-stack" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "gap", "attribute": "data-gap", "values": ["none", "xs", "sm", "md", "lg", "xl", "2xl"], "default": "md" },
+        { "name": "recursive", "attribute": "data-recursive", "values": ["true"], "default": null },
+        { "name": "split", "attribute": "data-split", "values": ["1", "2", "3"], "default": null }
+      ],
+      "related": ["cluster", "content-width", "spacer"],
+      "examples": [
+        { "name": "Article Stack", "html": "<layout-stack data-gap=\"lg\">\n  <h1>Title</h1>\n  <p>Paragraph</p>\n</layout-stack>" }
+      ]
+    },
+    {
+      "name": "cluster",
+      "category": "layout",
+      "description": "Horizontal layout utility for grouping inline elements with consistent spacing and wrapping",
+      "status": "stable",
+      "element": "layout-cluster",
+      "anatomy": [
+        { "name": "container", "description": "Cluster wrapper", "element": "layout-cluster" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "gap", "attribute": "data-gap", "values": ["none", "xs", "sm", "md", "lg", "xl"], "default": "sm" },
+        { "name": "justify", "attribute": "data-justify", "values": ["start", "center", "end", "between", "around"], "default": "start" },
+        { "name": "align", "attribute": "data-align", "values": ["start", "center", "end", "baseline", "stretch"], "default": "center" },
+        { "name": "wrap", "attribute": "data-wrap", "values": ["wrap", "nowrap"], "default": "wrap" }
+      ],
+      "related": ["stack", "card-grid", "site-header"],
+      "examples": [
+        { "name": "Tag List", "html": "<layout-cluster data-gap=\"xs\">\n  <span class=\"tag\">HTML</span>\n  <span class=\"tag\">CSS</span>\n</layout-cluster>" }
+      ]
+    },
+    {
+      "name": "divider",
+      "category": "layout",
+      "description": "Visual separator for distinguishing content sections",
+      "status": "stable",
+      "element": "layout-divider",
+      "anatomy": [
+        { "name": "line", "description": "Divider element", "element": "layout-divider" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "orientation", "attribute": "data-orientation", "values": ["horizontal", "vertical"], "default": "horizontal" },
+        { "name": "style", "attribute": "data-style", "values": ["solid", "dashed", "dotted", "gradient"], "default": "solid" },
+        { "name": "spacing", "attribute": "data-spacing", "values": ["none", "small", "default", "large"], "default": "default" }
+      ],
+      "accessibility": {
+        "aria": ["role=\"separator\""]
+      },
+      "related": ["spacer", "stack", "content-width"],
+      "examples": [
+        { "name": "With Label", "html": "<layout-divider data-label=\"or\"></layout-divider>" }
+      ]
+    },
+    {
+      "name": "spacer",
+      "category": "layout",
+      "description": "Invisible layout utility that adds consistent vertical or horizontal space",
+      "status": "stable",
+      "element": "layout-spacer",
+      "anatomy": [
+        { "name": "spacer", "description": "Empty space element", "element": "layout-spacer" }
+      ],
+      "states": ["default"],
+      "variants": [
+        { "name": "size", "attribute": "data-size", "values": ["xs", "sm", "md", "lg", "xl", "2xl", "3xl"], "default": "md" },
+        { "name": "orientation", "attribute": "data-orientation", "values": ["vertical", "horizontal"], "default": "vertical" },
+        { "name": "responsive", "attribute": "data-responsive", "values": ["true"], "default": null }
+      ],
+      "related": ["stack", "divider", "content-width"],
+      "examples": [
+        { "name": "Section Spacing", "html": "<layout-spacer data-size=\"2xl\"></layout-spacer>" }
+      ]
     }
   ]
 }

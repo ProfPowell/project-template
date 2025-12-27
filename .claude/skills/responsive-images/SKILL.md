@@ -379,6 +379,61 @@ The `width` and `height` attributes prevent layout shift.
 
 ## Image Sizing Strategy
 
+### Images in Container-Queried Components
+
+The HTML `sizes` attribute uses **viewport** media queries, not container queries. For images inside container-queried components, the `sizes` may not accurately describe rendered width.
+
+**Strategies:**
+
+1. **Generous `sizes` estimation** - Provide srcset that covers the full range:
+
+```html
+<!-- Inside a container-queried card that could be 300-800px wide -->
+<img srcset="photo-300.jpg 300w,
+             photo-450.jpg 450w,
+             photo-600.jpg 600w,
+             photo-800.jpg 800w"
+     sizes="(max-width: 600px) 100vw, 800px"
+     alt="Product photo"/>
+```
+
+2. **CSS-controlled sizing** - Let CSS and container queries control the rendered size:
+
+```css
+@layer components {
+  product-card {
+    container-type: inline-size;
+  }
+
+  product-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+
+  @container (min-width: 500px) {
+    product-card img {
+      width: 40%;
+    }
+  }
+}
+```
+
+The browser still selects from `srcset` based on rendered size after CSS is applied.
+
+3. **Use `object-fit` with container units** for fluid sizing:
+
+```css
+product-card img {
+  width: min(100%, 20cqi);
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+```
+
+**Note:** Future CSS may support container-based image selection, but for now, provide a robust `srcset` range.
+
 ### Standard Breakpoints for `srcset`
 
 Generate images at these widths to cover common scenarios:
@@ -453,7 +508,7 @@ When adding images:
 
 ## Related Skills
 
+- **css-author** - Container queries for component-scoped image sizing
 - **performance** - Write performance-friendly HTML pages
 - **xhtml-author** - Write valid XHTML-strict HTML5 markup
 - **placeholder-images** - Generate SVG placeholder images for prototypes
-- **css-author** - Modern CSS organization with native @import, @layer casca...

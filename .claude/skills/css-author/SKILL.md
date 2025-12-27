@@ -953,10 +953,47 @@ Container-relative units for truly fluid components:
 | `cqmin` | Smaller of `cqi` or `cqb` |
 | `cqmax` | Larger of `cqi` or `cqb` |
 
+#### Fluid Typography with Container Units
+
 ```css
 blog-card h3 {
-  /* Font scales with container width */
-  font-size: clamp(1rem, 4cqi, 1.5rem);
+  /* Font scales with container width, respects user zoom */
+  font-size: clamp(1rem, 0.875rem + 0.5cqi, 1.5rem);
+}
+```
+
+#### Rhythm-Aligned Spacing
+
+Combine container units with `lh` (line-height) units for vertical rhythm:
+
+```css
+blog-card {
+  /* Gap scales with container but rounds to quarter-line increments */
+  --gap: round(up, 2cqi, 0.25lh);
+  gap: var(--gap);
+}
+```
+
+The `round()` function ensures spacing aligns to the typographic grid.
+
+#### Important Limitation
+
+**Container units cannot measure the element they're applied to.** This would create a circular dependency. Use nested elements or wrapper patterns:
+
+```css
+/* WRONG - card can't size based on its own container */
+product-card {
+  container-type: inline-size;
+  padding: 2cqi;  /* Measures parent, not self! */
+}
+
+/* CORRECT - children measure the card container */
+product-card {
+  container-type: inline-size;
+}
+
+product-card > * {
+  padding: 2cqi;  /* Now measures product-card */
 }
 ```
 
@@ -1097,6 +1134,8 @@ When implementing container queries:
 - [ ] Use `container-name` when multiple containers need targeting
 - [ ] Prefer `min-width` for progressive enhancement
 - [ ] Use container units (`cqi`, `cqw`) for fluid typography/spacing
+- [ ] Apply container units to **children**, not the container element itself
+- [ ] Use `round()` with `lh` units for rhythm-aligned spacing
 - [ ] Keep container queries in the same layer as component styles
 - [ ] Test components in various container widths
 

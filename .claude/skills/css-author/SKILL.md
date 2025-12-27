@@ -108,11 +108,114 @@ Design tokens provide:
 
 | Category | Purpose | Examples |
 |----------|---------|----------|
-| Colors | Brand, semantic, surface colors | `--primary-color`, `--error-color` |
+| Colors | Brand, semantic, surface colors | `--primary`, `--error` |
 | Spacing | Consistent gaps and padding | `--spacing-sm`, `--spacing-lg` |
 | Typography | Font sizes, weights, heights | `--font-size-lg`, `--line-height-normal` |
 | Effects | Shadows, transitions, borders | `--shadow-md`, `--transition-normal` |
 | Layout | Widths, breakpoints | `--content-width`, `--sidebar-width` |
+
+### Modern Color Formats
+
+**Use OKLCH instead of hex/RGB.** OKLCH provides:
+- Perceptually uniform lightness (consistent perceived brightness)
+- Wider color gamut than sRGB
+- Better color interpolation in gradients
+- Easier programmatic color generation
+
+| Format | Use Case | Example |
+|--------|----------|---------|
+| `oklch()` | Primary format for all colors | `oklch(55% 0.22 260)` |
+| `light-dark()` | Theme-aware tokens | `light-dark(oklch(20% 0 0), oklch(95% 0 0))` |
+| `color-mix()` | Blending, opacity | `color-mix(in oklch, var(--primary), transparent 50%)` |
+| Relative colors | Variations from base | `oklch(from var(--primary) calc(l + 0.2) c h)` |
+
+#### OKLCH Syntax
+
+```css
+/* oklch(lightness chroma hue) */
+--primary: oklch(55% 0.22 260);  /* Blue */
+--success: oklch(65% 0.2 145);   /* Green */
+--warning: oklch(75% 0.18 85);   /* Orange */
+--error: oklch(55% 0.22 25);     /* Red */
+```
+
+- **Lightness**: 0% (black) to 100% (white)
+- **Chroma**: 0 (gray) to ~0.4 (vivid) - varies by hue
+- **Hue**: 0-360 degrees (0=pink, 90=yellow, 180=cyan, 270=blue)
+
+#### Relative Colors (Derive Variations)
+
+Generate color variations programmatically from a base color:
+
+```css
+:root {
+  --primary: oklch(55% 0.22 260);
+
+  /* Lighter: increase lightness */
+  --primary-light: oklch(from var(--primary) calc(l + 0.2) c h);
+
+  /* Darker: decrease lightness */
+  --primary-dark: oklch(from var(--primary) calc(l - 0.15) c h);
+
+  /* Muted: reduce chroma */
+  --primary-muted: oklch(from var(--primary) l calc(c - 0.1) h);
+
+  /* Hover: slightly darker and more saturated */
+  --primary-hover: oklch(from var(--primary) calc(l - 0.08) calc(c + 0.02) h);
+}
+```
+
+#### Theme-Aware Colors with `light-dark()`
+
+Single declarations for both light and dark themes:
+
+```css
+:root {
+  color-scheme: light dark;  /* Required for light-dark() */
+
+  /* Single token handles both themes */
+  --text: light-dark(oklch(20% 0 0), oklch(95% 0 0));
+  --surface: light-dark(oklch(100% 0 0), oklch(15% 0.02 260));
+  --border: light-dark(oklch(90% 0.01 260), oklch(30% 0.02 260));
+}
+```
+
+#### Color Mixing for Opacity/Blending
+
+```css
+/* Semi-transparent overlays */
+--overlay-light: color-mix(in oklch, black, transparent 95%);
+--overlay-medium: color-mix(in oklch, black, transparent 90%);
+
+/* Elevated surfaces */
+--surface-elevated: color-mix(in oklch, var(--surface), white 5%);
+
+/* Blend two colors */
+--accent-blend: color-mix(in oklch, var(--primary), var(--secondary) 30%);
+```
+
+#### Gradients with Color Space
+
+Specify color space to prevent muddy midtones:
+
+```css
+/* Vibrant gradient interpolation */
+background: linear-gradient(in oklch, var(--primary), var(--secondary));
+
+/* For hue transitions, use longer path */
+background: linear-gradient(in oklch longer hue, oklch(65% 0.25 0), oklch(65% 0.25 360));
+```
+
+#### Browser Fallbacks
+
+For older browsers, provide hex fallback first:
+
+```css
+:root {
+  --primary: #2563eb;  /* Fallback for older browsers */
+  --primary: oklch(55% 0.22 260);
+}
+```
 
 ### Complete Token System
 
@@ -120,44 +223,64 @@ Design tokens provide:
 /* _tokens.css */
 @layer tokens {
   :root {
-    /* ==================== COLORS ==================== */
+    /* Enable light-dark() function */
+    color-scheme: light dark;
 
-    /* Brand colors */
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
-    --primary-light: #dbeafe;
-    --secondary-color: #64748b;
-    --secondary-hover: #475569;
+    /* ==================== COLORS (OKLCH) ==================== */
+
+    /* Hue palette - define once, reuse everywhere */
+    --hue-primary: 260;   /* Blue */
+    --hue-secondary: 250; /* Slate */
+    --hue-success: 145;   /* Green */
+    --hue-warning: 85;    /* Orange */
+    --hue-error: 25;      /* Red */
+    --hue-info: 200;      /* Cyan */
+
+    /* Brand colors with relative variations */
+    --primary: oklch(55% 0.22 var(--hue-primary));
+    --primary-hover: oklch(from var(--primary) calc(l - 0.08) calc(c + 0.02) h);
+    --primary-light: oklch(from var(--primary) calc(l + 0.35) calc(c - 0.12) h);
+    --secondary: oklch(50% 0.03 var(--hue-secondary));
+    --secondary-hover: oklch(from var(--secondary) calc(l - 0.1) c h);
 
     /* Semantic colors */
-    --success-color: #059669;
-    --success-light: #d1fae5;
-    --warning-color: #d97706;
-    --warning-light: #fef3c7;
-    --error-color: #dc2626;
-    --error-light: #fee2e2;
-    --info-color: #0891b2;
-    --info-light: #cffafe;
+    --success: oklch(60% 0.18 var(--hue-success));
+    --success-light: oklch(from var(--success) calc(l + 0.32) calc(c - 0.1) h);
+    --warning: oklch(75% 0.16 var(--hue-warning));
+    --warning-light: oklch(from var(--warning) calc(l + 0.2) calc(c - 0.08) h);
+    --error: oklch(55% 0.2 var(--hue-error));
+    --error-light: oklch(from var(--error) calc(l + 0.38) calc(c - 0.12) h);
+    --info: oklch(55% 0.14 var(--hue-info));
+    --info-light: oklch(from var(--info) calc(l + 0.38) calc(c - 0.08) h);
 
-    /* Surface colors */
-    --background-main: #ffffff;
-    --background-alt: #f9fafb;
-    --surface-color: #ffffff;
-    --surface-elevated: #ffffff;
+    /* Theme-aware surface colors */
+    --background: light-dark(oklch(100% 0 0), oklch(12% 0.02 var(--hue-primary)));
+    --background-alt: light-dark(oklch(98% 0.005 var(--hue-primary)), oklch(16% 0.02 var(--hue-primary)));
+    --surface: light-dark(oklch(100% 0 0), oklch(16% 0.02 var(--hue-primary)));
+    --surface-elevated: light-dark(oklch(100% 0 0), oklch(22% 0.02 var(--hue-primary)));
 
-    /* Text colors */
-    --text-color: #1f2937;
-    --text-muted: #6b7280;
-    --text-inverted: #ffffff;
+    /* Theme-aware text colors */
+    --text: light-dark(oklch(20% 0.02 var(--hue-primary)), oklch(96% 0.01 var(--hue-primary)));
+    --text-muted: light-dark(oklch(45% 0.02 var(--hue-primary)), oklch(65% 0.02 var(--hue-primary)));
+    --text-inverted: light-dark(oklch(100% 0 0), oklch(10% 0 0));
 
-    /* Border colors */
-    --border-color: #e5e7eb;
-    --border-strong: #d1d5db;
+    /* Theme-aware border colors */
+    --border: light-dark(oklch(90% 0.01 var(--hue-primary)), oklch(28% 0.02 var(--hue-primary)));
+    --border-strong: light-dark(oklch(82% 0.01 var(--hue-primary)), oklch(38% 0.02 var(--hue-primary)));
 
-    /* Overlay colors */
-    --overlay-light: rgba(0, 0, 0, 0.05);
-    --overlay-medium: rgba(0, 0, 0, 0.1);
-    --overlay-strong: rgba(0, 0, 0, 0.2);
+    /* Theme-aware overlays using color-mix */
+    --overlay-light: light-dark(
+      color-mix(in oklch, black, transparent 95%),
+      color-mix(in oklch, white, transparent 95%)
+    );
+    --overlay-medium: light-dark(
+      color-mix(in oklch, black, transparent 90%),
+      color-mix(in oklch, white, transparent 90%)
+    );
+    --overlay-strong: light-dark(
+      color-mix(in oklch, black, transparent 80%),
+      color-mix(in oklch, white, transparent 80%)
+    );
 
     /* ==================== SPACING ==================== */
 
@@ -232,34 +355,28 @@ Design tokens provide:
 }
 ```
 
-### Dark Theme Tokens
+### Dark Theme Approach
+
+**Recommended: Use `light-dark()` in the Complete Token System above.** This eliminates the need for duplicate token definitions.
+
+#### User-Controlled Theme Toggle (Legacy Pattern)
+
+For sites with theme toggle UI that override system preference, use CSS `:has()` to scope token overrides:
 
 ```css
-:root:has(#theme-dark:checked),
+/* Force dark mode when user selects dark */
+:root:has(#theme-dark:checked) {
+  color-scheme: dark;  /* Triggers light-dark() to use dark values */
+}
+
+/* Force light mode when user selects light */
+:root:has(#theme-light:checked) {
+  color-scheme: light;  /* Triggers light-dark() to use light values */
+}
+
+/* Auto follows system preference (default behavior) */
 :root:has(#theme-auto:checked) {
-  @media (prefers-color-scheme: dark) {
-    /* Surface colors */
-    --background-main: #111827;
-    --background-alt: #1f2937;
-    --surface-color: #1f2937;
-    --surface-elevated: #374151;
-
-    /* Text colors */
-    --text-color: #f9fafb;
-    --text-muted: #9ca3af;
-
-    /* Border colors */
-    --border-color: #374151;
-    --border-strong: #4b5563;
-
-    /* Overlays (inverted for dark) */
-    --overlay-light: rgba(255, 255, 255, 0.05);
-    --overlay-medium: rgba(255, 255, 255, 0.1);
-
-    /* Shadows (more prominent in dark mode) */
-    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
-  }
+  color-scheme: light dark;
 }
 ```
 
@@ -268,23 +385,23 @@ Design tokens provide:
 ```css
 :root {
   /* Form tokens */
-  --form-border-color: var(--border-color);
-  --form-focus-color: var(--primary-color);
-  --form-invalid-color: var(--error-color);
+  --form-border: var(--border);
+  --form-focus: var(--primary);
+  --form-invalid: var(--error);
   --form-input-padding: var(--spacing-sm) var(--spacing-md);
   --form-input-radius: var(--radius-md);
 
   /* Button tokens */
   --button-padding: var(--spacing-sm) var(--spacing-lg);
   --button-radius: var(--radius-md);
-  --button-primary-bg: var(--primary-color);
+  --button-primary-bg: var(--primary);
   --button-primary-text: var(--text-inverted);
 
   /* Card tokens */
   --card-padding: var(--spacing-lg);
   --card-radius: var(--radius-lg);
   --card-shadow: var(--shadow-sm);
-  --card-bg: var(--surface-color);
+  --card-bg: var(--surface);
 }
 ```
 
@@ -292,17 +409,18 @@ Design tokens provide:
 
 | Pattern | Example | Purpose |
 |---------|---------|---------|
-| `--{category}-{variant}` | `--primary-color` | Base tokens |
-| `--{semantic}-{variant}` | `--success-light` | Semantic colors |
-| `--{element}-{property}` | `--text-muted` | Element-specific |
+| `--{category}` | `--primary`, `--error` | Base tokens (no `-color` suffix) |
+| `--{category}-{variant}` | `--primary-hover`, `--success-light` | Token variations |
+| `--{element}-{modifier}` | `--text-muted`, `--border-strong` | Semantic element tokens |
 
 **Use semantic names, not literal values:**
 
 | Avoid | Prefer |
 |-------|--------|
-| `--blue` | `--primary-color` |
-| `--red` | `--error-color` |
+| `--blue`, `--primary-color` | `--primary` |
+| `--red`, `--error-color` | `--error` |
 | `--16px` | `--spacing-md` |
+| `#2563eb` (hex in code) | `var(--primary)` |
 
 ---
 
@@ -1083,7 +1201,7 @@ inset-inline: 0;  /* left and right */
 
 ```css
 /* Border on one logical side */
-border-inline-start: 3px solid var(--primary-color);
+border-inline-start: 3px solid var(--primary);
 
 /* Border radius */
 border-start-start-radius: var(--radius-lg);  /* top-left in LTR */
@@ -1128,7 +1246,7 @@ main-layout {
 }
 
 sidebar-panel {
-  border-inline-end: 1px solid var(--border-color);
+  border-inline-end: 1px solid var(--border);
   padding-inline-end: var(--spacing-lg);
 }
 ```
@@ -1138,7 +1256,7 @@ sidebar-panel {
 ```css
 /* Accent border on start edge */
 blog-card[data-featured] {
-  border-inline-start: 4px solid var(--accent-color);
+  border-inline-start: 4px solid var(--primary);
   padding-inline-start: var(--spacing-lg);
 }
 ```
@@ -1181,12 +1299,12 @@ Some properties should remain physical:
 ```css
 /* Physical: shadow direction stays consistent */
 blog-card {
-  box-shadow: 2px 2px 8px var(--shadow-color);
+  box-shadow: 2px 2px 8px oklch(0% 0 0 / 0.15);
 }
 
 /* Logical: border flips with text direction */
 blog-card {
-  border-inline-start: 3px solid var(--accent-color);
+  border-inline-start: 3px solid var(--primary);
 }
 ```
 
@@ -1235,8 +1353,8 @@ blog-card {
     display: grid;
     gap: var(--spacing-md);
     padding: var(--spacing-lg);
-    background: var(--surface-color);
-    border-radius: var(--border-radius);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-sm);
     transition: box-shadow var(--transition-normal);
 
@@ -1247,7 +1365,7 @@ blog-card {
 
     /* Featured variant */
     &[data-featured] {
-      border-left: 4px solid var(--primary-color);
+      border-inline-start: 4px solid var(--primary);
     }
 
     /* Child elements */
@@ -1280,6 +1398,7 @@ blog-card {
 
 When setting up or reviewing CSS:
 
+### Structure
 - [ ] Layer declaration at top of main.css
 - [ ] All imports use `layer()` syntax
 - [ ] Files organized by scope (tokens, layout, sections, components, pages)
@@ -1288,6 +1407,16 @@ When setting up or reviewing CSS:
 - [ ] Nesting limited to 3-4 levels
 - [ ] Responsive styles in `responsive` layer
 - [ ] Design tokens in `_tokens.css`
+
+### Colors
+- [ ] Colors defined in OKLCH format, not hex or RGB
+- [ ] `color-scheme: light dark` declared in `:root`
+- [ ] Theme-aware tokens use `light-dark()` function
+- [ ] Color variations use relative colors (not separate tokens)
+- [ ] Gradients specify color space: `linear-gradient(in oklch, ...)`
+- [ ] Hex fallback provided before OKLCH for older browsers (if needed)
+
+### Layout
 - [ ] Container queries used for component-scoped responsiveness
 - [ ] Components define `container-type` when children need to adapt
 - [ ] Logical properties used for margins, padding, and borders
@@ -1318,7 +1447,7 @@ button x-icon {
 }
 
 button:hover x-icon {
-  color: var(--primary-color);
+  color: var(--primary);
 }
 ```
 

@@ -1,13 +1,13 @@
 # Scaffold Dashboard
 
-Generate an admin dashboard using the `starters/dashboard/` template.
+Generate an admin dashboard using the `.claude/starters/dashboard/` template.
 
 ## Template Location
-`starters/dashboard/`
+`.claude/starters/dashboard/`
 
 ## Prompts to Collect
 
-Read `starters/dashboard/manifest.yaml` for the full prompt configuration.
+Read `.claude/starters/dashboard/manifest.yaml` for the full prompt configuration.
 
 Key prompts:
 - `PROJECT_NAME` - Folder name (required, lowercase with hyphens)
@@ -24,8 +24,8 @@ Key prompts:
 
 1. Use AskUserQuestion to collect the required prompts
 2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `starters/dashboard/` to the project
-4. Copy shared resources from `starters/_shared/`:
+3. Copy all files from `.claude/starters/dashboard/` to the project
+4. Copy shared resources from `.claude/starters/_shared/`:
    - `styles/_reset.css` → `src/styles/_reset.css`
    - `styles/_tokens.css` → `src/styles/_tokens.css`
 5. Replace all `{{PLACEHOLDER}}` values with collected prompts

@@ -1,13 +1,13 @@
 # Scaffold Chrome Extension
 
-Generate a Chrome extension using the `starters/chrome-extension/` template.
+Generate a Chrome extension using the `.claude/starters/chrome-extension/` template.
 
 ## Template Location
-`starters/chrome-extension/`
+`.claude/starters/chrome-extension/`
 
 ## Prompts to Collect
 
-Read `starters/chrome-extension/manifest.yaml` for the full prompt configuration.
+Read `.claude/starters/chrome-extension/manifest.yaml` for the full prompt configuration.
 
 Key prompts:
 - `PROJECT_NAME` - Folder name (required, lowercase with hyphens)
@@ -22,7 +22,7 @@ Key prompts:
 
 1. Use AskUserQuestion to collect the required prompts
 2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `starters/chrome-extension/` to the project
+3. Copy all files from `.claude/starters/chrome-extension/` to the project
 4. Replace all `{{PLACEHOLDER}}` values with collected prompts
 5. Update manifest.json:
    - Set permissions based on PERMISSIONS prompt

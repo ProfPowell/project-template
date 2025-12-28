@@ -37,16 +37,16 @@ Run the generator script:
 
 ```bash
 # Simple placeholder
-node scripts/generate-placeholder.js --type simple --size 400x400 --output assets/images/placeholder/
+node .claude/scripts/generate-placeholder.js --type simple --size 400x400 --output .assets/images/placeholder/
 
 # Labeled placeholder
-node scripts/generate-placeholder.js --type labeled --label "Hero Image" --size 1200x400 --output assets/images/placeholder/
+node .claude/scripts/generate-placeholder.js --type labeled --label "Hero Image" --size 1200x400 --output .assets/images/placeholder/
 
 # Using preset
-node scripts/generate-placeholder.js --preset hero --output assets/images/placeholder/
+node .claude/scripts/generate-placeholder.js --preset hero --output .assets/images/placeholder/
 
 # Preset with custom label
-node scripts/generate-placeholder.js --preset product --label "Product Shot" --output assets/images/placeholder/
+node .claude/scripts/generate-placeholder.js --preset product --label "Product Shot" --output .assets/images/placeholder/
 ```
 
 ### 3. Return HTML
@@ -54,7 +54,7 @@ node scripts/generate-placeholder.js --preset product --label "Product Shot" --o
 After generating, provide the HTML to use:
 
 ```html
-<img src="/assets/images/placeholder/hero-image-1200x400.svg"
+<img src="/.assets/images/placeholder/hero-image-1200x400.svg"
      alt="Hero banner placeholder"
      width="1200"
      height="400"/>
@@ -75,5 +75,5 @@ After generating, provide the HTML to use:
 ## Notes
 
 - All placeholders are accessible with proper ARIA labels
-- Files saved to `assets/images/placeholder/` directory
+- Files saved to `.assets/images/placeholder/` directory
 - Use consistent naming: `{label}-{width}x{height}.svg`

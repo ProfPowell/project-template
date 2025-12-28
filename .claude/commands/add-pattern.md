@@ -15,21 +15,21 @@ Create a new pattern in the pattern library.
    - `layout` - Structural organization
    - `data` - Data display patterns
 
-2. Read `patterns.json` to check for existing patterns
+2. Read `.claude/schemas/patterns.json` to check for existing patterns
 
-3. Create the pattern documentation file at `patterns/{category}/{pattern-name}.md` using the template structure
+3. Create the pattern documentation file at `.claude/patterns/{category}/{pattern-name}.md` using the template structure
 
-4. Add the pattern entry to `patterns.json` with:
+4. Add the pattern entry to `.claude/schemas/patterns.json` with:
    - Basic metadata (name, category, description, status: "draft")
    - Anatomy parts
    - States (at minimum: default, hover, focus)
    - Basic accessibility requirements
 
 5. If the pattern needs a custom element:
-   - Add it to `elements.json` using the add-element pattern
+   - Add it to `.claude/schemas/elements.json` using the add-element pattern
    - Link it in the pattern definition
 
-6. Create an example HTML file at `patterns/components/{pattern-name}.html`
+6. Create an example HTML file at `.claude/patterns/components/{pattern-name}.html`
 
 ## Pattern Documentation Template
 

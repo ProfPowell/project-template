@@ -72,7 +72,7 @@ Use the Lucide icon library with local SVG files and the `<x-icon>` Web Componen
 ## Directory Structure
 
 ```
-assets/
+.assets/
 ├── js/
 │   └── components/
 │       └── x-icon/          # Icon Web Component
@@ -100,11 +100,11 @@ npm install lucide-static --save-dev
 npm run icons:sync
 
 # 3. Copy x-icon component
-mkdir -p assets/js/components/x-icon
-cp .claude/skills/icons/templates/x-icon/*.js assets/js/components/x-icon/
+mkdir -p .assets/js/components/x-icon
+cp .claude/skills/icons/templates/x-icon/*.js .assets/js/components/x-icon/
 
 # 4. Include in HTML
-<script type="module" src="/assets/js/components/x-icon/x-icon.js"></script>
+<script type="module" src="/.assets/js/components/x-icon/x-icon.js"></script>
 ```
 
 ## The `<x-icon>` Component
@@ -117,7 +117,7 @@ cp .claude/skills/icons/templates/x-icon/*.js assets/js/components/x-icon/
 | `set` | Icon set directory | `"lucide"` |
 | `size` | Size preset: xs, sm, md, lg, xl, 2xl | `"md"` |
 | `label` | Accessible label for functional icons | None |
-| `base-path` | Override default icon path | `/assets/icons` |
+| `base-path` | Override default icon path | `/.assets/icons` |
 
 ### Size Reference
 
@@ -155,7 +155,7 @@ Icons are sourced from the `lucide-static` npm package:
 # Install package (one-time)
 npm install lucide-static --save-dev
 
-# Sync icons to assets/icons/lucide/
+# Sync icons to .assets/icons/lucide/
 npm run icons:sync
 ```
 
@@ -200,10 +200,10 @@ Add `label` for icon-only buttons or links:
 
 ## Adding Custom Icons
 
-1. Create SVG file in `assets/icons/custom/`:
+1. Create SVG file in `.assets/icons/custom/`:
 
 ```xml
-<!-- assets/icons/custom/logo.svg -->
+<!-- .assets/icons/custom/logo.svg -->
 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path d="M12 2L2 7l10 5 10-5-10-5z"/>
 </svg>
@@ -228,9 +228,9 @@ To use a different icon library:
 
 1. Remove lucide-static: `npm uninstall lucide-static`
 2. Install alternative: `npm install [other-library]`
-3. Update `scripts/sync-icons.js` source path
+3. Update `.claude/scripts/sync-icons.js` source path
 4. Run `npm run icons:sync`
-5. Or manually copy SVGs to `assets/icons/[set-name]/`
+5. Or manually copy SVGs to `.assets/icons/[set-name]/`
 
 The `<x-icon>` component works with any SVG icon library.
 
@@ -238,11 +238,11 @@ The `<x-icon>` component works with any SVG icon library.
 
 Browse available icons:
 - **Lucide**: https://lucide.dev/icons
-- **Local manifest**: `assets/icons/lucide/index.json`
+- **Local manifest**: `.assets/icons/lucide/index.json`
 
 ```bash
 # Search for icons locally
-grep -l "arrow" assets/icons/lucide/*.svg | head -10
+grep -l "arrow" .assets/icons/lucide/*.svg | head -10
 ```
 
 ## Common Icons
@@ -261,11 +261,11 @@ grep -l "arrow" assets/icons/lucide/*.svg | head -10
 
 When using icons:
 
-- [ ] Icon name matches file in `assets/icons/[set]/`
+- [ ] Icon name matches file in `.assets/icons/[set]/`
 - [ ] Functional icons have `label` attribute
 - [ ] Icon size appropriate for context
 - [ ] Color inherits from parent (uses `currentColor`)
-- [ ] Custom icons saved to `assets/icons/custom/`
+- [ ] Custom icons saved to `.assets/icons/custom/`
 
 ## Related Skills
 

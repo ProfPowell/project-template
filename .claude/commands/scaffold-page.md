@@ -10,8 +10,8 @@ Create a new page using pattern compositions.
 1. Identify the page type and look up its composition in `patterns-plan.md`
 
 2. Create the page file at the appropriate location:
-   - Marketing pages: `src/{page-name}.html` or `patterns/pages/{page-name}.html`
-   - App pages: `src/app/{page-name}.html` or `patterns/pages/{page-name}.html`
+   - Marketing pages: `src/{page-name}.html` or `.claude/patterns/pages/{page-name}.html`
+   - App pages: `src/app/{page-name}.html` or `.claude/patterns/pages/{page-name}.html`
 
 3. Include the standard page structure:
    - DOCTYPE and lang attribute
@@ -19,7 +19,7 @@ Create a new page using pattern compositions.
    - Link to main.css
    - Semantic HTML structure (header, main, footer)
 
-4. Compose the page using patterns from `patterns.json`:
+4. Compose the page using patterns from `.claude/schemas/patterns.json`:
    - Use pattern custom elements where available
    - Fall back to semantic HTML structure
    - Include appropriate ARIA landmarks

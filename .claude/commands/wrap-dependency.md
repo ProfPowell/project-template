@@ -31,7 +31,7 @@ src/lib/
 ├── http.js          # Wrapper module
 └── http.test.js     # Test file with mock
 
-test/mocks/
+.claude/test/mocks/
 └── http.js          # Mock factory
 ```
 
@@ -95,7 +95,7 @@ export function createHttpClient(config = {}) {
 ### Mock Factory
 
 ```javascript
-// test/mocks/http.js
+// .claude/test/mocks/http.js
 
 /**
  * Create mock HTTP client for testing
@@ -133,7 +133,7 @@ export function createMockHttpClient(responses = {}) {
 // src/lib/http.test.js
 import { describe, it } from 'node:test';
 import assert from 'node:assert';
-import { createMockHttpClient } from '../../test/mocks/http.js';
+import { createMockHttpClient } from '../../.claude/test/mocks/http.js';
 
 describe('HttpClient', () => {
   it('returns response data', async () => {
@@ -179,7 +179,7 @@ Create wrapper with:
 
 ### 5. Generate Mock
 
-Create mock factory in `test/mocks/` with:
+Create mock factory in `.claude/test/mocks/` with:
 - Same interface as wrapper
 - Call tracking
 - Response stubbing
@@ -190,7 +190,7 @@ Create mock factory in `test/mocks/` with:
 ```
 Created wrapper for [library]:
   - src/lib/[name].js (wrapper)
-  - test/mocks/[name].js (mock factory)
+  - .claude/test/mocks/[name].js (mock factory)
 
 Usage:
   import { create[Name] } from './lib/[name].js';
@@ -198,7 +198,7 @@ Usage:
   const client = create[Name]({ /* config */ });
 
 Testing:
-  import { createMock[Name] } from '../test/mocks/[name].js';
+  import { createMock[Name] } from '../.claude/test/mocks/[name].js';
 
   const mock = createMock[Name]({ 'GET /users': [...] });
 ```
@@ -228,7 +228,7 @@ Factory returning `{ upload, download, delete, list }` methods.
 ## Notes
 
 - Wrappers go in `src/lib/` or `src/adapters/`
-- Mocks go in `test/mocks/`
+- Mocks go in `.claude/test/mocks/`
 - Follow dependency-wrapper skill patterns
 - Always include mock factory for testing
 - Use factory pattern for configuration

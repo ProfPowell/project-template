@@ -34,5 +34,5 @@
       "blacklist": ["div"]
     }]
   },
-  "elements": ["html5", "../elements.json"]
+  "elements": ["html5", "../.claude/schemas/elements.json"]
 }

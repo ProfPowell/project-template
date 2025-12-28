@@ -182,7 +182,7 @@ bd close <id>
 
 ### Pattern Library
 
-**50+ UI Patterns** defined in `patterns.json` with examples in `patterns/`:
+**50+ UI Patterns** defined in `.claude/schemas/patterns.json` with examples in `.claude/patterns/`:
 
 | Category | Patterns |
 |----------|----------|
@@ -200,7 +200,7 @@ Each pattern includes:
 - Accessibility requirements (ARIA, keyboard navigation)
 - Related patterns for composition
 
-**20 Page Templates** in `patterns/pages/`:
+**20 Page Templates** in `.claude/patterns/pages/`:
 
 | Type | Templates |
 |------|-----------|
@@ -224,7 +224,7 @@ npm run generate:patterns
 
 ### Component Library
 
-**Atomic UI Components** in `patterns/components/` bridging design tokens and patterns:
+**Atomic UI Components** in `.claude/patterns/components/` bridging design tokens and patterns:
 
 ```
 Templates (pages)
@@ -277,11 +277,11 @@ Tokens (colors, spacing, type)
 </form-field>
 ```
 
-Browse the [Component Gallery](patterns/components/index.html) for all components with examples.
+Browse the [Component Gallery](.claude/patterns/components/index.html) for all components with examples.
 
 ### Project Scaffolds
 
-**6 Project Starters** in `starters/` for quickly scaffolding new projects:
+**6 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
 
 | Starter | Description | Command |
 |---------|-------------|---------|
@@ -295,25 +295,26 @@ Browse the [Component Gallery](patterns/components/index.html) for all component
 Each starter includes:
 - `manifest.yaml` defining prompts and configuration
 - Template files with `{{PLACEHOLDER}}` variables
-- Shared resources from `starters/_shared/`
+- Shared resources from `.claude/starters/_shared/`
 - Skills integration for consistent development
 
 **Usage:**
 
 ```bash
-/scaffold           # Interactive wizard
+/init               # Project initialization wizard
+/scaffold           # Interactive scaffold wizard
 /scaffold-site      # Static website
 /scaffold-spa       # PWA/SPA application
 ```
 
-See the [starters/README.md](starters/README.md) for detailed documentation.
+See the [starters/README.md](.claude/starters/README.md) for detailed documentation.
 
 ### Design Token System
 
-**Layered token architecture** in `styles/tokens/` providing a neutral foundation with multi-theme support:
+**Layered token architecture** in `.claude/styles/tokens/` providing a neutral foundation with multi-theme support:
 
 ```
-styles/tokens/
+.claude/styles/tokens/
 ├── _base.css           # Neutral primitives (grays, spacing, typography)
 ├── _semantic.css       # Purpose-driven aliases using light-dark()
 ├── _components.css     # Component-specific tokens
@@ -377,7 +378,7 @@ styles/tokens/
 
 ## Quick Start
 
-1. **Clone or copy this template**
+1. **Clone this template**
 
 ```bash
 git clone <this-repo> my-project
@@ -385,19 +386,27 @@ cd my-project
 npm install
 ```
 
-1. **Create your source files**
-
-Create a `src/` directory with your HTML, CSS, and JavaScript files.
-
-1. **Sync icons** (optional)
+2. **Initialize your project**
 
 ```bash
-npm run icons:sync
+/init
 ```
 
-1. **Start building**
+The initialization wizard will:
+- Ask what type of project you want to create
+- Collect project configuration
+- Scaffold the appropriate files
+- Display next steps
+
+3. **Start building**
 
 Open with an AI assistant. The skills and hooks will guide your development.
+
+```bash
+npm run dev        # Start development
+npm run lint       # Validate code
+npm run test       # Run tests
+```
 
 ## Configuration Files
 
@@ -411,15 +420,16 @@ Open with an AI assistant. The skills and hooks will guide your development.
 | `.config/cspell.json` | Spell checking |
 | `.config/textlint.json` | Grammar checking |
 | `.config/markdownlint.json` | Markdown linting |
-| `elements.json` | Custom element definitions |
-| `project-words.txt` | Custom dictionary |
-| `lighthouserc.json` | Lighthouse CI |
+| `.config/lighthouserc.json` | Lighthouse CI |
+| `.config/project-words.txt` | Custom dictionary |
+| `.claude/schemas/elements.json` | Custom element definitions |
+| `.claude/schemas/patterns.json` | UI pattern definitions |
 
 ## Customization
 
 ### Add Custom Elements
 
-Edit `elements.json`:
+Edit `.claude/schemas/elements.json`:
 
 ```json
 {
@@ -435,7 +445,7 @@ Edit `elements.json`:
 
 ### Add Dictionary Words
 
-Edit `project-words.txt` or use `/add-word`:
+Edit `.config/project-words.txt` or use `/add-word`:
 
 ```
 MyBrandName

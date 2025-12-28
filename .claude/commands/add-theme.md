@@ -9,7 +9,7 @@ Create a new brand theme variant with hue-based color generation.
 
 1. Parse theme name from arguments (lowercase, hyphenated)
 2. Extract hue if provided, otherwise ask user for primary hue (0-360)
-3. Create `/styles/tokens/themes/_brand-{name}.css`
+3. Create `/.claude/styles/tokens/themes/_brand-{name}.css`
 4. Add theme to `tokens.json`
 
 ## Hue Reference

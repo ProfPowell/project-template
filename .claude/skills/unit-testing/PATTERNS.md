@@ -17,7 +17,7 @@ const projectRoot = resolve(import.meta.dirname, '../..');
 function runScript(filePath) {
   try {
     const output = execSync(
-      `node scripts/my-script.js "${filePath}"`,
+      `node .claude/scripts/my-script.js "${filePath}"`,
       { cwd: projectRoot, encoding: 'utf-8', timeout: 30000 }
     );
     return { success: true, output, exitCode: 0 };
@@ -33,12 +33,12 @@ function runScript(filePath) {
 
 describe('my-script', () => {
   it('should process valid file', () => {
-    const result = runScript('test/fixtures/valid/sample.html');
+    const result = runScript('.claude/test/fixtures/valid/sample.html');
     assert.strictEqual(result.success, true);
   });
 
   it('should fail for invalid file', () => {
-    const result = runScript('test/fixtures/invalid/broken.html');
+    const result = runScript('.claude/test/fixtures/invalid/broken.html');
     assert.strictEqual(result.success, false);
   });
 });
@@ -68,7 +68,7 @@ function runWithJson(filePath) {
 }
 
 it('should detect specific error', () => {
-  const result = runWithJson('test/fixtures/invalid/missing-alt.html');
+  const result = runWithJson('.claude/test/fixtures/invalid/missing-alt.html');
   assert.ok(result.errors.some(e => e.rule === 'alt-require'));
 });
 ```
@@ -192,7 +192,7 @@ Test behavior with different environment settings.
 ```javascript
 it('respects CI environment', () => {
   const result = execSync(
-    'node scripts/my-script.js',
+    'node .claude/scripts/my-script.js',
     {
       cwd: projectRoot,
       encoding: 'utf-8',

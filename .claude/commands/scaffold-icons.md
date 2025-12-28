@@ -5,8 +5,8 @@ Set up the Lucide icon system in a project.
 ## What This Command Does
 
 1. **Install lucide-static** (if not already installed)
-2. **Sync icons** to `assets/icons/lucide/`
-3. **Create custom directory** at `assets/icons/custom/`
+2. **Sync icons** to `.assets/icons/lucide/`
+3. **Create custom directory** at `.assets/icons/custom/`
 4. **Copy x-icon component** to project (if needed)
 5. **Add to elements.json** for HTML validation
 
@@ -35,7 +35,7 @@ If `icons:sync` script doesn't exist, add it to package.json:
 ```json
 {
   "scripts": {
-    "icons:sync": "node scripts/sync-icons.js"
+    "icons:sync": "node .claude/scripts/sync-icons.js"
   }
 }
 ```
@@ -45,8 +45,8 @@ If `icons:sync` script doesn't exist, add it to package.json:
 Copy the component to your site's assets:
 
 ```bash
-mkdir -p assets/js/components/x-icon
-cp .claude/skills/icons/templates/x-icon/*.js assets/js/components/x-icon/
+mkdir -p .assets/js/components/x-icon
+cp .claude/skills/icons/templates/x-icon/*.js .assets/js/components/x-icon/
 ```
 
 The component files are:
@@ -78,24 +78,24 @@ Add x-icon element definition if not present:
 
 ```bash
 # Check icon count
-ls assets/icons/lucide/*.svg | wc -l
+ls .assets/icons/lucide/*.svg | wc -l
 
 # Check manifest exists
-cat assets/icons/lucide/index.json | head -5
+cat .assets/icons/lucide/index.json | head -5
 ```
 
 ## Expected Output
 
 ```
 Icon Sync
-Syncing Lucide icons to assets/icons/lucide/
+Syncing Lucide icons to .assets/icons/lucide/
 
 Found 1912 icons in lucide-static
-Copied 1912 icons to assets/icons/lucide
+Copied 1912 icons to .assets/icons/lucide
 Generated index.json manifest
 
-Done! Icons are ready in assets/icons/lucide/
-Add custom icons to assets/icons/custom/
+Done! Icons are ready in .assets/icons/lucide/
+Add custom icons to .assets/icons/custom/
 ```
 
 ## After Running
@@ -103,7 +103,7 @@ Add custom icons to assets/icons/custom/
 1. Include x-icon component in your HTML:
 
 ```html
-<script type="module" src="/assets/js/components/x-icon/x-icon.js"></script>
+<script type="module" src="/.assets/js/components/x-icon/x-icon.js"></script>
 ```
 
 2. Use icons:
@@ -117,7 +117,7 @@ Add custom icons to assets/icons/custom/
 
 **Icons not loading:**
 - Check base path matches your asset structure
-- Verify icons exist in `assets/icons/lucide/`
+- Verify icons exist in `.assets/icons/lucide/`
 - Check browser console for fetch errors
 
 **Component not defined:**
@@ -126,4 +126,4 @@ Add custom icons to assets/icons/custom/
 
 **Icon not found:**
 - Search https://lucide.dev/icons for correct name
-- Check `assets/icons/lucide/index.json` for available icons
+- Check `.assets/icons/lucide/index.json` for available icons

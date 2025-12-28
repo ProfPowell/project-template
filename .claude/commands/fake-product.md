@@ -69,7 +69,7 @@ For each product, insert:
 
 ```html
 <product-card sku="[sku]">
-  <img src="/assets/images/placeholder/product-400x400.svg"
+  <img src="/.assets/images/placeholder/product-400x400.svg"
        alt="[name]"/>
   <h3>[name]</h3>
   <p>[description]</p>

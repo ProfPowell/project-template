@@ -1,13 +1,13 @@
 # Scaffold Astro Site
 
-Generate an Astro-powered static site using the `starters/static-astro/` template.
+Generate an Astro-powered static site using the `.claude/starters/static-astro/` template.
 
 ## Template Location
-`starters/static-astro/`
+`.claude/starters/static-astro/`
 
 ## Prompts to Collect
 
-Read `starters/static-astro/manifest.yaml` for the full prompt configuration.
+Read `.claude/starters/static-astro/manifest.yaml` for the full prompt configuration.
 
 Key prompts:
 - `PROJECT_NAME` - Folder name (required, lowercase with hyphens)
@@ -22,7 +22,7 @@ Key prompts:
 
 1. Use AskUserQuestion to collect the required prompts
 2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `starters/static-astro/` to the project
+3. Copy all files from `.claude/starters/static-astro/` to the project
 4. Replace all `{{PLACEHOLDER}}` values with collected prompts
 5. Configure astro.config.mjs based on OUTPUT_MODE and ADAPTER
 6. Generate content collection directories based on CONTENT_COLLECTIONS

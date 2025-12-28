@@ -1,13 +1,13 @@
 # Scaffold REST API
 
-Generate a Node.js REST API using the `starters/rest-api/` template.
+Generate a Node.js REST API using the `.claude/starters/rest-api/` template.
 
 ## Template Location
-`starters/rest-api/`
+`.claude/starters/rest-api/`
 
 ## Prompts to Collect
 
-Read `starters/rest-api/manifest.yaml` for the full prompt configuration.
+Read `.claude/starters/rest-api/manifest.yaml` for the full prompt configuration.
 
 Key prompts:
 - `PROJECT_NAME` - Folder name (required, lowercase with hyphens)
@@ -23,7 +23,7 @@ Key prompts:
 
 1. Use AskUserQuestion to collect the required prompts
 2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `starters/rest-api/` to the project
+3. Copy all files from `.claude/starters/rest-api/` to the project
 4. Replace all `{{PLACEHOLDER}}` values with collected prompts
 5. Handle conditional sections:
    - `{{#IF_ENABLE_AUTH}}...{{/IF_ENABLE_AUTH}}`

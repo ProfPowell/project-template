@@ -1,13 +1,13 @@
 # Scaffold Static Website
 
-Generate a static multi-page website using the `starters/static-standard/` template.
+Generate a static multi-page website using the `.claude/starters/static-standard/` template.
 
 ## Template Location
-`starters/static-standard/`
+`.claude/starters/static-standard/`
 
 ## Prompts to Collect
 
-Read `starters/static-standard/manifest.yaml` for the full prompt configuration.
+Read `.claude/starters/static-standard/manifest.yaml` for the full prompt configuration.
 
 Key prompts:
 - `PROJECT_NAME` - Folder name (required, lowercase with hyphens)
@@ -22,8 +22,8 @@ Key prompts:
 
 1. Use AskUserQuestion to collect the required prompts
 2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy files from `starters/static-standard/src/` to the project
-4. Copy shared resources from `starters/_shared/`:
+3. Copy files from `.claude/starters/static-standard/src/` to the project
+4. Copy shared resources from `.claude/starters/_shared/`:
    - `styles/_reset.css` → `src/styles/_reset.css`
    - `styles/_tokens.css` → `src/styles/_tokens.css`
 5. Replace all `{{PLACEHOLDER}}` values with collected prompts

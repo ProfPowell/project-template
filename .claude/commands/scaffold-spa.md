@@ -1,13 +1,13 @@
 # Scaffold PWA/SPA
 
-Generate a single-page application with Web Components using the `starters/pwa-spa/` template.
+Generate a single-page application with Web Components using the `.claude/starters/pwa-spa/` template.
 
 ## Template Location
-`starters/pwa-spa/`
+`.claude/starters/pwa-spa/`
 
 ## Prompts to Collect
 
-Read `starters/pwa-spa/manifest.yaml` for the full prompt configuration.
+Read `.claude/starters/pwa-spa/manifest.yaml` for the full prompt configuration.
 
 Key prompts:
 - `PROJECT_NAME` - Folder name (required, lowercase with hyphens)
@@ -23,8 +23,8 @@ Key prompts:
 
 1. Use AskUserQuestion to collect the required prompts
 2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `starters/pwa-spa/` to the project
-4. Copy shared resources from `starters/_shared/`:
+3. Copy all files from `.claude/starters/pwa-spa/` to the project
+4. Copy shared resources from `.claude/starters/_shared/`:
    - `styles/_reset.css` → `src/styles/_reset.css`
    - `styles/_tokens.css` → `src/styles/_tokens.css`
    - `components/x-icon/` → `src/components/x-icon/`

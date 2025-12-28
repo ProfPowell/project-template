@@ -78,7 +78,7 @@ class XIcon extends HTMLElement {
         // Look for data-icon-path on document or component
         return this.getAttribute('base-path') ||
                document.documentElement.dataset.iconPath ||
-               '/assets/icons';
+               '/.assets/icons';
     }
 
     /**

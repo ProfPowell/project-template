@@ -12,7 +12,7 @@ Write and maintain unit tests for JavaScript files using Node.js native test run
 
 | Scenario | Test Required | Notes |
 |----------|---------------|-------|
-| New script in `scripts/` | Yes | Every new script needs tests |
+| New script in `.claude/scripts/` | Yes | Every new script needs tests |
 | Bug fix | Yes | Test should reproduce and verify fix |
 | Refactoring | Verify existing | Ensure tests still pass |
 | Components in `examples/` | Optional | Encouraged but not enforced |
@@ -20,8 +20,8 @@ Write and maintain unit tests for JavaScript files using Node.js native test run
 ## Test File Convention
 
 ```
-scripts/foo-bar.js      → test/validators/foo-bar.test.js
-scripts/health-check.js → test/validators/health-check.test.js
+.claude/scripts/foo-bar.js      → .claude/test/validators/foo-bar.test.js
+.claude/scripts/health-check.js → .claude/test/validators/health-check.test.js
 ```
 
 ## Quick Start Template
@@ -76,7 +76,7 @@ import assert from 'node:assert';
 ```bash
 npm test                           # Run all tests
 npm run test:all                   # Run with native runner
-node --test test/validators/foo.test.js  # Single file
+node --test .claude/test/validators/foo.test.js  # Single file
 npm run test:coverage              # Check test coverage
 ```
 
@@ -115,7 +115,7 @@ Most scripts are CLI tools. Test them by executing with `execSync`:
 function runScript(args = '') {
   try {
     const output = execSync(
-      `node scripts/my-script.js ${args}`,
+      `node .claude/scripts/my-script.js ${args}`,
       { cwd: projectRoot, encoding: 'utf-8' }
     );
     return { success: true, output };
@@ -137,8 +137,8 @@ it('should show help with --help flag', () => {
 
 ## Fixtures
 
-- **Valid fixtures**: `test/fixtures/valid/`
-- **Invalid fixtures**: `test/fixtures/invalid/<validator-name>/`
+- **Valid fixtures**: `.claude/test/fixtures/valid/`
+- **Invalid fixtures**: `.claude/test/fixtures/invalid/<validator-name>/`
 
 See [FIXTURES.md](FIXTURES.md) for fixture organization patterns.
 

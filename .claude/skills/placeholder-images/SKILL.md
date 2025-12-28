@@ -37,7 +37,7 @@ Custom sizes: Use `WxH` format (e.g., `800x600`).
 Grey background with diagonal X lines:
 
 ```html
-<img src="/assets/images/placeholder/simple-400x400.svg"
+<img src="/.assets/images/placeholder/simple-400x400.svg"
      alt="Placeholder image"
      width="400"
      height="400"/>
@@ -62,7 +62,7 @@ Grey background with diagonal X lines:
 Grey background with descriptive text:
 
 ```html
-<img src="/assets/images/placeholder/hero-1200x400.svg"
+<img src="/.assets/images/placeholder/hero-1200x400.svg"
      alt="Hero banner placeholder"
      width="1200"
      height="400"/>
@@ -104,15 +104,15 @@ Uses design tokens for brand-consistent placeholders. The script automatically l
 **Auto-detection paths:**
 - `src/styles/main.css`
 - `src/styles/_tokens.css`
-- `assets/styles/main.css`
-- `styles/main.css`
+- `.assets/styles/main.css`
+- `.claude/styles/main.css`
 
 ```bash
 # Auto-detect CSS file
-node scripts/generate-placeholder.js --type brand --label "Product" --preset product
+node .claude/scripts/generate-placeholder.js --type brand --label "Product" --preset product
 
 # Specify CSS file explicitly
-node scripts/generate-placeholder.js --type brand --label "Hero" --size 1200x400 --tokens src/styles/main.css
+node .claude/scripts/generate-placeholder.js --type brand --label "Hero" --size 1200x400 --tokens src/styles/main.css
 ```
 
 **Example output:**
@@ -157,7 +157,7 @@ Use these labels for semantic clarity:
 ## File Organization
 
 ```
-assets/images/placeholder/
+.assets/images/placeholder/
 ├── simple-400x400.svg
 ├── simple-800x600.svg
 ├── hero-1200x400.svg
@@ -172,25 +172,25 @@ assets/images/placeholder/
 
 ```bash
 # Simple placeholder
-node scripts/generate-placeholder.js --type simple --size 400x400
+node .claude/scripts/generate-placeholder.js --type simple --size 400x400
 
 # Labeled placeholder
-node scripts/generate-placeholder.js --type labeled --label "Hero Image" --size 1200x400
+node .claude/scripts/generate-placeholder.js --type labeled --label "Hero Image" --size 1200x400
 
 # Brand placeholder (auto-detects CSS tokens)
-node scripts/generate-placeholder.js --type brand --label "Product" --preset product
+node .claude/scripts/generate-placeholder.js --type brand --label "Product" --preset product
 
 # Brand placeholder with specific CSS file
-node scripts/generate-placeholder.js --type brand --label "Hero" --size 1200x400 \
+node .claude/scripts/generate-placeholder.js --type brand --label "Hero" --size 1200x400 \
   --tokens src/styles/main.css
 
 # Output to file
-node scripts/generate-placeholder.js --type labeled --label "Product" --size 400x400 \
-  --output assets/images/placeholder/product-400x400.svg
+node .claude/scripts/generate-placeholder.js --type labeled --label "Product" --size 400x400 \
+  --output .assets/images/placeholder/product-400x400.svg
 
 # Generate preset
-node scripts/generate-placeholder.js --preset product
-node scripts/generate-placeholder.js --preset hero --label "Welcome Banner"
+node .claude/scripts/generate-placeholder.js --preset product
+node .claude/scripts/generate-placeholder.js --preset hero --label "Welcome Banner"
 ```
 
 ---
@@ -206,7 +206,7 @@ For quick prototyping, use inline data URIs:
 Generate with:
 
 ```bash
-node scripts/generate-placeholder.js --type simple --size 200x200 --inline
+node .claude/scripts/generate-placeholder.js --type simple --size 200x200 --inline
 ```
 
 ---
@@ -229,7 +229,7 @@ When adding placeholder images:
 - [ ] Use appropriate preset or custom size
 - [ ] Add descriptive label for labeled/brand types
 - [ ] Include meaningful alt text
-- [ ] Place in `assets/images/placeholder/` directory
+- [ ] Place in `.assets/images/placeholder/` directory
 - [ ] Use consistent naming: `{type}-{width}x{height}.svg`
 
 ## Related Skills

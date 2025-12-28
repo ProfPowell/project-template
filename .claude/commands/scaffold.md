@@ -25,14 +25,14 @@ Help the user scaffold a new project by guiding them through starter selection a
 
 ## Starter Locations
 
-All starters are in `starters/`:
-- `starters/static-standard/`
-- `starters/static-astro/`
-- `starters/pwa-spa/`
-- `starters/rest-api/`
-- `starters/dashboard/`
-- `starters/chrome-extension/`
+All starters are in `.claude/starters/`:
+- `.claude/starters/static-standard/`
+- `.claude/starters/static-astro/`
+- `.claude/starters/pwa-spa/`
+- `.claude/starters/rest-api/`
+- `.claude/starters/dashboard/`
+- `.claude/starters/chrome-extension/`
 
-Shared resources are in `starters/_shared/`.
+Shared resources are in `.claude/starters/_shared/`.
 
 Each starter has a `manifest.yaml` defining prompts, includes, and required skills.

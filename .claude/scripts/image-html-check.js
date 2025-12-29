@@ -19,7 +19,7 @@ import { join, extname } from 'node:path';
 
 // Configuration
 const CONFIG = {
-  defaultDirs: ['examples/pages', 'examples/demo-site'],
+  defaultDirs: ['src'],
   // Images that should have srcset (likely large/hero images)
   heroImagePatterns: [/hero/i, /banner/i, /cover/i, /featured/i, /full-?width/i],
   // Allowed loading values

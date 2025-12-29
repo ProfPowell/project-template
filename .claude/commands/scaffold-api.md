@@ -22,8 +22,8 @@ Key prompts:
 ## Instructions
 
 1. Use AskUserQuestion to collect the required prompts
-2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `.claude/starters/rest-api/` to the project
+2. Copy all files from `.claude/starters/rest-api/` to the project root (`./`)
+3. Replace the starter's package.json name with PROJECT_NAME
 4. Replace all `{{PLACEHOLDER}}` values with collected prompts
 5. Handle conditional sections:
    - `{{#IF_ENABLE_AUTH}}...{{/IF_ENABLE_AUTH}}`

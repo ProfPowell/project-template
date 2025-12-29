@@ -21,8 +21,8 @@ Key prompts:
 ## Instructions
 
 1. Use AskUserQuestion to collect the required prompts
-2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `.claude/starters/static-astro/` to the project
+2. Copy all files from `.claude/starters/static-astro/` to the project root (`./`)
+3. Replace the starter's package.json name with PROJECT_NAME
 4. Replace all `{{PLACEHOLDER}}` values with collected prompts
 5. Configure astro.config.mjs based on OUTPUT_MODE and ADAPTER
 6. Generate content collection directories based on CONTENT_COLLECTIONS

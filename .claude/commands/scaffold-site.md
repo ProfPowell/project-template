@@ -21,8 +21,8 @@ Key prompts:
 ## Instructions
 
 1. Use AskUserQuestion to collect the required prompts
-2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy files from `.claude/starters/static-standard/src/` to the project
+2. Copy files from `.claude/starters/static-standard/src/` to the project root (`./src/`)
+3. Replace the starter's package.json name with PROJECT_NAME
 4. Copy shared resources from `.claude/starters/_shared/`:
    - `styles/_reset.css` → `src/styles/_reset.css`
    - `styles/_tokens.css` → `src/styles/_tokens.css`

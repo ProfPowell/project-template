@@ -30,7 +30,7 @@ const CONFIG = {
     png: 85,
   },
   srcsetWidths: [400, 800, 1200],
-  defaultDirs: ['examples/pages', 'examples/demo-site'],
+  defaultDirs: ['src'],
 };
 
 // Parse command line arguments

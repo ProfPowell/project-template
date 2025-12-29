@@ -180,7 +180,7 @@ function main() {
 
   if (args.length === 0) {
     // Default: analyze demo-code and scripts directories
-    const defaultDirs = ['examples/demo-code', 'scripts'];
+    const defaultDirs = ['src', '.claude/scripts'];
     for (const dir of defaultDirs) {
       try {
         files = files.concat(findJsFiles(dir));

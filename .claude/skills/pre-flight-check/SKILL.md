@@ -140,8 +140,8 @@ Before writing HTML, verify:
 - [ ] What heading hierarchy makes sense? (single `<h1>`, logical `<h2>`-`<h6>`)
 
 ### Patterns to Consider
-- [ ] Does this match an existing pattern in `examples/pages/`?
-- [ ] Are there custom elements in `elements.json` that apply?
+- [ ] Does this match an existing pattern in `.claude/patterns/pages/`?
+- [ ] Are there custom elements in `.claude/schemas/elements.json` that apply?
 - [ ] Should this use a documented page pattern from the `patterns` skill?
 
 ### Metadata
@@ -178,7 +178,7 @@ Before writing CSS, verify:
 - [ ] Can this use existing custom properties?
 - [ ] Should this use native nesting (max depth 3)?
 - [ ] Would `:has()` enable CSS-only interactivity?
-- [ ] Are there existing patterns in `examples/demo-site/styles/`?
+- [ ] Are there existing patterns in `.claude/patterns/` or `.claude/styles/`?
 
 ### Selectors
 - [ ] Using element or attribute selectors? (preferred over classes)
@@ -208,7 +208,7 @@ Before writing JavaScript, verify:
 
 ### File Structure
 - [ ] Does this need separate template/styles/i18n files?
-- [ ] Where should this file live? (`examples/demo-code/components/`, `scripts/`)
+- [ ] Where should this file live? (`src/components/`, `src/scripts/`)
 - [ ] What should be exported? (named exports only)
 
 ### Patterns to Consider

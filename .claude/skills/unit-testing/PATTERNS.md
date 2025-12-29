@@ -166,7 +166,7 @@ it('shows usage information', () => {
 });
 
 it('reports statistics', () => {
-  const result = runScript('examples/pages');
+  const result = runScript('.claude/patterns/pages');
   assert.match(result.output, /\d+ files? checked/);
   assert.match(result.output, /\d+ errors?/);
 });

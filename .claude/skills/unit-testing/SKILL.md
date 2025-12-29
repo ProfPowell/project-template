@@ -15,7 +15,7 @@ Write and maintain unit tests for JavaScript files using Node.js native test run
 | New script in `.claude/scripts/` | Yes | Every new script needs tests |
 | Bug fix | Yes | Test should reproduce and verify fix |
 | Refactoring | Verify existing | Ensure tests still pass |
-| Components in `examples/` | Optional | Encouraged but not enforced |
+| Components in `src/` | Optional | Encouraged but not enforced |
 
 ## Test File Convention
 

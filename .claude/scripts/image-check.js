@@ -27,7 +27,7 @@ const CONFIG = {
   maxDimension: 4000, // Max width or height
   sourceFormats: ['.jpg', '.jpeg', '.png'],
   modernFormats: ['.webp', '.avif'],
-  defaultDirs: ['examples/pages', 'examples/demo-site'],
+  defaultDirs: ['src'],
 };
 
 // Track errors and warnings

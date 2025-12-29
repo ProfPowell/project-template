@@ -21,8 +21,8 @@ Key prompts:
 ## Instructions
 
 1. Use AskUserQuestion to collect the required prompts
-2. Create the project directory at `examples/[PROJECT_NAME]/`
-3. Copy all files from `.claude/starters/chrome-extension/` to the project
+2. Copy all files from `.claude/starters/chrome-extension/` to the project root (`./`)
+3. Replace the starter's manifest.json name with DISPLAY_NAME
 4. Replace all `{{PLACEHOLDER}}` values with collected prompts
 5. Update manifest.json:
    - Set permissions based on PERMISSIONS prompt

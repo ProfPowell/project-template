@@ -177,7 +177,7 @@ Beyond component blocks, entire page types follow patterns:
 | Press Release | Headline, dateline, body, boilerplate, contacts |
 | Legal | Numbered sections, definitions, effective date |
 
-See individual examples in the `examples/pages/` directory.
+See individual examples in the `.claude/patterns/pages/` directory.
 
 ## Related Skills
 

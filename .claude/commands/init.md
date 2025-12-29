@@ -99,9 +99,8 @@ Show the user what to do next:
 Project initialized!
 
 Next steps:
-1. cd {project-name}
-2. npm install
-3. npm run dev (or appropriate start command)
+1. npm install
+2. npm run dev (or appropriate start command)
 
 Available commands:
 - npm run lint     - Validate code
@@ -144,20 +143,19 @@ User: My Company
 
 Claude: Project initialized!
 
-Created: my-company-site/
+Your project structure:
 ├── src/
 │   ├── index.html
 │   ├── about.html
 │   ├── contact.html
 │   └── styles/
-├── assets/
+├── .assets/
 ├── package.json
 └── README.md
 
 Next steps:
-1. cd my-company-site
-2. npm install
-3. Open src/index.html in browser
+1. npm install
+2. Open src/index.html in browser
 
 Run /help to see available skills and commands.
 ```

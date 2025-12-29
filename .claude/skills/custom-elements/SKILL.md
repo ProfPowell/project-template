@@ -1,16 +1,27 @@
 ---
 name: custom-elements
 description: Define and use custom HTML elements. Use when creating new components, defining custom tags, or using project-specific elements beyond standard HTML5.
-allowed-tools: Read, Write, Edit
+allowed-tools: Read, Write, Edit, Bash
 ---
 
 # Custom Elements Skill
 
 This skill provides guidance for defining and using custom HTML elements in this project.
 
+## Two Definition Systems
+
+| System | File | Purpose |
+|--------|------|---------|
+| **HTML Validation** | `.claude/schemas/elements.json` | Validates custom elements in HTML (html-validate) |
+| **Custom Elements Manifest** | `custom-elements.json` | Documents components for IDEs, Storybook, docs |
+
+**Both are recommended** - elements.json for build-time HTML validation, CEM for runtime tooling.
+
+See [MANIFEST.md](./MANIFEST.md) for Custom Elements Manifest generation.
+
 ## Using Existing Elements
 
-Check `elements.json` for defined custom elements:
+Check `.claude/schemas/elements.json` for defined custom elements:
 
 | Element | Type | Purpose |
 |---------|------|---------|
@@ -51,7 +62,7 @@ Check `elements.json` for defined custom elements:
 
 ## Ad-hoc Custom Elements
 
-For one-off custom elements not worth defining in `elements.json`, use the `x-*` prefix:
+For one-off custom elements not worth defining in `.claude/schemas/elements.json`, use the `x-*` prefix:
 
 ```html
 <x-highlight>Important text</x-highlight>
@@ -71,7 +82,7 @@ The `x-*` pattern is excluded from validation by default.
 
 ### Manual Definition
 
-Add to `elements.json`:
+Add to `.claude/schemas/elements.json`:
 
 ```json
 {

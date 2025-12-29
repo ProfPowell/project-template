@@ -1,5 +1,37 @@
 # Web Components Guide
 
+## Documentation with Custom Elements Manifest
+
+Document components with JSDoc for automatic manifest generation:
+
+```javascript
+/**
+ * A button component with loading state.
+ *
+ * @summary Interactive button with loading indicator.
+ * @tag action-button
+ *
+ * @attr {string} variant - Button style: "primary" | "secondary"
+ * @attr {boolean} loading - Shows loading spinner
+ * @attr {boolean} disabled - Disables interaction
+ *
+ * @slot - Button label content
+ * @slot icon - Optional icon slot
+ *
+ * @cssprop {<color>} [--button-bg=#0066cc] - Background color
+ * @cssprop {<color>} [--button-text=#ffffff] - Text color
+ *
+ * @csspart button - The button element
+ *
+ * @fires {CustomEvent} action-click - Fired on button click
+ */
+class ActionButton extends HTMLElement { }
+```
+
+See [custom-elements/MANIFEST.md](../custom-elements/MANIFEST.md) for full documentation.
+
+---
+
 ## Lifecycle Callbacks
 
 ### constructor()

@@ -120,7 +120,7 @@ export default [
   },
   // Test file overrides
   {
-    files: ['test/**/*.js', 'scripts/**/*.js'],
+    files: ['.claude/test/**/*.js', '.claude/scripts/**/*.js'],
     languageOptions: {
       globals: {
         Buffer: 'readonly',
@@ -132,7 +132,7 @@ export default [
   },
   // Configuration file overrides
   {
-    files: ['*.config.js', '*rc.js'],
+    files: ['*.config.js', '*rc.js', '.config/*.js'],
     rules: {
       'no-restricted-exports': 'off', // Allow default exports for config files
     },

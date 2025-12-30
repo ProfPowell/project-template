@@ -35,26 +35,26 @@ class ListView extends HTMLElement {
           padding: var(--space-6, 1.5rem);
         }
 
-        .page-header {
+        header {
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin-block-end: var(--space-6, 1.5rem);
         }
 
-        .page-header h1 {
+        header > h1 {
           font-size: var(--text-2xl, 1.5rem);
           font-weight: var(--font-bold, 700);
           margin: 0;
         }
 
-        .actions {
+        nav[data-role="actions"] {
           display: flex;
           gap: var(--space-3, 0.75rem);
           align-items: center;
         }
 
-        .search-input {
+        input[type="search"] {
           padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
           border: 1px solid var(--border, #e5e5e5);
           border-radius: var(--radius-md, 0.375rem);
@@ -62,12 +62,12 @@ class ListView extends HTMLElement {
           inline-size: 16rem;
         }
 
-        .search-input:focus {
+        input[type="search"]:focus {
           outline: 2px solid var(--primary, #1e40af);
           outline-offset: 2px;
         }
 
-        .btn-add {
+        [data-variant="primary"] {
           display: inline-flex;
           align-items: center;
           gap: var(--space-2, 0.5rem);
@@ -81,11 +81,11 @@ class ListView extends HTMLElement {
           cursor: pointer;
         }
 
-        .btn-add:hover {
+        [data-variant="primary"]:hover {
           background: var(--primary-hover, #1e3a8a);
         }
 
-        .table-card {
+        section {
           background: var(--surface, #fff);
           border: 1px solid var(--border, #e5e5e5);
           border-radius: var(--radius-lg, 0.5rem);
@@ -93,30 +93,29 @@ class ListView extends HTMLElement {
         }
       </style>
 
-      <header class="page-header">
+      <header>
         <h1>Items</h1>
-        <div class="actions">
+        <nav data-role="actions">
           <input
             type="search"
             id="search"
-            class="search-input"
             placeholder="Search items..."
             aria-label="Search items"
           />
-          <button type="button" class="btn-add">
+          <button type="button" data-variant="primary">
             <span aria-hidden="true">+</span>
             Add Item
           </button>
-        </div>
+        </nav>
       </header>
 
-      <div class="table-card">
+      <section>
         <data-table
           columns='[{"key":"id","label":"ID"},{"key":"name","label":"Name"},{"key":"status","label":"Status"},{"key":"created","label":"Created"}]'
           data-src="/items"
           row-link="/list/{id}">
         </data-table>
-      </div>
+      </section>
     `;
   }
 }

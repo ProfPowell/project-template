@@ -114,7 +114,7 @@ class DataTable extends HTMLElement {
     if (filtered.length === 0) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="${this.columns.length}" class="empty">
+          <td colspan="${this.columns.length}" data-state="empty">
             No data available
           </td>
         </tr>
@@ -166,7 +166,7 @@ class DataTable extends HTMLElement {
     if (tbody) {
       tbody.innerHTML = `
         <tr>
-          <td colspan="${this.columns.length}" class="error">
+          <td colspan="${this.columns.length}" data-state="error">
             ${message}
           </td>
         </tr>
@@ -205,12 +205,12 @@ class DataTable extends HTMLElement {
           background: var(--hover-bg, #f5f5f5);
         }
 
-        .sort-icon {
+        th > span[data-role="sort"] {
           margin-inline-start: var(--space-1, 0.25rem);
           opacity: 0.5;
         }
 
-        th.sorted .sort-icon {
+        th[aria-sort] > span[data-role="sort"] {
           opacity: 1;
         }
 
@@ -232,13 +232,14 @@ class DataTable extends HTMLElement {
           outline-offset: -2px;
         }
 
-        .empty, .error {
+        [data-state="empty"],
+        [data-state="error"] {
           text-align: center;
           color: var(--text-muted, #666);
           padding: var(--space-8, 2rem);
         }
 
-        .error {
+        [data-state="error"] {
           color: var(--error, #dc2626);
         }
       </style>
@@ -249,10 +250,10 @@ class DataTable extends HTMLElement {
             ${this.columns.map(col => `
               <th
                 data-column="${col.key}"
-                class="${this.sortColumn === col.key ? 'sorted' : ''}"
+                ${this.sortColumn === col.key ? `aria-sort="${this.sortDirection === 'asc' ? 'ascending' : 'descending'}"` : ''}
               >
                 ${col.label}
-                <span class="sort-icon">
+                <span data-role="sort">
                   ${this.sortColumn === col.key
                     ? (this.sortDirection === 'asc' ? '↑' : '↓')
                     : '↕'}
@@ -263,7 +264,7 @@ class DataTable extends HTMLElement {
         </thead>
         <tbody>
           <tr>
-            <td colspan="${this.columns.length}" class="empty">Loading...</td>
+            <td colspan="${this.columns.length}" data-state="empty">Loading...</td>
           </tr>
         </tbody>
       </table>
@@ -273,10 +274,10 @@ class DataTable extends HTMLElement {
     this.shadowRoot.querySelectorAll('th').forEach(th => {
       th.addEventListener('click', () => {
         this.sortBy(th.dataset.column);
-        // Update header classes
-        this.shadowRoot.querySelectorAll('th').forEach(h => h.classList.remove('sorted'));
-        th.classList.add('sorted');
-        th.querySelector('.sort-icon').textContent =
+        // Update header aria-sort
+        this.shadowRoot.querySelectorAll('th').forEach(h => h.removeAttribute('aria-sort'));
+        th.setAttribute('aria-sort', this.sortDirection === 'asc' ? 'ascending' : 'descending');
+        th.querySelector('[data-role="sort"]').textContent =
           this.sortDirection === 'asc' ? '↑' : '↓';
       });
     });

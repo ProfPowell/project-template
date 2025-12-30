@@ -22,13 +22,12 @@ class SidebarNav extends HTMLElement {
 
   updateActiveLink() {
     const currentPath = window.location.pathname;
-    const links = this.shadowRoot.querySelectorAll('.nav-link');
+    const links = this.shadowRoot.querySelectorAll('nav ul a');
 
     links.forEach(link => {
       const href = link.getAttribute('href');
       const isActive = href === currentPath ||
         (href !== '/' && currentPath.startsWith(href));
-      link.classList.toggle('active', isActive);
       link.setAttribute('aria-current', isActive ? 'page' : 'false');
     });
   }
@@ -44,28 +43,28 @@ class SidebarNav extends HTMLElement {
           block-size: 100%;
         }
 
-        .sidebar-header {
+        header {
           padding: var(--space-4, 1rem);
           border-block-end: 1px solid var(--border, #e5e5e5);
         }
 
-        .logo {
+        header > a {
           font-size: var(--text-lg, 1.125rem);
           font-weight: var(--font-bold, 700);
           color: var(--primary, #1e40af);
           text-decoration: none;
         }
 
-        .nav {
+        nav {
           flex: 1;
           padding: var(--space-4, 1rem);
         }
 
-        .nav-section {
+        nav > section {
           margin-block-end: var(--space-4, 1rem);
         }
 
-        .nav-section-title {
+        nav > section > h2 {
           font-size: var(--text-xs, 0.75rem);
           font-weight: var(--font-semibold, 600);
           text-transform: uppercase;
@@ -75,13 +74,13 @@ class SidebarNav extends HTMLElement {
           padding-inline: var(--space-3, 0.75rem);
         }
 
-        .nav-list {
+        nav ul {
           list-style: none;
           margin: 0;
           padding: 0;
         }
 
-        .nav-link {
+        nav ul a {
           display: flex;
           align-items: center;
           gap: var(--space-3, 0.75rem);
@@ -93,38 +92,38 @@ class SidebarNav extends HTMLElement {
           transition: background-color 0.15s;
         }
 
-        .nav-link:hover {
+        nav ul a:hover {
           background: var(--hover-bg, #f5f5f5);
         }
 
-        .nav-link.active {
+        nav ul a[aria-current="page"] {
           background: var(--primary-bg, #eff6ff);
           color: var(--primary, #1e40af);
           font-weight: var(--font-medium, 500);
         }
 
-        .nav-icon {
+        nav ul a x-icon {
           inline-size: 1.25rem;
           block-size: 1.25rem;
           opacity: 0.7;
         }
 
-        .nav-link.active .nav-icon {
+        nav ul a[aria-current="page"] x-icon {
           opacity: 1;
         }
 
-        .sidebar-footer {
+        footer {
           padding: var(--space-4, 1rem);
           border-block-start: 1px solid var(--border, #e5e5e5);
         }
 
-        .user-info {
+        footer > div {
           display: flex;
           align-items: center;
           gap: var(--space-3, 0.75rem);
         }
 
-        .user-avatar {
+        [data-role="avatar"] {
           inline-size: 2rem;
           block-size: 2rem;
           border-radius: 50%;
@@ -136,12 +135,13 @@ class SidebarNav extends HTMLElement {
           font-weight: var(--font-medium, 500);
         }
 
-        .user-details {
+        footer > div > div {
           flex: 1;
           min-inline-size: 0;
         }
 
-        .user-name {
+        footer > div > div > span:first-child {
+          display: block;
           font-size: var(--text-sm, 0.875rem);
           font-weight: var(--font-medium, 500);
           white-space: nowrap;
@@ -149,7 +149,8 @@ class SidebarNav extends HTMLElement {
           text-overflow: ellipsis;
         }
 
-        .user-email {
+        footer > div > div > span:last-child {
+          display: block;
           font-size: var(--text-xs, 0.75rem);
           color: var(--text-muted, #666);
           white-space: nowrap;
@@ -158,62 +159,47 @@ class SidebarNav extends HTMLElement {
         }
       </style>
 
-      <header class="sidebar-header">
-        <a href="/" data-link class="logo">{{DISPLAY_NAME}}</a>
+      <header>
+        <a href="/" data-link>{{DISPLAY_NAME}}</a>
       </header>
 
-      <nav class="nav">
-        <div class="nav-section">
-          <ul class="nav-list">
+      <nav aria-label="Main navigation">
+        <section>
+          <ul>
             <li>
-              <a href="/dashboard" data-link class="nav-link">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="3" y="3" width="7" height="7"></rect>
-                  <rect x="14" y="3" width="7" height="7"></rect>
-                  <rect x="14" y="14" width="7" height="7"></rect>
-                  <rect x="3" y="14" width="7" height="7"></rect>
-                </svg>
+              <a href="/dashboard" data-link>
+                <x-icon name="layout-dashboard"></x-icon>
                 Dashboard
               </a>
             </li>
             <li>
-              <a href="/list" data-link class="nav-link">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="8" y1="6" x2="21" y2="6"></line>
-                  <line x1="8" y1="12" x2="21" y2="12"></line>
-                  <line x1="8" y1="18" x2="21" y2="18"></line>
-                  <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                  <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                  <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                </svg>
+              <a href="/list" data-link>
+                <x-icon name="list"></x-icon>
                 Items
               </a>
             </li>
           </ul>
-        </div>
+        </section>
 
-        <div class="nav-section">
-          <h2 class="nav-section-title">Settings</h2>
-          <ul class="nav-list">
+        <section>
+          <h2>Settings</h2>
+          <ul>
             <li>
-              <a href="/settings" data-link class="nav-link">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
+              <a href="/settings" data-link>
+                <x-icon name="settings"></x-icon>
                 Settings
               </a>
             </li>
           </ul>
-        </div>
+        </section>
       </nav>
 
-      <footer class="sidebar-footer">
-        <div class="user-info">
-          <div class="user-avatar">${user?.name?.charAt(0).toUpperCase() || 'U'}</div>
-          <div class="user-details">
-            <div class="user-name">${user?.name || 'User'}</div>
-            <div class="user-email">${user?.email || ''}</div>
+      <footer>
+        <div>
+          <span data-role="avatar">${user?.name?.charAt(0).toUpperCase() || 'U'}</span>
+          <div>
+            <span>${user?.name || 'User'}</span>
+            <span>${user?.email || ''}</span>
           </div>
         </div>
       </footer>

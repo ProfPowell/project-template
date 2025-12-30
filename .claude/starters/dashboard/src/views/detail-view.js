@@ -44,26 +44,26 @@ class DetailView extends HTMLElement {
   updateContent() {
     if (!this.item) return;
 
-    const title = this.shadowRoot.querySelector('.item-title');
-    const content = this.shadowRoot.querySelector('.item-content');
+    const title = this.shadowRoot.querySelector('h1');
+    const content = this.shadowRoot.querySelector('[data-role="content"]');
 
     if (title) title.textContent = this.item.name || 'Untitled';
     if (content) {
       content.innerHTML = `
-        <dl class="detail-list">
-          <div class="detail-item">
+        <dl>
+          <div>
             <dt>ID</dt>
             <dd>${this.item.id}</dd>
           </div>
-          <div class="detail-item">
+          <div>
             <dt>Status</dt>
-            <dd><span class="status status-${this.item.status}">${this.item.status}</span></dd>
+            <dd><span data-status="${this.item.status}">${this.item.status}</span></dd>
           </div>
-          <div class="detail-item">
+          <div>
             <dt>Created</dt>
             <dd>${new Date(this.item.created).toLocaleDateString()}</dd>
           </div>
-          <div class="detail-item">
+          <div>
             <dt>Description</dt>
             <dd>${this.item.description || 'No description'}</dd>
           </div>
@@ -73,9 +73,9 @@ class DetailView extends HTMLElement {
   }
 
   showError(message) {
-    const content = this.shadowRoot.querySelector('.item-content');
+    const content = this.shadowRoot.querySelector('[data-role="content"]');
     if (content) {
-      content.innerHTML = `<p class="error">${message}</p>`;
+      content.innerHTML = `<p data-state="error">${message}</p>`;
     }
   }
 
@@ -87,14 +87,14 @@ class DetailView extends HTMLElement {
           padding: var(--space-6, 1.5rem);
         }
 
-        .page-header {
+        header {
           display: flex;
           align-items: center;
           gap: var(--space-4, 1rem);
           margin-block-end: var(--space-6, 1.5rem);
         }
 
-        .back-link {
+        a[data-role="back"] {
           display: inline-flex;
           align-items: center;
           gap: var(--space-2, 0.5rem);
@@ -103,74 +103,75 @@ class DetailView extends HTMLElement {
           font-size: var(--text-sm, 0.875rem);
         }
 
-        .back-link:hover {
+        a[data-role="back"]:hover {
           color: var(--primary, #1e40af);
         }
 
-        .item-title {
+        h1 {
           font-size: var(--text-2xl, 1.5rem);
           font-weight: var(--font-bold, 700);
           margin: 0;
         }
 
-        .detail-card {
+        article {
           background: var(--surface, #fff);
           border: 1px solid var(--border, #e5e5e5);
           border-radius: var(--radius-lg, 0.5rem);
           padding: var(--space-6, 1.5rem);
         }
 
-        .detail-list {
+        dl {
           display: grid;
           gap: var(--space-4, 1rem);
           margin: 0;
         }
 
-        .detail-item {
+        dl > div {
           display: grid;
           grid-template-columns: 8rem 1fr;
           gap: var(--space-2, 0.5rem);
         }
 
-        .detail-item dt {
+        dl > div > dt {
           font-weight: var(--font-medium, 500);
           color: var(--text-muted, #666);
         }
 
-        .detail-item dd {
+        dl > div > dd {
           margin: 0;
         }
 
-        .status {
+        [data-status] {
           display: inline-block;
           padding: var(--space-1, 0.25rem) var(--space-2, 0.5rem);
           border-radius: var(--radius-sm, 0.25rem);
           font-size: var(--text-sm, 0.875rem);
           font-weight: var(--font-medium, 500);
+          text-transform: capitalize;
         }
 
-        .status-active {
+        [data-status="active"] {
           background: var(--success-bg, #dcfce7);
           color: var(--success, #16a34a);
         }
 
-        .status-pending {
+        [data-status="pending"] {
           background: var(--warning-bg, #fef3c7);
           color: var(--warning, #d97706);
         }
 
-        .status-inactive {
+        [data-status="inactive"] {
           background: var(--error-bg, #fee2e2);
           color: var(--error, #dc2626);
         }
 
-        .error {
+        [data-state="error"] {
           color: var(--error, #dc2626);
           text-align: center;
           padding: var(--space-4, 1rem);
         }
 
-        .actions {
+        nav[data-role="actions"] {
           display: flex;
           gap: var(--space-3, 0.75rem);
           margin-block-start: var(--space-6, 1.5rem);
@@ -178,7 +179,7 @@ class DetailView extends HTMLElement {
           border-block-start: 1px solid var(--border, #e5e5e5);
         }
 
-        .btn {
+        button {
           padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
           border-radius: var(--radius-md, 0.375rem);
           font-size: var(--text-sm, 0.875rem);
@@ -186,45 +187,45 @@ class DetailView extends HTMLElement {
           cursor: pointer;
         }
 
-        .btn-primary {
+        [data-variant="primary"] {
           background: var(--primary, #1e40af);
           color: var(--primary-foreground, #fff);
           border: none;
         }
 
-        .btn-secondary {
+        [data-variant="secondary"] {
           background: transparent;
           color: var(--text, #1a1a1a);
           border: 1px solid var(--border, #e5e5e5);
         }
 
-        .btn-danger {
+        [data-variant="danger"] {
           background: transparent;
           color: var(--error, #dc2626);
           border: 1px solid var(--error, #dc2626);
         }
       </style>
 
-      <header class="page-header">
-        <a href="/list" data-link class="back-link">
+      <header>
+        <a href="/list" data-link data-role="back">
           <span aria-hidden="true">&larr;</span>
           Back to list
         </a>
       </header>
 
-      <h1 class="item-title">Loading...</h1>
+      <h1>Loading...</h1>
 
-      <div class="detail-card">
-        <div class="item-content">
+      <article>
+        <div data-role="content">
           <p>Loading item details...</p>
         </div>
 
-        <div class="actions">
-          <button type="button" class="btn btn-primary">Edit</button>
-          <button type="button" class="btn btn-secondary">Duplicate</button>
-          <button type="button" class="btn btn-danger">Delete</button>
-        </div>
-      </div>
+        <nav data-role="actions">
+          <button type="button" data-variant="primary">Edit</button>
+          <button type="button" data-variant="secondary">Duplicate</button>
+          <button type="button" data-variant="danger">Delete</button>
+        </nav>
+      </article>
     `;
   }
 }

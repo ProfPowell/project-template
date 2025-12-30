@@ -43,7 +43,7 @@ class DashboardLayout extends HTMLElement {
           }
         }
 
-        .sidebar {
+        aside {
           order: ${isRight ? 2 : 1};
           background: var(--surface, #fff);
           border-inline-end: ${isRight ? 'none' : '1px solid var(--border, #e5e5e5)'};
@@ -52,21 +52,21 @@ class DashboardLayout extends HTMLElement {
         }
 
         @media (max-width: 768px) {
-          .sidebar {
+          aside {
             order: 1;
             border-inline: none;
             border-block-end: 1px solid var(--border, #e5e5e5);
           }
         }
 
-        .content {
+        section {
           order: ${isRight ? 1 : 2};
           background: var(--background, #f5f5f5);
           overflow-y: auto;
         }
 
         @media (max-width: 768px) {
-          .content {
+          section {
             order: 2;
           }
         }
@@ -76,13 +76,13 @@ class DashboardLayout extends HTMLElement {
         }
       </style>
 
-      <aside class="sidebar">
+      <aside>
         <slot name="sidebar"></slot>
       </aside>
 
-      <div class="content">
+      <section>
         <slot name="content"></slot>
-      </div>
+      </section>
     `;
   }
 }

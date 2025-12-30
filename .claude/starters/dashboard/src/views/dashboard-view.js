@@ -49,66 +49,72 @@ class DashboardView extends HTMLElement {
           padding: var(--space-6, 1.5rem);
         }
 
-        .page-header {
+        header {
           margin-block-end: var(--space-6, 1.5rem);
         }
 
-        .page-header h1 {
+        header > h1 {
           font-size: var(--text-2xl, 1.5rem);
           font-weight: var(--font-bold, 700);
           color: var(--text, #1a1a1a);
           margin: 0;
         }
 
-        .page-header p {
+        header > p {
           color: var(--text-muted, #666);
           margin-block-start: var(--space-1, 0.25rem);
         }
 
-        .stats-grid {
+        [data-section="stats"] {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           gap: var(--space-4, 1rem);
           margin-block-end: var(--space-6, 1.5rem);
         }
 
-        .section {
+        section {
           background: var(--surface, #fff);
           border: 1px solid var(--border, #e5e5e5);
           border-radius: var(--radius-lg, 0.5rem);
           padding: var(--space-4, 1rem);
         }
 
-        .section-header {
+        [data-section="stats"] {
+          background: transparent;
+          border: none;
+          padding: 0;
+        }
+
+        section > header {
           display: flex;
           justify-content: space-between;
           align-items: center;
           margin-block-end: var(--space-4, 1rem);
         }
 
-        .section-header h2 {
+        section > header > h2 {
           font-size: var(--text-lg, 1.125rem);
           font-weight: var(--font-semibold, 600);
           margin: 0;
         }
 
-        .view-all {
+        a[data-role="view-all"] {
           color: var(--primary, #1e40af);
           text-decoration: none;
           font-size: var(--text-sm, 0.875rem);
         }
 
-        .view-all:hover {
+        a[data-role="view-all"]:hover {
           text-decoration: underline;
         }
       </style>
 
-      <header class="page-header">
+      <header>
         <h1>Dashboard</h1>
         <p>Welcome back! Here's an overview of your data.</p>
       </header>
 
-      <section class="stats-grid">
+      <section data-section="stats">
         <stat-card
           label="Total Users"
           value="--"
@@ -135,10 +141,10 @@ class DashboardView extends HTMLElement {
         </stat-card>
       </section>
 
-      <section class="section">
-        <header class="section-header">
+      <section>
+        <header>
           <h2>Recent Activity</h2>
-          <a href="/list" data-link class="view-all">View all</a>
+          <a href="/list" data-link data-role="view-all">View all</a>
         </header>
         <data-table
           columns='[{"key":"name","label":"Name"},{"key":"action","label":"Action"},{"key":"date","label":"Date"}]'

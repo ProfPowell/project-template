@@ -49,7 +49,7 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .nav-container {
+  .site-header nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -99,19 +99,16 @@
   }
 
   .site-footer {
-    background: var(--surface-alt);
-    border-top: 1px solid var(--border);
-    padding: var(--spacing-2xl) var(--spacing-lg);
-  }
-
-  .footer-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: start;
+    gap: var(--spacing-xl);
     max-width: var(--content-width);
     margin: 0 auto;
-    gap: var(--spacing-xl);
-    flex-wrap: wrap;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    background: var(--surface-alt);
+    border-top: 1px solid var(--border);
   }
 
   .footer-brand a {
@@ -135,9 +132,8 @@
     color: var(--primary);
   }
 
-  .footer-bottom {
-    max-width: var(--content-width);
-    margin: var(--spacing-xl) auto 0;
+  small.footer-bottom {
+    flex-basis: 100%;
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--border);
     text-align: center;
@@ -199,14 +195,11 @@
 
   /* Hero */
   .hero {
+    max-width: var(--content-width);
+    margin: 0 auto;
     padding: var(--spacing-3xl) var(--spacing-lg);
     text-align: center;
     background: var(--surface-alt);
-  }
-
-  .hero-content {
-    max-width: var(--content-3xl);
-    margin: 0 auto;
   }
 
   .hero h1 {
@@ -219,7 +212,7 @@
     margin-bottom: var(--spacing-xl);
   }
 
-  .hero-actions {
+  nav.hero-actions {
     display: flex;
     gap: var(--spacing-md);
     justify-content: center;
@@ -238,10 +231,12 @@
     margin-bottom: var(--spacing-2xl);
   }
 
-  .features-grid {
+  ul.features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-xl);
+    list-style: none;
+    padding: 0;
   }
 
   .feature-card {
@@ -283,18 +278,18 @@
     max-width: 32rem;
   }
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
+  form-field {
+    display: grid;
     gap: var(--spacing-xs);
   }
 
-  .form-field label {
+  form-field label {
     font-weight: var(--font-weight-medium);
   }
 
-  .form-field input,
-  .form-field textarea {
+  form-field input,
+  form-field textarea,
+  form-field select {
     padding: var(--spacing-sm) var(--spacing-md);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
@@ -302,11 +297,39 @@
     font: inherit;
   }
 
-  .form-field input:focus,
-  .form-field textarea:focus {
+  form-field input:focus,
+  form-field textarea:focus,
+  form-field select:focus {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px var(--primary-subtle);
+  }
+
+  form-field output {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+  }
+
+  /* Validation states using :user-valid/:user-invalid */
+  form-field:has(:user-valid) output {
+    color: var(--success);
+  }
+
+  form-field:has(:user-invalid) output {
+    color: var(--error);
+  }
+
+  form-field:has(:user-invalid) input,
+  form-field:has(:user-invalid) textarea {
+    border-color: var(--error);
+  }
+
+  /* Required field indicator */
+  form-field:has(input:required) label::after,
+  form-field:has(textarea:required) label::after,
+  form-field:has(select:required) label::after {
+    content: " *";
+    color: var(--error);
   }
 
   /* Content */

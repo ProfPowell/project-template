@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Input Component - Component Library</title>
-  <link rel="stylesheet" href="../components.css" />
+  <link rel="stylesheet" href="../components.css"/>
 </head>
 <body>
   <div class="demo-page">
@@ -17,42 +17,42 @@
       <div class="demo-grid">
         <form-field>
           <label for="text-input">Text Input</label>
-          <input type="text" id="text-input" name="text" placeholder="Enter text..." />
+          <input type="text" id="text-input" name="text" placeholder="Enter text..."/>
         </form-field>
 
         <form-field>
           <label for="email-input">Email Input</label>
-          <input type="email" id="email-input" name="email" placeholder="you@example.com" />
+          <input type="email" id="email-input" name="email" placeholder="you@example.com"/>
         </form-field>
 
         <form-field>
           <label for="password-input">Password Input</label>
-          <input type="password" id="password-input" name="password" placeholder="Enter password..." />
+          <input type="password" id="password-input" name="password" placeholder="Enter password..."/>
         </form-field>
 
         <form-field>
           <label for="tel-input">Phone Input</label>
-          <input type="tel" id="tel-input" name="phone" placeholder="+1 (555) 000-0000" />
+          <input type="tel" id="tel-input" name="phone" placeholder="+1 (555) 000-0000"/>
         </form-field>
 
         <form-field>
           <label for="url-input">URL Input</label>
-          <input type="url" id="url-input" name="url" placeholder="https://example.com" />
+          <input type="url" id="url-input" name="url" placeholder="https://example.com"/>
         </form-field>
 
         <form-field>
           <label for="number-input">Number Input</label>
-          <input type="number" id="number-input" name="quantity" placeholder="0" min="0" max="100" />
+          <input type="number" id="number-input" name="quantity" placeholder="0" min="0" max="100"/>
         </form-field>
 
         <form-field>
           <label for="date-input">Date Input</label>
-          <input type="date" id="date-input" name="date" />
+          <input type="date" id="date-input" name="date"/>
         </form-field>
 
         <form-field>
           <label for="search-input">Search Input</label>
-          <input type="search" id="search-input" name="search" placeholder="Search..." />
+          <input type="search" id="search-input" name="search" placeholder="Search..."/>
         </form-field>
       </div>
     </section>
@@ -64,13 +64,13 @@
       <div style="max-width: 24rem;">
         <form-field>
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" placeholder="johndoe" minlength="3" maxlength="20" required aria-describedby="username-help" />
+          <input type="text" id="username" name="username" placeholder="johndoe" minlength="3" maxlength="20" required aria-describedby="username-help"/>
           <output id="username-help" for="username">3-20 characters, letters and numbers only</output>
         </form-field>
 
         <form-field>
           <label for="new-password">Password</label>
-          <input type="password" id="new-password" name="password" placeholder="Create a password" minlength="8" required aria-describedby="password-help" />
+          <input type="password" id="new-password" name="password" placeholder="Create a password" minlength="8" required aria-describedby="password-help"/>
           <output id="password-help" for="new-password">Must be at least 8 characters</output>
         </form-field>
       </div>
@@ -83,19 +83,19 @@
       <div style="max-width: 24rem;">
         <form-field>
           <label for="valid-email">Email (type and blur to validate)</label>
-          <input type="email" id="valid-email" name="email" placeholder="you@example.com" required />
+          <input type="email" id="valid-email" name="email" placeholder="you@example.com" required/>
           <output for="valid-email">Enter a valid email address</output>
         </form-field>
 
         <form-field>
           <label for="required-field">Required Field</label>
-          <input type="text" id="required-field" name="required" placeholder="This field is required" required />
+          <input type="text" id="required-field" name="required" placeholder="This field is required" required/>
           <output for="required-field">This field is required</output>
         </form-field>
 
         <form-field>
           <label for="pattern-field">Pattern (letters only)</label>
-          <input type="text" id="pattern-field" name="letters" pattern="[A-Za-z]+" placeholder="Letters only" required />
+          <input type="text" id="pattern-field" name="letters" pattern="[A-Za-z]+" placeholder="Letters only" required/>
           <output for="pattern-field">Only letters allowed</output>
         </form-field>
       </div>
@@ -107,12 +107,12 @@
       <div class="demo-grid">
         <form-field>
           <label for="disabled-input">Disabled</label>
-          <input type="text" id="disabled-input" name="disabled" value="Cannot edit" disabled />
+          <input type="text" id="disabled-input" name="disabled" value="Cannot edit" disabled/>
         </form-field>
 
         <form-field>
           <label for="readonly-input">Read Only</label>
-          <input type="text" id="readonly-input" name="readonly" value="Read only value" readonly />
+          <input type="text" id="readonly-input" name="readonly" value="Read only value" readonly/>
         </form-field>
       </div>
     </section>

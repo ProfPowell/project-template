@@ -7,6 +7,7 @@ import express from 'express';
 import { config } from './config/index.js';
 import { routes } from './api/routes.js';
 import { errorHandler } from './api/middleware/error.js';
+import { methodOverride } from './api/middleware/method-override.js';
 import { logger } from './lib/logger.js';
 
 const app = express();
@@ -14,6 +15,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride);
 
 // Request logging
 app.use((req, res, next) => {

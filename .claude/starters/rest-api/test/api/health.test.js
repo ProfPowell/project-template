@@ -1,19 +1,31 @@
 /**
  * Health Check Tests
+ * Tests for /health and /ready endpoints
  */
 
-import { describe, it } from 'node:test';
+import { describe, it, before, after } from 'node:test';
 import assert from 'node:assert';
+import { get } from '../helpers/request.js';
 
 describe('Health Endpoints', () => {
-  it('GET /health returns 200', async () => {
-    // This is a placeholder test
-    // In a real test, you would start the server and make HTTP requests
-    assert.ok(true, 'Health check should return 200');
+  describe('GET /health', () => {
+    it('returns 200 with status ok', async () => {
+      const { status, body } = await get('/health');
+
+      assert.strictEqual(status, 200);
+      assert.strictEqual(body.status, 'ok');
+      assert.ok(body.timestamp);
+    });
   });
 
-  it('GET /ready checks dependencies', async () => {
-    // Placeholder for readiness check test
-    assert.ok(true, 'Ready check should verify database connection');
+  describe('GET /ready', () => {
+    it('returns 200 when database is connected', async () => {
+      const { status, body } = await get('/ready');
+
+      assert.strictEqual(status, 200);
+      assert.strictEqual(body.status, 'ready');
+      assert.strictEqual(body.checks.database, true);
+      assert.ok(body.timestamp);
+    });
   });
 });

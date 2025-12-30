@@ -22,7 +22,7 @@ class AppShell extends HTMLElement {
 
         nav-bar {
           position: sticky;
-          top: 0;
+          inset-block-start: 0;
           z-index: 100;
         }
 
@@ -33,7 +33,7 @@ class AppShell extends HTMLElement {
         footer {
           padding: var(--spacing-lg, 1.5rem);
           background: var(--surface-alt, #f5f5f5);
-          border-top: 1px solid var(--border, #e5e5e5);
+          border-block-start: 1px solid var(--border, #e5e5e5);
           text-align: center;
           color: var(--text-muted, #666);
           font-size: var(--font-size-sm, 0.875rem);

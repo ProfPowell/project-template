@@ -14,13 +14,13 @@ class SettingsView extends BaseView {
   render() {
     return `
       <h1>Settings</h1>
-      <p class="lead">Customize your experience.</p>
+      <p data-role="lead">Customize your experience.</p>
 
       <form id="settings-form">
         <fieldset>
           <legend>Appearance</legend>
 
-          <div class="form-field">
+          <div data-field>
             <label for="theme">Color Theme</label>
             <select id="theme" name="theme">
               <option value="auto">System Default</option>
@@ -33,15 +33,15 @@ class SettingsView extends BaseView {
         <fieldset>
           <legend>Notifications</legend>
 
-          <div class="form-field checkbox">
-            <input type="checkbox" id="notifications" name="notifications" />
+          <div data-field data-type="checkbox">
+            <input type="checkbox" id="notifications" name="notifications"/>
             <label for="notifications">Enable notifications</label>
           </div>
         </fieldset>
 
-        <div class="form-actions">
-          <button type="submit" class="button-primary">Save Settings</button>
-        </div>
+        <nav data-role="actions">
+          <button type="submit" data-variant="primary">Save Settings</button>
+        </nav>
       </form>
     `;
   }
@@ -50,61 +50,61 @@ class SettingsView extends BaseView {
     return `
       ${super.styles()}
 
-      .lead {
-        margin-bottom: var(--spacing-2xl, 3rem);
+      [data-role="lead"] {
+        margin-block-end: var(--spacing-2xl, 3rem);
       }
 
       form {
-        max-width: 32rem;
+        max-inline-size: 32rem;
       }
 
       fieldset {
         border: 1px solid var(--border, #e5e5e5);
         border-radius: var(--radius-lg, 0.5rem);
         padding: var(--spacing-lg, 1.5rem);
-        margin-bottom: var(--spacing-lg, 1.5rem);
+        margin-block-end: var(--spacing-lg, 1.5rem);
       }
 
       legend {
         font-weight: 600;
-        padding: 0 var(--spacing-sm, 0.5rem);
+        padding-inline: var(--spacing-sm, 0.5rem);
       }
 
-      .form-field {
-        margin-bottom: var(--spacing-md, 1rem);
+      [data-field] {
+        margin-block-end: var(--spacing-md, 1rem);
       }
 
-      .form-field label {
+      [data-field] label {
         display: block;
-        margin-bottom: var(--spacing-xs, 0.25rem);
+        margin-block-end: var(--spacing-xs, 0.25rem);
         font-weight: 500;
       }
 
-      .form-field.checkbox {
+      [data-field][data-type="checkbox"] {
         display: flex;
         align-items: center;
         gap: var(--spacing-sm, 0.5rem);
       }
 
-      .form-field.checkbox label {
-        margin-bottom: 0;
+      [data-field][data-type="checkbox"] label {
+        margin-block-end: 0;
         font-weight: normal;
       }
 
       select,
       input[type="text"] {
-        width: 100%;
+        inline-size: 100%;
         padding: var(--spacing-sm, 0.5rem);
         border: 1px solid var(--border, #e5e5e5);
         border-radius: var(--radius-md, 0.25rem);
         font: inherit;
       }
 
-      .form-actions {
-        margin-top: var(--spacing-xl, 2rem);
+      [data-role="actions"] {
+        margin-block-start: var(--spacing-xl, 2rem);
       }
 
-      .button-primary {
+      [data-variant="primary"] {
         padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
         background: var(--primary, #1e40af);
         color: white;
@@ -115,7 +115,7 @@ class SettingsView extends BaseView {
         cursor: pointer;
       }
 
-      .button-primary:hover {
+      [data-variant="primary"]:hover {
         background: var(--primary-hover, #1e3a8a);
       }
     `;

@@ -13,7 +13,7 @@ class AboutView extends BaseView {
   render() {
     return `
       <h1>About</h1>
-      <p class="lead">Learn more about {{DISPLAY_NAME}}.</p>
+      <p data-role="lead">Learn more about {{DISPLAY_NAME}}.</p>
 
       <section>
         <h2>Technology</h2>
@@ -40,26 +40,26 @@ class AboutView extends BaseView {
     return `
       ${super.styles()}
 
-      .lead {
+      [data-role="lead"] {
         font-size: var(--font-size-lg, 1.25rem);
-        margin-bottom: var(--spacing-2xl, 3rem);
+        margin-block-end: var(--spacing-2xl, 3rem);
       }
 
       section {
-        margin-bottom: var(--spacing-2xl, 3rem);
+        margin-block-end: var(--spacing-2xl, 3rem);
       }
 
       h2 {
         font-size: var(--font-size-xl, 1.5rem);
-        margin-bottom: var(--spacing-md, 1rem);
+        margin-block-end: var(--spacing-md, 1rem);
       }
 
       ul {
-        padding-left: var(--spacing-lg, 1.5rem);
+        padding-inline-start: var(--spacing-lg, 1.5rem);
       }
 
       li {
-        margin-bottom: var(--spacing-sm, 0.5rem);
+        margin-block-end: var(--spacing-sm, 0.5rem);
       }
     `;
   }

@@ -12,14 +12,14 @@ class NotFoundView extends BaseView {
 
   render() {
     return `
-      <div class="error-content">
+      <section data-section="error">
         <h1>404</h1>
-        <p class="error-title">Page Not Found</p>
-        <p class="error-message">
+        <p data-role="title">Page Not Found</p>
+        <p data-role="message">
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <a href="/" data-link class="button-primary">Go to Home</a>
-      </div>
+        <a href="/" data-link data-variant="primary">Go to Home</a>
+      </section>
     `;
   }
 
@@ -27,34 +27,34 @@ class NotFoundView extends BaseView {
     return `
       ${super.styles()}
 
-      .view {
-        min-height: 60vh;
+      article {
+        min-block-size: 60vh;
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
-      .error-content {
+      [data-section="error"] {
         text-align: center;
       }
 
       h1 {
         font-size: 6rem;
         color: var(--primary, #1e40af);
-        margin-bottom: var(--spacing-sm, 0.5rem);
+        margin-block-end: var(--spacing-sm, 0.5rem);
       }
 
-      .error-title {
+      [data-role="title"] {
         font-size: var(--font-size-xl, 1.5rem);
         color: var(--text, #111);
-        margin-bottom: var(--spacing-md, 1rem);
+        margin-block-end: var(--spacing-md, 1rem);
       }
 
-      .error-message {
-        margin-bottom: var(--spacing-xl, 2rem);
+      [data-role="message"] {
+        margin-block-end: var(--spacing-xl, 2rem);
       }
 
-      .button-primary {
+      [data-variant="primary"] {
         display: inline-flex;
         padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
         background: var(--primary, #1e40af);

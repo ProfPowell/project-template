@@ -24,26 +24,26 @@ class NavBar extends HTMLElement {
         :host {
           display: block;
           background: var(--surface, white);
-          border-bottom: 1px solid var(--border, #e5e5e5);
+          border-block-end: 1px solid var(--border, #e5e5e5);
         }
 
         nav {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          max-width: var(--content-width, 72rem);
-          margin: 0 auto;
+          max-inline-size: var(--content-width, 72rem);
+          margin-inline: auto;
           padding: var(--spacing-md, 1rem) var(--spacing-lg, 1.5rem);
         }
 
-        .logo {
+        nav > a:first-child {
           font-weight: 600;
           font-size: var(--font-size-lg, 1.25rem);
           text-decoration: none;
           color: var(--text, #111);
         }
 
-        .nav-links {
+        ul {
           display: flex;
           gap: var(--spacing-lg, 1.5rem);
           list-style: none;
@@ -51,21 +51,21 @@ class NavBar extends HTMLElement {
           padding: 0;
         }
 
-        .nav-links a {
+        ul a {
           text-decoration: none;
           color: var(--text-muted, #666);
           transition: color 0.15s;
         }
 
-        .nav-links a:hover,
-        .nav-links a[aria-current="page"] {
+        ul a:hover,
+        ul a[aria-current="page"] {
           color: var(--primary, #1e40af);
         }
       </style>
 
       <nav aria-label="Main navigation">
-        <a href="/" data-link class="logo">{{DISPLAY_NAME}}</a>
-        <ul class="nav-links">
+        <a href="/" data-link>{{DISPLAY_NAME}}</a>
+        <ul>
           <li><a href="/" data-link>Home</a></li>
           <li><a href="/about" data-link>About</a></li>
           <li><a href="/settings" data-link>Settings</a></li>
@@ -90,7 +90,7 @@ class NavBar extends HTMLElement {
   }
 
   updateActive() {
-    const links = this.shadowRoot.querySelectorAll('.nav-links a');
+    const links = this.shadowRoot.querySelectorAll('ul a');
     const path = window.location.pathname;
 
     links.forEach((link) => {

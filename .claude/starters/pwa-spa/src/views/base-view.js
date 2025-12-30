@@ -41,7 +41,7 @@ export class BaseView extends HTMLElement {
       <style>
         ${this.styles()}
       </style>
-      <article class="view">
+      <article>
         ${this.render()}
       </article>
     `;
@@ -58,15 +58,15 @@ export class BaseView extends HTMLElement {
         outline: none;
       }
 
-      .view {
+      article {
         padding: var(--spacing-lg, 1.5rem);
-        max-width: var(--content-width, 72rem);
-        margin: 0 auto;
+        max-inline-size: var(--content-width, 72rem);
+        margin-inline: auto;
       }
 
       h1 {
         font-size: var(--font-size-3xl, 2.5rem);
-        margin-bottom: var(--spacing-md, 1rem);
+        margin-block-end: var(--spacing-md, 1rem);
       }
 
       p {

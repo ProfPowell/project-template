@@ -23,10 +23,11 @@ Key prompts:
 1. Use AskUserQuestion to collect the required prompts
 2. Copy all files from `.claude/starters/static-astro/` to the project root (`./`)
 3. Replace the starter's package.json name with PROJECT_NAME
-4. Replace all `{{PLACEHOLDER}}` values with collected prompts
-5. Configure astro.config.mjs based on OUTPUT_MODE and ADAPTER
-6. Generate content collection directories based on CONTENT_COLLECTIONS
-7. Run `npm install` in the generated project
+4. Copy `.claude/starters/static-astro/README.md.template` to `./README.md`
+5. Replace all `{{PLACEHOLDER}}` values with collected prompts (including README.md)
+6. Configure astro.config.mjs based on OUTPUT_MODE and ADAPTER
+7. Generate content collection directories based on CONTENT_COLLECTIONS
+8. Run `npm install` in the generated project
 
 ## Skills to Apply
 - xhtml-author

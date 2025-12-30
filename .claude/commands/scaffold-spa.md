@@ -28,10 +28,11 @@ Key prompts:
    - `styles/_reset.css` → `src/styles/_reset.css`
    - `styles/_tokens.css` → `src/styles/_tokens.css`
    - `components/x-icon/` → `src/components/x-icon/`
-5. Replace all `{{PLACEHOLDER}}` values with collected prompts
-6. Handle conditional sections `{{#IF_ENABLE_AUTH}}...{{/IF_ENABLE_AUTH}}`
-7. Generate view components based on INITIAL_ROUTES
-8. Register routes in main.js
+5. Copy `.claude/starters/pwa-spa/README.md.template` to `./README.md`
+6. Replace all `{{PLACEHOLDER}}` values with collected prompts (including README.md)
+7. Handle conditional sections `{{#IF_ENABLE_AUTH}}...{{/IF_ENABLE_AUTH}}`
+8. Generate view components based on INITIAL_ROUTES
+9. Register routes in main.js
 
 ## Skills to Apply
 - javascript-author

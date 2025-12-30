@@ -23,17 +23,18 @@ Key prompts:
 1. Use AskUserQuestion to collect the required prompts
 2. Copy all files from `.claude/starters/chrome-extension/` to the project root (`./`)
 3. Replace the starter's manifest.json name with DISPLAY_NAME
-4. Replace all `{{PLACEHOLDER}}` values with collected prompts
-5. Update manifest.json:
+4. Copy `.claude/starters/chrome-extension/README.md.template` to `./README.md`
+5. Replace all `{{PLACEHOLDER}}` values with collected prompts (including README.md)
+6. Update manifest.json:
    - Set permissions based on PERMISSIONS prompt
    - Set host_permissions based on HOST_PERMISSIONS prompt
    - Remove unused features based on FEATURES prompt
-6. Remove unused feature directories if not selected:
+7. Remove unused feature directories if not selected:
    - Remove `src/popup/` if popup not in FEATURES
    - Remove `src/options/` if options not in FEATURES
    - Remove `src/content/` if content-script not in FEATURES
    - Remove `src/background/` if background not in FEATURES
-7. Update manifest.json to remove references to excluded features
+8. Update manifest.json to remove references to excluded features
 
 ## Loading the Extension
 

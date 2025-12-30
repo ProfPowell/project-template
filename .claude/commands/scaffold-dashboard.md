@@ -28,11 +28,12 @@ Key prompts:
 4. Copy shared resources from `.claude/starters/_shared/`:
    - `styles/_reset.css` → `src/styles/_reset.css`
    - `styles/_tokens.css` → `src/styles/_tokens.css`
-5. Replace all `{{PLACEHOLDER}}` values with collected prompts
-6. Handle conditional sections `{{#IF_ENABLE_CHARTS}}...{{/IF_ENABLE_CHARTS}}`
-7. Generate view components based on INITIAL_VIEWS
-8. Register routes in main.js
-9. Update sidebar-nav.js with navigation links
+5. Copy `.claude/starters/dashboard/README.md.template` to `./README.md`
+6. Replace all `{{PLACEHOLDER}}` values with collected prompts (including README.md)
+7. Handle conditional sections `{{#IF_ENABLE_CHARTS}}...{{/IF_ENABLE_CHARTS}}`
+8. Generate view components based on INITIAL_VIEWS
+9. Register routes in main.js
+10. Update sidebar-nav.js with navigation links
 
 ## Skills to Apply
 - javascript-author

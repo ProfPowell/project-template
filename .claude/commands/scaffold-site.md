@@ -26,9 +26,10 @@ Key prompts:
 4. Copy shared resources from `.claude/starters/_shared/`:
    - `styles/_reset.css` → `src/styles/_reset.css`
    - `styles/_tokens.css` → `src/styles/_tokens.css`
-5. Replace all `{{PLACEHOLDER}}` values with collected prompts
-6. Generate additional pages based on PAGES prompt
-7. Run validation to ensure the generated site passes all checks
+5. Copy `.claude/starters/static-standard/README.md.template` to `./README.md`
+6. Replace all `{{PLACEHOLDER}}` values with collected prompts (including README.md)
+7. Generate additional pages based on PAGES prompt
+8. Run validation to ensure the generated site passes all checks
 
 ## Skills to Apply
 - xhtml-author

@@ -24,14 +24,15 @@ Key prompts:
 1. Use AskUserQuestion to collect the required prompts
 2. Copy all files from `.claude/starters/rest-api/` to the project root (`./`)
 3. Replace the starter's package.json name with PROJECT_NAME
-4. Replace all `{{PLACEHOLDER}}` values with collected prompts
-5. Handle conditional sections:
+4. Copy `.claude/starters/rest-api/README.md.template` to `./README.md`
+5. Replace all `{{PLACEHOLDER}}` values with collected prompts (including README.md)
+6. Handle conditional sections:
    - `{{#IF_ENABLE_AUTH}}...{{/IF_ENABLE_AUTH}}`
    - `{{#IF_DATABASE}}...{{/IF_DATABASE}}`
    - `{{#IF_ENABLE_RATE_LIMIT}}...{{/IF_ENABLE_RATE_LIMIT}}`
-6. Generate resource handlers/services based on INITIAL_RESOURCES
-7. Update routes.js with new resource routes
-8. Run `npm install` in the generated project
+7. Generate resource handlers/services based on INITIAL_RESOURCES
+8. Update routes.js with new resource routes
+9. Run `npm install` in the generated project
 
 ## Skills to Apply
 - nodejs-backend

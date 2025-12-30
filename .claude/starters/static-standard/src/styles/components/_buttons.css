@@ -1,10 +1,10 @@
 /**
  * Buttons
- * Primary and secondary button styles
+ * Primary and secondary button styles using data-variant
  */
 
-.button-primary,
-.button-secondary {
+[data-variant="primary"],
+[data-variant="secondary"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -18,27 +18,27 @@
   transition: background var(--transition-fast), color var(--transition-fast);
 }
 
-.button-primary:focus-visible,
-.button-secondary:focus-visible {
+[data-variant="primary"]:focus-visible,
+[data-variant="secondary"]:focus-visible {
   outline: var(--focus-ring-width) solid var(--focus-ring-color);
   outline-offset: var(--focus-ring-offset);
 }
 
-.button-primary {
+[data-variant="primary"] {
   background: var(--primary);
   color: var(--text-on-primary);
 }
 
-.button-primary:hover {
+[data-variant="primary"]:hover {
   background: var(--primary-hover);
 }
 
-.button-secondary {
+[data-variant="secondary"] {
   background: transparent;
   color: var(--primary);
   border: 1px solid var(--primary);
 }
 
-.button-secondary:hover {
+[data-variant="secondary"]:hover {
   background: var(--primary-subtle);
 }

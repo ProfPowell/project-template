@@ -3,7 +3,7 @@
  * Navigation and branding
  */
 
-.site-header {
+header {
   position: sticky;
   inset-block-start: 0;
   z-index: 100;
@@ -11,7 +11,7 @@
   border-block-end: 1px solid var(--border);
 }
 
-.site-header nav {
+header nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -21,7 +21,7 @@
   padding-inline: var(--spacing-lg);
 }
 
-.logo {
+header nav > a:first-child {
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -30,19 +30,19 @@
   color: var(--text);
 }
 
-.nav-links {
+header nav ul {
   display: flex;
   gap: var(--spacing-lg);
   list-style: none;
 }
 
-.nav-links a {
+header nav ul a {
   text-decoration: none;
   color: var(--text-muted);
   transition: color var(--transition-fast);
 }
 
-.nav-links a:hover,
-.nav-links a[aria-current="page"] {
+header nav ul a:hover,
+header nav ul a[aria-current="page"] {
   color: var(--primary);
 }

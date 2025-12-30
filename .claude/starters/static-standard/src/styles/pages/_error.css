@@ -1,9 +1,9 @@
 /**
  * Error Page Styles
- * 404, 500, and offline error pages
+ * 404, 500, and offline error pages using data-section attribute
  */
 
-.error-page {
+[data-section="error"] {
   display: grid;
   place-items: center;
   min-block-size: 100dvh;
@@ -11,24 +11,24 @@
   text-align: center;
 }
 
-.error-page h1 {
+[data-section="error"] h1 {
   font-size: 4rem;
   font-weight: var(--font-weight-bold);
   color: var(--error);
   margin-block-end: var(--spacing-sm);
 }
 
-.error-page p {
+[data-section="error"] p {
   font-size: var(--font-size-lg);
   color: var(--text-muted);
   margin-block-end: var(--spacing-md);
 }
 
-.error-description {
+[data-section="error"] p:last-of-type {
   margin-block-end: var(--spacing-2xl);
 }
 
-nav.error-actions {
+[data-section="error"] nav {
   display: flex;
   gap: var(--spacing-md);
   justify-content: center;

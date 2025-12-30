@@ -170,6 +170,20 @@
       }
     }
   },
+  "feature-card": {
+    "flow": true,
+    "permittedContent": [
+      "h3",
+      "p",
+      "@phrasing"
+    ],
+    "attributes": {
+      "data-highlight": {
+        "required": false,
+        "boolean": true
+      }
+    }
+  },
   "site-header": {
     "flow": true,
     "permittedContent": [

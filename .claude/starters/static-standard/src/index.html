@@ -12,6 +12,7 @@
 
   <meta name="author" content="{{AUTHOR}}"/>
   <meta name="theme-color" content="{{THEME_COLOR}}"/>
+  <meta name="robots" content="index, follow"/>
 
   <meta property="og:title" content="{{SITE_NAME}}"/>
   <meta property="og:description" content="{{DESCRIPTION}}"/>
@@ -32,15 +33,15 @@
   <link rel="stylesheet" href="/styles/main.css"/>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
+  <a href="#main">Skip to main content</a>
 
-  <header class="site-header">
+  <header>
     <nav aria-label="Main navigation">
-      <a href="/" class="logo" aria-label="{{SITE_NAME}} home">
+      <a href="/" aria-label="{{SITE_NAME}} home">
         <img src="/images/logo.svg" alt="" width="32" height="32" decoding="async"/>
         <span>{{SITE_NAME}}</span>
       </a>
-      <ul class="nav-links" role="list">
+      <ul role="list">
         <li><a href="/" aria-current="page">Home</a></li>
         <li><a href="/about.html">About</a></li>
         <li><a href="/contact.html">Contact</a></li>
@@ -49,58 +50,58 @@
   </header>
 
   <main id="main">
-    <section class="hero">
+    <section data-section="hero">
       <h1>Welcome to {{SITE_NAME}}</h1>
-      <p class="hero-description">{{DESCRIPTION}}</p>
-      <nav class="hero-actions" aria-label="Get started">
-        <a href="/about.html" class="button-primary">Learn More</a>
-        <a href="/contact.html" class="button-secondary">Contact Us</a>
+      <p>{{DESCRIPTION}}</p>
+      <nav aria-label="Get started">
+        <a href="/about.html" data-variant="primary">Learn More</a>
+        <a href="/contact.html" data-variant="secondary">Contact Us</a>
       </nav>
     </section>
 
-    <section class="features" aria-labelledby="features-heading">
-      <h2 id="features-heading" class="section-heading">Features</h2>
-      <ul class="features-grid" role="list">
+    <section data-section="features" aria-labelledby="features-heading">
+      <h2 id="features-heading">Features</h2>
+      <ul role="list">
         <li>
-          <article class="feature-card">
+          <feature-card>
             <h3>Semantic HTML</h3>
             <p>Built with accessibility and SEO in mind using proper HTML5 elements.</p>
-          </article>
+          </feature-card>
         </li>
         <li>
-          <article class="feature-card">
+          <feature-card>
             <h3>Design Tokens</h3>
             <p>Consistent styling with CSS custom properties and a token-based system.</p>
-          </article>
+          </feature-card>
         </li>
         <li>
-          <article class="feature-card">
+          <feature-card>
             <h3>Responsive</h3>
             <p>Mobile-first design that works beautifully on all screen sizes.</p>
-          </article>
+          </feature-card>
         </li>
       </ul>
     </section>
 
-    <section class="cta" aria-labelledby="cta-heading">
+    <section data-section="cta" aria-labelledby="cta-heading">
       <h2 id="cta-heading">Ready to get started?</h2>
       <p>Get in touch with us today.</p>
-      <a href="/contact.html" class="button-primary">Contact Us</a>
+      <a href="/contact.html" data-variant="primary">Contact Us</a>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <section class="footer-brand">
+  <footer>
+    <section>
       <a href="/" aria-label="{{SITE_NAME}} home">{{SITE_NAME}}</a>
       <p>{{DESCRIPTION}}</p>
     </section>
-    <nav class="footer-links" aria-label="Footer navigation">
+    <nav aria-label="Footer navigation">
       <ul role="list">
         <li><a href="/about.html">About</a></li>
         <li><a href="/contact.html">Contact</a></li>
       </ul>
     </nav>
-    <small class="footer-bottom">
+    <small>
       &copy; {{CURRENT_YEAR}} {{SITE_NAME}}. All rights reserved.
     </small>
   </footer>

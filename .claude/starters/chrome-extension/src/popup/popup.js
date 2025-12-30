@@ -46,8 +46,8 @@ async function init() {
 function updateStatus(text) {
   const status = document.getElementById('status');
   status.textContent = text;
-  status.classList.add('updated');
-  setTimeout(() => status.classList.remove('updated'), 1000);
+  status.dataset.state = 'updated';
+  setTimeout(() => delete status.dataset.state, 1000);
 }
 
 /**

@@ -2,103 +2,30 @@
  * Popup Styles
  */
 
-.popup {
-  inline-size: 300px;
-  min-block-size: 200px;
-}
+@layer components {
+  body {
+    inline-size: 300px;
+    min-block-size: 200px;
+  }
 
-.popup-header {
-  padding: var(--space-3) var(--space-4);
-  border-block-end: 1px solid var(--border);
-}
+  header {
+    padding: var(--space-3) var(--space-4);
+    border-block-end: 1px solid var(--border);
 
-.popup-header h1 {
-  font-size: var(--text-base);
-  font-weight: var(--font-semibold);
-  margin: 0;
-}
+    & h1 {
+      font-size: var(--text-base);
+      font-weight: var(--font-semibold);
+      margin: 0;
+    }
+  }
 
-.popup-content {
-  padding: var(--space-4);
-}
+  main {
+    padding: var(--space-4);
+  }
 
-.toggle-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-block-end: var(--space-4);
-}
-
-.toggle-row label {
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
-}
-
-.toggle {
-  inline-size: 2.5rem;
-  block-size: 1.25rem;
-  appearance: none;
-  background: var(--gray-300);
-  border-radius: 9999px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.toggle::before {
-  content: '';
-  position: absolute;
-  inset-block-start: 2px;
-  inset-inline-start: 2px;
-  inline-size: 1rem;
-  block-size: 1rem;
-  background: white;
-  border-radius: 50%;
-  transition: transform 0.2s;
-}
-
-.toggle:checked {
-  background: var(--primary);
-}
-
-.toggle:checked::before {
-  transform: translateX(1.25rem);
-}
-
-.toggle:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
-
-.status {
-  padding: var(--space-2) var(--space-3);
-  background: var(--gray-100);
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm);
-  text-align: center;
-  transition: background-color 0.3s;
-}
-
-.status.updated {
-  background: var(--success-bg);
-  color: var(--success);
-}
-
-.popup-footer {
-  padding: var(--space-3) var(--space-4);
-  border-block-start: 1px solid var(--border);
-  text-align: end;
-}
-
-.btn-link {
-  background: none;
-  border: none;
-  color: var(--primary);
-  font-size: var(--text-sm);
-  cursor: pointer;
-  padding: 0;
-}
-
-.btn-link:hover {
-  text-decoration: underline;
+  footer {
+    padding: var(--space-3) var(--space-4);
+    border-block-start: 1px solid var(--border);
+    text-align: end;
+  }
 }

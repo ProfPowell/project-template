@@ -58,15 +58,15 @@ async function handleSubmit(event) {
 
     // Show success
     status.textContent = chrome.i18n.getMessage('savedMessage') || 'Saved';
-    status.className = 'save-status success';
+    status.dataset.state = 'success';
 
     setTimeout(() => {
       status.textContent = '';
-      status.className = 'save-status';
+      delete status.dataset.state;
     }, 3000);
   } catch (error) {
     status.textContent = 'Error saving settings';
-    status.className = 'save-status error';
+    status.dataset.state = 'error';
   } finally {
     button.disabled = false;
   }

@@ -1,35 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title data-i18n="popupTitle">{{DISPLAY_NAME}}</title>
-  <link rel="stylesheet" href="../../styles/shared.css" />
-  <link rel="stylesheet" href="popup.css" />
+  <link rel="stylesheet" href="../../styles/shared.css"/>
+  <link rel="stylesheet" href="popup.css"/>
 </head>
 <body>
-  <div class="popup">
-    <header class="popup-header">
-      <h1 data-i18n="popupTitle">{{DISPLAY_NAME}}</h1>
-    </header>
+  <header>
+    <h1 data-i18n="popupTitle">{{DISPLAY_NAME}}</h1>
+  </header>
 
-    <main class="popup-content">
-      <div class="toggle-row">
-        <label for="enabled" data-i18n="enabledLabel">Enabled</label>
-        <input type="checkbox" id="enabled" class="toggle" />
-      </div>
+  <main>
+    <form-field data-layout="row">
+      <label for="enabled" data-i18n="enabledLabel">Enabled</label>
+      <input type="checkbox" id="enabled" data-toggle=""/>
+    </form-field>
 
-      <div class="status" id="status">
-        Ready
-      </div>
-    </main>
+    <output id="status" data-role="status" aria-live="polite">
+      Ready
+    </output>
+  </main>
 
-    <footer class="popup-footer">
-      <button type="button" id="options-btn" class="btn btn-link">
-        Settings
-      </button>
-    </footer>
-  </div>
+  <footer>
+    <button type="button" id="options-btn" data-variant="link">
+      Settings
+    </button>
+  </footer>
 
   <script src="popup.js" type="module"></script>
 </body>

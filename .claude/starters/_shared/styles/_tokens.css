@@ -103,4 +103,6 @@
   /* ==================== LAYOUT ==================== */
   --content-width: 72rem;
   --content-prose: 65ch;
+  --content-3xl: 48rem;
+  --content-form: 32rem;
 }

@@ -1,0 +1,36 @@
+/**
+ * Error Page Styles
+ * 404, 500, and offline error pages
+ */
+
+.error-page {
+  display: grid;
+  place-items: center;
+  min-block-size: 100dvh;
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.error-page h1 {
+  font-size: 4rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--error);
+  margin-block-end: var(--spacing-sm);
+}
+
+.error-page p {
+  font-size: var(--font-size-lg);
+  color: var(--text-muted);
+  margin-block-end: var(--spacing-md);
+}
+
+.error-description {
+  margin-block-end: var(--spacing-2xl);
+}
+
+nav.error-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}

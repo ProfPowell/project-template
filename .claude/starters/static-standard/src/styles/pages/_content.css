@@ -1,0 +1,25 @@
+/**
+ * Content Page Styles
+ * Article content, lead text, and page sections
+ */
+
+.lead {
+  font-size: var(--font-size-lg);
+  color: var(--text-muted);
+}
+
+.page-content section {
+  margin-block-end: var(--spacing-2xl);
+}
+
+.page-content section h2 {
+  margin-block-end: var(--spacing-md);
+}
+
+.page-content ul {
+  padding-inline-start: var(--spacing-lg);
+}
+
+.page-content li {
+  margin-block-end: var(--spacing-sm);
+}

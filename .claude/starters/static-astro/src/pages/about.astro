@@ -3,9 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="About">
-  <article class="page-content">
+  <article data-section="content">
     <h1>About</h1>
-    <p class="lead">Learn more about {{SITE_NAME}} and what we do.</p>
+    <p data-role="lead">Learn more about {{SITE_NAME}} and what we do.</p>
 
     <section>
       <h2>Our Mission</h2>
@@ -27,31 +27,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .page-content {
-    max-width: var(--content-prose);
-    margin: 0 auto;
-    padding: var(--spacing-2xl) var(--spacing-lg);
+  [data-section="content"] {
+    max-inline-size: var(--content-prose);
+    margin-inline: auto;
+    padding-block: var(--spacing-2xl);
+    padding-inline: var(--spacing-lg);
   }
 
-  .lead {
+  [data-role="lead"] {
     font-size: var(--font-size-lg);
     color: var(--text-muted);
-    margin-bottom: var(--spacing-2xl);
+    margin-block-end: var(--spacing-2xl);
   }
 
   section {
-    margin-bottom: var(--spacing-2xl);
+    margin-block-end: var(--spacing-2xl);
   }
 
   h2 {
-    margin-bottom: var(--spacing-md);
+    margin-block-end: var(--spacing-md);
   }
 
   ul {
-    padding-left: var(--spacing-lg);
+    padding-inline-start: var(--spacing-lg);
   }
 
   li {
-    margin-bottom: var(--spacing-sm);
+    margin-block-end: var(--spacing-sm);
   }
 </style>

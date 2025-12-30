@@ -10,27 +10,36 @@ interface Props {
 
 const { title, description = '{{DESCRIPTION}}' } = Astro.props;
 const pageTitle = `${title} - {{SITE_NAME}}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{pageTitle}</title>
-  <meta name="description" content={description} />
-  <meta name="theme-color" content="{{THEME_COLOR}}" />
+  <meta name="description" content={description}/>
+  <meta name="theme-color" content="{{THEME_COLOR}}"/>
+  <meta name="robots" content="index, follow"/>
 
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="canonical" href={canonicalURL}/>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+  <link rel="sitemap" href="/sitemap-index.xml"/>
 
-  <meta property="og:title" content={pageTitle} />
-  <meta property="og:description" content={description} />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={Astro.url} />
+  <meta property="og:title" content={pageTitle}/>
+  <meta property="og:description" content={description}/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content={canonicalURL}/>
+  <meta property="og:site_name" content="{{SITE_NAME}}"/>
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content={pageTitle}/>
+  <meta name="twitter:description" content={description}/>
 </head>
 <body>
-  <a href="#main" class="skip-link">Skip to main content</a>
+  <a href="#main">Skip to main content</a>
   <Header />
   <main id="main">
     <slot />
@@ -40,10 +49,10 @@ const pageTitle = `${title} - {{SITE_NAME}}`;
 </html>
 
 <style is:global>
-  .skip-link {
+  a[href="#main"] {
     position: absolute;
-    top: -100%;
-    left: var(--spacing-md);
+    inset-block-start: -100%;
+    inset-inline-start: var(--spacing-md);
     padding: var(--spacing-sm) var(--spacing-md);
     background: var(--primary);
     color: var(--text-on-primary);
@@ -52,12 +61,12 @@ const pageTitle = `${title} - {{SITE_NAME}}`;
     z-index: 1000;
   }
 
-  .skip-link:focus {
-    top: var(--spacing-md);
+  a[href="#main"]:focus {
+    inset-block-start: var(--spacing-md);
   }
 
-  .button-primary,
-  .button-secondary {
+  [data-variant="primary"],
+  [data-variant="secondary"] {
     display: inline-flex;
     align-items: center;
     padding: var(--spacing-sm) var(--spacing-lg);
@@ -67,22 +76,22 @@ const pageTitle = `${title} - {{SITE_NAME}}`;
     transition: background var(--transition-fast);
   }
 
-  .button-primary {
+  [data-variant="primary"] {
     background: var(--primary);
     color: var(--text-on-primary);
   }
 
-  .button-primary:hover {
+  [data-variant="primary"]:hover {
     background: var(--primary-hover);
   }
 
-  .button-secondary {
+  [data-variant="secondary"] {
     background: transparent;
     color: var(--primary);
     border: 1px solid var(--primary);
   }
 
-  .button-secondary:hover {
+  [data-variant="secondary"]:hover {
     background: var(--primary-subtle);
   }
 </style>

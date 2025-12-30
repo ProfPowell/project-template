@@ -2,10 +2,10 @@
 const pathname = Astro.url.pathname;
 ---
 
-<header class="site-header">
-  <nav class="nav-container" aria-label="Main navigation">
-    <a href="/" class="logo">{{SITE_NAME}}</a>
-    <ul class="nav-links">
+<header>
+  <nav aria-label="Main navigation">
+    <a href="/">{{SITE_NAME}}</a>
+    <ul>
       <li><a href="/" aria-current={pathname === '/' ? 'page' : undefined}>Home</a></li>
       <li><a href="/about" aria-current={pathname === '/about' ? 'page' : undefined}>About</a></li>
       <li><a href="/blog" aria-current={pathname.startsWith('/blog') ? 'page' : undefined}>Blog</a></li>
@@ -14,43 +14,44 @@ const pathname = Astro.url.pathname;
 </header>
 
 <style>
-  .site-header {
+  header {
     position: sticky;
-    top: 0;
+    inset-block-start: 0;
     z-index: 100;
     background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
-  .nav-container {
+  nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: var(--content-width);
-    margin: 0 auto;
-    padding: var(--spacing-md) var(--spacing-lg);
+    max-inline-size: var(--content-width);
+    margin-inline: auto;
+    padding-block: var(--spacing-md);
+    padding-inline: var(--spacing-lg);
   }
 
-  .logo {
+  nav > a:first-child {
     font-weight: var(--font-weight-semibold);
     text-decoration: none;
     color: var(--text);
   }
 
-  .nav-links {
+  ul {
     display: flex;
     gap: var(--spacing-lg);
     list-style: none;
   }
 
-  .nav-links a {
+  ul a {
     text-decoration: none;
     color: var(--text-muted);
     transition: color var(--transition-fast);
   }
 
-  .nav-links a:hover,
-  .nav-links a[aria-current="page"] {
+  ul a:hover,
+  ul a[aria-current="page"] {
     color: var(--primary);
   }
 </style>

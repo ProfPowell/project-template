@@ -8,34 +8,40 @@ const recentPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 ---
 
 <BaseLayout title="Home">
-  <section class="hero">
+  <section data-section="hero">
     <h1>Welcome to {{SITE_NAME}}</h1>
-    <p class="hero-description">{{DESCRIPTION}}</p>
-    <div class="hero-actions">
-      <a href="/about" class="button-primary">Learn More</a>
-      <a href="/blog" class="button-secondary">Read Blog</a>
-    </div>
+    <p>{{DESCRIPTION}}</p>
+    <nav aria-label="Get started">
+      <a href="/about" data-variant="primary">Learn More</a>
+      <a href="/blog" data-variant="secondary">Read Blog</a>
+    </nav>
   </section>
 
-  <section class="features">
+  <section data-section="features">
     <h2>Features</h2>
-    <div class="features-grid">
-      <Card title="Content Collections">
-        <p>Organize your content with type-safe collections.</p>
-      </Card>
-      <Card title="Component Islands">
-        <p>Add interactivity only where you need it.</p>
-      </Card>
-      <Card title="Zero JavaScript">
-        <p>Ship zero JavaScript by default for maximum speed.</p>
-      </Card>
-    </div>
+    <ul role="list">
+      <li>
+        <Card title="Content Collections">
+          <p>Organize your content with type-safe collections.</p>
+        </Card>
+      </li>
+      <li>
+        <Card title="Component Islands">
+          <p>Add interactivity only where you need it.</p>
+        </Card>
+      </li>
+      <li>
+        <Card title="Zero JavaScript">
+          <p>Ship zero JavaScript by default for maximum speed.</p>
+        </Card>
+      </li>
+    </ul>
   </section>
 
   {recentPosts.length > 0 && (
-    <section class="recent-posts">
+    <section data-section="posts">
       <h2>Recent Posts</h2>
-      <ul class="posts-list">
+      <ul role="list">
         {recentPosts.map((post) => (
           <li>
             <a href={`/blog/${post.slug}`}>
@@ -45,70 +51,74 @@ const recentPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
           </li>
         ))}
       </ul>
-      <a href="/blog" class="view-all">View all posts →</a>
+      <a href="/blog" data-role="view-all">View all posts →</a>
     </section>
   )}
 </BaseLayout>
 
 <style>
-  .hero {
-    padding: var(--spacing-3xl) var(--spacing-lg);
+  [data-section="hero"] {
+    padding-block: var(--spacing-3xl);
+    padding-inline: var(--spacing-lg);
     text-align: center;
     background: var(--surface-alt);
   }
 
-  .hero h1 {
+  [data-section="hero"] h1 {
     font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-md);
+    margin-block-end: var(--spacing-md);
   }
 
-  .hero-description {
+  [data-section="hero"] > p {
     font-size: var(--font-size-lg);
     color: var(--text-muted);
-    margin-bottom: var(--spacing-xl);
+    margin-block-end: var(--spacing-xl);
   }
 
-  .hero-actions {
+  [data-section="hero"] nav {
     display: flex;
     gap: var(--spacing-md);
     justify-content: center;
   }
 
-  .features {
-    padding: var(--spacing-3xl) var(--spacing-lg);
-    max-width: var(--content-width);
-    margin: 0 auto;
+  [data-section="features"] {
+    padding-block: var(--spacing-3xl);
+    padding-inline: var(--spacing-lg);
+    max-inline-size: var(--content-width);
+    margin-inline: auto;
   }
 
-  .features h2 {
+  [data-section="features"] h2 {
     text-align: center;
-    margin-bottom: var(--spacing-2xl);
+    margin-block-end: var(--spacing-2xl);
   }
 
-  .features-grid {
+  [data-section="features"] ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-xl);
+    list-style: none;
   }
 
-  .recent-posts {
-    padding: var(--spacing-3xl) var(--spacing-lg);
-    max-width: var(--content-width);
-    margin: 0 auto;
+  [data-section="posts"] {
+    padding-block: var(--spacing-3xl);
+    padding-inline: var(--spacing-lg);
+    max-inline-size: var(--content-width);
+    margin-inline: auto;
   }
 
-  .recent-posts h2 {
-    margin-bottom: var(--spacing-xl);
+  [data-section="posts"] h2 {
+    margin-block-end: var(--spacing-xl);
   }
 
-  .posts-list {
+  [data-section="posts"] ul {
     list-style: none;
     display: grid;
     gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
+    margin-block-end: var(--spacing-xl);
   }
 
-  .posts-list a {
+  [data-section="posts"] ul a {
     display: block;
     padding: var(--spacing-lg);
     border: 1px solid var(--border);
@@ -116,21 +126,21 @@ const recentPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
     text-decoration: none;
   }
 
-  .posts-list a:hover {
+  [data-section="posts"] ul a:hover {
     border-color: var(--primary);
     background: var(--surface-alt);
   }
 
-  .posts-list h3 {
+  [data-section="posts"] ul h3 {
     color: var(--text);
-    margin-bottom: var(--spacing-xs);
+    margin-block-end: var(--spacing-xs);
   }
 
-  .posts-list p {
+  [data-section="posts"] ul p {
     color: var(--text-muted);
   }
 
-  .view-all {
+  [data-role="view-all"] {
     display: inline-block;
     color: var(--primary);
   }

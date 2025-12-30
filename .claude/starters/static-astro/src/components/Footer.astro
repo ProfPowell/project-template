@@ -2,73 +2,66 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-brand">
-      <a href="/">{{SITE_NAME}}</a>
-      <p>{{DESCRIPTION}}</p>
-    </div>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <ul>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blog">Blog</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; {currentYear} {{SITE_NAME}}. All rights reserved.</p>
-  </div>
+<footer>
+  <section>
+    <a href="/">{{SITE_NAME}}</a>
+    <p>{{DESCRIPTION}}</p>
+  </section>
+  <nav aria-label="Footer navigation">
+    <ul>
+      <li><a href="/about">About</a></li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+  </nav>
+  <small>&copy; {currentYear} {{SITE_NAME}}. All rights reserved.</small>
 </footer>
 
 <style>
-  .site-footer {
-    background: var(--surface-alt);
-    border-top: 1px solid var(--border);
-    padding: var(--spacing-2xl) var(--spacing-lg);
-  }
-
-  .footer-container {
+  footer {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: start;
-    max-width: var(--content-width);
-    margin: 0 auto;
     gap: var(--spacing-xl);
-    flex-wrap: wrap;
+    max-inline-size: var(--content-width);
+    margin-inline: auto;
+    padding-block: var(--spacing-2xl);
+    padding-inline: var(--spacing-lg);
+    background: var(--surface-alt);
+    border-block-start: 1px solid var(--border);
   }
 
-  .footer-brand a {
+  section:first-child a {
     font-weight: var(--font-weight-semibold);
     text-decoration: none;
     color: var(--text);
   }
 
-  .footer-brand p {
-    margin-top: var(--spacing-xs);
+  section:first-child p {
+    margin-block-start: var(--spacing-xs);
     color: var(--text-muted);
     font-size: var(--font-size-sm);
   }
 
-  .footer-links ul {
+  nav ul {
     display: flex;
     gap: var(--spacing-lg);
     list-style: none;
   }
 
-  .footer-links a {
+  nav a {
     color: var(--text-muted);
     text-decoration: none;
   }
 
-  .footer-links a:hover {
+  nav a:hover {
     color: var(--primary);
   }
 
-  .footer-bottom {
-    max-width: var(--content-width);
-    margin: var(--spacing-xl) auto 0;
-    padding-top: var(--spacing-lg);
-    border-top: 1px solid var(--border);
+  small {
+    flex-basis: 100%;
+    padding-block-start: var(--spacing-lg);
+    border-block-start: 1px solid var(--border);
     text-align: center;
     color: var(--text-muted);
     font-size: var(--font-size-sm);

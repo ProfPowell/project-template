@@ -1,14 +1,21 @@
 /**
- * Database Client
- * PostgreSQL connection pool with query helpers
+ * @file Database Client
+ * @description PostgreSQL connection pool with query helpers
  */
 
+// @ts-ignore - pg default export typing issue
 import pg from 'pg';
 import { config } from '../config/index.js';
 import { logger } from '../lib/logger.js';
 
 const { Pool } = pg;
 
+/**
+ * @typedef {import('pg').QueryResult<any>} QueryResult
+ * @typedef {import('pg').PoolClient} PoolClient
+ */
+
+/** @type {pg.Pool} */
 const pool = new Pool({
   connectionString: config.db.url,
   max: 20,
@@ -18,9 +25,10 @@ const pool = new Pool({
 
 /**
  * Execute a query
+ * @template T
  * @param {string} sql - SQL query
- * @param {Array} params - Query parameters
- * @returns {Promise<pg.QueryResult>}
+ * @param {unknown[]} [params] - Query parameters
+ * @returns {Promise<pg.QueryResult<T>>} Query result
  */
 async function query(sql, params = []) {
   const start = Date.now();
@@ -33,15 +41,16 @@ async function query(sql, params = []) {
     });
     return result;
   } catch (error) {
-    logger.error({ query: sql, error: error.message });
+    logger.error({ query: sql, error: error instanceof Error ? error.message : String(error) });
     throw error;
   }
 }
 
 /**
  * Execute a transaction
- * @param {Function} fn - Function receiving client
- * @returns {Promise<*>}
+ * @template T
+ * @param {(client: PoolClient) => Promise<T>} fn - Function receiving client
+ * @returns {Promise<T>} Transaction result
  */
 async function transaction(fn) {
   const client = await pool.connect();
@@ -58,6 +67,14 @@ async function transaction(fn) {
   }
 }
 
+/**
+ * @typedef {Object} DbClient
+ * @property {typeof query} query - Execute a query
+ * @property {typeof transaction} transaction - Execute a transaction
+ * @property {pg.Pool} pool - Connection pool
+ */
+
+/** @type {DbClient} */
 export const db = {
   query,
   transaction,

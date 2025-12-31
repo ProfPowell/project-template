@@ -1,6 +1,6 @@
 /**
- * Database Migration Runner
- * Applies and reverts database migrations
+ * @file Database Migration Runner
+ * @description Applies and reverts database migrations
  */
 
 import { readdir } from 'node:fs/promises';
@@ -13,7 +13,24 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(__dirname, 'migrations');
 
 /**
+ * @typedef {Object} MigrationContext
+ * @property {(sql: string, params?: unknown[]) => Promise<import('pg').QueryResult>} query - Execute SQL query
+ */
+
+/**
+ * @typedef {Object} Migration
+ * @property {(ctx: MigrationContext) => Promise<void>} up - Apply migration
+ * @property {(ctx: MigrationContext) => Promise<void>} down - Revert migration
+ */
+
+/**
+ * @typedef {Object} MigrationRow
+ * @property {string} name - Migration file name
+ */
+
+/**
  * Ensure migrations tracking table exists
+ * @returns {Promise<void>}
  */
 async function ensureMigrationsTable() {
   await db.query(`
@@ -27,14 +44,16 @@ async function ensureMigrationsTable() {
 
 /**
  * Get list of applied migrations
+ * @returns {Promise<string[]>} Applied migration names
  */
 async function getAppliedMigrations() {
   const result = await db.query('SELECT name FROM migrations ORDER BY id');
-  return result.rows.map(row => row.name);
+  return result.rows.map((/** @type {MigrationRow} */ row) => row.name);
 }
 
 /**
  * Get list of migration files
+ * @returns {Promise<string[]>} Migration file names
  */
 async function getMigrationFiles() {
   const files = await readdir(MIGRATIONS_DIR);
@@ -45,6 +64,7 @@ async function getMigrationFiles() {
 
 /**
  * Run all pending migrations
+ * @returns {Promise<void>}
  */
 export async function up() {
   await ensureMigrationsTable();
@@ -59,6 +79,7 @@ export async function up() {
   }
 
   for (const file of pending) {
+    /** @type {Migration} */
     const migration = await import(join(MIGRATIONS_DIR, file));
 
     logger.info(`Applying migration: ${file}`);
@@ -76,6 +97,7 @@ export async function up() {
 
 /**
  * Revert the last migration
+ * @returns {Promise<void>}
  */
 export async function down() {
   await ensureMigrationsTable();
@@ -88,6 +110,12 @@ export async function down() {
   }
 
   const lastMigration = applied[applied.length - 1];
+  if (!lastMigration) {
+    logger.info('No migrations to revert');
+    return;
+  }
+
+  /** @type {Migration} */
   const migration = await import(join(MIGRATIONS_DIR, lastMigration));
 
   logger.info(`Reverting migration: ${lastMigration}`);
@@ -102,6 +130,7 @@ export async function down() {
 
 /**
  * Show migration status
+ * @returns {Promise<void>}
  */
 export async function status() {
   await ensureMigrationsTable();
@@ -112,8 +141,8 @@ export async function status() {
   console.log('\nMigration Status:\n');
 
   for (const file of files) {
-    const status = applied.includes(file) ? '✓' : '○';
-    console.log(`  ${status} ${file}`);
+    const migrationStatus = applied.includes(file) ? '✓' : '○';
+    console.log(`  ${migrationStatus} ${file}`);
   }
 
   console.log('');

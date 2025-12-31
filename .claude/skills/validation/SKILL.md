@@ -285,20 +285,57 @@ Generate `.d.ts` files from schemas for JSDoc type checking:
 npm run generate:types
 ```
 
-This creates files in `src/types/generated/` that JSDoc can import:
+### How It Works
+
+The script uses `json-schema-to-typescript` to convert JSON Schema files into TypeScript declaration files:
+
+1. Reads all `.schema.json` files from `/schemas/`
+2. Generates corresponding `.d.ts` files in `src/types/generated/`
+3. Types can be imported in JSDoc comments for type checking
+
+### Generated Structure
+
+```
+src/types/generated/
+  common/
+    uuid.d.ts
+    error-response.d.ts
+    pagination.d.ts
+  entities/
+    user.d.ts
+    user.create.d.ts
+    user.update.d.ts
+  api/
+    login.d.ts
+    register.d.ts
+```
+
+### Using Generated Types
+
+Import types in JSDoc comments:
 
 ```javascript
 /**
  * @typedef {import('./types/generated/entities/user.create').UserCreate} CreateUserInput
+ * @typedef {import('./types/generated/entities/user').User} User
  */
 
 /**
- * @param {CreateUserInput} data
+ * Create a new user
+ * @param {CreateUserInput} data - User creation data
+ * @returns {Promise<User>} Created user
  */
-function createUser(data) {
-  // data has full type information
+async function createUser(data) {
+  validate(data, 'entities/user.create');
+  // data has full type information from schema
+  const result = await db.query(userQueries.create, [data.email, data.password, data.name]);
+  return result.rows[0];
 }
 ```
+
+### Regenerating Types
+
+Run `npm run generate:types` whenever schemas are updated to keep types in sync.
 
 ---
 
@@ -343,6 +380,76 @@ paths:
 
 ---
 
+## Type Checking with tsc
+
+The project uses `tsc --checkJs` for type checking JavaScript files with JSDoc annotations.
+
+### Running Type Check
+
+```bash
+npm run typecheck
+```
+
+### Requirements
+
+Type checking requires:
+1. `npm install` to install @types packages
+2. Files must have JSDoc type annotations
+
+### jsconfig.json Configuration
+
+```json
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext"
+  },
+  "include": ["src/**/*.js", "test/**/*.js"],
+  "exclude": ["node_modules"]
+}
+```
+
+### Template Syntax Handling
+
+Files containing template syntax (`{{VARIABLE}}`) are processed at project creation time and should be excluded from type checking until the project is generated.
+
+**In starter templates:**
+- Files like `config/index.js` contain `{{PROJECT_NAME}}` placeholders
+- These are valid JavaScript after template processing
+- Type checking runs correctly after `npm install` in a generated project
+
+### Common Type Patterns
+
+```javascript
+// Import Express types
+/**
+ * @typedef {import('express').Request} Request
+ * @typedef {import('express').Response} Response
+ * @typedef {import('express').NextFunction} NextFunction
+ */
+
+// Type middleware parameters
+/**
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export function myMiddleware(req, res, next) {
+  // ...
+}
+
+// Import schema types (after npm run generate:types)
+/**
+ * @typedef {import('./types/generated/entities/user.create').UserCreate} CreateUserInput
+ */
+```
+
+---
+
 ## Best Practices
 
 1. **Single source of truth** - Schema defines validation, types, and docs
@@ -351,6 +458,7 @@ paths:
 4. **Defense in depth** - Validate at API boundary AND before database writes
 5. **Align with database** - Schema constraints should match CHECK constraints
 6. **Generate, don't duplicate** - Use `npm run generate:types` for TypeScript
+7. **Add JSDoc types** - All exported functions should have parameter and return types
 
 ---
 

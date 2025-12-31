@@ -7,13 +7,15 @@ import { getSchema, formatErrors } from '../../lib/validator.js';
 import { ValidationError, BadRequestError } from '../../lib/errors.js';
 
 /**
- * @typedef {import('express').RequestHandler} RequestHandler
+ * @typedef {import('express').Request} Request
+ * @typedef {import('express').Response} Response
+ * @typedef {import('express').NextFunction} NextFunction
  */
 
 /**
  * Create validation middleware for request body
  * @param {string} schemaId - Schema $id (e.g., "api/login", "entities/user.create")
- * @returns {RequestHandler}
+ * @returns {(req: Request, res: Response, next: NextFunction) => void}
  */
 export function validateBody(schemaId) {
   const validate = getSchema(schemaId);
@@ -30,14 +32,17 @@ export function validateBody(schemaId) {
 /**
  * Create validation middleware for query parameters
  * @param {string} schemaId - Schema $id
- * @returns {RequestHandler}
+ * @returns {(req: Request, res: Response, next: NextFunction) => void}
  */
 export function validateQuery(schemaId) {
   const validate = getSchema(schemaId);
 
   return (req, res, next) => {
     // Coerce query string values to schema types before validation
-    const coerced = coerceQueryParams(req.query, validate.schema);
+    const coerced = coerceQueryParams(
+      /** @type {Record<string, string | undefined>} */ (req.query),
+      /** @type {JsonSchema | undefined} */ (validate.schema)
+    );
 
     if (!validate(coerced)) {
       const errors = formatErrors(validate.errors || []);
@@ -45,6 +50,7 @@ export function validateQuery(schemaId) {
     }
 
     // Replace query with coerced and validated values
+    // @ts-ignore - Coerced query may contain non-string values
     req.query = coerced;
     next();
   };
@@ -53,7 +59,7 @@ export function validateQuery(schemaId) {
 /**
  * Create validation middleware for path parameters
  * @param {string} schemaId - Schema $id
- * @returns {RequestHandler}
+ * @returns {(req: Request, res: Response, next: NextFunction) => void}
  */
 export function validateParams(schemaId) {
   const validate = getSchema(schemaId);
@@ -68,15 +74,21 @@ export function validateParams(schemaId) {
 }
 
 /**
+ * @typedef {Object} JsonSchema
+ * @property {Record<string, {type?: string}>} [properties]
+ */
+
+/**
  * Coerce query string values to schema types
  * Query params are always strings, this converts to number/boolean/array as needed
- * @param {Record<string, string>} query
- * @param {object} schema
+ * @param {Record<string, string | undefined>} query
+ * @param {JsonSchema | undefined} schema
  * @returns {Record<string, unknown>}
  */
 function coerceQueryParams(query, schema) {
+  /** @type {Record<string, unknown>} */
   const result = { ...query };
-  const properties = schema.properties || {};
+  const properties = schema?.properties ?? {};
 
   for (const [key, value] of Object.entries(result)) {
     const propSchema = properties[key];
@@ -94,7 +106,7 @@ function coerceQueryParams(query, schema) {
     } else if (propSchema.type === 'boolean') {
       result[key] = value === 'true' || value === '1';
     } else if (propSchema.type === 'array' && typeof value === 'string') {
-      result[key] = value.split(',').map(v => v.trim());
+      result[key] = value.split(',').map((/** @type {string} */ v) => v.trim());
     }
   }
 

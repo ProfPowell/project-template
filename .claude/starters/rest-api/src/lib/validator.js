@@ -3,7 +3,9 @@
  * @description AJV-based JSON Schema validation with schema registry
  */
 
+// @ts-ignore - AJV default export typing issue
 import Ajv from 'ajv';
+// @ts-ignore - AJV formats default export typing issue
 import addFormats from 'ajv-formats';
 import { readFileSync, readdirSync, statSync } from 'fs';
 import { join, dirname } from 'path';
@@ -18,7 +20,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
  * Create configured AJV instance with all schemas loaded
- * @returns {Ajv}
  */
 function createValidator() {
   const ajv = new Ajv({

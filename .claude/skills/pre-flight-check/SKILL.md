@@ -102,6 +102,7 @@ These skills should be invoked automatically based on context:
 | Creating/editing .html | **xhtml-author**, **accessibility-checker** |
 | Creating/editing .css | **css-author** |
 | Creating/editing .js | **javascript-author** |
+| Creating NEW .js/.ts file | **tdd** - Consider test-first approach |
 | Adding icons/visual indicators | **icons** - NEVER use inline SVGs |
 | Adding images | **responsive-images**, **placeholder-images** |
 | Creating forms | **forms** - Use `<form-field>` pattern |
@@ -199,6 +200,19 @@ Before writing CSS, verify:
 ## JavaScript Pre-Flight Checklist
 
 Before writing JavaScript, verify:
+
+### TDD Check (Test-First)
+- [ ] Is this a new file or significant new functionality?
+- [ ] Does a corresponding test file exist?
+- [ ] If not, will you create the test FIRST? (Red-Green-Refactor)
+
+| TDD Mode | Behavior |
+|----------|----------|
+| Advisory (default) | Reminder shown, can proceed |
+| Strict (`/tdd strict`) | Must create test file before implementation |
+
+To check TDD mode: `/tdd status`
+To change mode: `/tdd strict` or `/tdd advisory`
 
 ### Architecture
 - [ ] Is JavaScript actually needed? (CSS-only alternatives?)
@@ -455,6 +469,7 @@ bd show <issue-id>
 ## Related Skills
 
 - **git-workflow** - Enforce structured git workflow with conventional commits
+- **tdd** - Test-Driven Development workflow for JS/TS files
 - **unit-testing** - Write unit tests for JavaScript files
 - **xhtml-author** - Write valid XHTML-strict HTML5 markup
 - **css-author** - Modern CSS organization with @layer

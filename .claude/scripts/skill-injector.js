@@ -51,6 +51,68 @@ const FILENAME_PATTERNS = [
   { pattern: /\.dockerignore$/, skill: 'containerization' },
 ];
 
+// TDD detection for new testable files
+const TDD_DETECTION = {
+  testablePatterns: [
+    /^src\//,
+    /^lib\//,
+    /^components\//,
+    /^services\//,
+    /^scripts\//,
+    /\.claude\/scripts\//
+  ],
+  skipPatterns: [
+    /\.config\.(js|ts|mjs|cjs)$/,
+    /\.d\.ts$/,
+    /\.(test|spec)\.(js|ts|mjs|mts)$/,
+    /\.generated\./,
+    /\.g\.ts$/,
+    /^dist\//,
+    /^build\//,
+    /node_modules\//,
+    /fixtures?\//,
+    /__mocks__\//,
+    /^(index|main)\.(js|ts|mjs|mts)$/
+  ],
+  testableExtensions: ['.js', '.ts', '.mjs', '.mts', '.cjs', '.cts'],
+
+  isTestableFile(filePath) {
+    const ext = extname(filePath).toLowerCase();
+    const basename = filePath.split('/').pop();
+
+    // Check extension
+    if (!this.testableExtensions.includes(ext)) return false;
+
+    // Check skip patterns
+    for (const pattern of this.skipPatterns) {
+      if (pattern.test(filePath) || pattern.test(basename)) return false;
+    }
+
+    // Check testable patterns
+    for (const pattern of this.testablePatterns) {
+      if (pattern.test(filePath)) return true;
+    }
+
+    return false;
+  },
+
+  getTestPath(filePath) {
+    // .claude/scripts/foo.js -> .claude/test/validators/foo.test.js
+    if (filePath.includes('.claude/scripts/')) {
+      const basename = filePath.split('/').pop();
+      const name = basename.replace(/\.(js|ts|mjs|mts)$/, '');
+      const ext = basename.match(/\.(js|ts|mjs|mts)$/)?.[0] || '.js';
+      return `.claude/test/validators/${name}.test${ext}`;
+    }
+
+    // src/foo.js -> test/foo.test.js
+    const ext = extname(filePath);
+    const withoutExt = filePath.replace(ext, '');
+    const relativePath = withoutExt.replace(/^src\//, '');
+    return `test/${relativePath}.test${ext}`;
+  }
+};
+
 // Content patterns that trigger supplementary skills
 // These are checked against file content to suggest additional relevant skills
 const CONTENT_PATTERNS = [
@@ -265,6 +327,38 @@ async function main() {
     const guidance = loadSkillGuidance(skillName);
     if (guidance) {
       console.log(guidance);
+    }
+
+    // TDD check for new testable files (Write operations only)
+    const toolName = hookData.tool;
+    if (toolName === 'Write' && TDD_DETECTION.isTestableFile(filePath)) {
+      const testPath = TDD_DETECTION.getTestPath(filePath);
+      console.log(`
+=== TDD SKILL: TEST-FIRST REMINDER ===
+You are creating: ${filePath}
+Expected test at: ${testPath}
+
+Consider writing the test FIRST (Red-Green-Refactor):
+1. Create ${testPath} with a failing test
+2. Run: npm test (should fail)
+3. Then implement ${filePath} to make it pass
+
+Quick test template:
+\`\`\`javascript
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+
+describe('ModuleName', () => {
+  it('should handle expected behavior', () => {
+    // const result = functionUnderTest(input);
+    // assert.strictEqual(result, expected);
+  });
+});
+\`\`\`
+
+Mode: Advisory (use /tdd strict to require tests first)
+=== END TDD REMINDER ===
+`);
     }
 
     // Check content for supplementary skills

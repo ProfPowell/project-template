@@ -85,6 +85,61 @@ Common multi-skill patterns for complex features. When building these features, 
 
 ---
 
+## TDD Patterns
+
+### New Service with TDD
+
+| Skill | Purpose |
+|-------|---------|
+| **tdd** | Ensures test-first workflow |
+| **backend-testing** | Service testing patterns |
+| **nodejs-backend** | Service implementation patterns |
+
+**Workflow:**
+1. TDD skill reminds to write test first
+2. Create `test/services/my-service.test.js` with failing test
+3. backend-testing skill provides test patterns
+4. Run test (should fail - RED phase)
+5. Create `src/services/my-service.js` implementation
+6. Run test until green (GREEN phase)
+7. Refactor while tests pass (REFACTOR phase)
+
+---
+
+### New Component with TDD
+
+| Skill | Purpose |
+|-------|---------|
+| **tdd** | Ensures test-first workflow |
+| **unit-testing** | Component test patterns |
+| **javascript-author** | Component implementation |
+| **custom-elements** | Web Component patterns |
+
+**Workflow:**
+1. Create `test/components/my-component.test.js`
+2. Write test for expected behavior
+3. Run test (should fail)
+4. Create `src/components/my-component.js`
+5. Implement until tests pass
+6. Refactor while tests pass
+
+---
+
+### CLI Script with TDD
+
+| Skill | Purpose |
+|-------|---------|
+| **tdd** | Ensures test-first workflow |
+| **unit-testing** | CLI testing patterns with execSync |
+
+**Workflow:**
+1. Create `.claude/test/validators/my-script.test.js`
+2. Write test using execSync pattern
+3. Create `.claude/scripts/my-script.js`
+4. Implement until tests pass
+
+---
+
 ## Backend Patterns
 
 ### API Integration (Frontend)

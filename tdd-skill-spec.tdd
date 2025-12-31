@@ -1,0 +1,275 @@
+# TDD Skill - Product Requirements Document
+
+> **Status**: Approved for implementation
+> **Created**: 2025-12-31
+
+---
+
+## Executive Summary
+
+Create a TDD (Test-Driven Development) skill that auto-activates when creating new JavaScript/TypeScript files. The skill has two modes: advisory (default, suggests tests) and strict (opt-in, requires tests before implementation). It composes with existing testing skills and integrates with the pre-flight-check workflow.
+
+---
+
+## Requirements Summary
+
+| Requirement | Decision |
+|-------------|----------|
+| Activation | Auto for new JS/TS files, quiet for edits |
+| Modes | Advisory (default) + Strict (opt-in) |
+| Scope | All testable code (JS/TS, APIs, components) |
+| Skip | Prototyping, config files, boilerplate |
+| Toggle | Project config + session override |
+| Integration | Composition pattern with testing skills |
+| Test location | Separate test directory |
+
+---
+
+## Files to Create
+
+1. `.claude/skills/tdd/SKILL.md` - Main skill document
+2. `.claude/skills/tdd/QUICK-REFERENCE.md` - Quick reference card
+3. `.claude/commands/tdd.md` - Session mode command
+4. `.claude/config/tdd.json` - Default configuration
+
+## Files to Modify
+
+1. `.claude/scripts/skill-injector.js` - Add TDD detection patterns
+2. `.claude/skills/COMPOSITIONS.md` - Add TDD composition patterns
+3. `.claude/skills/pre-flight-check/SKILL.md` - Add TDD checklist items
+
+---
+
+## Skill Structure
+
+```
+.claude/skills/tdd/
+├── SKILL.md              # Core TDD guidance
+└── QUICK-REFERENCE.md    # One-page checklist
+```
+
+---
+
+## SKILL.md Specification
+
+### Frontmatter
+
+```yaml
+---
+name: tdd
+description: Test-Driven Development workflow. Auto-activates when creating new JS/TS files. Advisory mode suggests tests first; strict mode requires them.
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+---
+```
+
+### Activation Rules
+
+**Auto-activates when:**
+- Creating a NEW JavaScript/TypeScript file
+- File is in testable location (src/, lib/, components/, services/, api/)
+
+**Stays silent when:**
+- Editing existing files
+- File is config (`*.config.js`)
+- File is generated (`*.generated.*`, `*.d.ts`)
+- Session has prototyping mode enabled (`/tdd off`)
+
+### Mode Configuration
+
+| Mode | Behavior | Default |
+|------|----------|---------|
+| Advisory | Suggests tests first, provides guidance, never blocks | Yes |
+| Strict | Blocks implementation until test file exists | Opt-in |
+
+### TDD Workflow
+
+```
+RED → GREEN → REFACTOR → REPEAT
+ │      │         │
+ │      │         └─ Clean up code, tests still pass
+ │      └─ Write minimal code to pass test
+ └─ Write a failing test first
+```
+
+### Test File Location Convention
+
+| Source File | Test File |
+|-------------|-----------|
+| `src/foo.js` | `test/foo.test.js` |
+| `src/services/bar.ts` | `test/services/bar.test.ts` |
+| `.claude/scripts/tool.js` | `.claude/test/validators/tool.test.js` |
+
+### Compose With Testing Skills
+
+| Pattern | Testing Skill |
+|---------|---------------|
+| `src/services/*` | backend-testing |
+| `src/api/*`, `src/routes/*` | backend-testing |
+| `src/components/*` | unit-testing |
+| `.claude/scripts/*` | unit-testing |
+| Vite project detected | vitest |
+
+### Skip Detection
+
+| Condition | Reason |
+|-----------|--------|
+| `*.config.js` | Config file |
+| `*.d.ts` | Type declaration |
+| `*.generated.*` | Generated code |
+| `*.test.js`, `*.spec.ts` | Test file itself |
+| `dist/`, `node_modules/` | Build/vendor |
+| `fixtures/`, `__mocks__/` | Test fixtures |
+| `index.js`, `main.js` | Entry points |
+
+### Red Flags
+
+| Situation | Advisory | Strict |
+|-----------|----------|--------|
+| Implementation before test | Reminder | Block |
+| Test file path mismatch | Suggest fix | Suggest fix |
+| No assertions in test | Warn | Warn |
+
+---
+
+## QUICK-REFERENCE.md Specification
+
+```markdown
+# TDD Quick Reference
+
+## The Cycle
+
+RED → GREEN → REFACTOR → REPEAT
+
+## Before Writing Implementation
+
+1. Does test file exist? `test/{path}/{name}.test.{ext}`
+2. Does test describe what you're building?
+3. Does test currently FAIL?
+
+## Mode Commands
+
+| Command | Effect |
+|---------|--------|
+| `/tdd advisory` | Suggest tests (default) |
+| `/tdd strict` | Require tests first |
+| `/tdd off` | Disable (prototyping) |
+| `/tdd status` | Show current mode |
+
+## Quick Test Template
+
+import { describe, it } from 'node:test';
+import assert from 'node:assert';
+
+describe('ModuleName', () => {
+  it('should do expected behavior', () => {
+    const result = functionUnderTest(input);
+    assert.strictEqual(result, expected);
+  });
+});
+```
+
+---
+
+## Command: /tdd
+
+**File**: `.claude/commands/tdd.md`
+
+### Usage
+
+```
+/tdd <action>
+```
+
+### Actions
+
+| Action | Effect |
+|--------|--------|
+| `advisory` | Suggest tests, don't block (default) |
+| `strict` | Require tests before implementation |
+| `off` | Disable for session (prototyping) |
+| `status` | Show current mode and config |
+
+Session state resets on new conversation. Project default persists in config.
+
+---
+
+## Configuration
+
+**File**: `.claude/config/tdd.json`
+
+```json
+{
+  "mode": "advisory",
+  "testDirectory": "test",
+  "testSuffix": ".test",
+  "skipPatterns": [
+    "*.config.js",
+    "*.d.ts",
+    "dist/**"
+  ]
+}
+```
+
+---
+
+## Integration Points
+
+### Pre-Flight Check Addition
+
+Add to JavaScript Pre-Flight Checklist:
+- [ ] Is this a new file or significant new functionality?
+- [ ] Does corresponding test file exist?
+- [ ] If not, will you create the test FIRST?
+
+### COMPOSITIONS.md Addition
+
+```markdown
+## TDD + Service Creation
+
+| Skill | Purpose |
+|-------|---------|
+| tdd | Test-first workflow |
+| backend-testing | Service testing patterns |
+| nodejs-backend | Service implementation |
+```
+
+### skill-injector.js Enhancement
+
+Add detection for new file creation:
+- Check if tool is `Write` (new file) vs `Edit` (existing)
+- Check if file path matches testable patterns
+- Inject TDD skill with test file suggestion
+
+---
+
+## Strict Mode Blocking
+
+Strict mode uses soft blocking (guidance message, not tool blocking):
+
+```
+=== TDD STRICT MODE: TEST REQUIRED ===
+
+You are creating: src/services/user.js
+Expected test at: test/services/user.test.js
+
+TEST FILE NOT FOUND
+
+Create the test file first:
+1. Create test/services/user.test.js with failing test
+2. Run: npm test (should fail)
+3. Then proceed with implementation
+
+=== BLOCKED: Create test first ===
+```
+
+---
+
+## Critical Implementation Files
+
+| File | Purpose |
+|------|---------|
+| `.claude/skills/unit-testing/SKILL.md` | Test patterns to compose with |
+| `.claude/commands/uat.md` | Command pattern to follow |
+| `.claude/scripts/skill-injector.js` | Auto-invocation logic |
+| `.claude/skills/pre-flight-check/SKILL.md` | Integration checklist |
+| `.claude/skills/COMPOSITIONS.md` | Multi-skill patterns |

@@ -31,6 +31,10 @@
           {
             "type": "command",
             "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.(json|yaml|yml)$' && ! echo \"$file_path\" | grep -qE '(node_modules|package-lock\\.json)'; then node .claude/scripts/config-validator.js \"$file_path\" 2>&1 | node .claude/scripts/fix-suggestions.js --type=config ; fi"
+          },
+          {
+            "type": "command",
+            "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qiE '\\.(jpe?g|png)$' && ! echo \"$file_path\" | grep -qE 'node_modules'; then node .claude/scripts/auto-optimize-image.js \"$file_path\" 2>&1 | head -10; fi"
           }
         ]
       },

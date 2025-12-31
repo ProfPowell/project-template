@@ -234,7 +234,8 @@ When adding placeholder images:
 
 ## Related Skills
 
-- **responsive-images** - Modern responsive image techniques using picture element,...
+- **images** - Umbrella coordinator for image handling with automation
+- **responsive-images** - Modern responsive image techniques using picture element
 - **fake-content** - Generate realistic fake content for HTML prototypes
 - **xhtml-author** - Write valid XHTML-strict HTML5 markup
 - **performance** - Write performance-friendly HTML pages

@@ -508,6 +508,7 @@ When adding images:
 
 ## Related Skills
 
+- **images** - Umbrella coordinator for image handling with automation
 - **css-author** - Container queries for component-scoped image sizing
 - **performance** - Write performance-friendly HTML pages
 - **xhtml-author** - Write valid XHTML-strict HTML5 markup

@@ -354,6 +354,32 @@ Use HTML5 validation attributes:
 -->
 ```
 
+### Server-Side Validation with JSON Schema
+
+Use the **validation** skill for comprehensive server-side input validation:
+
+```javascript
+import { validateBody } from './middleware/validate.js';
+
+// Validate request body against JSON Schema
+app.post('/api/users',
+  validateBody('entities/user.create'),
+  createUser
+);
+```
+
+**Key security benefits:**
+- `additionalProperties: false` - Rejects unknown fields (prevents mass assignment)
+- `removeAdditional: 'all'` - Strips unknown properties before processing
+- Strict type checking - Prevents type confusion attacks
+- Consistent error format - No information leakage
+
+See the **validation** skill for:
+- JSON Schema authoring patterns
+- AJV middleware configuration
+- Error response formatting
+- Schema-to-type generation
+
 ## Output Encoding
 
 ### Prevent XSS in Dynamic Content
@@ -670,7 +696,8 @@ Before deploying:
 
 | Skill | Security Overlap |
 |-------|------------------|
-| `forms` | Form validation, autocomplete |
+| `validation` | Server-side input validation with JSON Schema |
+| `forms` | Client-side form validation, autocomplete |
 | `javascript-author` | Safe DOM manipulation |
 | `metadata` | Security meta tags |
 | `performance` | Resource loading (SRI compatible) |

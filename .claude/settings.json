@@ -22,6 +22,10 @@
           },
           {
             "type": "command",
+            "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.js$' && (echo \"$file_path\" | grep -qE '/src/' || echo \"$file_path\" | grep -qE '^\\.claude/scripts/'); then node .claude/scripts/type-check.js \"$file_path\" 2>&1 | head -20; fi"
+          },
+          {
+            "type": "command",
             "command": "file_path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); if [ -n \"$file_path\" ] && echo \"$file_path\" | grep -qE '\\.md$' && ! echo \"$file_path\" | grep -qE '(\\.worklog|node_modules)/'; then (echo '=== markdownlint ===' ; npx markdownlint \"$file_path\" 2>&1 ; echo '=== cspell ===' ; npx cspell \"$file_path\" --no-progress 2>&1) | node .claude/scripts/fix-suggestions.js --type=md ; fi"
           },
           {

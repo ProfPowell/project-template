@@ -248,6 +248,7 @@ When implementing error handling:
 
 ## Related Skills
 
+- **validation** - JSON Schema validation with AJV, ValidationError patterns
 - **observability** - Error tracking, performance monitoring
 - **api-client** - Fetch error patterns, retry logic
 - **javascript-author** - Defensive programming, type guards

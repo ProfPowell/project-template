@@ -435,8 +435,31 @@ The `<form-field>` element is defined in `elements.json`:
 }
 ```
 
+## Server-Side Validation
+
+**Client-side validation is for UX only.** Always validate on the server.
+
+Use the same validation rules server-side with JSON Schema. See **validation** skill for:
+
+- JSON Schema definitions matching HTML5 constraints
+- AJV validation middleware for Express/Fastify
+- Consistent error response format with field-level details
+
+```javascript
+// Server validates using same rules as HTML5 attributes
+// HTML: required, minlength="2", maxlength="100"
+// Schema: "required": ["name"], "minLength": 2, "maxLength": 100
+app.post('/api/contact',
+  validateBody('api/contact-form'),
+  handleContact
+);
+```
+
+---
+
 ## Related Skills
 
+- **validation** - Server-side JSON Schema validation with AJV middleware
 - **xhtml-author** - Write valid XHTML-strict HTML5 markup
 - **accessibility-checker** - Ensure WCAG2AA accessibility compliance
 - **security** - Write secure web pages and applications

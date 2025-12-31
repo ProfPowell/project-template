@@ -450,46 +450,34 @@ app.get('/api/geocode', authenticate, async (req, res) => {
 
 ## Input Validation
 
-Validate at the boundary - trust nothing from clients:
+Validate at the boundary - trust nothing from clients. See the **validation** skill for comprehensive patterns.
+
+### Using Validation Middleware (Preferred)
 
 ```javascript
-/**
- * Validation helper using JSON Schema
- */
-import Ajv from 'ajv';
-const ajv = new Ajv({ allErrors: true });
+import { validateBody, validateQuery } from './middleware/validate.js';
 
-function validate(schema) {
-  const validateFn = ajv.compile(schema);
+// Validate request body against JSON Schema
+app.post('/api/users',
+  validateBody('entities/user.create'),
+  createUser
+);
 
-  return (req, res, next) => {
-    if (!validateFn(req.body)) {
-      return sendError(res, 422, 'VALIDATION_ERROR',
-        'Request body validation failed', {
-          errors: validateFn.errors.map(e => ({
-            path: e.instancePath,
-            message: e.message
-          }))
-        });
-    }
-    next();
-  };
-}
+// Validate query parameters
+app.get('/api/items',
+  validateQuery('api/list-items'),
+  listItems
+);
 
-// Usage
-const createUserSchema = {
-  type: 'object',
-  required: ['email', 'name'],
-  properties: {
-    email: { type: 'string', format: 'email' },
-    name: { type: 'string', minLength: 1, maxLength: 100 },
-    role: { type: 'string', enum: ['user', 'admin'], default: 'user' }
-  },
-  additionalProperties: false
-};
-
-app.post('/api/users', validate(createUserSchema), createUser);
+// Combined validation
+app.patch('/api/users/:id',
+  validateParams('common/uuid-param'),
+  validateBody('entities/user.update'),
+  updateUser
+);
 ```
+
+Schemas live in `/schemas/` directory. See **validation** skill for schema authoring patterns.
 
 ---
 
@@ -898,7 +886,9 @@ When creating REST endpoints:
 
 ## Related Skills
 
-- **nodejs-backend** - Build Node.js backend services with Express/Fastify, Post...
-- **database** - Design PostgreSQL schemas with migrations, seeding, and d...
-- **authentication** - Implement secure authentication with JWT, sessions, OAuth...
-- **api-client** - Fetch API patterns with error handling, retry logic, and ...
+- **validation** - JSON Schema validation with AJV middleware (preferred approach)
+- **nodejs-backend** - Build Node.js backend services with Express/Fastify, PostgreSQL
+- **database** - Design PostgreSQL schemas with migrations, seeding, and documentation
+- **authentication** - Implement secure authentication with JWT, sessions, OAuth
+- **api-client** - Fetch API patterns with error handling, retry logic, and caching
+- **error-handling** - Custom error classes and consistent error response patterns

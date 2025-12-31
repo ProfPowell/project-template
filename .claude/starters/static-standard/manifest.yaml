@@ -51,15 +51,15 @@ prompts:
 
 includes:
   - from: _shared/styles/_reset.css
-    to: src/styles/_reset.css
+    to: src/assets/css/_reset.css
   - from: _shared/styles/_tokens.css
-    to: src/styles/_tokens.css
+    to: src/assets/css/_tokens.css
   - from: _shared/components/x-icon/
-    to: src/components/x-icon/
+    to: src/assets/js/components/x-icon/
   - from: _shared/templates/error-pages/404.html
-    to: src/404.html
+    to: src/errors/404.html
   - from: _shared/templates/error-pages/500.html
-    to: src/500.html
+    to: src/errors/500.html
 
 skills:
   - xhtml-author

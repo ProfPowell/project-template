@@ -8,7 +8,7 @@
 
   <meta name="referrer" content="strict-origin-when-cross-origin"/>
 
-  <link rel="canonical" href="{{SITE_URL}}/contact.html"/>
+  <link rel="canonical" href="{{SITE_URL}}/contact/"/>
 
   <meta name="author" content="{{AUTHOR}}"/>
   <meta name="theme-color" content="{{THEME_COLOR}}"/>
@@ -17,19 +17,19 @@
   <meta property="og:title" content="Contact - {{SITE_NAME}}"/>
   <meta property="og:description" content="Get in touch with {{SITE_NAME}}."/>
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="{{SITE_URL}}/contact.html"/>
-  <meta property="og:image" content="{{SITE_URL}}/images/og-image.png"/>
+  <meta property="og:url" content="{{SITE_URL}}/contact/"/>
+  <meta property="og:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
   <meta property="og:site_name" content="{{SITE_NAME}}"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="Contact - {{SITE_NAME}}"/>
   <meta name="twitter:description" content="Get in touch with {{SITE_NAME}}."/>
 
-  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml"/>
-  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
   <link rel="manifest" href="/manifest.json"/>
 
-  <link rel="stylesheet" href="/styles/main.css"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
   <a href="#main">Skip to main content</a>
@@ -37,13 +37,13 @@
   <header>
     <nav aria-label="Main navigation">
       <a href="/" aria-label="{{SITE_NAME}} home">
-        <img src="/images/logo.svg" alt="" width="32" height="32" decoding="async"/>
+        <img src="/assets/images/logo.svg" alt="" width="32" height="32" decoding="async"/>
         <span>{{SITE_NAME}}</span>
       </a>
       <ul role="list">
         <li><a href="/">Home</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html" aria-current="page">Contact</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/" aria-current="page">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -64,9 +64,9 @@
           <input type="text"
                  id="name"
                  name="name"
-                 required
+                 required=""
                  minlength="2"
-                 autofocus
+                 autofocus=""
                  autocomplete="name"
                  aria-describedby="name-msg"/>
           <output id="name-msg" for="name" aria-live="polite">
@@ -79,7 +79,7 @@
           <input type="email"
                  id="email"
                  name="email"
-                 required
+                 required=""
                  autocomplete="email"
                  aria-describedby="email-msg"/>
           <output id="email-msg" for="email" aria-live="polite">
@@ -92,7 +92,7 @@
           <textarea id="message"
                     name="message"
                     rows="5"
-                    required
+                    required=""
                     minlength="10"
                     aria-describedby="message-msg"></textarea>
           <output id="message-msg" for="message" aria-live="polite">
@@ -111,8 +111,8 @@
     </section>
     <nav aria-label="Footer navigation">
       <ul role="list">
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
     <small>
@@ -120,7 +120,7 @@
     </small>
   </footer>
 
-  <script src="/scripts/main.js" defer></script>
-  <script src="/scripts/sw-register.js" defer></script>
+  <script src="/assets/js/main.js" defer=""></script>
+  <script src="/assets/js/sw-register.js" defer=""></script>
 </body>
 </html>

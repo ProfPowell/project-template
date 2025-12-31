@@ -8,6 +8,11 @@
   <title>Contact - {{SITE_NAME}}</title>
   <meta name="description" content="Get in touch with {{SITE_NAME}}. We'd love to hear from you."/>
   <meta name="author" content="{{SITE_AUTHOR}}"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+  <meta name="robots" content="index, follow"/>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{SITE_URL}}/contact/"/>
 
   <!-- Favicon Set -->
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
@@ -20,10 +25,17 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="{{SITE_URL}}/pages/contact.html"/>
+  <meta property="og:url" content="{{SITE_URL}}/contact/"/>
+  <meta property="og:site_name" content="{{SITE_NAME}}"/>
   <meta property="og:title" content="Contact - {{SITE_NAME}}"/>
   <meta property="og:description" content="Get in touch with {{SITE_NAME}}."/>
   <meta property="og:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Contact - {{SITE_NAME}}"/>
+  <meta name="twitter:description" content="Get in touch with {{SITE_NAME}}."/>
+  <meta name="twitter:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/main.css"/>
@@ -38,8 +50,8 @@
     <nav aria-label="Main navigation">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/pages/about.html">About</a></li>
-        <li><a href="/pages/contact.html" aria-current="page">Contact</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/" aria-current="page">Contact</a></li>
       </ul>
     </nav>
   </header>

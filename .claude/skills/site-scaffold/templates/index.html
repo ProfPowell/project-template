@@ -8,6 +8,11 @@
   <title>{{SITE_NAME}} - {{SITE_TAGLINE}}</title>
   <meta name="description" content="{{SITE_DESCRIPTION}}"/>
   <meta name="author" content="{{SITE_AUTHOR}}"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+  <meta name="robots" content="index, follow"/>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{SITE_URL}}/"/>
 
   <!-- Favicon Set -->
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
@@ -21,6 +26,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="{{SITE_URL}}/"/>
+  <meta property="og:site_name" content="{{SITE_NAME}}"/>
   <meta property="og:title" content="{{SITE_NAME}}"/>
   <meta property="og:description" content="{{SITE_DESCRIPTION}}"/>
   <meta property="og:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
@@ -44,8 +50,8 @@
     <nav aria-label="Main navigation">
       <ul>
         <li><a href="/" aria-current="page">Home</a></li>
-        <li><a href="/pages/about.html">About</a></li>
-        <li><a href="/pages/contact.html">Contact</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -54,7 +60,7 @@
     <section class="hero" aria-labelledby="hero-heading">
       <h1 id="hero-heading">{{SITE_TAGLINE}}</h1>
       <p>{{SITE_DESCRIPTION}}</p>
-      <a href="/pages/about.html" class="button-primary">Learn More</a>
+      <a href="/about/" class="button-primary">Learn More</a>
     </section>
 
     <section aria-labelledby="features-heading">
@@ -84,7 +90,7 @@
     <section class="cta" aria-labelledby="cta-heading">
       <h2 id="cta-heading">Get Started Today</h2>
       <p>Ready to begin? Contact us to learn more.</p>
-      <a href="/pages/contact.html" class="button-primary">Contact Us</a>
+      <a href="/contact/" class="button-primary">Contact Us</a>
     </section>
   </main>
 

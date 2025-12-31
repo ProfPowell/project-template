@@ -8,6 +8,11 @@
   <title>About - {{SITE_NAME}}</title>
   <meta name="description" content="Learn more about {{SITE_NAME}} and our mission."/>
   <meta name="author" content="{{SITE_AUTHOR}}"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+  <meta name="robots" content="index, follow"/>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{SITE_URL}}/about/"/>
 
   <!-- Favicon Set -->
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
@@ -20,10 +25,17 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
-  <meta property="og:url" content="{{SITE_URL}}/pages/about.html"/>
+  <meta property="og:url" content="{{SITE_URL}}/about/"/>
+  <meta property="og:site_name" content="{{SITE_NAME}}"/>
   <meta property="og:title" content="About - {{SITE_NAME}}"/>
   <meta property="og:description" content="Learn more about {{SITE_NAME}} and our mission."/>
   <meta property="og:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="About - {{SITE_NAME}}"/>
+  <meta name="twitter:description" content="Learn more about {{SITE_NAME}} and our mission."/>
+  <meta name="twitter:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
 
   <!-- Styles -->
   <link rel="stylesheet" href="/assets/css/main.css"/>
@@ -38,8 +50,8 @@
     <nav aria-label="Main navigation">
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/pages/about.html" aria-current="page">About</a></li>
-        <li><a href="/pages/contact.html">Contact</a></li>
+        <li><a href="/about/" aria-current="page">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
   </header>

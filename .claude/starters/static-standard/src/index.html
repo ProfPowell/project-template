@@ -18,19 +18,19 @@
   <meta property="og:description" content="{{DESCRIPTION}}"/>
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="{{SITE_URL}}/"/>
-  <meta property="og:image" content="{{SITE_URL}}/images/og-image.png"/>
+  <meta property="og:image" content="{{SITE_URL}}/assets/images/og-image.png"/>
   <meta property="og:site_name" content="{{SITE_NAME}}"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:title" content="{{SITE_NAME}}"/>
   <meta name="twitter:description" content="{{DESCRIPTION}}"/>
 
-  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml"/>
-  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
 
   <link rel="manifest" href="/manifest.json"/>
 
-  <link rel="stylesheet" href="/styles/main.css"/>
+  <link rel="stylesheet" href="/assets/css/main.css"/>
 </head>
 <body>
   <a href="#main">Skip to main content</a>
@@ -38,13 +38,13 @@
   <header>
     <nav aria-label="Main navigation">
       <a href="/" aria-label="{{SITE_NAME}} home">
-        <img src="/images/logo.svg" alt="" width="32" height="32" decoding="async"/>
+        <img src="/assets/images/logo.svg" alt="" width="32" height="32" decoding="async"/>
         <span>{{SITE_NAME}}</span>
       </a>
       <ul role="list">
         <li><a href="/" aria-current="page">Home</a></li>
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -54,8 +54,8 @@
       <h1>Welcome to {{SITE_NAME}}</h1>
       <p>{{DESCRIPTION}}</p>
       <nav aria-label="Get started">
-        <a href="/about.html" data-variant="primary">Learn More</a>
-        <a href="/contact.html" data-variant="secondary">Contact Us</a>
+        <a href="/about/" data-variant="primary">Learn More</a>
+        <a href="/contact/" data-variant="secondary">Contact Us</a>
       </nav>
     </section>
 
@@ -86,7 +86,7 @@
     <section data-section="cta" aria-labelledby="cta-heading">
       <h2 id="cta-heading">Ready to get started?</h2>
       <p>Get in touch with us today.</p>
-      <a href="/contact.html" data-variant="primary">Contact Us</a>
+      <a href="/contact/" data-variant="primary">Contact Us</a>
     </section>
   </main>
 
@@ -97,8 +97,8 @@
     </section>
     <nav aria-label="Footer navigation">
       <ul role="list">
-        <li><a href="/about.html">About</a></li>
-        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
       </ul>
     </nav>
     <small>
@@ -106,7 +106,7 @@
     </small>
   </footer>
 
-  <script src="/scripts/main.js" defer></script>
-  <script src="/scripts/sw-register.js" defer></script>
+  <script src="/assets/js/main.js" defer=""></script>
+  <script src="/assets/js/sw-register.js" defer=""></script>
 </body>
 </html>

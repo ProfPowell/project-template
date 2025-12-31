@@ -8,12 +8,12 @@ const CACHE_VERSION = 'app-cache-v1.0.0';
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
-  '/offline.html',
+  '/errors/offline.html',
   '/manifest.json',
-  '/styles/main.css',
-  '/scripts/main.js',
-  '/images/favicon.svg',
-  '/images/logo.svg'
+  '/assets/css/main.css',
+  '/assets/js/main.js',
+  '/assets/images/favicon.svg',
+  '/assets/images/logo.svg'
 ];
 
 /**
@@ -118,7 +118,7 @@ async function networkFirstWithOfflineFallback(request) {
       return cached;
     }
     // Return offline page as fallback
-    return caches.match('/offline.html');
+    return caches.match('/errors/offline.html');
   }
 }
 

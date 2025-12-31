@@ -9,19 +9,23 @@
    ========================================================================== */
 
 :root {
-  /* Colors */
+  /* Color scheme for light-dark() support */
+  color-scheme: light dark;
+
+  /* Brand colors - consistent across themes */
   --primary: oklch(0.55 0.2 250);
   --primary-hover: oklch(0.45 0.2 250);
   --primary-contrast: oklch(1 0 0);
   --primary-subtle: oklch(0.95 0.05 250);
 
-  --surface: oklch(1 0 0);
-  --surface-alt: oklch(0.98 0 0);
-  --text: oklch(0.2 0 0);
-  --text-muted: oklch(0.5 0 0);
-  --border: oklch(0.9 0 0);
-  --overlay-light: oklch(0.95 0 0);
-  --overlay-medium: oklch(0.9 0 0);
+  /* Theme-aware colors */
+  --surface: light-dark(oklch(1 0 0), oklch(0.15 0 0));
+  --surface-alt: light-dark(oklch(0.98 0 0), oklch(0.2 0 0));
+  --text: light-dark(oklch(0.2 0 0), oklch(0.9 0 0));
+  --text-muted: light-dark(oklch(0.5 0 0), oklch(0.6 0 0));
+  --border: light-dark(oklch(0.9 0 0), oklch(0.3 0 0));
+  --overlay-light: light-dark(oklch(0.95 0 0), oklch(0.25 0 0));
+  --overlay-medium: light-dark(oklch(0.9 0 0), oklch(0.3 0 0));
   --focus-ring: var(--primary);
 
   /* Spacing */

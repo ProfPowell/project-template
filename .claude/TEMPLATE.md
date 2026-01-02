@@ -6,7 +6,7 @@ A web project template with validation, automation, and AI-assisted development 
 
 ### AI Skills Integration
 
-**53 Skills** - Guidance that activates when AI recognizes relevant context:
+**54 Skills** - Guidance that activates when AI recognizes relevant context:
 
 | Skill | Purpose |
 |-------|---------|
@@ -58,12 +58,13 @@ A web project template with validation, automation, and AI-assisted development 
 | `deployment` | Deployment strategies and patterns |
 | `ci-cd` | CI/CD pipeline patterns |
 | `build-tooling` | Build tool configuration |
+| `cli-author` | Zero-dependency CLI patterns (parseArgs, colors, exit codes) |
 | `astro` | Astro framework patterns |
 | `eleventy` | 11ty static site generator |
 | `sanity-cms` | Sanity CMS integration |
 | `open-props` | Open Props CSS framework |
 
-**45 Slash Commands**:
+**46 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -74,6 +75,7 @@ A web project template with validation, automation, and AI-assisted development 
 | `/scaffold-api` | Scaffold Node.js REST API |
 | `/scaffold-dashboard` | Scaffold admin dashboard |
 | `/scaffold-extension` | Scaffold Chrome extension |
+| `/scaffold-cli` | Scaffold Node.js CLI tool |
 | `/add-element` | Define custom HTML elements |
 | `/add-pattern` | Create new UI pattern with documentation |
 | `/scaffold-page` | Create page using pattern compositions |
@@ -281,7 +283,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 
 ### Project Scaffolds
 
-**6 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
+**7 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
 
 | Starter | Description | Command |
 |---------|-------------|---------|
@@ -291,6 +293,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 | **REST API** | Node.js backend with Express/PostgreSQL | `/scaffold-api` |
 | **Dashboard** | Admin interface with sidebar layout | `/scaffold-dashboard` |
 | **Chrome Extension** | Browser extension with Manifest V3 | `/scaffold-extension` |
+| **CLI Tool** | Node.js command-line tool | `/scaffold-cli` |
 
 Each starter includes:
 - `manifest.yaml` defining prompts and configuration

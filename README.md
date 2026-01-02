@@ -26,11 +26,12 @@ The initialization wizard will:
 | REST API | Node.js backend with Express/PostgreSQL |
 | Dashboard | Admin interface with sidebar layout |
 | Chrome Extension | Browser extension (Manifest V3) |
+| CLI Tool | Node.js command-line tool |
 
 ## What This Template Provides
 
-- **6 Project Starters** - Production-ready scaffolds
-- **53 Skills** - AI guidance for HTML, CSS, JavaScript, accessibility, testing
+- **7 Project Starters** - Production-ready scaffolds
+- **54 Skills** - AI guidance for HTML, CSS, JavaScript, accessibility, testing
 - **45+ Commands** - Scaffolding, validation, generation tools
 - **Pattern Library** - 50+ UI patterns with examples
 - **Design Tokens** - Theming system with light/dark mode

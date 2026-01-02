@@ -39,6 +39,8 @@ const SKILL_MAP = {
 
 // Special filename patterns that override extension-based matching
 const FILENAME_PATTERNS = [
+  // CLI entry points
+  { pattern: /bin\/.*\.js$/, skill: 'cli-author' },
   // Eleventy
   { pattern: /\.11ty\.js$/, skill: 'eleventy' },
   { pattern: /\.11ty\.cjs$/, skill: 'eleventy' },
@@ -145,6 +147,7 @@ const CONTENT_PATTERNS = [
   { pattern: /lang=/i, skill: 'i18n', reason: 'Language attribute detected' },
 
   // JavaScript content patterns
+  { pattern: /parseArgs|process\.argv/i, skill: 'cli-author', reason: 'CLI argument parsing detected' },
   { pattern: /class\s+\w+\s+extends\s+HTMLElement/i, skill: 'custom-elements', reason: 'Web Component detected' },
   { pattern: /fetch\s*\(/i, skill: 'api-client', reason: 'Fetch API detected - add retry/error handling' },
   { pattern: /localStorage|sessionStorage|IndexedDB/i, skill: 'data-storage', reason: 'Storage API detected' },

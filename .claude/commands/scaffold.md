@@ -10,6 +10,7 @@ Help the user scaffold a new project by guiding them through starter selection a
 4. **REST API** - Node.js backend with Express/PostgreSQL
 5. **Dashboard** - Admin interface with sidebar layout
 6. **Chrome Extension** - Browser extension with Manifest V3
+7. **CLI Tool** - Node.js command-line tool with zero dependencies
 
 ## Instructions
 
@@ -22,6 +23,7 @@ Help the user scaffold a new project by guiding them through starter selection a
    - REST API → `/scaffold-api`
    - Dashboard → `/scaffold-dashboard`
    - Chrome Extension → `/scaffold-extension`
+   - CLI Tool → `/scaffold-cli`
 
 ## Starter Locations
 
@@ -32,6 +34,7 @@ All starters are in `.claude/starters/`:
 - `.claude/starters/rest-api/`
 - `.claude/starters/dashboard/`
 - `.claude/starters/chrome-extension/`
+- `.claude/starters/cli-tool/`
 
 Shared resources are in `.claude/starters/_shared/`.
 

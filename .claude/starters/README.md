@@ -12,6 +12,7 @@ Boilerplate templates for common project types. Each starter is designed to inte
 | [REST API](./rest-api/) | `/scaffold-api` | Node.js backend with Express/PostgreSQL |
 | [Dashboard](./dashboard/) | `/scaffold-dashboard` | Admin interface with sidebar layout |
 | [Chrome Extension](./chrome-extension/) | `/scaffold-extension` | Browser extension (Manifest V3) |
+| [CLI Tool](./cli-tool/) | `/scaffold-cli` | Node.js CLI with zero dependencies |
 
 ## Usage
 

@@ -22,6 +22,7 @@ Quick reference for all project skills. **Consult before starting work.**
 | `.env*` | env-config | Environment variables |
 | `.github/workflows/*.yml` | ci-cd | GitHub Actions |
 | `migrations/*.js` | database | Database migrations |
+| `bin/*.js` | cli-author | CLI entry points |
 
 ---
 
@@ -82,6 +83,15 @@ Quick reference for all project skills. **Consult before starting work.**
 | E2E browser tests | e2e-testing |
 | Vitest (Vite projects) | vitest |
 
+### CLI Development
+
+| Task | Invoke Skills |
+|------|---------------|
+| Build CLI tool | cli-author, javascript-author |
+| Parse arguments | cli-author |
+| Interactive prompts | cli-author |
+| CLI testing | cli-author, unit-testing |
+
 ### Infrastructure
 
 | Task | Invoke Skills |
@@ -117,6 +127,7 @@ Quick reference for all project skills. **Consult before starting work.**
 | backend-testing | API and database tests |
 | build-tooling | Vite configuration |
 | ci-cd | GitHub Actions pipelines |
+| cli-author | Node.js CLI tools with zero dependencies |
 | containerization | Docker containers |
 | content-author | HTML prose content |
 | css-author | Modern CSS with @layer, nesting |

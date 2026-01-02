@@ -218,6 +218,150 @@ Usage:
 - Be descriptive: `product-card` not `pc`
 - Use consistent prefixes for related elements: `form-input`, `form-select`, `form-button`
 
+---
+
+## CSS-Only vs Full Web Components
+
+Custom elements can be used in two distinct ways. Choose based on your needs.
+
+### CSS-Only Custom Elements
+
+Use the element as a semantic styling hook without JavaScript:
+
+```html
+<product-card>
+  <img src="product.jpg" alt="Widget Pro" />
+  <h3>Widget Pro</h3>
+  <p>The best widget money can buy.</p>
+</product-card>
+```
+
+```css
+product-card {
+  display: block;  /* Required: browsers default to inline */
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+```
+
+**Characteristics:**
+- No JavaScript required
+- No `customElements.define()` call
+- Matches `:not(:defined)` pseudo-class
+- Requires explicit `display: block` (handled by shared reset)
+- Content is in light DOM (no Shadow DOM)
+- Styles work immediately, no FOUC
+
+**Best for:**
+- Semantic styling hooks (replacing `.card` classes)
+- Progressive enhancement base
+- Static content components
+- Simple layout containers
+
+### Full Web Components
+
+Register the element with JavaScript for encapsulated behavior:
+
+```javascript
+class ProductCard extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host { display: block; }
+        /* Encapsulated styles */
+      </style>
+      <slot></slot>
+    `;
+  }
+}
+
+customElements.define('product-card', ProductCard);
+```
+
+**Characteristics:**
+- Requires JavaScript
+- Registered via `customElements.define()`
+- Matches `:defined` pseudo-class after registration
+- Can use Shadow DOM for style encapsulation
+- Can have custom properties, methods, lifecycle hooks
+
+**Best for:**
+- Interactive components requiring JS
+- Reusable across different projects
+- Components needing encapsulated styles
+- Complex state management
+
+### When to Choose Each
+
+| Factor | CSS-Only | Full Web Component |
+|--------|----------|-------------------|
+| JavaScript required | No | Yes |
+| Works without JS | Yes | Needs fallback |
+| Style encapsulation | No (global CSS) | Yes (Shadow DOM) |
+| Complexity | Low | Higher |
+| Interactivity | CSS-only (`:has`, `:checked`) | Full JS capability |
+| Browser default display | `inline` (needs reset) | Controlled in `:host` |
+| Progressive enhancement | Natural | Requires planning |
+
+### Styling Considerations
+
+**CSS-only elements need explicit display:**
+
+The shared reset (`_reset.css`) handles this automatically with:
+
+```css
+:not(:defined) {
+  display: block;
+}
+```
+
+If you need a different display value, override it in your component CSS:
+
+```css
+product-card {
+  display: grid;  /* Overrides the reset's block */
+}
+```
+
+**Web Components control their own display:**
+
+```javascript
+// Inside the component
+this.shadowRoot.innerHTML = `
+  <style>
+    :host {
+      display: block;
+      /* Component defines its own display */
+    }
+  </style>
+  ...
+`;
+```
+
+### The x-* Pattern for Ad-Hoc Elements
+
+For one-off custom elements, use the `x-*` prefix (e.g., `<x-highlight>`). These:
+- Are excluded from HTML validation by default
+- Work well as CSS-only elements
+- Signal "ad-hoc, not reusable" to other developers
+
+```html
+<p>This is <x-highlight>important text</x-highlight> in a paragraph.</p>
+```
+
+```css
+x-highlight {
+  background: var(--warning-light);
+  padding-inline: var(--spacing-xs);
+}
+```
+
 ## Related Skills
 
 - **javascript-author** - Write vanilla JavaScript for Web Components with function...

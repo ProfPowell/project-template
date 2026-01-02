@@ -501,6 +501,160 @@ Layers provide **explicit cascade control** regardless of selector specificity:
 
 ---
 
+## Custom Element Display Behavior
+
+Custom elements (hyphenated tags like `<product-card>`) have specific display quirks that require understanding.
+
+### Browser Default: Inline
+
+Browsers treat unknown elements as `display: inline`, breaking block-level layouts:
+
+```html
+<!-- Renders INLINE by default! -->
+<product-card>
+  <img src="product.jpg" alt="..." />
+  <h3>Product Name</h3>
+</product-card>
+```
+
+This causes layout issues because the element doesn't create a block formatting context.
+
+### The `:not(:defined)` Solution
+
+The `:not(:defined)` pseudo-class matches custom elements that haven't been registered with `customElements.define()`:
+
+```css
+/* In reset layer - catches ALL unregistered custom elements */
+:not(:defined) {
+  display: block;
+}
+```
+
+This is ideal for CSS-only custom elements that will never be registered as Web Components.
+
+### Layer Specificity Warning
+
+**Critical:** Unlayered browser defaults beat layered CSS. Even with `@layer reset { ... }`, browser defaults can override your styles.
+
+```css
+/* May NOT work - layer has lower priority than browser default */
+@layer reset {
+  product-card {
+    display: block;
+  }
+}
+
+/* Solution: :not(:defined) has higher specificity */
+:not(:defined) {
+  display: block;
+}
+```
+
+### The `:defined` Pseudo-Class
+
+For registered Web Components, use `:defined` to style after JavaScript loads:
+
+```css
+/* Hide until component is defined */
+product-card:not(:defined) {
+  visibility: hidden;
+}
+
+/* Show when registered */
+product-card:defined {
+  visibility: visible;
+}
+```
+
+### Block vs Inline Custom Elements
+
+Not all custom elements should be block. Consider the content model:
+
+| Element Type | Display | Examples |
+|--------------|---------|----------|
+| Container/Section | `block` | `product-card`, `hero-section`, `card-grid` |
+| Badge/Indicator | `inline-flex` | `status-badge`, `tag-item` |
+| Icon | `inline-flex` | `x-icon` |
+
+Elements with `phrasing: true` in `elements.json` are designed to be inline.
+
+---
+
+## List Styling Patterns
+
+Styling lists reliably requires understanding browser defaults and specificity.
+
+### Removing Default Bullets
+
+The most reliable pattern for navigation and card lists:
+
+```css
+/* In reset layer */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+```
+
+**Warning:** `list-style-type: none` alone may not work in all contexts. Use the shorthand `list-style: none` for reliability.
+
+### Accessibility Note
+
+When you remove bullets from a list, screen readers may not announce it as a list in Safari/VoiceOver. Add `role="list"` to preserve semantics:
+
+```html
+<ul role="list">
+  <li>Item with no bullet but announced as list</li>
+</ul>
+```
+
+### Custom Markers with ::marker
+
+For custom bullets, use the `::marker` pseudo-element:
+
+```css
+li::marker {
+  color: var(--primary);
+  content: "→ ";
+}
+
+/* For specific lists */
+ul[data-style="checkmarks"] li::marker {
+  content: "✓ ";
+  color: var(--success);
+}
+```
+
+### Numbered Lists with Custom Styling
+
+```css
+ol {
+  counter-reset: list-counter;
+  list-style: none;
+}
+
+ol li {
+  counter-increment: list-counter;
+}
+
+ol li::before {
+  content: counter(list-counter) ". ";
+  color: var(--primary);
+  font-weight: var(--font-weight-semibold);
+}
+```
+
+### When to Use Each Pattern
+
+| Pattern | Use Case |
+|---------|----------|
+| `list-style: none` | Navigation, card grids, tab lists |
+| `::marker` | Prose lists with custom bullet style |
+| `counter()` | Numbered steps, ordered lists with custom numbers |
+
+---
+
 ## CSS Scope (`@scope`)
 
 The `@scope` at-rule limits selector reach to a specific DOM subtree without increasing specificity. While `@layer` controls cascade order, `@scope` controls where selectors can match.

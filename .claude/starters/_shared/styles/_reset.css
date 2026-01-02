@@ -32,6 +32,49 @@ svg {
   max-width: 100%;
 }
 
+/**
+ * Custom Elements Reset
+ *
+ * Browsers default unknown elements to display: inline.
+ * CSS @layer styles have lower specificity than unlayered browser defaults.
+ *
+ * Solution: Two approaches combined:
+ * 1. :not(:defined) catches ALL unregistered custom elements
+ * 2. Explicit list documents expected block-level elements
+ */
+
+/* Universal baseline for unregistered custom elements */
+:not(:defined) {
+  display: block;
+}
+
+/*
+ * Explicit block elements (documentation + fallback)
+ * Elements with phrasing:true in elements.json are intentionally omitted
+ */
+form-field,
+table-wrapper,
+theme-selector,
+data-table,
+nav-menu,
+faq-list,
+faq-question,
+faq-answer,
+product-card,
+service-card,
+pricing-card,
+feature-card,
+site-header,
+site-footer,
+hero-section,
+card-grid,
+progress-bar,
+tab-group,
+nav-pagination,
+meter-display {
+  display: block;
+}
+
 input,
 button,
 textarea,

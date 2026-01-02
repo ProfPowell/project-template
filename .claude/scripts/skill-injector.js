@@ -39,9 +39,11 @@ const SKILL_MAP = {
 
 // Special filename patterns that override extension-based matching
 const FILENAME_PATTERNS = [
+  // Eleventy
   { pattern: /\.11ty\.js$/, skill: 'eleventy' },
   { pattern: /\.11ty\.cjs$/, skill: 'eleventy' },
   { pattern: /eleventy\.config\.(js|mjs|cjs)$/, skill: 'eleventy' },
+  // Astro
   { pattern: /astro\.config\.(js|mjs|ts)$/, skill: 'astro' },
   // TypeScript configuration
   { pattern: /tsconfig(\..+)?\.json$/, skill: 'typescript-author' },
@@ -49,6 +51,22 @@ const FILENAME_PATTERNS = [
   { pattern: /Dockerfile(\..*)?$/, skill: 'containerization' },
   { pattern: /docker-compose(\..*)?\.ya?ml$/, skill: 'containerization' },
   { pattern: /\.dockerignore$/, skill: 'containerization' },
+  // Build tooling
+  { pattern: /vite\.config\.(js|ts|mjs)$/, skill: 'build-tooling' },
+  { pattern: /vitest\.config\.(js|ts|mjs)$/, skill: 'vitest' },
+  // Environment config
+  { pattern: /\.env(\..+)?$/, skill: 'env-config' },
+  // CI/CD
+  { pattern: /\.github\/workflows\/.*\.ya?ml$/, skill: 'ci-cd' },
+  // Database
+  { pattern: /migrations?\/.*\.(js|ts|sql)$/, skill: 'database' },
+  { pattern: /seeds?\/.*\.(js|ts)$/, skill: 'database' },
+  // Metadata
+  { pattern: /robots\.txt$/, skill: 'metadata' },
+  { pattern: /sitemap\.xml$/, skill: 'metadata' },
+  { pattern: /manifest\.json$/, skill: 'performance' },
+  // Security
+  { pattern: /security\.txt$/, skill: 'security' },
 ];
 
 // TDD detection for new testable files
@@ -121,15 +139,24 @@ const CONTENT_PATTERNS = [
   { pattern: /<x-icon|lucide-|icon/i, skill: 'icons', reason: 'Icon pattern detected - use <x-icon> component' },
   { pattern: /<picture[\s>]/i, skill: 'responsive-images', reason: 'Picture element detected' },
   { pattern: /<img[\s>]/i, skill: 'responsive-images', reason: 'Image detected - consider responsive patterns' },
+  { pattern: /<nav[\s>]/i, skill: 'accessibility-checker', reason: 'Navigation detected - ensure aria-label' },
+  { pattern: /<table[\s>]/i, skill: 'accessibility-checker', reason: 'Table detected - ensure proper headers' },
+  { pattern: /<meta\s/i, skill: 'metadata', reason: 'Metadata detected' },
+  { pattern: /lang=/i, skill: 'i18n', reason: 'Language attribute detected' },
 
   // JavaScript content patterns
   { pattern: /class\s+\w+\s+extends\s+HTMLElement/i, skill: 'custom-elements', reason: 'Web Component detected' },
   { pattern: /fetch\s*\(/i, skill: 'api-client', reason: 'Fetch API detected - add retry/error handling' },
   { pattern: /localStorage|sessionStorage|IndexedDB/i, skill: 'data-storage', reason: 'Storage API detected' },
+  { pattern: /describe\s*\(|it\s*\(|test\s*\(/i, skill: 'unit-testing', reason: 'Test file detected' },
+  { pattern: /express\(\)|fastify\(\)/i, skill: 'nodejs-backend', reason: 'Server framework detected' },
+  { pattern: /router\.(get|post|put|delete|patch)/i, skill: 'rest-api', reason: 'REST endpoint detected' },
+  { pattern: /jwt\.sign|jwt\.verify/i, skill: 'authentication', reason: 'JWT detected' },
 
   // CSS content patterns
   { pattern: /@keyframes|animation:/i, skill: 'animation-motion', reason: 'Animation detected - check reduced-motion' },
   { pattern: /@media\s+print/i, skill: 'print-styles', reason: 'Print styles detected' },
+  { pattern: /@media\s*\(\s*prefers-reduced-motion/i, skill: 'animation-motion', reason: 'Motion preference detected' },
   { pattern: /font-size:|line-height:|text-wrap:|font-family:/i, skill: 'typography', reason: 'Typography detected - consider type scale and rhythm' },
   { pattern: /grid-template|auto-fit|auto-fill|minmax\(/i, skill: 'layout-grid', reason: 'Grid layout detected - use fluid scaling patterns' },
 ];

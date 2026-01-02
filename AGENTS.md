@@ -12,6 +12,20 @@ bd close <id>         # Complete work
 bd sync               # Sync with git
 ```
 
+## Skills
+
+**Before starting any task**, consult the skills index:
+
+1. Check [SKILLS-INDEX.md](.claude/skills/SKILLS-INDEX.md) for relevant skills
+2. Invoke `/skill pre-flight-check` to validate your approach
+3. For complex features, see [COMPOSITIONS.md](.claude/skills/COMPOSITIONS.md)
+
+Skills auto-inject when editing files but should be consulted **before** starting for:
+
+- Planning and architecture decisions
+- Understanding project conventions
+- Multi-file features requiring skill composition
+
 ## Landing the Plane (Session Completion)
 
 **When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.

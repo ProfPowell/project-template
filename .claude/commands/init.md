@@ -50,6 +50,7 @@ Options:
 9. **Blog** - Markdown blog with RSS, tags, and social sharing
 10. **Form Builder** - Dynamic forms with validation and conditional logic
 11. **Design System** - Web Component library with tokens and documentation
+12. **E-commerce Storefront** - Product catalog with cart, checkout, and orders
 
 ### Step 3: Collect Configuration
 
@@ -84,6 +85,7 @@ Based on the selected project type, run the appropriate command:
 | Blog | `/scaffold-blog` |
 | Form Builder | `/scaffold-form-builder` |
 | Design System | `/scaffold-design-system` |
+| E-commerce Storefront | `/scaffold-ecommerce` |
 
 Pass the collected configuration to the scaffold command.
 
@@ -142,6 +144,7 @@ What type of project would you like to create?
 ○ Blog
 ○ Form Builder
 ○ Design System
+○ E-commerce Storefront
 
 User: Static Website
 

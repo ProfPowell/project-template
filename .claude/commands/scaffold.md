@@ -15,6 +15,7 @@ Help the user scaffold a new project by guiding them through starter selection a
 9. **Blog** - Markdown blog with RSS, tags, and social sharing
 10. **Form Builder** - Dynamic forms with validation and conditional logic
 11. **Design System** - Web Component library with design tokens and documentation
+12. **E-commerce Storefront** - Product catalog with cart, checkout, and order management
 
 ## Instructions
 
@@ -32,6 +33,7 @@ Help the user scaffold a new project by guiding them through starter selection a
    - Blog → `/scaffold-blog`
    - Form Builder → `/scaffold-form-builder`
    - Design System → `/scaffold-design-system`
+   - E-commerce Storefront → `/scaffold-ecommerce`
 
 ## Starter Locations
 
@@ -47,6 +49,7 @@ All starters are in `.claude/starters/`:
 - `.claude/starters/blog/`
 - `.claude/starters/form-builder/`
 - `.claude/starters/design-system/`
+- `.claude/starters/ecommerce/`
 
 Shared resources are in `.claude/starters/_shared/`.
 

@@ -287,7 +287,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 
 ### Project Scaffolds
 
-**11 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
+**12 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
 
 | Starter | Description | Command |
 |---------|-------------|---------|
@@ -302,6 +302,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 | **Blog** | Markdown blog with RSS, tags, social sharing | `/scaffold-blog` |
 | **Form Builder** | Dynamic forms with validation, conditional logic | `/scaffold-form-builder` |
 | **Design System** | Web Component library with tokens and docs | `/scaffold-design-system` |
+| **E-commerce** | Product catalog with cart, checkout, orders | `/scaffold-ecommerce` |
 
 Each starter includes:
 - `manifest.yaml` defining prompts and configuration

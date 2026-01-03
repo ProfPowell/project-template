@@ -31,10 +31,11 @@ The initialization wizard will:
 | Blog | Markdown blog with RSS, tags, social sharing |
 | Form Builder | Dynamic forms with validation, conditional logic |
 | Design System | Web Component library with tokens and documentation |
+| E-commerce Storefront | Product catalog with cart, checkout, orders |
 
 ## What This Template Provides
 
-- **11 Project Starters** - Production-ready scaffolds
+- **12 Project Starters** - Production-ready scaffolds
 - **54 Skills** - AI guidance for HTML, CSS, JavaScript, accessibility, testing
 - **45+ Commands** - Scaffolding, validation, generation tools
 - **Pattern Library** - 50+ UI patterns with examples

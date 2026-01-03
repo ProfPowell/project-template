@@ -17,6 +17,7 @@ Boilerplate templates for common project types. Each starter is designed to inte
 | [Blog](./blog/) | `/scaffold-blog` | Markdown blog with RSS, tags, social sharing |
 | [Form Builder](./form-builder/) | `/scaffold-form-builder` | Dynamic forms with validation, conditional logic |
 | [Design System](./design-system/) | `/scaffold-design-system` | Web Component library with tokens and docs |
+| [E-commerce](./ecommerce/) | `/scaffold-ecommerce` | Product catalog with cart, checkout, orders |
 
 ## Usage
 

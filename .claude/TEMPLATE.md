@@ -64,7 +64,7 @@ A web project template with validation, automation, and AI-assisted development 
 | `sanity-cms` | Sanity CMS integration |
 | `open-props` | Open Props CSS framework |
 
-**49 Slash Commands**:
+**50 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -79,6 +79,7 @@ A web project template with validation, automation, and AI-assisted development 
 | `/scaffold-docs` | Scaffold documentation site |
 | `/scaffold-blog` | Scaffold markdown blog |
 | `/scaffold-form-builder` | Scaffold form builder app |
+| `/scaffold-design-system` | Scaffold Web Component library |
 | `/add-element` | Define custom HTML elements |
 | `/add-pattern` | Create new UI pattern with documentation |
 | `/scaffold-page` | Create page using pattern compositions |
@@ -286,7 +287,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 
 ### Project Scaffolds
 
-**10 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
+**11 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
 
 | Starter | Description | Command |
 |---------|-------------|---------|
@@ -300,6 +301,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 | **Documentation Site** | Static docs with sidebar and search | `/scaffold-docs` |
 | **Blog** | Markdown blog with RSS, tags, social sharing | `/scaffold-blog` |
 | **Form Builder** | Dynamic forms with validation, conditional logic | `/scaffold-form-builder` |
+| **Design System** | Web Component library with tokens and docs | `/scaffold-design-system` |
 
 Each starter includes:
 - `manifest.yaml` defining prompts and configuration

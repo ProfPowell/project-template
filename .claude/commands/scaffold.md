@@ -14,6 +14,7 @@ Help the user scaffold a new project by guiding them through starter selection a
 8. **Documentation Site** - Static docs with sidebar, search, and code highlighting
 9. **Blog** - Markdown blog with RSS, tags, and social sharing
 10. **Form Builder** - Dynamic forms with validation and conditional logic
+11. **Design System** - Web Component library with design tokens and documentation
 
 ## Instructions
 
@@ -30,6 +31,7 @@ Help the user scaffold a new project by guiding them through starter selection a
    - Documentation Site → `/scaffold-docs`
    - Blog → `/scaffold-blog`
    - Form Builder → `/scaffold-form-builder`
+   - Design System → `/scaffold-design-system`
 
 ## Starter Locations
 
@@ -44,6 +46,7 @@ All starters are in `.claude/starters/`:
 - `.claude/starters/docs-site/`
 - `.claude/starters/blog/`
 - `.claude/starters/form-builder/`
+- `.claude/starters/design-system/`
 
 Shared resources are in `.claude/starters/_shared/`.
 

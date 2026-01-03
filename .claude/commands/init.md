@@ -49,6 +49,7 @@ Options:
 8. **Documentation Site** - Static docs with sidebar, search, and code highlighting
 9. **Blog** - Markdown blog with RSS, tags, and social sharing
 10. **Form Builder** - Dynamic forms with validation and conditional logic
+11. **Design System** - Web Component library with tokens and documentation
 
 ### Step 3: Collect Configuration
 
@@ -82,6 +83,7 @@ Based on the selected project type, run the appropriate command:
 | Documentation Site | `/scaffold-docs` |
 | Blog | `/scaffold-blog` |
 | Form Builder | `/scaffold-form-builder` |
+| Design System | `/scaffold-design-system` |
 
 Pass the collected configuration to the scaffold command.
 
@@ -139,6 +141,7 @@ What type of project would you like to create?
 ○ Documentation Site
 ○ Blog
 ○ Form Builder
+○ Design System
 
 User: Static Website
 

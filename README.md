@@ -30,10 +30,11 @@ The initialization wizard will:
 | Documentation Site | Static docs with sidebar, search, code highlighting |
 | Blog | Markdown blog with RSS, tags, social sharing |
 | Form Builder | Dynamic forms with validation, conditional logic |
+| Design System | Web Component library with tokens and documentation |
 
 ## What This Template Provides
 
-- **10 Project Starters** - Production-ready scaffolds
+- **11 Project Starters** - Production-ready scaffolds
 - **54 Skills** - AI guidance for HTML, CSS, JavaScript, accessibility, testing
 - **45+ Commands** - Scaffolding, validation, generation tools
 - **Pattern Library** - 50+ UI patterns with examples

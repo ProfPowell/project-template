@@ -46,6 +46,7 @@ Options:
 5. **Dashboard** - Admin interface with sidebar layout and charts
 6. **Chrome Extension** - Browser extension with Manifest V3
 7. **CLI Tool** - Node.js command-line tool with zero dependencies
+8. **Documentation Site** - Static docs with sidebar, search, and code highlighting
 
 ### Step 3: Collect Configuration
 
@@ -76,6 +77,7 @@ Based on the selected project type, run the appropriate command:
 | Dashboard | `/scaffold-dashboard` |
 | Chrome Extension | `/scaffold-extension` |
 | CLI Tool | `/scaffold-cli` |
+| Documentation Site | `/scaffold-docs` |
 
 Pass the collected configuration to the scaffold command.
 
@@ -130,6 +132,7 @@ What type of project would you like to create?
 ○ Dashboard
 ○ Chrome Extension
 ○ CLI Tool
+○ Documentation Site
 
 User: Static Website
 

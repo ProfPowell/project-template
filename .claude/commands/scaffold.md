@@ -11,6 +11,7 @@ Help the user scaffold a new project by guiding them through starter selection a
 5. **Dashboard** - Admin interface with sidebar layout
 6. **Chrome Extension** - Browser extension with Manifest V3
 7. **CLI Tool** - Node.js command-line tool with zero dependencies
+8. **Documentation Site** - Static docs with sidebar, search, and code highlighting
 
 ## Instructions
 
@@ -24,6 +25,7 @@ Help the user scaffold a new project by guiding them through starter selection a
    - Dashboard → `/scaffold-dashboard`
    - Chrome Extension → `/scaffold-extension`
    - CLI Tool → `/scaffold-cli`
+   - Documentation Site → `/scaffold-docs`
 
 ## Starter Locations
 
@@ -35,6 +37,7 @@ All starters are in `.claude/starters/`:
 - `.claude/starters/dashboard/`
 - `.claude/starters/chrome-extension/`
 - `.claude/starters/cli-tool/`
+- `.claude/starters/docs-site/`
 
 Shared resources are in `.claude/starters/_shared/`.
 

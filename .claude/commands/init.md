@@ -47,6 +47,7 @@ Options:
 6. **Chrome Extension** - Browser extension with Manifest V3
 7. **CLI Tool** - Node.js command-line tool with zero dependencies
 8. **Documentation Site** - Static docs with sidebar, search, and code highlighting
+9. **Blog** - Markdown blog with RSS, tags, and social sharing
 
 ### Step 3: Collect Configuration
 
@@ -78,6 +79,7 @@ Based on the selected project type, run the appropriate command:
 | Chrome Extension | `/scaffold-extension` |
 | CLI Tool | `/scaffold-cli` |
 | Documentation Site | `/scaffold-docs` |
+| Blog | `/scaffold-blog` |
 
 Pass the collected configuration to the scaffold command.
 
@@ -133,6 +135,7 @@ What type of project would you like to create?
 ○ Chrome Extension
 ○ CLI Tool
 ○ Documentation Site
+○ Blog
 
 User: Static Website
 

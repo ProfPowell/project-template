@@ -14,6 +14,7 @@ Boilerplate templates for common project types. Each starter is designed to inte
 | [Chrome Extension](./chrome-extension/) | `/scaffold-extension` | Browser extension (Manifest V3) |
 | [CLI Tool](./cli-tool/) | `/scaffold-cli` | Node.js CLI with zero dependencies |
 | [Documentation Site](./docs-site/) | `/scaffold-docs` | Static docs with sidebar, search, code highlighting |
+| [Blog](./blog/) | `/scaffold-blog` | Markdown blog with RSS, tags, social sharing |
 
 ## Usage
 

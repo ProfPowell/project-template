@@ -28,10 +28,11 @@ The initialization wizard will:
 | Chrome Extension | Browser extension (Manifest V3) |
 | CLI Tool | Node.js command-line tool |
 | Documentation Site | Static docs with sidebar, search, code highlighting |
+| Blog | Markdown blog with RSS, tags, social sharing |
 
 ## What This Template Provides
 
-- **8 Project Starters** - Production-ready scaffolds
+- **9 Project Starters** - Production-ready scaffolds
 - **54 Skills** - AI guidance for HTML, CSS, JavaScript, accessibility, testing
 - **45+ Commands** - Scaffolding, validation, generation tools
 - **Pattern Library** - 50+ UI patterns with examples

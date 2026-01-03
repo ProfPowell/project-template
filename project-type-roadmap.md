@@ -177,17 +177,4 @@ Some proposals might work better as variants or extensions:
 ## Open Questions
 
 1. How do we handle starters that naturally compose (e.g., E-commerce + REST API)?
-   They should do both the starters then and compose properly which may mean REST needs to be revisited.
-2. Should starters remain framework-neutral or embrace specific tools like Astro?
-  We can ask questions, but generally netural
-3. What's the implementation priority order for these 6 starters?
-  Least sophisticated first
-
----
-
-## Next Steps
-
-- [ ] Review and prioritize list
-- [ ] Create beads issues for approved starters
-- [ ] Identify which require new skills vs. use existing
-- [ ] Define MVP scope for each
+   They should do both the starters then and compose properly which may mean REST needs to be revisited

@@ -64,7 +64,7 @@ A web project template with validation, automation, and AI-assisted development 
 | `sanity-cms` | Sanity CMS integration |
 | `open-props` | Open Props CSS framework |
 
-**47 Slash Commands**:
+**48 Slash Commands**:
 
 | Command | Purpose |
 |---------|---------|
@@ -77,6 +77,7 @@ A web project template with validation, automation, and AI-assisted development 
 | `/scaffold-extension` | Scaffold Chrome extension |
 | `/scaffold-cli` | Scaffold Node.js CLI tool |
 | `/scaffold-docs` | Scaffold documentation site |
+| `/scaffold-blog` | Scaffold markdown blog |
 | `/add-element` | Define custom HTML elements |
 | `/add-pattern` | Create new UI pattern with documentation |
 | `/scaffold-page` | Create page using pattern compositions |
@@ -284,7 +285,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 
 ### Project Scaffolds
 
-**8 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
+**9 Project Starters** in `.claude/starters/` for quickly scaffolding new projects:
 
 | Starter | Description | Command |
 |---------|-------------|---------|
@@ -296,6 +297,7 @@ Browse the [Component Gallery](.claude/patterns/components/index.html) for all c
 | **Chrome Extension** | Browser extension with Manifest V3 | `/scaffold-extension` |
 | **CLI Tool** | Node.js command-line tool | `/scaffold-cli` |
 | **Documentation Site** | Static docs with sidebar and search | `/scaffold-docs` |
+| **Blog** | Markdown blog with RSS, tags, social sharing | `/scaffold-blog` |
 
 Each starter includes:
 - `manifest.yaml` defining prompts and configuration

@@ -29,10 +29,11 @@ The initialization wizard will:
 | CLI Tool | Node.js command-line tool |
 | Documentation Site | Static docs with sidebar, search, code highlighting |
 | Blog | Markdown blog with RSS, tags, social sharing |
+| Form Builder | Dynamic forms with validation, conditional logic |
 
 ## What This Template Provides
 
-- **9 Project Starters** - Production-ready scaffolds
+- **10 Project Starters** - Production-ready scaffolds
 - **54 Skills** - AI guidance for HTML, CSS, JavaScript, accessibility, testing
 - **45+ Commands** - Scaffolding, validation, generation tools
 - **Pattern Library** - 50+ UI patterns with examples

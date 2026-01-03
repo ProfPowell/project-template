@@ -15,6 +15,7 @@ Boilerplate templates for common project types. Each starter is designed to inte
 | [CLI Tool](./cli-tool/) | `/scaffold-cli` | Node.js CLI with zero dependencies |
 | [Documentation Site](./docs-site/) | `/scaffold-docs` | Static docs with sidebar, search, code highlighting |
 | [Blog](./blog/) | `/scaffold-blog` | Markdown blog with RSS, tags, social sharing |
+| [Form Builder](./form-builder/) | `/scaffold-form-builder` | Dynamic forms with validation, conditional logic |
 
 ## Usage
 

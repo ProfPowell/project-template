@@ -48,6 +48,7 @@ Options:
 7. **CLI Tool** - Node.js command-line tool with zero dependencies
 8. **Documentation Site** - Static docs with sidebar, search, and code highlighting
 9. **Blog** - Markdown blog with RSS, tags, and social sharing
+10. **Form Builder** - Dynamic forms with validation and conditional logic
 
 ### Step 3: Collect Configuration
 
@@ -80,6 +81,7 @@ Based on the selected project type, run the appropriate command:
 | CLI Tool | `/scaffold-cli` |
 | Documentation Site | `/scaffold-docs` |
 | Blog | `/scaffold-blog` |
+| Form Builder | `/scaffold-form-builder` |
 
 Pass the collected configuration to the scaffold command.
 
@@ -136,6 +138,7 @@ What type of project would you like to create?
 ○ CLI Tool
 ○ Documentation Site
 ○ Blog
+○ Form Builder
 
 User: Static Website
 

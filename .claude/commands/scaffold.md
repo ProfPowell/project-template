@@ -13,6 +13,7 @@ Help the user scaffold a new project by guiding them through starter selection a
 7. **CLI Tool** - Node.js command-line tool with zero dependencies
 8. **Documentation Site** - Static docs with sidebar, search, and code highlighting
 9. **Blog** - Markdown blog with RSS, tags, and social sharing
+10. **Form Builder** - Dynamic forms with validation and conditional logic
 
 ## Instructions
 
@@ -28,6 +29,7 @@ Help the user scaffold a new project by guiding them through starter selection a
    - CLI Tool → `/scaffold-cli`
    - Documentation Site → `/scaffold-docs`
    - Blog → `/scaffold-blog`
+   - Form Builder → `/scaffold-form-builder`
 
 ## Starter Locations
 
@@ -41,6 +43,7 @@ All starters are in `.claude/starters/`:
 - `.claude/starters/cli-tool/`
 - `.claude/starters/docs-site/`
 - `.claude/starters/blog/`
+- `.claude/starters/form-builder/`
 
 Shared resources are in `.claude/starters/_shared/`.
 

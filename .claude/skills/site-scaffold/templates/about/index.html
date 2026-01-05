@@ -43,52 +43,117 @@
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
 
-  <header>
-    <a href="/" aria-label="{{SITE_NAME}} home">
-      <img src="/assets/images/logo.svg" alt="{{SITE_NAME}}" width="200" height="44"/>
-    </a>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about/" aria-current="page">About</a></li>
-        <li><a href="/contact/">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo" aria-label="{{SITE_NAME}} - Home">
+        <span>{{SITE_NAME}}</span>
+      </a>
+
+      <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation menu">
+        <x-icon name="menu"></x-icon>
+      </button>
+
+      <nav id="main-nav" class="site-nav" aria-label="Main navigation">
+        <a href="/">Home</a>
+        <a href="/about/" aria-current="page">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main id="main">
-    <article>
-      <h1>About {{SITE_NAME}}</h1>
+    <section class="about-hero">
+      <div class="container">
+        <h1>About Us</h1>
+        <p class="lead">Learn more about {{SITE_NAME}} and our mission.</p>
+      </div>
+    </section>
 
-      <section aria-labelledby="mission-heading">
-        <h2 id="mission-heading">Our Mission</h2>
-        <p>Add your mission statement here.</p>
-      </section>
+    <section>
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text flow">
+            <h2>Our Story</h2>
+            <p>Add your company story here. Explain how you started, what drives you, and what makes your organization unique.</p>
+            <p>Share your journey and the milestones that have shaped who you are today.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <section aria-labelledby="story-heading">
-        <h2 id="story-heading">Our Story</h2>
-        <p>Founded in <time datetime="{{CURRENT_YEAR}}">{{CURRENT_YEAR}}</time>, {{SITE_NAME}} was created to...</p>
-        <p>Add your company story and history here.</p>
-      </section>
+    <section class="values">
+      <div class="container">
+        <header class="section-header">
+          <h2>Our Values</h2>
+          <p>The principles that guide everything we do.</p>
+        </header>
 
-      <section aria-labelledby="values-heading">
-        <h2 id="values-heading">Our Values</h2>
-        <ul>
-          <li><strong>Value One</strong> - Description of the first value.</li>
-          <li><strong>Value Two</strong> - Description of the second value.</li>
-          <li><strong>Value Three</strong> - Description of the third value.</li>
-        </ul>
-      </section>
-    </article>
+        <div class="grid grid--3">
+          <article class="value-card">
+            <h3>Value One</h3>
+            <p>Description of the first value and why it matters to your organization.</p>
+          </article>
+
+          <article class="value-card">
+            <h3>Value Two</h3>
+            <p>Description of the second value and why it matters to your organization.</p>
+          </article>
+
+          <article class="value-card">
+            <h3>Value Three</h3>
+            <p>Description of the third value and why it matters to your organization.</p>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <p><small>&copy; <time datetime="{{CURRENT_YEAR}}">{{CURRENT_YEAR}}</time> {{SITE_NAME}}. All rights reserved.</small></p>
-    <address>
-      <a href="mailto:{{SITE_EMAIL}}">{{SITE_EMAIL}}</a>
-    </address>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section footer-about">
+          <a href="/" class="site-logo">
+            <span>{{SITE_NAME}}</span>
+          </a>
+          <p>{{SITE_DESCRIPTION}}</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <div class="social-links">
+            <a href="#" aria-label="Follow us on Twitter">
+              <x-icon name="twitter"></x-icon>
+            </a>
+            <a href="#" aria-label="Follow us on GitHub">
+              <x-icon name="github"></x-icon>
+            </a>
+            <a href="#" aria-label="Follow us on LinkedIn">
+              <x-icon name="linkedin"></x-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; {{CURRENT_YEAR}} {{SITE_NAME}}. All rights reserved.</p>
+        <nav aria-label="Footer navigation">
+          <a href="#">Privacy Policy</a> &middot;
+          <a href="#">Terms of Service</a>
+        </nav>
+      </div>
+    </div>
   </footer>
 
+  <script type="module" src="/assets/js/components/x-icon/x-icon.js"></script>
   <script src="/assets/js/main.js" defer=""></script>
 </body>
 </html>

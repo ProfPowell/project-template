@@ -155,6 +155,7 @@ All HTML pages must follow XHTML-strict patterns:
     <!-- Site footer -->
   </footer>
 
+  <script type="module" src="/assets/js/components/x-icon/x-icon.js"></script>
   <script src="/assets/js/main.js" defer=""></script>
 </body>
 </html>
@@ -550,11 +551,82 @@ When scaffolding a new site:
 - [ ] Create/copy favicon set
 - [ ] Create og-image.png for social sharing
 - [ ] Copy x-icon component to assets/js/components/
+- [ ] Copy required Lucide icons to assets/icons/lucide/
+- [ ] Run `npm run icons:sync` to populate icons directory
 
 ### Validation
 - [ ] Validate all HTML files pass linters
 - [ ] Test error pages render correctly
 - [ ] Verify security.txt is accessible at /.well-known/security.txt
+
+## Icons Usage
+
+The scaffold uses the `<x-icon>` Web Component for icons. **Never use inline SVGs** for standard icons - always use the x-icon component.
+
+### Required x-icon Script
+
+Include in all HTML pages (except 500, offline, noscript):
+
+```html
+<script type="module" src="/assets/js/components/x-icon/x-icon.js"></script>
+<script src="/assets/js/main.js" defer=""></script>
+```
+
+### Common Icons Used
+
+| Icon | Usage | Example |
+|------|-------|---------|
+| `menu` | Mobile navigation toggle | `<x-icon name="menu"></x-icon>` |
+| `zap` | Feature card (speed/performance) | `<x-icon name="zap" size="lg"></x-icon>` |
+| `lock` | Feature card (security) | `<x-icon name="lock" size="lg"></x-icon>` |
+| `info` | Feature card (information) | `<x-icon name="info" size="lg"></x-icon>` |
+| `mail` | Contact method (email) | `<x-icon name="mail"></x-icon>` |
+| `map-pin` | Contact method (location) | `<x-icon name="map-pin"></x-icon>` |
+| `clock` | Contact method (response time) | `<x-icon name="clock"></x-icon>` |
+| `twitter` | Social link | `<x-icon name="twitter"></x-icon>` |
+| `github` | Social link | `<x-icon name="github"></x-icon>` |
+| `linkedin` | Social link | `<x-icon name="linkedin"></x-icon>` |
+| `frown` | 404 error page | `<x-icon name="frown" size="2xl"></x-icon>` |
+
+### Size Presets
+
+| Size | CSS Value | Use Case |
+|------|-----------|----------|
+| `xs` | 1em | Inline text icons |
+| `sm` | 1.25em | Small buttons |
+| `md` | 1.5em (default) | Navigation, social links |
+| `lg` | 2em | Feature cards |
+| `xl` | 2.5em | Section headers |
+| `2xl` | 3em | Error page icons |
+
+### Icon Exceptions (Use Inline SVGs)
+
+Some pages must use **inline SVGs** for reliability:
+
+| Page | Reason |
+|------|--------|
+| `errors/500.html` | No external dependencies (server may be down) |
+| `errors/offline.html` | No network access to load x-icon |
+| `errors/noscript.html` | JavaScript disabled, x-icon won't work |
+| **Site logo** | Brand-specific, not in Lucide library |
+
+### Icons Directory Structure
+
+```
+assets/
+├── icons/
+│   └── lucide/            # Lucide SVG icons (auto-synced)
+│       ├── menu.svg
+│       ├── zap.svg
+│       └── ...
+└── js/
+    └── components/
+        └── x-icon/
+            ├── x-icon.js
+            └── x-icon-styles.js
+```
+
+Run `npm run icons:sync` after scaffolding to populate the icons directory.
 
 ## Related Skills
 

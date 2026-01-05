@@ -5,6 +5,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "validate": "html-validate --config .config/htmlvalidate.json",
     "hint": "htmlhint --config .config/htmlhint.json",
     "a11y": "pa11y --config .config/pa11yci.json",
@@ -58,6 +61,7 @@
     "icons:sync": "node .claude/scripts/sync-icons.js"
   },
   "devDependencies": {
+    "vite": "^6.0.0",
     "@eslint/js": "^9.39.2",
     "@faker-js/faker": "^10.1.0",
     "@lhci/cli": "^0.15.1",

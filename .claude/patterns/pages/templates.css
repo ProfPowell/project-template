@@ -1325,6 +1325,63 @@
   .mb-xl { margin-block-end: var(--spacing-xl); }
   .mb-2xl { margin-block-end: var(--spacing-2xl); }
 
+  .pt-0 { padding-block-start: 0; }
+  .pb-0 { padding-block-end: 0; }
+
+  /* Flex Modifiers */
+  .flex-wrap { flex-wrap: wrap; }
+
+  /* Text Decoration */
+  .line-through { text-decoration: line-through; }
+
+  /* Form Utilities */
+  .fieldset-reset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .min-w-200 { min-width: 200px; }
+
+  /* Width Utilities (for table columns) */
+  .w-8 { width: 2rem; }
+  .w-12 { width: 3rem; }
+
+  /* List Item Pattern */
+  .list-item {
+    padding: var(--spacing-md) 0;
+    border-block-end: 1px solid var(--border);
+  }
+
+  .list-item:last-child {
+    border-block-end: none;
+  }
+
+  .list-item--sm {
+    padding: var(--spacing-sm) 0;
+  }
+
+  /* Color Utilities (background) */
+  [data-color="primary"] { background: var(--primary); }
+  [data-color="success"] { background: var(--success); }
+  [data-color="warning"] { background: var(--warning); }
+  [data-color="error"] { background: var(--error); }
+  [data-color="muted"] { background: var(--text-muted); }
+
+  /* Color Utilities (text) */
+  .text-primary { color: var(--primary); }
+  .text-success { color: var(--success); }
+  .text-warning { color: var(--warning); }
+  .text-error { color: var(--error); }
+
+  /* Legend Dot */
+  .legend-dot {
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+  }
+
   /* ===== Custom Elements ===== */
 
   /* stat-card */
@@ -1430,6 +1487,12 @@
     height: 100%;
     object-fit: cover;
   }
+
+  user-avatar[data-color="primary"] { background: var(--primary); }
+  user-avatar[data-color="success"] { background: var(--success); }
+  user-avatar[data-color="warning"] { background: var(--warning); }
+  user-avatar[data-color="error"] { background: var(--error); }
+  user-avatar[data-color="muted"] { background: var(--text-muted); }
 
   /* progress-bar */
   progress-bar {

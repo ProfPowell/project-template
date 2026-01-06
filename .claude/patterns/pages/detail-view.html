@@ -95,11 +95,11 @@
 
               <dl class="stats-grid">
                 <article class="stat">
-                  <dt class="stat__value" style="color: var(--success);">18</dt>
+                  <dt class="stat__value text-success">18</dt>
                   <dd class="stat__label">Completed</dd>
                 </article>
                 <article class="stat">
-                  <dt class="stat__value" style="color: var(--primary);">4</dt>
+                  <dt class="stat__value text-primary">4</dt>
                   <dd class="stat__label">In Progress</dd>
                 </article>
                 <article class="stat">
@@ -107,7 +107,7 @@
                   <dd class="stat__label">Pending</dd>
                 </article>
                 <article class="stat">
-                  <dt class="stat__value" style="color: var(--warning);">0</dt>
+                  <dt class="stat__value text-warning">0</dt>
                   <dd class="stat__label">Blocked</dd>
                 </article>
               </dl>
@@ -121,24 +121,24 @@
               <a href="#tasks" class="text-sm">View all</a>
             </header>
 
-            <ul class="card__body" style="padding-block-start: 0;">
-              <li class="hstack" style="padding: var(--spacing-md) 0; border-block-end: 1px solid var(--border);">
+            <ul class="card__body pt-0">
+              <li class="hstack list-item">
                 <input type="checkbox" checked aria-label="Mark complete"/>
                 <section class="flex-1">
-                  <p style="text-decoration: line-through;" class="text-muted">Design homepage wireframes</p>
+                  <p class="line-through text-muted">Design homepage wireframes</p>
                   <p class="text-sm text-muted">Completed by Sarah</p>
                 </section>
                 <status-badge>Done</status-badge>
               </li>
-              <li class="hstack" style="padding: var(--spacing-md) 0; border-block-end: 1px solid var(--border);">
+              <li class="hstack list-item">
                 <input type="checkbox" checked aria-label="Mark complete"/>
                 <section class="flex-1">
-                  <p style="text-decoration: line-through;" class="text-muted">Create component library</p>
+                  <p class="line-through text-muted">Create component library</p>
                   <p class="text-sm text-muted">Completed by Mike</p>
                 </section>
                 <status-badge>Done</status-badge>
               </li>
-              <li class="hstack" style="padding: var(--spacing-md) 0; border-block-end: 1px solid var(--border);">
+              <li class="hstack list-item">
                 <input type="checkbox" aria-label="Mark complete"/>
                 <section class="flex-1">
                   <p class="font-medium">Implement responsive navigation</p>
@@ -146,7 +146,7 @@
                 </section>
                 <status-badge type="success">In Progress</status-badge>
               </li>
-              <li class="hstack" style="padding: var(--spacing-md) 0;">
+              <li class="hstack list-item">
                 <input type="checkbox" aria-label="Mark complete"/>
                 <section class="flex-1">
                   <p class="font-medium">Build contact form</p>
@@ -182,27 +182,27 @@
               <h2 class="text-lg mb-lg">Details</h2>
 
               <dl>
-                <section class="flex-between" style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <section class="flex-between list-item--sm">
                   <dt class="text-muted">Status</dt>
                   <dd><status-badge type="success">Active</status-badge></dd>
                 </section>
-                <section class="flex-between" style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <section class="flex-between list-item--sm">
                   <dt class="text-muted">Team</dt>
                   <dd>Marketing</dd>
                 </section>
-                <section class="flex-between" style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <section class="flex-between list-item--sm">
                   <dt class="text-muted">Start Date</dt>
                   <dd>Oct 1, 2025</dd>
                 </section>
-                <section class="flex-between" style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <section class="flex-between list-item--sm">
                   <dt class="text-muted">Due Date</dt>
                   <dd>Dec 31, 2025</dd>
                 </section>
-                <section class="flex-between" style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <section class="flex-between list-item--sm">
                   <dt class="text-muted">Budget</dt>
                   <dd>$45,000</dd>
                 </section>
-                <section class="flex-between" style="padding: var(--spacing-sm) 0;">
+                <section class="flex-between list-item--sm">
                   <dt class="text-muted">Priority</dt>
                   <dd><status-badge type="error">High</status-badge></dd>
                 </section>
@@ -217,30 +217,30 @@
               <button type="button" class="btn btn--ghost">+ Add</button>
             </header>
 
-            <ul class="card__body" style="padding-block-start: 0;">
-              <li class="hstack hstack--sm" style="padding: var(--spacing-sm) 0;">
-                <user-avatar style="background: var(--primary);">JD</user-avatar>
+            <ul class="card__body pt-0">
+              <li class="hstack hstack--sm list-item--sm">
+                <user-avatar data-color="primary">JD</user-avatar>
                 <section>
                   <p class="text-sm font-medium">Jane Doe</p>
                   <p class="text-xs text-muted">Project Lead</p>
                 </section>
               </li>
-              <li class="hstack hstack--sm" style="padding: var(--spacing-sm) 0;">
-                <user-avatar style="background: var(--success);">SM</user-avatar>
+              <li class="hstack hstack--sm list-item--sm">
+                <user-avatar data-color="success">SM</user-avatar>
                 <section>
                   <p class="text-sm font-medium">Sarah Miller</p>
                   <p class="text-xs text-muted">Designer</p>
                 </section>
               </li>
-              <li class="hstack hstack--sm" style="padding: var(--spacing-sm) 0;">
-                <user-avatar style="background: var(--warning);">MJ</user-avatar>
+              <li class="hstack hstack--sm list-item--sm">
+                <user-avatar data-color="warning">MJ</user-avatar>
                 <section>
                   <p class="text-sm font-medium">Mike Johnson</p>
                   <p class="text-xs text-muted">Developer</p>
                 </section>
               </li>
-              <li class="hstack hstack--sm" style="padding: var(--spacing-sm) 0;">
-                <user-avatar style="background: var(--error);">AS</user-avatar>
+              <li class="hstack hstack--sm list-item--sm">
+                <user-avatar data-color="error">AS</user-avatar>
                 <section>
                   <p class="text-sm font-medium">Alex Smith</p>
                   <p class="text-xs text-muted">Developer</p>
@@ -255,19 +255,19 @@
               <h2 class="text-lg mb-lg">Activity</h2>
 
               <ul class="text-sm">
-                <li style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <li class="list-item--sm">
                   <p><strong>Jane</strong> updated the project status</p>
                   <time class="text-xs text-muted">2 hours ago</time>
                 </li>
-                <li style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <li class="list-item--sm">
                   <p><strong>Mike</strong> completed &quot;Create component library&quot;</p>
                   <time class="text-xs text-muted">5 hours ago</time>
                 </li>
-                <li style="padding: var(--spacing-sm) 0; border-block-end: 1px solid var(--border);">
+                <li class="list-item--sm">
                   <p><strong>Sarah</strong> uploaded 3 new files</p>
                   <time class="text-xs text-muted">Yesterday</time>
                 </li>
-                <li style="padding: var(--spacing-sm) 0;">
+                <li class="list-item--sm">
                   <p><strong>Alex</strong> started working on navigation</p>
                   <time class="text-xs text-muted">Yesterday</time>
                 </li>

@@ -103,18 +103,12 @@
           </section>
           <footer>
             <dl class="hstack hstack--sm">
-              <section class="hstack hstack--sm">
-                <dt><span class="chart-wrapper__legend-dot" style="background: var(--success);"></span></dt>
-                <dd>Completed (45%)</dd>
-              </section>
-              <section class="hstack hstack--sm">
-                <dt><span class="chart-wrapper__legend-dot" style="background: var(--primary);"></span></dt>
-                <dd>In Progress (35%)</dd>
-              </section>
-              <section class="hstack hstack--sm">
-                <dt><span class="chart-wrapper__legend-dot" style="background: var(--text-muted);"></span></dt>
-                <dd>Pending (20%)</dd>
-              </section>
+              <dt><span class="legend-dot" data-color="success"></span></dt>
+              <dd>Completed (45%)</dd>
+              <dt><span class="legend-dot" data-color="primary"></span></dt>
+              <dd>In Progress (35%)</dd>
+              <dt><span class="legend-dot" data-color="muted"></span></dt>
+              <dd>Pending (20%)</dd>
             </dl>
           </footer>
         </chart-wrapper>
@@ -146,9 +140,9 @@
                 <td><status-badge type="success">Active</status-badge></td>
                 <td>
                   <avatar-stack>
-                    <user-avatar data-size="xs" style="background: var(--primary);">A</user-avatar>
-                    <user-avatar data-size="xs" style="background: var(--success);">B</user-avatar>
-                    <user-avatar data-size="xs" style="background: var(--warning);">C</user-avatar>
+                    <user-avatar data-size="xs" data-color="primary">A</user-avatar>
+                    <user-avatar data-size="xs" data-color="success">B</user-avatar>
+                    <user-avatar data-size="xs" data-color="warning">C</user-avatar>
                   </avatar-stack>
                 </td>
                 <td>Dec 31, 2025</td>
@@ -167,8 +161,8 @@
                 <td><status-badge type="success">Active</status-badge></td>
                 <td>
                   <avatar-stack>
-                    <user-avatar data-size="xs" style="background: var(--error);">D</user-avatar>
-                    <user-avatar data-size="xs" style="background: var(--primary);">E</user-avatar>
+                    <user-avatar data-size="xs" data-color="error">D</user-avatar>
+                    <user-avatar data-size="xs" data-color="primary">E</user-avatar>
                   </avatar-stack>
                 </td>
                 <td>Jan 15, 2026</td>
@@ -187,7 +181,7 @@
                 <td><status-badge type="warning">Planning</status-badge></td>
                 <td>
                   <avatar-stack>
-                    <user-avatar data-size="xs" style="background: var(--success);">F</user-avatar>
+                    <user-avatar data-size="xs" data-color="success">F</user-avatar>
                   </avatar-stack>
                 </td>
                 <td>Feb 1, 2026</td>
@@ -206,8 +200,8 @@
                 <td><status-badge>Completed</status-badge></td>
                 <td>
                   <avatar-stack>
-                    <user-avatar data-size="xs" style="background: var(--primary);">G</user-avatar>
-                    <user-avatar data-size="xs" style="background: var(--warning);">H</user-avatar>
+                    <user-avatar data-size="xs" data-color="primary">G</user-avatar>
+                    <user-avatar data-size="xs" data-color="warning">H</user-avatar>
                   </avatar-stack>
                 </td>
                 <td>Dec 15, 2025</td>

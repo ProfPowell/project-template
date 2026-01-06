@@ -277,6 +277,16 @@
           "circle",
           "square"
         ]
+      },
+      "data-color": {
+        "required": false,
+        "enum": [
+          "primary",
+          "success",
+          "warning",
+          "error",
+          "muted"
+        ]
       }
     }
   },

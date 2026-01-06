@@ -18,27 +18,27 @@
       <h2>Data Table</h2>
       <p>Semantic table for displaying tabular data with sorting, filtering, and selection.</p>
 
-      <div class="demo-grid">
+      <section class="demo-grid">
         <!-- Default Table -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Striped with Hover</h3>
           <data-table data-style="striped" data-hover data-sortable>
             <table>
               <thead>
                 <tr>
-                  <th data-sort="name">
+                  <th scope="col" data-sort="name">
                     Name
                     <span data-sort-icon></span>
                   </th>
-                  <th data-sort="role">
+                  <th scope="col" data-sort="role">
                     Role
                     <span data-sort-icon></span>
                   </th>
-                  <th data-sort="status">
+                  <th scope="col" data-sort="status">
                     Status
                     <span data-sort-icon></span>
                   </th>
-                  <th data-actions>Actions</th>
+                  <th scope="col" data-actions>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,8 +47,8 @@
                   <td>Engineering Lead</td>
                   <td><span data-badge="success">Active</span></td>
                   <td data-actions>
-                    <button data-action="edit">Edit</button>
-                    <button data-action="delete">Delete</button>
+                    <button type="button" data-action="edit">Edit</button>
+                    <button type="button" data-action="delete">Delete</button>
                   </td>
                 </tr>
                 <tr data-row-id="2">
@@ -56,8 +56,8 @@
                   <td>Product Manager</td>
                   <td><span data-badge="success">Active</span></td>
                   <td data-actions>
-                    <button data-action="edit">Edit</button>
-                    <button data-action="delete">Delete</button>
+                    <button type="button" data-action="edit">Edit</button>
+                    <button type="button" data-action="delete">Delete</button>
                   </td>
                 </tr>
                 <tr data-row-id="3">
@@ -65,8 +65,8 @@
                   <td>UX Designer</td>
                   <td><span data-badge="warning">Away</span></td>
                   <td data-actions>
-                    <button data-action="edit">Edit</button>
-                    <button data-action="delete">Delete</button>
+                    <button type="button" data-action="edit">Edit</button>
+                    <button type="button" data-action="delete">Delete</button>
                   </td>
                 </tr>
                 <tr data-row-id="4">
@@ -74,26 +74,26 @@
                   <td>Developer</td>
                   <td><span data-badge="error">Inactive</span></td>
                   <td data-actions>
-                    <button data-action="edit">Edit</button>
-                    <button data-action="delete">Delete</button>
+                    <button type="button" data-action="edit">Edit</button>
+                    <button type="button" data-action="delete">Delete</button>
                   </td>
                 </tr>
               </tbody>
             </table>
           </data-table>
-        </div>
+        </article>
 
         <!-- Compact Table -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Compact Bordered</h3>
           <data-table data-style="bordered" data-density="compact">
             <table>
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Stock</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Stock</th>
                 </tr>
               </thead>
               <tbody>
@@ -104,8 +104,8 @@
               </tbody>
             </table>
           </data-table>
-        </div>
-      </div>
+        </article>
+      </section>
     </section>
 
     <!-- Data List -->
@@ -113,9 +113,9 @@
       <h2>Data List</h2>
       <p>Flexible list display for records with multiple layout options.</p>
 
-      <div class="demo-grid">
+      <section class="demo-grid">
         <!-- List Layout -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>List with Dividers</h3>
           <data-list data-layout="list" data-dividers>
             <article data-item>
@@ -161,7 +161,7 @@
         </div>
 
         <!-- Grid Layout -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Grid Layout</h3>
           <data-list data-layout="grid">
             <article data-item>
@@ -195,9 +195,9 @@
       <h2>Definition List</h2>
       <p>Semantic display for key-value pairs using native dl/dt/dd elements.</p>
 
-      <div class="demo-grid">
+      <section class="demo-grid">
         <!-- Grid Layout -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Grid Layout</h3>
           <definition-list data-layout="grid" data-dividers>
             <dl>
@@ -230,7 +230,7 @@
         </div>
 
         <!-- Inline Layout -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Inline Layout</h3>
           <definition-list data-layout="inline">
             <dl>
@@ -255,7 +255,7 @@
         </div>
 
         <!-- Table Layout -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Table Layout (Striped)</h3>
           <definition-list data-layout="table" data-striped>
             <dl>
@@ -290,7 +290,7 @@
       <h2>Key-Value</h2>
       <p>Single key-value pair display for showing labeled data.</p>
 
-      <div class="demo-grid">
+      <section class="demo-grid">
         <!-- Stat Cards -->
         <div class="demo-item demo-item--wide">
           <h3>Large Stats (Cards)</h3>
@@ -327,7 +327,7 @@
         </div>
 
         <!-- Inline -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Inline with Copy</h3>
           <key-value data-layout="inline">
             <span data-key>API Key</span>
@@ -339,7 +339,7 @@
         </div>
 
         <!-- Stacked Small -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Small Stacked</h3>
           <div class="kv-stack">
             <key-value data-size="small">
@@ -453,9 +453,9 @@
       <h2>Tree View</h2>
       <p>Hierarchical data display with expandable/collapsible nodes.</p>
 
-      <div class="demo-grid">
+      <section class="demo-grid">
         <!-- File Browser -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>File Browser</h3>
           <tree-view data-icons data-selectable>
             <ul role="tree">
@@ -509,7 +509,7 @@
         </div>
 
         <!-- Category Tree -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Category Tree (Lines Style)</h3>
           <tree-view data-style="lines" data-selectable>
             <ul role="tree">
@@ -557,9 +557,9 @@
       <h2>Calendar</h2>
       <p>Date grid display for viewing and selecting dates.</p>
 
-      <div class="demo-grid">
+      <section class="demo-grid">
         <!-- Default Calendar -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Default Size</h3>
           <date-calendar data-selection="single">
             <header data-header>
@@ -631,7 +631,7 @@
         </div>
 
         <!-- Compact Calendar -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Compact Size</h3>
           <date-calendar data-selection="single" data-size="compact">
             <header data-header>
@@ -703,9 +703,9 @@
       <h2>Chart Wrapper</h2>
       <p>Container pattern for embedding charts and data visualizations.</p>
 
-      <div class="demo-grid">
+      <section class="demo-grid">
         <!-- Loaded Chart -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>16:9 Aspect Ratio</h3>
           <chart-wrapper data-ratio="16:9">
             <header data-header>
@@ -733,7 +733,7 @@
         </div>
 
         <!-- Loading State -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Loading State</h3>
           <chart-wrapper data-loading data-ratio="4:3">
             <header data-header>
@@ -744,7 +744,7 @@
         </div>
 
         <!-- Error State -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Error State</h3>
           <chart-wrapper data-error data-ratio="4:3">
             <header data-header>
@@ -755,7 +755,7 @@
         </div>
 
         <!-- Empty State -->
-        <div class="demo-item">
+        <article class="demo-item">
           <h3>Empty State</h3>
           <chart-wrapper data-empty data-ratio="4:3">
             <header data-header>

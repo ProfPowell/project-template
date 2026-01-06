@@ -416,5 +416,52 @@
       "@phrasing"
     ],
     "attributes": {}
+  },
+  "stat-card": {
+    "flow": true,
+    "permittedContent": [
+      "@flow"
+    ],
+    "attributes": {
+      "data-trend": {
+        "required": false,
+        "enum": [
+          "up",
+          "down",
+          "neutral"
+        ]
+      }
+    }
+  },
+  "chart-wrapper": {
+    "flow": true,
+    "permittedContent": [
+      "header",
+      "footer",
+      "@flow"
+    ],
+    "attributes": {
+      "data-size": {
+        "required": false,
+        "enum": [
+          "small",
+          "medium",
+          "large"
+        ]
+      }
+    }
+  },
+  "avatar-stack": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": [
+      "user-avatar",
+      "@phrasing"
+    ],
+    "attributes": {
+      "data-max": {
+        "required": false
+      }
+    }
   }
 }

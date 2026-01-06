@@ -172,43 +172,43 @@
   </style>
 </head>
 <body>
-  <div class="gallery">
+  <main class="gallery">
     <header class="gallery-header">
       <h1>Component Library</h1>
       <p>Atomic UI components that bridge design tokens and high-level patterns.</p>
     </header>
 
-    <div class="architecture">
+    <article class="architecture">
       <h3>Architecture</h3>
-      <div class="architecture-stack">
-        <div class="architecture-level architecture-level--templates">Templates (pages)</div>
-        <div class="architecture-arrow">composed of</div>
-        <div class="architecture-level architecture-level--patterns">Patterns (card, hero, sidebar)</div>
-        <div class="architecture-arrow">composed of</div>
-        <div class="architecture-level architecture-level--components">Components (button, badge, input)</div>
-        <div class="architecture-arrow">styled by</div>
-        <div class="architecture-level architecture-level--tokens">Tokens (colors, spacing, type)</div>
-      </div>
+      <ol class="architecture-stack">
+        <li class="architecture-level architecture-level--templates">Templates (pages)</li>
+        <li class="architecture-arrow">composed of</li>
+        <li class="architecture-level architecture-level--patterns">Patterns (card, hero, sidebar)</li>
+        <li class="architecture-arrow">composed of</li>
+        <li class="architecture-level architecture-level--components">Components (button, badge, input)</li>
+        <li class="architecture-arrow">styled by</li>
+        <li class="architecture-level architecture-level--tokens">Tokens (colors, spacing, type)</li>
+      </ol>
 
-      <div class="principles">
-        <div class="principle">
+      <ul class="principles">
+        <li class="principle">
           <strong>HTML-first</strong>
           <span>Native elements work without JavaScript</span>
-        </div>
-        <div class="principle">
+        </li>
+        <li class="principle">
           <strong>Data Attributes</strong>
           <span>Variants via data-* not CSS classes</span>
-        </div>
-        <div class="principle">
+        </li>
+        <li class="principle">
           <strong>Token-based</strong>
           <span>All values from design tokens</span>
-        </div>
-        <div class="principle">
+        </li>
+        <li class="principle">
           <strong>Accessible</strong>
           <span>WCAG2AA, keyboard, screen reader</span>
-        </div>
-      </div>
-    </div>
+        </li>
+      </ul>
+    </article>
 
     <section class="gallery-section">
       <h2>Core Components</h2>
@@ -459,6 +459,6 @@
 &lt;/form-field&gt;</code></pre>
       </div>
     </section>
-  </div>
+  </main>
 </body>
 </html>

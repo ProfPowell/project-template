@@ -12,9 +12,9 @@
   <div class="dashboard-layout">
     <!-- Sidebar -->
     <aside class="dashboard-sidebar">
-      <div class="dashboard-sidebar__header">
-        <a href="/" style="font-size: var(--text-xl); font-weight: var(--font-weight-bold); color: var(--text); text-decoration: none;">Company</a>
-      </div>
+      <header class="dashboard-sidebar__header">
+        <a href="/" class="site-header__logo">Company</a>
+      </header>
       <nav class="dashboard-sidebar__nav" aria-label="Dashboard">
         <ul>
           <li><a href="/dashboard" class="active">Dashboard</a></li>
@@ -23,209 +23,205 @@
           <li><a href="/reports">Reports</a></li>
           <li><a href="/analytics">Analytics</a></li>
         </ul>
-        <hr style="border: none; border-top: 1px solid var(--border); margin: var(--spacing-md) 0;"/>
+        <hr/>
         <ul>
           <li><a href="/settings">Settings</a></li>
           <li><a href="/help">Help &amp; Support</a></li>
         </ul>
       </nav>
-      <div class="dashboard-sidebar__footer">
-        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-          <div style="width: 2rem; height: 2rem; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: var(--text-sm); font-weight: var(--font-weight-semibold);">JD</div>
-          <div>
-            <div style="font-size: var(--text-sm); font-weight: var(--font-weight-medium);">Jane Doe</div>
-            <div style="font-size: var(--text-xs); color: var(--text-muted);">Admin</div>
-          </div>
-        </div>
-      </div>
+      <footer class="dashboard-sidebar__footer">
+        <article class="hstack hstack--sm">
+          <user-avatar data-size="small">JD</user-avatar>
+          <section>
+            <p class="text-sm font-medium">Jane Doe</p>
+            <p class="text-xs text-muted">Admin</p>
+          </section>
+        </article>
+      </footer>
     </aside>
 
     <!-- Header -->
-    <header class="dashboard-header">
-      <div style="display: flex; align-items: center; gap: var(--spacing-md);">
-        <h1 style="margin: 0; font-size: var(--text-xl);">Dashboard</h1>
-      </div>
-      <div style="display: flex; align-items: center; gap: var(--spacing-md);">
-        <button type="button" class="btn btn--secondary">Export</button>
-        <button type="button" class="btn btn--primary">New Project</button>
-      </div>
+    <header class="dashboard-header flex-between">
+      <h1 class="text-xl">Dashboard</h1>
+      <menu class="hstack">
+        <li><button type="button" class="btn btn--secondary">Export</button></li>
+        <li><button type="button" class="btn btn--primary">New Project</button></li>
+      </menu>
     </header>
 
     <!-- Main Content -->
     <main id="main" class="dashboard-main">
       <!-- Stats Row -->
-      <div class="stats-grid" style="margin-bottom: var(--spacing-xl);">
-        <div class="stat-card">
-          <div class="stat-card__label">Total Revenue</div>
-          <div class="stat-card__value">$45,231</div>
-          <div class="stat-card__change stat-card__change--positive">+12.5% from last month</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-card__label">Active Projects</div>
-          <div class="stat-card__value">23</div>
-          <div class="stat-card__change stat-card__change--positive">+3 this week</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-card__label">Team Members</div>
-          <div class="stat-card__value">12</div>
-          <div class="stat-card__change">No change</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-card__label">Completion Rate</div>
-          <div class="stat-card__value">87%</div>
-          <div class="stat-card__change stat-card__change--positive">+5% from last month</div>
-        </div>
-      </div>
+      <section class="stats-grid mb-xl">
+        <stat-card data-trend="up">
+          <header>Total Revenue</header>
+          <p data-value>$45,231</p>
+          <footer>+12.5% from last month</footer>
+        </stat-card>
+        <stat-card data-trend="up">
+          <header>Active Projects</header>
+          <p data-value>23</p>
+          <footer>+3 this week</footer>
+        </stat-card>
+        <stat-card data-trend="neutral">
+          <header>Team Members</header>
+          <p data-value>12</p>
+          <footer>No change</footer>
+        </stat-card>
+        <stat-card data-trend="up">
+          <header>Completion Rate</header>
+          <p data-value>87%</p>
+          <footer>+5% from last month</footer>
+        </stat-card>
+      </section>
 
       <!-- Charts Row -->
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
-        <div class="chart-wrapper">
-          <div class="chart-wrapper__header">
-            <h2 class="chart-wrapper__title">Revenue Overview</h2>
-            <select class="form-select" style="width: auto;">
+      <section class="grid-2-1 mb-xl">
+        <chart-wrapper>
+          <header>
+            <h2>Revenue Overview</h2>
+            <select class="form-select" aria-label="Time period">
               <option>Last 7 days</option>
               <option selected>Last 30 days</option>
               <option>Last 90 days</option>
             </select>
-          </div>
-          <div class="chart-wrapper__body">
-            <div class="chart-wrapper__placeholder">Chart: Revenue trend line</div>
-          </div>
-        </div>
-        <div class="chart-wrapper">
-          <div class="chart-wrapper__header">
-            <h2 class="chart-wrapper__title">Project Status</h2>
-          </div>
-          <div class="chart-wrapper__body">
-            <div class="chart-wrapper__placeholder">Chart: Status breakdown</div>
-          </div>
-          <div class="chart-wrapper__legend">
-            <div class="chart-wrapper__legend-item">
-              <span class="chart-wrapper__legend-dot" style="background: var(--success);"></span>
-              Completed (45%)
-            </div>
-            <div class="chart-wrapper__legend-item">
-              <span class="chart-wrapper__legend-dot" style="background: var(--primary);"></span>
-              In Progress (35%)
-            </div>
-            <div class="chart-wrapper__legend-item">
-              <span class="chart-wrapper__legend-dot" style="background: var(--text-muted);"></span>
-              Pending (20%)
-            </div>
-          </div>
-        </div>
-      </div>
+          </header>
+          <section>
+            <figure class="chart-placeholder" aria-label="Revenue trend chart">
+              <figcaption class="visually-hidden">Chart: Revenue trend line</figcaption>
+            </figure>
+          </section>
+        </chart-wrapper>
+        <chart-wrapper>
+          <header>
+            <h2>Project Status</h2>
+          </header>
+          <section>
+            <figure class="chart-placeholder" aria-label="Project status breakdown">
+              <figcaption class="visually-hidden">Chart: Status breakdown</figcaption>
+            </figure>
+          </section>
+          <footer>
+            <dl class="hstack hstack--sm">
+              <section class="hstack hstack--sm">
+                <dt><span class="chart-wrapper__legend-dot" style="background: var(--success);"></span></dt>
+                <dd>Completed (45%)</dd>
+              </section>
+              <section class="hstack hstack--sm">
+                <dt><span class="chart-wrapper__legend-dot" style="background: var(--primary);"></span></dt>
+                <dd>In Progress (35%)</dd>
+              </section>
+              <section class="hstack hstack--sm">
+                <dt><span class="chart-wrapper__legend-dot" style="background: var(--text-muted);"></span></dt>
+                <dd>Pending (20%)</dd>
+              </section>
+            </dl>
+          </footer>
+        </chart-wrapper>
+      </section>
 
       <!-- Recent Activity Table -->
-      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;">
-        <div style="padding: var(--spacing-lg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
-          <h2 style="margin: 0; font-size: var(--text-lg);">Recent Projects</h2>
-          <a href="/projects" style="font-size: var(--text-sm);">View all</a>
-        </div>
-        <div class="table-container">
+      <article class="card">
+        <header class="card__body flex-between">
+          <h2 class="text-lg">Recent Projects</h2>
+          <a href="/projects" class="text-sm">View all</a>
+        </header>
+        <table-wrapper>
           <table class="data-table">
             <thead>
               <tr>
-                <th>Project</th>
-                <th>Status</th>
-                <th>Team</th>
-                <th>Due Date</th>
-                <th>Progress</th>
+                <th scope="col">Project</th>
+                <th scope="col">Status</th>
+                <th scope="col">Team</th>
+                <th scope="col">Due Date</th>
+                <th scope="col">Progress</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  <div style="font-weight: var(--font-weight-medium);">Website Redesign</div>
-                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Marketing</div>
+                  <p class="font-medium">Website Redesign</p>
+                  <p class="text-sm text-muted">Marketing</p>
                 </td>
-                <td><span class="badge badge--success">Active</span></td>
+                <td><status-badge type="success">Active</status-badge></td>
                 <td>
-                  <div style="display: flex;">
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--primary); border-radius: 50%; border: 2px solid var(--surface);"></div>
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--success); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--warning); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
-                  </div>
+                  <avatar-stack>
+                    <user-avatar data-size="xs" style="background: var(--primary);">A</user-avatar>
+                    <user-avatar data-size="xs" style="background: var(--success);">B</user-avatar>
+                    <user-avatar data-size="xs" style="background: var(--warning);">C</user-avatar>
+                  </avatar-stack>
                 </td>
                 <td>Dec 31, 2025</td>
                 <td>
-                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
-                      <div style="width: 75%; height: 100%; background: var(--success);"></div>
-                    </div>
-                    <span style="font-size: var(--text-sm);">75%</span>
-                  </div>
+                  <progress-bar data-color="success">
+                    <progress value="75" max="100">75%</progress>
+                    <span>75%</span>
+                  </progress-bar>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div style="font-weight: var(--font-weight-medium);">Mobile App v2</div>
-                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Engineering</div>
+                  <p class="font-medium">Mobile App v2</p>
+                  <p class="text-sm text-muted">Engineering</p>
                 </td>
-                <td><span class="badge badge--success">Active</span></td>
+                <td><status-badge type="success">Active</status-badge></td>
                 <td>
-                  <div style="display: flex;">
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--error); border-radius: 50%; border: 2px solid var(--surface);"></div>
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--primary); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
-                  </div>
+                  <avatar-stack>
+                    <user-avatar data-size="xs" style="background: var(--error);">D</user-avatar>
+                    <user-avatar data-size="xs" style="background: var(--primary);">E</user-avatar>
+                  </avatar-stack>
                 </td>
                 <td>Jan 15, 2026</td>
                 <td>
-                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
-                      <div style="width: 45%; height: 100%; background: var(--primary);"></div>
-                    </div>
-                    <span style="font-size: var(--text-sm);">45%</span>
-                  </div>
+                  <progress-bar>
+                    <progress value="45" max="100">45%</progress>
+                    <span>45%</span>
+                  </progress-bar>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div style="font-weight: var(--font-weight-medium);">Q1 Campaign</div>
-                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Marketing</div>
+                  <p class="font-medium">Q1 Campaign</p>
+                  <p class="text-sm text-muted">Marketing</p>
                 </td>
-                <td><span class="badge badge--warning">Planning</span></td>
+                <td><status-badge type="warning">Planning</status-badge></td>
                 <td>
-                  <div style="display: flex;">
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--success); border-radius: 50%; border: 2px solid var(--surface);"></div>
-                  </div>
+                  <avatar-stack>
+                    <user-avatar data-size="xs" style="background: var(--success);">F</user-avatar>
+                  </avatar-stack>
                 </td>
                 <td>Feb 1, 2026</td>
                 <td>
-                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
-                      <div style="width: 10%; height: 100%; background: var(--warning);"></div>
-                    </div>
-                    <span style="font-size: var(--text-sm);">10%</span>
-                  </div>
+                  <progress-bar data-color="warning">
+                    <progress value="10" max="100">10%</progress>
+                    <span>10%</span>
+                  </progress-bar>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div style="font-weight: var(--font-weight-medium);">API Integration</div>
-                  <div style="font-size: var(--text-sm); color: var(--text-muted);">Engineering</div>
+                  <p class="font-medium">API Integration</p>
+                  <p class="text-sm text-muted">Engineering</p>
                 </td>
-                <td><span class="badge">Completed</span></td>
+                <td><status-badge>Completed</status-badge></td>
                 <td>
-                  <div style="display: flex;">
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--primary); border-radius: 50%; border: 2px solid var(--surface);"></div>
-                    <div style="width: 1.5rem; height: 1.5rem; background: var(--warning); border-radius: 50%; border: 2px solid var(--surface); margin-left: -0.5rem;"></div>
-                  </div>
+                  <avatar-stack>
+                    <user-avatar data-size="xs" style="background: var(--primary);">G</user-avatar>
+                    <user-avatar data-size="xs" style="background: var(--warning);">H</user-avatar>
+                  </avatar-stack>
                 </td>
                 <td>Dec 15, 2025</td>
                 <td>
-                  <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <div style="flex: 1; height: 0.5rem; background: var(--border); border-radius: var(--radius-full); overflow: hidden;">
-                      <div style="width: 100%; height: 100%; background: var(--success);"></div>
-                    </div>
-                    <span style="font-size: var(--text-sm);">100%</span>
-                  </div>
+                  <progress-bar data-color="success">
+                    <progress value="100" max="100">100%</progress>
+                    <span>100%</span>
+                  </progress-bar>
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
+        </table-wrapper>
+      </article>
     </main>
   </div>
 </body>

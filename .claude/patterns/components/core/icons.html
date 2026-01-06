@@ -53,44 +53,44 @@
       <h2>Sizes</h2>
       <p>Icons scale with their context using preset sizes.</p>
 
-      <div class="demo-row" style="align-items: flex-end; gap: 1.5rem;">
-        <div style="text-align: center;">
+      <ul class="icon-showcase">
+        <li class="icon-showcase-item">
           <x-icon name="star" size="xs">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </x-icon>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">xs (16px)</div>
-        </div>
-        <div style="text-align: center;">
+          <span class="icon-showcase-label">xs (16px)</span>
+        </li>
+        <li class="icon-showcase-item">
           <x-icon name="star" size="sm">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </x-icon>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">sm (20px)</div>
-        </div>
-        <div style="text-align: center;">
+          <span class="icon-showcase-label">sm (20px)</span>
+        </li>
+        <li class="icon-showcase-item">
           <x-icon name="star" size="md">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </x-icon>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">md (24px)</div>
-        </div>
-        <div style="text-align: center;">
+          <span class="icon-showcase-label">md (24px)</span>
+        </li>
+        <li class="icon-showcase-item">
           <x-icon name="star" size="lg">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </x-icon>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">lg (32px)</div>
-        </div>
-        <div style="text-align: center;">
+          <span class="icon-showcase-label">lg (32px)</span>
+        </li>
+        <li class="icon-showcase-item">
           <x-icon name="star" size="xl">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </x-icon>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">xl (40px)</div>
-        </div>
-        <div style="text-align: center;">
+          <span class="icon-showcase-label">xl (40px)</span>
+        </li>
+        <li class="icon-showcase-item">
           <x-icon name="star" size="2xl">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </x-icon>
-          <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">2xl (48px)</div>
-        </div>
-      </div>
+          <span class="icon-showcase-label">2xl (48px)</span>
+        </li>
+      </ul>
     </section>
 
     <section class="demo-section">
@@ -178,44 +178,44 @@
       </div>
 
       <h3>Status</h3>
-      <div class="icon-grid">
-        <div class="icon-item" style="color: var(--success);">
+      <ul class="icon-grid">
+        <li class="icon-item color-success">
           <x-icon name="check">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
           </x-icon>
           <code>check</code>
-        </div>
-        <div class="icon-item" style="color: var(--error);">
+        </li>
+        <li class="icon-item color-error">
           <x-icon name="x">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </x-icon>
           <code>x</code>
-        </div>
-        <div class="icon-item" style="color: var(--warning);">
+        </li>
+        <li class="icon-item color-warning">
           <x-icon name="alert-triangle">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </x-icon>
           <code>alert-triangle</code>
-        </div>
-        <div class="icon-item" style="color: var(--info);">
+        </li>
+        <li class="icon-item color-info">
           <x-icon name="info">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           </x-icon>
           <code>info</code>
-        </div>
-        <div class="icon-item">
+        </li>
+        <li class="icon-item">
           <x-icon name="loader">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>
           </x-icon>
           <code>loader</code>
-        </div>
-        <div class="icon-item" style="color: var(--success);">
+        </li>
+        <li class="icon-item color-success">
           <x-icon name="check-circle">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </x-icon>
           <code>check-circle</code>
-        </div>
-      </div>
+        </li>
+      </ul>
     </section>
 
     <section class="demo-section">

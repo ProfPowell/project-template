@@ -19,7 +19,7 @@
     "no-inline-style": "error",
     "element-required-attributes": "error",
     "attribute-allowed-values": "error",
-    "attribute-boolean-style": ["error", { "style": "empty" }],
+    "attribute-boolean-style": ["error", { "style": "name" }],
     "attribute-empty-style": ["error", { "style": "empty" }],
     "doctype-style": ["error", { "style": "lowercase" }],
     "no-deprecated-attr": "error",

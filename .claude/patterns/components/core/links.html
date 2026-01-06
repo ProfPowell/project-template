@@ -46,57 +46,57 @@
       <h2>In Context</h2>
 
       <h3>Navigation Bar</h3>
-      <div class="demo-card">
-        <nav style="display: flex; gap: 1.5rem;">
+      <article class="demo-card">
+        <nav aria-label="Main navigation" class="demo-nav">
           <a href="#" data-link="nav">Dashboard</a>
           <a href="#" data-link="nav" aria-current="page">Projects</a>
           <a href="#" data-link="nav">Team</a>
           <a href="#" data-link="nav">Settings</a>
         </nav>
-      </div>
+      </article>
 
       <h3>Breadcrumbs</h3>
-      <div class="demo-card">
+      <article class="demo-card">
         <nav aria-label="Breadcrumb">
           <a href="#" data-link="subtle">Home</a>
-          <span style="color: var(--text-muted);"> / </span>
+          <span class="text-muted"> / </span>
           <a href="#" data-link="subtle">Products</a>
-          <span style="color: var(--text-muted);"> / </span>
+          <span class="text-muted"> / </span>
           <span aria-current="page">Widget Pro</span>
         </nav>
-      </div>
+      </article>
 
       <h3>Card Footer</h3>
-      <div class="demo-card">
-        <h4 style="margin: 0 0 0.5rem;">Getting Started Guide</h4>
-        <p style="margin: 0 0 1rem; color: var(--text-muted); font-size: 0.875rem;">Learn how to set up your first project in under 5 minutes.</p>
-        <div style="display: flex; gap: 1rem;">
-          <a href="#" data-link>Read the guide</a>
-          <a href="#" data-link="subtle">Watch video</a>
-        </div>
-      </div>
+      <article class="demo-card">
+        <h4 class="mb-sm">Getting Started Guide</h4>
+        <p class="text-muted text-sm mb-md">Learn how to set up your first project in under 5 minutes.</p>
+        <menu class="flex gap-md">
+          <li><a href="#" data-link="data-link">Read the guide</a></li>
+          <li><a href="#" data-link="subtle">Watch video</a></li>
+        </menu>
+      </article>
 
       <h3>Footer Links</h3>
-      <div class="demo-card" style="background: var(--text); color: var(--text-inverted);">
-        <div style="display: flex; gap: 2rem;">
-          <div>
-            <h5 style="margin: 0 0 0.75rem; font-size: 0.875rem;">Product</h5>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <a href="#" style="color: oklch(0.7 0 0); text-decoration: none;">Features</a>
-              <a href="#" style="color: oklch(0.7 0 0); text-decoration: none;">Pricing</a>
-              <a href="#" style="color: oklch(0.7 0 0); text-decoration: none;">Changelog</a>
-            </div>
-          </div>
-          <div>
-            <h5 style="margin: 0 0 0.75rem; font-size: 0.875rem;">Resources</h5>
-            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-              <a href="#" style="color: oklch(0.7 0 0); text-decoration: none;">Documentation</a>
-              <a href="#" style="color: oklch(0.7 0 0); text-decoration: none;">API Reference</a>
-              <a href="#" style="color: oklch(0.7 0 0); text-decoration: none;">Support</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <footer class="demo-card demo-footer-dark">
+        <nav aria-label="Footer navigation" class="flex gap-xl">
+          <section>
+            <h4 class="text-sm mb-sm">Product</h4>
+            <ul class="flex flex-col gap-sm">
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Changelog</a></li>
+            </ul>
+          </section>
+          <section>
+            <h4 class="text-sm mb-sm">Resources</h4>
+            <ul class="flex flex-col gap-sm">
+              <li><a href="#">Documentation</a></li>
+              <li><a href="#">API Reference</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+          </section>
+        </nav>
+      </footer>
     </section>
 
     <section class="demo-section">

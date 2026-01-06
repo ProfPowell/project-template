@@ -47,13 +47,13 @@
       <h2>Initials</h2>
       <p>When no image is available, display user initials.</p>
 
-      <div class="demo-row">
-        <user-avatar style="background: oklch(0.6 0.15 145);">JD</user-avatar>
-        <user-avatar style="background: oklch(0.55 0.2 250);">AK</user-avatar>
-        <user-avatar style="background: oklch(0.75 0.15 85);">SM</user-avatar>
-        <user-avatar style="background: oklch(0.55 0.2 25);">RB</user-avatar>
-        <user-avatar style="background: oklch(0.6 0.15 300);">TC</user-avatar>
-      </div>
+      <ul class="demo-row">
+        <li><user-avatar data-color="green">JD</user-avatar></li>
+        <li><user-avatar data-color="blue">AK</user-avatar></li>
+        <li><user-avatar data-color="yellow">SM</user-avatar></li>
+        <li><user-avatar data-color="red">RB</user-avatar></li>
+        <li><user-avatar data-color="purple">TC</user-avatar></li>
+      </ul>
     </section>
 
     <section class="demo-section">
@@ -90,64 +90,64 @@
       </div>
 
       <h3>With Initials</h3>
-      <div class="demo-row">
-        <user-avatar data-status="online" style="background: oklch(0.6 0.15 145);">JD</user-avatar>
-        <user-avatar data-status="away" style="background: oklch(0.55 0.2 250);">AK</user-avatar>
-        <user-avatar data-status="busy" style="background: oklch(0.55 0.2 25);">SM</user-avatar>
-      </div>
+      <ul class="demo-row">
+        <li><user-avatar data-status="online" data-color="green">JD</user-avatar></li>
+        <li><user-avatar data-status="away" data-color="blue">AK</user-avatar></li>
+        <li><user-avatar data-status="busy" data-color="red">SM</user-avatar></li>
+      </ul>
     </section>
 
     <section class="demo-section">
       <h2>Avatar Groups</h2>
       <p>Stack avatars for team displays.</p>
 
-      <div class="demo-row">
-        <div style="display: flex;">
-          <user-avatar style="border: 2px solid var(--surface);">
+      <article class="demo-row">
+        <avatar-stack>
+          <user-avatar>
             <img src="https://i.pravatar.cc/80?img=30" alt="Team member 1"/>
           </user-avatar>
-          <user-avatar style="margin-left: -0.75rem; border: 2px solid var(--surface);">
+          <user-avatar>
             <img src="https://i.pravatar.cc/80?img=31" alt="Team member 2"/>
           </user-avatar>
-          <user-avatar style="margin-left: -0.75rem; border: 2px solid var(--surface);">
+          <user-avatar>
             <img src="https://i.pravatar.cc/80?img=32" alt="Team member 3"/>
           </user-avatar>
-          <user-avatar style="margin-left: -0.75rem; border: 2px solid var(--surface); background: var(--surface-alt); color: var(--text-muted); font-size: 0.75rem;">+5</user-avatar>
-        </div>
-      </div>
+          <user-avatar data-count="true">+5</user-avatar>
+        </avatar-stack>
+      </article>
     </section>
 
     <section class="demo-section">
       <h2>In Context</h2>
 
       <h3>User List Item</h3>
-      <div class="demo-card">
-        <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <article class="demo-card">
+        <figure class="user-list-item">
           <user-avatar data-status="online">
             <img src="https://i.pravatar.cc/80?img=40" alt="Jane Doe"/>
           </user-avatar>
-          <div>
-            <div style="font-weight: 500;">Jane Doe</div>
-            <div style="font-size: 0.875rem; color: var(--text-muted);">Product Designer</div>
-          </div>
-        </div>
-      </div>
+          <figcaption class="user-list-item-info">
+            <span class="user-list-item-name">Jane Doe</span>
+            <span class="user-list-item-role">Product Designer</span>
+          </figcaption>
+        </figure>
+      </article>
 
       <h3>Comment</h3>
-      <div class="demo-card">
-        <div style="display: flex; gap: 0.75rem;">
+      <article class="demo-card">
+        <figure class="comment">
           <user-avatar data-size="sm">
             <img src="https://i.pravatar.cc/64?img=41" alt="Alex Kim"/>
           </user-avatar>
-          <div>
-            <div style="font-size: 0.875rem;">
+          <figcaption class="comment-content">
+            <header class="comment-header">
               <strong>Alex Kim</strong>
-              <span style="color: var(--text-muted);"> · 2 hours ago</span>
-            </div>
-            <p style="margin: 0.25rem 0 0; font-size: 0.875rem;">This looks great! Just a few minor suggestions on the spacing.</p>
-          </div>
-        </div>
-      </div>
+              <span class="comment-meta"> · 2 hours ago</span>
+            </header>
+            <p class="comment-body">This looks great! Just a few minor suggestions on the spacing.</p>
+          </figcaption>
+        </figure>
+      </article>
     </section>
 
     <section class="demo-section">

@@ -53,10 +53,13 @@
   "x-icon": {
     "flow": true,
     "phrasing": true,
-    "void": true,
+    "permittedContent": [
+      "svg",
+      "@phrasing"
+    ],
     "attributes": {
       "name": {
-        "required": true
+        "required": false
       },
       "set": {
         "required": false
@@ -256,9 +259,9 @@
         "required": false,
         "enum": [
           "xs",
-          "small",
-          "medium",
-          "large",
+          "sm",
+          "md",
+          "lg",
           "xl"
         ]
       },
@@ -285,7 +288,12 @@
           "success",
           "warning",
           "error",
-          "muted"
+          "muted",
+          "green",
+          "blue",
+          "yellow",
+          "red",
+          "purple"
         ]
       }
     }

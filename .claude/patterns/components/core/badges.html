@@ -39,10 +39,10 @@
       <p>Add <code>data-dot</code> for a visual status indicator.</p>
 
       <div class="demo-row">
-        <status-badge data-dot>Pending</status-badge>
-        <status-badge data-type="success" data-dot>Active</status-badge>
-        <status-badge data-type="warning" data-dot>Away</status-badge>
-        <status-badge data-type="error" data-dot>Offline</status-badge>
+        <status-badge data-dot="true">Pending</status-badge>
+        <status-badge data-type="success" data-dot="true">Active</status-badge>
+        <status-badge data-type="warning" data-dot="true">Away</status-badge>
+        <status-badge data-type="error" data-dot="true">Offline</status-badge>
       </div>
     </section>
 
@@ -61,52 +61,52 @@
       <h2>In Context</h2>
 
       <h3>Table Status</h3>
-      <div class="demo-card">
-        <table style="width: 100%; border-collapse: collapse;">
+      <table-wrapper class="demo-card">
+        <table class="demo-table">
           <thead>
-            <tr style="text-align: left; border-bottom: 1px solid var(--border);">
-              <th style="padding: 0.75rem 0;">Name</th>
-              <th style="padding: 0.75rem 0;">Status</th>
-              <th style="padding: 0.75rem 0;">Role</th>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Status</th>
+              <th scope="col">Role</th>
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 0.75rem 0;">Jane Doe</td>
-              <td style="padding: 0.75rem 0;"><status-badge data-type="success" data-dot>Active</status-badge></td>
-              <td style="padding: 0.75rem 0;">Admin</td>
-            </tr>
-            <tr style="border-bottom: 1px solid var(--border);">
-              <td style="padding: 0.75rem 0;">John Smith</td>
-              <td style="padding: 0.75rem 0;"><status-badge data-type="warning" data-dot>Away</status-badge></td>
-              <td style="padding: 0.75rem 0;">Editor</td>
+            <tr>
+              <td>Jane Doe</td>
+              <td><status-badge data-type="success" data-dot="true">Active</status-badge></td>
+              <td>Admin</td>
             </tr>
             <tr>
-              <td style="padding: 0.75rem 0;">Alex Johnson</td>
-              <td style="padding: 0.75rem 0;"><status-badge data-type="error" data-dot>Offline</status-badge></td>
-              <td style="padding: 0.75rem 0;">Viewer</td>
+              <td>John Smith</td>
+              <td><status-badge data-type="warning" data-dot="true">Away</status-badge></td>
+              <td>Editor</td>
+            </tr>
+            <tr>
+              <td>Alex Johnson</td>
+              <td><status-badge data-type="error" data-dot="true">Offline</status-badge></td>
+              <td>Viewer</td>
             </tr>
           </tbody>
         </table>
-      </div>
+      </table-wrapper>
 
       <h3>Card Labels</h3>
-      <div class="demo-grid">
-        <div class="demo-card">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+      <ul class="demo-grid">
+        <li class="demo-card">
+          <header class="demo-card-header">
             <strong>Feature Request</strong>
             <status-badge data-type="info" data-size="small">New</status-badge>
-          </div>
-          <p style="margin: 0; color: var(--text-muted); font-size: 0.875rem;">Add dark mode support</p>
-        </div>
-        <div class="demo-card">
-          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+          </header>
+          <p class="text-muted text-sm mb-0">Add dark mode support</p>
+        </li>
+        <li class="demo-card">
+          <header class="demo-card-header">
             <strong>Bug Fix</strong>
             <status-badge data-type="success" data-size="small">Resolved</status-badge>
-          </div>
-          <p style="margin: 0; color: var(--text-muted); font-size: 0.875rem;">Login button not working</p>
-        </div>
-      </div>
+          </header>
+          <p class="text-muted text-sm mb-0">Login button not working</p>
+        </li>
+      </ul>
     </section>
 
     <section class="demo-section">

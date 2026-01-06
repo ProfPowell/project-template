@@ -69,16 +69,16 @@
 
       <h3>Icon Only</h3>
       <div class="demo-row">
-        <button type="button" data-button="primary" data-icon-only aria-label="Add">
+        <button type="button" data-button="primary" data-icon-only="true" aria-label="Add">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
         </button>
-        <button type="button" data-button="secondary" data-icon-only aria-label="Edit">
+        <button type="button" data-button="secondary" data-icon-only="true" aria-label="Edit">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
         </button>
-        <button type="button" data-button="ghost" data-icon-only aria-label="More options">
+        <button type="button" data-button="ghost" data-icon-only="true" aria-label="More options">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
         </button>
-        <button type="button" data-button="danger" data-icon-only aria-label="Delete">
+        <button type="button" data-button="danger" data-icon-only="true" aria-label="Delete">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
         </button>
       </div>
@@ -89,33 +89,36 @@
 
       <h3>Disabled</h3>
       <div class="demo-row">
-        <button type="button" data-button="primary" disabled>Primary Disabled</button>
-        <button type="button" data-button="secondary" disabled>Secondary Disabled</button>
+        <button type="button" data-button="primary" disabled="disabled">Primary Disabled</button>
+        <button type="button" data-button="secondary" disabled="disabled">Secondary Disabled</button>
         <a href="#" data-button="primary" aria-disabled="true">Link Disabled</a>
       </div>
 
       <h3>Loading</h3>
-      <div class="demo-row">
-        <button type="button" data-button="primary" data-loading>
-          <loading-spinner data-size="small"></loading-spinner>
-          Saving...
-        </button>
-        <button type="button" data-button="secondary" data-loading>
-          <loading-spinner data-size="small"></loading-spinner>
-          Loading
-        </button>
-      </div>
+      <ul class="demo-row">
+        <li>
+          <button type="button" data-button="primary" data-loading="true">
+            <loading-spinner data-size="small"/>
+            Saving...
+          </button>
+        </li>
+        <li>
+          <button type="button" data-button="secondary" data-loading="true">
+            <loading-spinner data-size="small"/>
+            Loading
+          </button>
+        </li>
+      </ul>
     </section>
 
     <section class="demo-section">
       <h2>Full Width</h2>
       <p>Use <code>data-full-width</code> for form submit buttons.</p>
 
-      <div style="max-width: 20rem;">
-        <button type="button" data-button="primary" data-full-width>Sign In</button>
-        <div style="height: 0.5rem;"></div>
-        <button type="button" data-button="secondary" data-full-width>Create Account</button>
-      </div>
+      <menu class="demo-card">
+        <li><button type="button" data-button="primary" data-full-width="true">Sign In</button></li>
+        <li><button type="button" data-button="secondary" data-full-width="true">Create Account</button></li>
+      </menu>
     </section>
 
     <section class="demo-section">

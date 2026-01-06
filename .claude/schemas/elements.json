@@ -440,6 +440,32 @@
           "down",
           "neutral"
         ]
+      },
+      "data-size": {
+        "required": false,
+        "enum": [
+          "compact",
+          "default",
+          "large"
+        ]
+      }
+    }
+  },
+  "stats-grid": {
+    "flow": true,
+    "permittedContent": [
+      "stat-card",
+      "@flow"
+    ],
+    "attributes": {
+      "data-columns": {
+        "required": false,
+        "enum": [
+          "2",
+          "3",
+          "4",
+          "auto"
+        ]
       }
     }
   },

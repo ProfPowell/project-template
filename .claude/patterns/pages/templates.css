@@ -1414,6 +1414,40 @@
   stat-card[data-trend="down"] footer { color: var(--error); }
   stat-card[data-trend="neutral"] footer { color: var(--text-muted); }
 
+  /* stat-card compact variant */
+  stat-card[data-size="compact"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+    text-align: center;
+    background: transparent;
+    border: none;
+  }
+
+  stat-card[data-size="compact"] data {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.2;
+  }
+
+  stat-card[data-size="compact"] span {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  /* stats-grid */
+  stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+  }
+
+  stats-grid[data-columns="2"] { grid-template-columns: repeat(2, 1fr); }
+  stats-grid[data-columns="3"] { grid-template-columns: repeat(3, 1fr); }
+  stats-grid[data-columns="4"] { grid-template-columns: repeat(4, 1fr); }
+  stats-grid[data-columns="auto"] { grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); }
+
   /* chart-wrapper */
   chart-wrapper {
     display: block;

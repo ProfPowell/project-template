@@ -93,24 +93,24 @@
                 </progress-bar>
               </section>
 
-              <dl class="stats-grid">
-                <article class="stat">
-                  <dt class="stat__value text-success">18</dt>
-                  <dd class="stat__label">Completed</dd>
-                </article>
-                <article class="stat">
-                  <dt class="stat__value text-primary">4</dt>
-                  <dd class="stat__label">In Progress</dd>
-                </article>
-                <article class="stat">
-                  <dt class="stat__value">2</dt>
-                  <dd class="stat__label">Pending</dd>
-                </article>
-                <article class="stat">
-                  <dt class="stat__value text-warning">0</dt>
-                  <dd class="stat__label">Blocked</dd>
-                </article>
-              </dl>
+              <stats-grid data-columns="4">
+                <stat-card data-size="compact" data-trend="up">
+                  <data value="18" class="text-success">18</data>
+                  <span>Completed</span>
+                </stat-card>
+                <stat-card data-size="compact">
+                  <data value="4" class="text-primary">4</data>
+                  <span>In Progress</span>
+                </stat-card>
+                <stat-card data-size="compact">
+                  <data value="2">2</data>
+                  <span>Pending</span>
+                </stat-card>
+                <stat-card data-size="compact">
+                  <data value="0" class="text-warning">0</data>
+                  <span>Blocked</span>
+                </stat-card>
+              </stats-grid>
             </section>
           </article>
 
@@ -182,30 +182,30 @@
               <h2 class="text-lg mb-lg">Details</h2>
 
               <dl>
-                <section class="flex-between list-item--sm">
+                <div class="flex-between list-item--sm">
                   <dt class="text-muted">Status</dt>
                   <dd><status-badge type="success">Active</status-badge></dd>
-                </section>
-                <section class="flex-between list-item--sm">
+                </div>
+                <div class="flex-between list-item--sm">
                   <dt class="text-muted">Team</dt>
                   <dd>Marketing</dd>
-                </section>
-                <section class="flex-between list-item--sm">
+                </div>
+                <div class="flex-between list-item--sm">
                   <dt class="text-muted">Start Date</dt>
                   <dd>Oct 1, 2025</dd>
-                </section>
-                <section class="flex-between list-item--sm">
+                </div>
+                <div class="flex-between list-item--sm">
                   <dt class="text-muted">Due Date</dt>
                   <dd>Dec 31, 2025</dd>
-                </section>
-                <section class="flex-between list-item--sm">
+                </div>
+                <div class="flex-between list-item--sm">
                   <dt class="text-muted">Budget</dt>
                   <dd>$45,000</dd>
-                </section>
-                <section class="flex-between list-item--sm">
+                </div>
+                <div class="flex-between list-item--sm">
                   <dt class="text-muted">Priority</dt>
                   <dd><status-badge type="error">High</status-badge></dd>
-                </section>
+                </div>
               </dl>
             </section>
           </article>

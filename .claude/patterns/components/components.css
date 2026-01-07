@@ -765,6 +765,7 @@
   .form-input,
   .form-select,
   .form-textarea {
+    box-sizing: border-box;
     width: 100%;
     padding: var(--spacing-sm) var(--spacing-md);
     font-family: var(--font-family);

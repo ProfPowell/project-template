@@ -1149,6 +1149,74 @@ layout-grid[data-gap="xl"] { gap: var(--spacing-xl); }
   border-radius: var(--radius-lg);
 }
 
+/* Demo card with centered content */
+.demo-card[data-center] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
+}
+
+/* File upload display pattern */
+.file-upload-display {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.file-upload-display .file-icon {
+  color: var(--text-muted);
+}
+
+.file-upload-display .file-info {
+  flex: 1;
+}
+
+.file-upload-display .file-name {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.file-upload-display .file-size {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.file-upload-display .file-progress {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+/* Step progress pattern */
+.step-header,
+.step-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+}
+
+.step-header {
+  margin-bottom: var(--spacing-sm);
+}
+
+.step-footer {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+/* Loading content pattern */
+.loading-content {
+  text-align: center;
+}
+
+.loading-content p {
+  margin: var(--spacing-md) 0 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
 code {
   font-family: ui-monospace, monospace;
   font-size: 0.875em;
@@ -1441,4 +1509,78 @@ user-avatar[data-color="purple"] {
 
 .color-info {
   color: var(--info);
+}
+
+/* ============================================
+   Meter Display Patterns
+   ============================================ */
+
+/* Meter header with label and value */
+meter-display header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--spacing-xs);
+}
+
+meter-display header .meter-value {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+/* Meter footer for info text */
+meter-display footer {
+  margin-top: var(--spacing-xs);
+}
+
+/* Health dashboard grid */
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+.health-item {
+  text-align: center;
+}
+
+.health-item meter {
+  width: 100%;
+  height: 0.75rem;
+}
+
+.health-item-info {
+  margin-top: var(--spacing-sm);
+}
+
+.health-item-label {
+  font-weight: var(--font-weight-medium);
+}
+
+.health-item-value {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+}
+
+/* Storage usage article */
+.storage-article {
+  max-width: 28rem;
+}
+
+.storage-article h4 {
+  margin: 0 0 var(--spacing-md);
+}
+
+/* Password strength meter */
+.password-strength {
+  max-width: 24rem;
+}
+
+.password-strength meter-display {
+  margin-top: var(--spacing-md);
+}
+
+.password-strength-hint {
+  font-size: var(--font-size-xs);
+  margin-top: var(--spacing-xs);
 }

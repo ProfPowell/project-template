@@ -356,7 +356,7 @@
   "loading-spinner": {
     "flow": true,
     "phrasing": true,
-    "void": true,
+    "permittedContent": [],
     "attributes": {
       "data-size": {
         "required": false,
@@ -365,6 +365,9 @@
           "medium",
           "large"
         ]
+      },
+      "aria-label": {
+        "required": false
       }
     }
   },
@@ -440,9 +443,11 @@
   "meter-display": {
     "flow": true,
     "permittedContent": [
+      "header",
       "label",
       "meter",
       "span",
+      "footer",
       "@phrasing"
     ],
     "attributes": {

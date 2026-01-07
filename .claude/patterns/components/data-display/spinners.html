@@ -35,12 +35,12 @@
       </layout-row>
 
       <h3>Centered Loading</h3>
-      <div class="demo-card" style="min-height: 8rem; display: flex; align-items: center; justify-content: center;">
-        <div style="text-align: center;">
+      <article class="demo-card" data-center="true">
+        <figure class="loading-content">
           <loading-spinner data-size="large" aria-label="Loading content..."></loading-spinner>
-          <p style="margin: 1rem 0 0; color: var(--text-muted); font-size: 0.875rem;">Loading content...</p>
-        </div>
-      </div>
+          <p>Loading content...</p>
+        </figure>
+      </article>
     </section>
 
     <section class="demo-section">
@@ -48,16 +48,16 @@
       <p>Uses <code>&lt;progress-bar&gt;</code> with native <code>&lt;progress&gt;</code> element.</p>
 
       <h3>Basic Progress</h3>
-      <div data-max-width="sm">
+      <section data-max-width="sm">
         <progress-bar>
           <label>Uploading file...</label>
           <progress value="75" max="100">75%</progress>
           <span data-value>75%</span>
         </progress-bar>
-      </div>
+      </section>
 
       <h3>Different Values</h3>
-      <div class="demo-stack" data-max-width="sm">
+      <section class="demo-stack" data-max-width="sm">
         <progress-bar>
           <progress value="25" max="100">25%</progress>
         </progress-bar>
@@ -69,10 +69,10 @@
         <progress-bar>
           <progress value="100" max="100">100%</progress>
         </progress-bar>
-      </div>
+      </section>
 
       <h3>Colors</h3>
-      <div class="demo-stack" data-max-width="sm">
+      <section class="demo-stack" data-max-width="sm">
         <progress-bar>
           <label>Default</label>
           <progress value="60" max="100">60%</progress>
@@ -92,54 +92,54 @@
           <label>Error</label>
           <progress value="30" max="100">30%</progress>
         </progress-bar>
-      </div>
+      </section>
 
       <h3>Indeterminate</h3>
       <p>Without a value, shows indeterminate loading state.</p>
-      <div data-max-width="sm">
+      <section data-max-width="sm">
         <progress-bar>
           <label>Processing...</label>
           <progress>Loading...</progress>
         </progress-bar>
-      </div>
+      </section>
     </section>
 
     <section class="demo-section">
       <h2>In Context</h2>
 
       <h3>File Upload</h3>
-      <div class="demo-card" data-max-width="sm">
-        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);">
+      <article class="demo-card" data-max-width="sm">
+        <header class="file-upload-display">
+          <svg class="file-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/>
           </svg>
-          <div style="flex: 1;">
-            <div style="font-size: 0.875rem; font-weight: 500;">document.pdf</div>
-            <div style="font-size: 0.75rem; color: var(--text-muted);">2.4 MB</div>
-          </div>
-          <span style="font-size: 0.875rem; color: var(--text-muted);">75%</span>
-        </div>
+          <span class="file-info">
+            <span class="file-name">document.pdf</span>
+            <span class="file-size">2.4 MB</span>
+          </span>
+          <span class="file-progress">75%</span>
+        </header>
         <progress-bar>
           <progress value="75" max="100">75%</progress>
         </progress-bar>
-      </div>
+      </article>
 
       <h3>Step Progress</h3>
-      <div class="demo-card" data-max-width="lg">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+      <article class="demo-card" data-max-width="lg">
+        <header class="step-header">
           <span>Step 2 of 4</span>
-          <span style="color: var(--text-muted);">50% complete</span>
-        </div>
+          <span class="text-muted">50% complete</span>
+        </header>
         <progress-bar>
           <progress value="50" max="100">50%</progress>
         </progress-bar>
-        <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-muted);">
+        <footer class="step-footer">
           <span>Account</span>
           <span>Profile</span>
           <span>Settings</span>
           <span>Review</span>
-        </div>
-      </div>
+        </footer>
+      </article>
     </section>
 
     <section class="demo-section">

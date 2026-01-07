@@ -56,20 +56,20 @@
       <h2>In Context</h2>
 
       <h3>Blog Post Tags</h3>
-      <div class="demo-card">
+      <article class="demo-card">
         <h4 class="mb-sm">Building Accessible Web Components</h4>
         <p class="text-sm text-muted mb-md">Learn how to create custom elements that work for everyone.</p>
-        <div class="tag-list">
+        <footer class="tag-list">
           <tag-item data-size="small">Accessibility</tag-item>
           <tag-item data-size="small">Web Components</tag-item>
           <tag-item data-size="small">HTML</tag-item>
-        </div>
-      </div>
+        </footer>
+      </article>
 
       <h3>Filter Selection</h3>
-      <div class="demo-card">
+      <article class="demo-card">
         <p class="text-sm text-muted mb-md">Active filters:</p>
-        <div class="tag-list">
+        <nav class="tag-list" aria-label="Active filters">
           <tag-item>
             <span>Category: Design</span>
             <button type="button" data-remove aria-label="Remove category filter">×</button>
@@ -82,29 +82,30 @@
             <span>Date: Last 7 days</span>
             <button type="button" data-remove aria-label="Remove date filter">×</button>
           </tag-item>
-        </div>
+        </nav>
         <button type="button" data-button="ghost" data-size="small" class="mt-md">Clear all</button>
-      </div>
+      </article>
 
       <h3>Skill Tags</h3>
-      <div class="demo-card">
-        <div class="flex items-center gap-md mb-md">
+      <article class="demo-card">
+        <header class="flex items-center gap-md mb-md">
           <user-avatar>
             <img src="https://i.pravatar.cc/80?img=50" alt="User"/>
           </user-avatar>
-          <div>
-            <div class="font-medium">Jane Doe</div>
-            <div class="text-sm text-muted">Full Stack Developer</div>
-          </div>
-        </div>
-        <div class="tag-list">
+          <span>
+            <strong class="font-medium">Jane Doe</strong>
+            <br/>
+            <span class="text-sm text-muted">Full Stack Developer</span>
+          </span>
+        </header>
+        <footer class="tag-list">
           <tag-item data-size="small">JavaScript</tag-item>
           <tag-item data-size="small">TypeScript</tag-item>
           <tag-item data-size="small">React</tag-item>
           <tag-item data-size="small">Node.js</tag-item>
           <tag-item data-size="small">PostgreSQL</tag-item>
-        </div>
-      </div>
+        </footer>
+      </article>
     </section>
 
     <section class="demo-section">

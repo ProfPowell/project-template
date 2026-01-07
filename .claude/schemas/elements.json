@@ -604,5 +604,20 @@
       "@flow"
     ],
     "attributes": {}
+  },
+  "toggle-track": {
+    "flow": true,
+    "phrasing": true,
+    "permittedContent": [
+      "toggle-thumb"
+    ],
+    "attributes": {}
+  },
+  "toggle-thumb": {
+    "flow": true,
+    "phrasing": true,
+    "void": true,
+    "permittedContent": [],
+    "attributes": {}
   }
 }

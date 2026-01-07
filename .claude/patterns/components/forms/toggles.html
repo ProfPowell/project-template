@@ -9,38 +9,38 @@
 <body>
   <main class="demo-page">
     <h1>Toggle/Switch Component</h1>
-    <p>On/off switches using <code>data-type="toggle"</code> on form-field.</p>
+    <p>On/off switches detected via <code>role="switch"</code> on the checkbox input.</p>
 
     <section class="demo-section">
       <h2>Basic Toggle</h2>
 
       <section data-max-width="sm">
-        <form-field data-type="toggle">
+        <form-field>
           <label>
             <input type="checkbox" name="notifications" role="switch"/>
-            <span data-toggle-track>
-              <span data-toggle-thumb></span>
-            </span>
+            <toggle-track>
+              <toggle-thumb/>
+            </toggle-track>
             <span>Enable notifications</span>
           </label>
         </form-field>
 
-        <form-field data-type="toggle">
+        <form-field>
           <label>
             <input type="checkbox" name="dark_mode" role="switch" checked="checked"/>
-            <span data-toggle-track>
-              <span data-toggle-thumb></span>
-            </span>
+            <toggle-track>
+              <toggle-thumb/>
+            </toggle-track>
             <span>Dark mode</span>
           </label>
         </form-field>
 
-        <form-field data-type="toggle">
+        <form-field>
           <label>
             <input type="checkbox" name="marketing" role="switch"/>
-            <span data-toggle-track>
-              <span data-toggle-thumb></span>
-            </span>
+            <toggle-track>
+              <toggle-thumb/>
+            </toggle-track>
             <span>Marketing emails</span>
           </label>
         </form-field>
@@ -51,22 +51,22 @@
       <h2>Disabled State</h2>
 
       <section data-max-width="sm">
-        <form-field data-type="toggle">
+        <form-field>
           <label>
             <input type="checkbox" name="disabled_off" role="switch" disabled="disabled"/>
-            <span data-toggle-track>
-              <span data-toggle-thumb></span>
-            </span>
+            <toggle-track>
+              <toggle-thumb/>
+            </toggle-track>
             <span>Disabled (off)</span>
           </label>
         </form-field>
 
-        <form-field data-type="toggle">
+        <form-field>
           <label>
             <input type="checkbox" name="disabled_on" role="switch" checked="checked" disabled="disabled"/>
-            <span data-toggle-track>
-              <span data-toggle-thumb></span>
-            </span>
+            <toggle-track>
+              <toggle-thumb/>
+            </toggle-track>
             <span>Disabled (on)</span>
           </label>
         </form-field>
@@ -85,12 +85,12 @@
               <p class="settings-list-title">Email notifications</p>
               <p class="settings-list-description">Receive email updates about your account</p>
             </header>
-            <form-field data-type="toggle">
+            <form-field>
               <label>
                 <input type="checkbox" name="email_notif" role="switch" checked="checked"/>
-                <span data-toggle-track>
-                  <span data-toggle-thumb></span>
-                </span>
+                <toggle-track>
+                  <toggle-thumb/>
+                </toggle-track>
               </label>
             </form-field>
           </article>
@@ -100,12 +100,12 @@
               <p class="settings-list-title">Push notifications</p>
               <p class="settings-list-description">Receive push notifications on your device</p>
             </header>
-            <form-field data-type="toggle">
+            <form-field>
               <label>
                 <input type="checkbox" name="push_notif" role="switch" checked="checked"/>
-                <span data-toggle-track>
-                  <span data-toggle-thumb></span>
-                </span>
+                <toggle-track>
+                  <toggle-thumb/>
+                </toggle-track>
               </label>
             </form-field>
           </article>
@@ -115,12 +115,12 @@
               <p class="settings-list-title">Weekly digest</p>
               <p class="settings-list-description">Get a weekly summary of activity</p>
             </header>
-            <form-field data-type="toggle">
+            <form-field>
               <label>
                 <input type="checkbox" name="weekly_digest" role="switch"/>
-                <span data-toggle-track>
-                  <span data-toggle-thumb></span>
-                </span>
+                <toggle-track>
+                  <toggle-thumb/>
+                </toggle-track>
               </label>
             </form-field>
           </article>
@@ -130,12 +130,12 @@
               <p class="settings-list-title">Marketing emails</p>
               <p class="settings-list-description">Receive news about features and updates</p>
             </header>
-            <form-field data-type="toggle">
+            <form-field>
               <label>
                 <input type="checkbox" name="marketing_emails" role="switch"/>
-                <span data-toggle-track>
-                  <span data-toggle-thumb></span>
-                </span>
+                <toggle-track>
+                  <toggle-thumb/>
+                </toggle-track>
               </label>
             </form-field>
           </article>
@@ -155,23 +155,23 @@
 
     <section class="demo-section">
       <h2>Usage</h2>
-      <pre><code>&lt;form-field data-type="toggle"&gt;
+      <pre><code>&lt;form-field&gt;
   &lt;label&gt;
     &lt;input type="checkbox" name="setting" role="switch"/&gt;
-    &lt;span data-toggle-track&gt;
-      &lt;span data-toggle-thumb&gt;&lt;/span&gt;
-    &lt;/span&gt;
+    &lt;toggle-track&gt;
+      &lt;toggle-thumb/&gt;
+    &lt;/toggle-track&gt;
     &lt;span&gt;Enable feature&lt;/span&gt;
   &lt;/label&gt;
 &lt;/form-field&gt;
 
 &lt;!-- Checked by default --&gt;
-&lt;form-field data-type="toggle"&gt;
+&lt;form-field&gt;
   &lt;label&gt;
     &lt;input type="checkbox" name="active" role="switch" checked="checked"/&gt;
-    &lt;span data-toggle-track&gt;
-      &lt;span data-toggle-thumb&gt;&lt;/span&gt;
-    &lt;/span&gt;
+    &lt;toggle-track&gt;
+      &lt;toggle-thumb/&gt;
+    &lt;/toggle-track&gt;
     &lt;span&gt;Active&lt;/span&gt;
   &lt;/label&gt;
 &lt;/form-field&gt;</code></pre>

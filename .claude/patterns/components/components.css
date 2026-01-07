@@ -680,29 +680,34 @@
 
   /* --------------------------------------------
      Toggle/Switch Component
-     Usage: <form-field data-type="toggle">
+     Uses role="switch" for detection, custom elements for styling
+     Usage: <form-field><input role="switch"/><toggle-track>...
      -------------------------------------------- */
-  [data-type="toggle"] {
+
+  /* Container styling - uses :has() for role detection */
+  form-field:has(input[role="switch"]) {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
   }
 
-  [data-type="toggle"] label {
+  form-field:has(input[role="switch"]) label {
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
     cursor: pointer;
   }
 
-  [data-type="toggle"] input[type="checkbox"] {
+  form-field:has(input[role="switch"]) input[type="checkbox"] {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
   }
 
-  [data-toggle-track] {
+  /* Custom element base styling */
+  toggle-track {
+    display: block;
     position: relative;
     width: 2.75rem;
     height: 1.5rem;
@@ -711,7 +716,8 @@
     transition: background var(--transition-fast);
   }
 
-  [data-toggle-thumb] {
+  toggle-thumb {
+    display: block;
     position: absolute;
     top: 0.25rem;
     left: 0.25rem;
@@ -723,20 +729,21 @@
     box-shadow: var(--shadow-sm);
   }
 
-  [data-type="toggle"] input:checked + [data-toggle-track] {
+  /* State changes - uses efficient adjacent sibling (+) */
+  input[role="switch"]:checked + toggle-track {
     background: var(--primary);
   }
 
-  [data-type="toggle"] input:checked + [data-toggle-track] [data-toggle-thumb] {
+  input[role="switch"]:checked + toggle-track toggle-thumb {
     transform: translateX(1.25rem);
   }
 
-  [data-type="toggle"] input:focus-visible + [data-toggle-track] {
+  input[role="switch"]:focus-visible + toggle-track {
     outline: var(--focus-ring-width) solid var(--focus-ring);
     outline-offset: var(--focus-ring-offset);
   }
 
-  [data-type="toggle"] input:disabled + [data-toggle-track] {
+  input[role="switch"]:disabled + toggle-track {
     opacity: 0.5;
     cursor: not-allowed;
   }

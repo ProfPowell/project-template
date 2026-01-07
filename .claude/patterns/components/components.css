@@ -1215,6 +1215,14 @@ table-wrapper {
   margin-bottom: var(--spacing-md);
 }
 
+.mt-sm {
+  margin-top: var(--spacing-sm);
+}
+
+.mt-md {
+  margin-top: var(--spacing-md);
+}
+
 /* Flexbox utilities */
 .flex {
   display: flex;
@@ -1238,6 +1246,57 @@ table-wrapper {
 
 .gap-xl {
   gap: var(--spacing-xl);
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+/* Demo stack - vertical layout with gap */
+.demo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.demo-stack[data-gap="sm"] { gap: var(--spacing-sm); }
+.demo-stack[data-gap="lg"] { gap: var(--spacing-lg); }
+.demo-stack[data-gap="xl"] { gap: var(--spacing-xl); }
+
+/* Max width constraints */
+[data-max-width="sm"] { max-width: 24rem; }
+[data-max-width="md"] { max-width: 28rem; }
+[data-max-width="lg"] { max-width: 32rem; }
+
+/* Tag list - wrapping horizontal layout */
+.tag-list {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
 }
 
 /* Demo-specific nav */

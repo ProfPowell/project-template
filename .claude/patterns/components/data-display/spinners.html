@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../components.css"/>
 </head>
 <body>
-  <div class="demo-page">
+  <main class="demo-page">
     <h1>Spinner &amp; Progress Components</h1>
     <p>Loading indicators for async operations.</p>
 
@@ -16,14 +16,14 @@
       <p>Uses <code>&lt;loading-spinner&gt;</code> custom element.</p>
 
       <h3>Sizes</h3>
-      <div class="demo-row">
+      <layout-row>
         <loading-spinner data-size="small" aria-label="Loading..."></loading-spinner>
         <loading-spinner aria-label="Loading..."></loading-spinner>
         <loading-spinner data-size="large" aria-label="Loading..."></loading-spinner>
-      </div>
+      </layout-row>
 
       <h3>In Buttons</h3>
-      <div class="demo-row">
+      <layout-row>
         <button type="button" data-button="primary" data-loading>
           <loading-spinner data-size="small"></loading-spinner>
           Saving...
@@ -32,7 +32,7 @@
           <loading-spinner data-size="small"></loading-spinner>
           Loading
         </button>
-      </div>
+      </layout-row>
 
       <h3>Centered Loading</h3>
       <div class="demo-card" style="min-height: 8rem; display: flex; align-items: center; justify-content: center;">
@@ -48,7 +48,7 @@
       <p>Uses <code>&lt;progress-bar&gt;</code> with native <code>&lt;progress&gt;</code> element.</p>
 
       <h3>Basic Progress</h3>
-      <div style="max-width: 24rem;">
+      <div data-max-width="sm">
         <progress-bar>
           <label>Uploading file...</label>
           <progress value="75" max="100">75%</progress>
@@ -57,7 +57,7 @@
       </div>
 
       <h3>Different Values</h3>
-      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1rem;">
+      <div class="demo-stack" data-max-width="sm">
         <progress-bar>
           <progress value="25" max="100">25%</progress>
         </progress-bar>
@@ -72,7 +72,7 @@
       </div>
 
       <h3>Colors</h3>
-      <div style="max-width: 24rem; display: flex; flex-direction: column; gap: 1rem;">
+      <div class="demo-stack" data-max-width="sm">
         <progress-bar>
           <label>Default</label>
           <progress value="60" max="100">60%</progress>
@@ -96,7 +96,7 @@
 
       <h3>Indeterminate</h3>
       <p>Without a value, shows indeterminate loading state.</p>
-      <div style="max-width: 24rem;">
+      <div data-max-width="sm">
         <progress-bar>
           <label>Processing...</label>
           <progress>Loading...</progress>
@@ -108,7 +108,7 @@
       <h2>In Context</h2>
 
       <h3>File Upload</h3>
-      <div class="demo-card" style="max-width: 24rem;">
+      <div class="demo-card" data-max-width="sm">
         <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3-3 3 3"/>
@@ -125,7 +125,7 @@
       </div>
 
       <h3>Step Progress</h3>
-      <div class="demo-card" style="max-width: 32rem;">
+      <div class="demo-card" data-max-width="lg">
         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
           <span>Step 2 of 4</span>
           <span style="color: var(--text-muted);">50% complete</span>
@@ -163,6 +163,6 @@
   &lt;progress value="100" max="100"&gt;100%&lt;/progress&gt;
 &lt;/progress-bar&gt;</code></pre>
     </section>
-  </div>
+  </main>
 </body>
 </html>

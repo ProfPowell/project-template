@@ -1155,6 +1155,11 @@ code {
   border-radius: var(--radius-sm);
 }
 
+/* Table wrapper - block display for custom element */
+table-wrapper {
+  display: block;
+}
+
 /* Demo table styles */
 .demo-table {
   width: 100%;

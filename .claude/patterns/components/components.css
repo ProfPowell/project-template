@@ -1056,7 +1056,7 @@
 /* ============================================
    Demo Page Styles
    ============================================ */
-.demo-page {
+main.demo-page {
   max-width: 64rem;
   margin: 0 auto;
   padding: var(--spacing-xl);

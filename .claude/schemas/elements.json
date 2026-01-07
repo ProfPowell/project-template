@@ -43,6 +43,11 @@
       "meter-display",
       "meter",
       "footer",
+      "span",
+      "progress-bar",
+      "file-input-wrapper",
+      "dropzone-area",
+      "file-list",
       "@phrasing"
     ],
     "attributes": {
@@ -547,5 +552,57 @@
         "required": false
       }
     }
+  },
+  "file-input-wrapper": {
+    "flow": true,
+    "permittedContent": [
+      "input",
+      "button",
+      "span",
+      "@phrasing"
+    ],
+    "attributes": {}
+  },
+  "dropzone-area": {
+    "flow": true,
+    "permittedContent": [
+      "input",
+      "dropzone-content",
+      "@flow"
+    ],
+    "attributes": {
+      "data-style": {
+        "required": false,
+        "enum": ["default", "compact"]
+      }
+    }
+  },
+  "dropzone-content": {
+    "flow": true,
+    "permittedContent": [
+      "svg",
+      "p",
+      "span",
+      "@phrasing"
+    ],
+    "attributes": {}
+  },
+  "file-list": {
+    "flow": true,
+    "permittedContent": [
+      "file-item",
+      "@flow"
+    ],
+    "attributes": {}
+  },
+  "file-item": {
+    "flow": true,
+    "permittedContent": [
+      "header",
+      "footer",
+      "progress-bar",
+      "@flow"
+    ],
+    "attributes": {}
   }
 }

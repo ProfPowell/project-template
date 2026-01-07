@@ -7,14 +7,14 @@
   <link rel="stylesheet" href="../components.css"/>
 </head>
 <body>
-  <div class="demo-page">
+  <main class="demo-page">
     <h1>Input Component</h1>
     <p>Text inputs wrapped in <code>&lt;form-field&gt;</code> for consistent labeling and validation.</p>
 
     <section class="demo-section">
       <h2>Input Types</h2>
 
-      <div class="demo-grid">
+      <layout-grid data-columns="2">
         <form-field>
           <label for="text-input">Text Input</label>
           <input type="text" id="text-input" name="text" placeholder="Enter text..."/>
@@ -54,73 +54,73 @@
           <label for="search-input">Search Input</label>
           <input type="search" id="search-input" name="search" placeholder="Search..."/>
         </form-field>
-      </div>
+      </layout-grid>
     </section>
 
     <section class="demo-section">
       <h2>With Help Text</h2>
       <p>Use <code>&lt;output&gt;</code> for dynamic help/error messages.</p>
 
-      <div style="max-width: 24rem;">
+      <section data-max-width="sm">
         <form-field>
           <label for="username">Username</label>
-          <input type="text" id="username" name="username" placeholder="johndoe" minlength="3" maxlength="20" required aria-describedby="username-help"/>
+          <input type="text" id="username" name="username" placeholder="johndoe" minlength="3" maxlength="20" required="required" aria-describedby="username-help"/>
           <output id="username-help" for="username">3-20 characters, letters and numbers only</output>
         </form-field>
 
         <form-field>
           <label for="new-password">Password</label>
-          <input type="password" id="new-password" name="password" placeholder="Create a password" minlength="8" required aria-describedby="password-help"/>
+          <input type="password" id="new-password" name="new-password" placeholder="Create a password" minlength="8" required="required" aria-describedby="password-help"/>
           <output id="password-help" for="new-password">Must be at least 8 characters</output>
         </form-field>
-      </div>
+      </section>
     </section>
 
     <section class="demo-section">
       <h2>Validation States</h2>
       <p>CSS-only validation using <code>:user-valid</code> and <code>:user-invalid</code>.</p>
 
-      <div style="max-width: 24rem;">
+      <section data-max-width="sm">
         <form-field>
           <label for="valid-email">Email (type and blur to validate)</label>
-          <input type="email" id="valid-email" name="email" placeholder="you@example.com" required/>
+          <input type="email" id="valid-email" name="valid-email" placeholder="you@example.com" required="required"/>
           <output for="valid-email">Enter a valid email address</output>
         </form-field>
 
         <form-field>
           <label for="required-field">Required Field</label>
-          <input type="text" id="required-field" name="required" placeholder="This field is required" required/>
+          <input type="text" id="required-field" name="required-field" placeholder="This field is required" required="required"/>
           <output for="required-field">This field is required</output>
         </form-field>
 
         <form-field>
           <label for="pattern-field">Pattern (letters only)</label>
-          <input type="text" id="pattern-field" name="letters" pattern="[A-Za-z]+" placeholder="Letters only" required/>
+          <input type="text" id="pattern-field" name="letters" pattern="[A-Za-z]+" placeholder="Letters only" required="required"/>
           <output for="pattern-field">Only letters allowed</output>
         </form-field>
-      </div>
+      </section>
     </section>
 
     <section class="demo-section">
       <h2>States</h2>
 
-      <div class="demo-grid">
+      <layout-grid data-columns="2">
         <form-field>
           <label for="disabled-input">Disabled</label>
-          <input type="text" id="disabled-input" name="disabled" value="Cannot edit" disabled/>
+          <input type="text" id="disabled-input" name="disabled" value="Cannot edit" disabled="disabled"/>
         </form-field>
 
         <form-field>
           <label for="readonly-input">Read Only</label>
-          <input type="text" id="readonly-input" name="readonly" value="Read only value" readonly/>
+          <input type="text" id="readonly-input" name="readonly-field" value="Read only value" readonly="readonly"/>
         </form-field>
-      </div>
+      </layout-grid>
     </section>
 
     <section class="demo-section">
       <h2>Textarea</h2>
 
-      <div style="max-width: 32rem;">
+      <section data-max-width="md">
         <form-field>
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="4" placeholder="Enter your message..." aria-describedby="message-help"></textarea>
@@ -129,20 +129,20 @@
 
         <form-field>
           <label for="bio">Bio</label>
-          <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself..." required minlength="10"></textarea>
+          <textarea id="bio" name="bio" rows="3" placeholder="Tell us about yourself..." required="required" minlength="10"></textarea>
           <output for="bio">At least 10 characters</output>
         </form-field>
-      </div>
+      </section>
     </section>
 
     <section class="demo-section">
       <h2>Select</h2>
 
-      <div class="demo-grid">
+      <layout-grid data-columns="2">
         <form-field>
           <label for="country">Country</label>
-          <select id="country" name="country" required>
-            <option value="" disabled selected>Select a country...</option>
+          <select id="country" name="country" required="required">
+            <option value="" disabled="disabled" selected="selected">Select a country...</option>
             <option value="us">United States</option>
             <option value="ca">Canada</option>
             <option value="uk">United Kingdom</option>
@@ -158,7 +158,7 @@
             <option value="admin">Admin</option>
           </select>
         </form-field>
-      </div>
+      </layout-grid>
     </section>
 
     <section class="demo-section">
@@ -166,14 +166,14 @@
       <pre><code>&lt;!-- Basic input --&gt;
 &lt;form-field&gt;
   &lt;label for="name"&gt;Name&lt;/label&gt;
-  &lt;input type="text" id="name" name="name" placeholder="John Doe" /&gt;
+  &lt;input type="text" id="name" name="name" placeholder="John Doe"/&gt;
 &lt;/form-field&gt;
 
 &lt;!-- With validation message --&gt;
 &lt;form-field&gt;
   &lt;label for="email"&gt;Email&lt;/label&gt;
-  &lt;input type="email" id="email" name="email" required
-         aria-describedby="email-msg" /&gt;
+  &lt;input type="email" id="email" name="email" required="required"
+         aria-describedby="email-msg"/&gt;
   &lt;output id="email-msg" for="email"&gt;Enter a valid email&lt;/output&gt;
 &lt;/form-field&gt;
 
@@ -191,6 +191,6 @@
   &lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;
 &lt;/form-field&gt;</code></pre>
     </section>
-  </div>
+  </main>
 </body>
 </html>

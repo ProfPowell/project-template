@@ -15,46 +15,46 @@
       <h2>Status Types</h2>
       <p>Semantic colors for different status meanings.</p>
 
-      <div class="demo-row">
+      <layout-row>
         <status-badge>Default</status-badge>
         <status-badge data-type="success">Success</status-badge>
         <status-badge data-type="warning">Warning</status-badge>
         <status-badge data-type="error">Error</status-badge>
         <status-badge data-type="info">Info</status-badge>
-      </div>
+      </layout-row>
 
       <h3>Alternative Syntax</h3>
       <p>Using <code>data-badge</code> on any element.</p>
-      <div class="demo-row">
+      <layout-row>
         <span data-badge>Default</span>
         <span data-badge="success">Success</span>
         <span data-badge="warning">Warning</span>
         <span data-badge="error">Error</span>
         <span data-badge="info">Info</span>
-      </div>
+      </layout-row>
     </section>
 
     <section class="demo-section">
       <h2>With Status Dot</h2>
       <p>Add <code>data-dot</code> for a visual status indicator.</p>
 
-      <div class="demo-row">
+      <layout-row>
         <status-badge data-dot="true">Pending</status-badge>
         <status-badge data-type="success" data-dot="true">Active</status-badge>
         <status-badge data-type="warning" data-dot="true">Away</status-badge>
         <status-badge data-type="error" data-dot="true">Offline</status-badge>
-      </div>
+      </layout-row>
     </section>
 
     <section class="demo-section">
       <h2>Sizes</h2>
       <p>Three sizes using <code>data-size</code> attribute.</p>
 
-      <div class="demo-row">
+      <layout-row>
         <status-badge data-type="success" data-size="small">Small</status-badge>
         <status-badge data-type="success">Default</status-badge>
         <status-badge data-type="success" data-size="large">Large</status-badge>
-      </div>
+      </layout-row>
     </section>
 
     <section class="demo-section">
@@ -91,22 +91,22 @@
       </table-wrapper>
 
       <h3>Card Labels</h3>
-      <ul class="demo-grid">
-        <li class="demo-card">
+      <layout-grid data-columns="2">
+        <article class="demo-card">
           <header class="demo-card-header">
             <strong>Feature Request</strong>
             <status-badge data-type="info" data-size="small">New</status-badge>
           </header>
           <p class="text-muted text-sm mb-0">Add dark mode support</p>
-        </li>
-        <li class="demo-card">
+        </article>
+        <article class="demo-card">
           <header class="demo-card-header">
             <strong>Bug Fix</strong>
             <status-badge data-type="success" data-size="small">Resolved</status-badge>
           </header>
           <p class="text-muted text-sm mb-0">Login button not working</p>
-        </li>
-      </ul>
+        </article>
+      </layout-grid>
     </section>
 
     <section class="demo-section">

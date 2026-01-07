@@ -19,27 +19,27 @@
 
       <h3>Navigation Link</h3>
       <p>Muted by default, emphasized on hover. Used in navigation contexts.</p>
-      <div class="demo-row">
+      <layout-row>
         <a href="#" data-link="nav">Home</a>
         <a href="#" data-link="nav">Products</a>
         <a href="#" data-link="nav" aria-current="page">About</a>
         <a href="#" data-link="nav">Contact</a>
-      </div>
+      </layout-row>
 
       <h3>Subtle Link</h3>
       <p>Low emphasis links that reveal on hover. Good for secondary actions.</p>
-      <div class="demo-row">
+      <layout-row>
         <a href="#" data-link="subtle">View details</a>
         <a href="#" data-link="subtle">Learn more</a>
         <a href="#" data-link="subtle">See all</a>
-      </div>
+      </layout-row>
 
       <h3>External Link</h3>
       <p>Links that open in a new tab, indicated with an arrow.</p>
-      <div class="demo-row">
+      <layout-row>
         <a href="https://example.com" data-link="external" target="_blank" rel="noopener">External Site</a>
         <a href="https://docs.example.com" data-link="external" target="_blank" rel="noopener">Documentation</a>
-      </div>
+      </layout-row>
     </section>
 
     <section class="demo-section">
@@ -70,31 +70,33 @@
       <article class="demo-card">
         <h4 class="mb-sm">Getting Started Guide</h4>
         <p class="text-muted text-sm mb-md">Learn how to set up your first project in under 5 minutes.</p>
-        <menu class="flex gap-md">
-          <li><a href="#" data-link="data-link">Read the guide</a></li>
-          <li><a href="#" data-link="subtle">Watch video</a></li>
-        </menu>
+        <layout-row>
+          <a href="#" data-link>Read the guide</a>
+          <a href="#" data-link="subtle">Watch video</a>
+        </layout-row>
       </article>
 
       <h3>Footer Links</h3>
       <footer class="demo-card demo-footer-dark">
-        <nav aria-label="Footer navigation" class="flex gap-xl">
-          <section>
-            <h4 class="text-sm mb-sm">Product</h4>
-            <ul class="flex flex-col gap-sm">
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Pricing</a></li>
-              <li><a href="#">Changelog</a></li>
-            </ul>
-          </section>
-          <section>
-            <h4 class="text-sm mb-sm">Resources</h4>
-            <ul class="flex flex-col gap-sm">
-              <li><a href="#">Documentation</a></li>
-              <li><a href="#">API Reference</a></li>
-              <li><a href="#">Support</a></li>
-            </ul>
-          </section>
+        <nav aria-label="Footer navigation">
+          <layout-row data-gap="xl" data-align="start">
+            <section>
+              <h4 class="text-sm mb-sm">Product</h4>
+              <ul class="footer-link-list">
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Changelog</a></li>
+              </ul>
+            </section>
+            <section>
+              <h4 class="text-sm mb-sm">Resources</h4>
+              <ul class="footer-link-list">
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">API Reference</a></li>
+                <li><a href="#">Support</a></li>
+              </ul>
+            </section>
+          </layout-row>
         </nav>
       </footer>
     </section>

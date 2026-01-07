@@ -1,5 +1,37 @@
 {
   "$schema": "./elements.schema.json",
+  "layout-row": {
+    "flow": true,
+    "permittedContent": [
+      "@flow"
+    ],
+    "attributes": {
+      "data-gap": {
+        "required": false,
+        "enum": ["sm", "md", "lg", "xl"]
+      },
+      "data-align": {
+        "required": false,
+        "enum": ["start", "center", "end", "stretch"]
+      }
+    }
+  },
+  "layout-grid": {
+    "flow": true,
+    "permittedContent": [
+      "@flow"
+    ],
+    "attributes": {
+      "data-columns": {
+        "required": false,
+        "enum": ["2", "3", "4", "auto"]
+      },
+      "data-gap": {
+        "required": false,
+        "enum": ["sm", "md", "lg", "xl"]
+      }
+    }
+  },
   "form-field": {
     "flow": true,
     "permittedContent": [

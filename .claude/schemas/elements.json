@@ -40,6 +40,9 @@
       "textarea",
       "select",
       "output",
+      "meter-display",
+      "meter",
+      "footer",
       "@phrasing"
     ],
     "attributes": {

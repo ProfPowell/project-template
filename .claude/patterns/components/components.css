@@ -904,6 +904,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xs);
+    width: 100%;
+    min-width: 0;
   }
 
   meter-display label {
@@ -1147,6 +1149,7 @@ layout-grid[data-gap="xl"] { gap: var(--spacing-xl); }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  overflow: hidden;
 }
 
 /* Demo card with centered content */
@@ -1576,8 +1579,27 @@ meter-display footer {
   max-width: 24rem;
 }
 
-.password-strength meter-display {
-  margin-top: var(--spacing-md);
+/* Create unified visual container for password + meter */
+.password-strength form-field {
+  padding: var(--spacing-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+/* Remove input's own border since form-field provides containment */
+.password-strength form-field input {
+  border-color: transparent;
+  background: var(--surface-alt);
+}
+
+.password-strength form-field input:focus {
+  border-color: var(--border-focus);
+  background: var(--surface);
+}
+
+.password-strength form-field meter-display {
+  margin-top: var(--spacing-sm);
 }
 
 .password-strength-hint {

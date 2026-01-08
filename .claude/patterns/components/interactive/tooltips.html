@@ -15,7 +15,7 @@
       <h2>Basic Tooltips</h2>
       <p>Hover or focus on buttons to see tooltips.</p>
 
-      <div class="demo-row" style="gap: 2rem;">
+      <div class="demo-row gap-xl">
         <tooltip-wrapper>
           <button type="button" data-button="secondary" popovertarget="tip1" popovertargetaction="toggle" aria-describedby="tip1">
             Hover me
@@ -40,50 +40,42 @@
       <h2>Positions</h2>
       <p>Tooltips can appear in different positions relative to their trigger.</p>
 
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 24rem; margin: 2rem auto;">
-        <div style="text-align: center;">
-          <tooltip-wrapper>
-            <button type="button" data-button="ghost" popovertarget="tip-top" aria-describedby="tip-top">
-              Top
-            </button>
-            <div id="tip-top" popover="hint" data-tooltip data-position="top">
-              Tooltip on top
-            </div>
-          </tooltip-wrapper>
-        </div>
+      <div class="demo-grid-2x2 text-center" data-max-width="sm">
+        <tooltip-wrapper>
+          <button type="button" data-button="ghost" popovertarget="tip-top" aria-describedby="tip-top">
+            Top
+          </button>
+          <div id="tip-top" popover="hint" data-tooltip data-position="top">
+            Tooltip on top
+          </div>
+        </tooltip-wrapper>
 
-        <div style="text-align: center;">
-          <tooltip-wrapper>
-            <button type="button" data-button="ghost" popovertarget="tip-bottom" aria-describedby="tip-bottom">
-              Bottom
-            </button>
-            <div id="tip-bottom" popover="hint" data-tooltip data-position="bottom">
-              Tooltip on bottom
-            </div>
-          </tooltip-wrapper>
-        </div>
+        <tooltip-wrapper>
+          <button type="button" data-button="ghost" popovertarget="tip-bottom" aria-describedby="tip-bottom">
+            Bottom
+          </button>
+          <div id="tip-bottom" popover="hint" data-tooltip data-position="bottom">
+            Tooltip on bottom
+          </div>
+        </tooltip-wrapper>
 
-        <div style="text-align: center;">
-          <tooltip-wrapper>
-            <button type="button" data-button="ghost" popovertarget="tip-left" aria-describedby="tip-left">
-              Left
-            </button>
-            <div id="tip-left" popover="hint" data-tooltip data-position="left">
-              Left
-            </div>
-          </tooltip-wrapper>
-        </div>
+        <tooltip-wrapper>
+          <button type="button" data-button="ghost" popovertarget="tip-left" aria-describedby="tip-left">
+            Left
+          </button>
+          <div id="tip-left" popover="hint" data-tooltip data-position="left">
+            Left
+          </div>
+        </tooltip-wrapper>
 
-        <div style="text-align: center;">
-          <tooltip-wrapper>
-            <button type="button" data-button="ghost" popovertarget="tip-right" aria-describedby="tip-right">
-              Right
-            </button>
-            <div id="tip-right" popover="hint" data-tooltip data-position="right">
-              Right
-            </div>
-          </tooltip-wrapper>
-        </div>
+        <tooltip-wrapper>
+          <button type="button" data-button="ghost" popovertarget="tip-right" aria-describedby="tip-right">
+            Right
+          </button>
+          <div id="tip-right" popover="hint" data-tooltip data-position="right">
+            Right
+          </div>
+        </tooltip-wrapper>
       </div>
     </section>
 
@@ -91,39 +83,31 @@
       <h2>Icon Button Tooltips</h2>
       <p>Particularly useful for icon-only buttons to provide context.</p>
 
-      <div class="demo-row" style="gap: 1rem;">
+      <div class="demo-row gap-md">
         <tooltip-wrapper>
           <button type="button" data-button="ghost" popovertarget="tip-edit" aria-label="Edit" aria-describedby="tip-edit">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-            </svg>
+            <x-icon name="pencil" size="sm"></x-icon>
           </button>
           <div id="tip-edit" popover="hint" data-tooltip>Edit</div>
         </tooltip-wrapper>
 
         <tooltip-wrapper>
           <button type="button" data-button="ghost" popovertarget="tip-delete" aria-label="Delete" aria-describedby="tip-delete">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-            </svg>
+            <x-icon name="trash-2" size="sm"></x-icon>
           </button>
           <div id="tip-delete" popover="hint" data-tooltip>Delete</div>
         </tooltip-wrapper>
 
         <tooltip-wrapper>
           <button type="button" data-button="ghost" popovertarget="tip-share" aria-label="Share" aria-describedby="tip-share">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-            </svg>
+            <x-icon name="share-2" size="sm"></x-icon>
           </button>
           <div id="tip-share" popover="hint" data-tooltip>Share</div>
         </tooltip-wrapper>
 
         <tooltip-wrapper>
           <button type="button" data-button="ghost" popovertarget="tip-download" aria-label="Download" aria-describedby="tip-download">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
+            <x-icon name="download" size="sm"></x-icon>
           </button>
           <div id="tip-download" popover="hint" data-tooltip>Download</div>
         </tooltip-wrapper>
@@ -134,82 +118,76 @@
       <h2>In Context</h2>
 
       <h3>Toolbar</h3>
-      <div class="demo-card" style="max-width: 32rem;">
-        <div style="display: flex; gap: 0.25rem; padding: 0.5rem; background: var(--surface-alt); border-radius: 0.25rem;">
+      <article class="demo-card" data-max-width="md">
+        <div class="demo-toolbar">
           <tooltip-wrapper>
             <button type="button" data-button="ghost" data-size="small" popovertarget="tb-bold" aria-label="Bold" aria-describedby="tb-bold">
-              <strong>B</strong>
+              <x-icon name="bold" size="sm"></x-icon>
             </button>
             <div id="tb-bold" popover="hint" data-tooltip>Bold (Ctrl+B)</div>
           </tooltip-wrapper>
 
           <tooltip-wrapper>
             <button type="button" data-button="ghost" data-size="small" popovertarget="tb-italic" aria-label="Italic" aria-describedby="tb-italic">
-              <em>I</em>
+              <x-icon name="italic" size="sm"></x-icon>
             </button>
             <div id="tb-italic" popover="hint" data-tooltip>Italic (Ctrl+I)</div>
           </tooltip-wrapper>
 
           <tooltip-wrapper>
             <button type="button" data-button="ghost" data-size="small" popovertarget="tb-underline" aria-label="Underline" aria-describedby="tb-underline">
-              <u>U</u>
+              <x-icon name="underline" size="sm"></x-icon>
             </button>
             <div id="tb-underline" popover="hint" data-tooltip>Underline (Ctrl+U)</div>
           </tooltip-wrapper>
 
-          <span style="width: 1px; background: var(--border); margin: 0.25rem 0.5rem;"></span>
+          <span class="demo-toolbar-separator"></span>
 
           <tooltip-wrapper>
             <button type="button" data-button="ghost" data-size="small" popovertarget="tb-link" aria-label="Insert link" aria-describedby="tb-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-              </svg>
+              <x-icon name="link" size="sm"></x-icon>
             </button>
             <div id="tb-link" popover="hint" data-tooltip>Insert Link (Ctrl+K)</div>
           </tooltip-wrapper>
 
           <tooltip-wrapper>
             <button type="button" data-button="ghost" data-size="small" popovertarget="tb-image" aria-label="Insert image" aria-describedby="tb-image">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
-              </svg>
+              <x-icon name="image" size="sm"></x-icon>
             </button>
             <div id="tb-image" popover="hint" data-tooltip>Insert Image</div>
           </tooltip-wrapper>
         </div>
-      </div>
+      </article>
 
       <h3>Form Field Help</h3>
-      <div class="demo-card" style="max-width: 24rem;">
+      <article class="demo-card" data-max-width="sm">
         <form-field>
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <div class="flex items-center gap-sm">
             <label for="api-key">API Key</label>
             <tooltip-wrapper>
-              <button type="button" data-button="ghost" data-size="small" popovertarget="help-api" aria-label="Help" aria-describedby="help-api" style="padding: 0.25rem;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
-                </svg>
+              <button type="button" data-button="ghost" data-size="small" popovertarget="help-api" aria-label="Help" aria-describedby="help-api" class="px-sm">
+                <x-icon name="help-circle" size="xs"></x-icon>
               </button>
-              <div id="help-api" popover="hint" data-tooltip style="max-width: 16rem;">
+              <div id="help-api" popover="hint" data-tooltip data-max-width="xs">
                 Your API key can be found in Settings &gt; Developer &gt; API Keys. Keep it secret!
               </div>
             </tooltip-wrapper>
           </div>
           <input type="text" id="api-key" placeholder="sk-..."/>
         </form-field>
-      </div>
+      </article>
 
       <h3>Truncated Text</h3>
-      <div class="demo-card" style="max-width: 16rem;">
+      <article class="demo-card" data-max-width="xs">
         <tooltip-wrapper>
-          <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: default;" popovertarget="tip-truncated" aria-describedby="tip-truncated">
+          <div class="demo-truncate" popovertarget="tip-truncated" aria-describedby="tip-truncated">
             This is a very long piece of text that will be truncated
           </div>
-          <div id="tip-truncated" popover="hint" data-tooltip style="max-width: 20rem;">
+          <div id="tip-truncated" popover="hint" data-tooltip data-max-width="sm">
             This is a very long piece of text that will be truncated
           </div>
         </tooltip-wrapper>
-      </div>
+      </article>
     </section>
 
     <section class="demo-section">
@@ -243,7 +221,7 @@
 &lt;!-- Icon button with tooltip --&gt;
 &lt;tooltip-wrapper&gt;
   &lt;button aria-label="Edit" popovertarget="edit-tip" aria-describedby="edit-tip"&gt;
-    &lt;x-icon name="edit"&gt;&lt;/x-icon&gt;
+    &lt;x-icon name="pencil"&gt;&lt;/x-icon&gt;
   &lt;/button&gt;
   &lt;div id="edit-tip" popover="hint" data-tooltip&gt;Edit&lt;/div&gt;
 &lt;/tooltip-wrapper&gt;</code></pre>

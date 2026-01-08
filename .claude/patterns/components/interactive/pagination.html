@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../components.css"/>
 </head>
 <body>
-  <div class="demo-page">
+  <main class="demo-page">
     <h1>Pagination Component</h1>
     <p>Page navigation for lists and tables. Uses <code>&lt;nav-pagination&gt;</code> custom element.</p>
 
@@ -61,7 +61,7 @@
         </nav>
       </nav-pagination>
 
-      <p style="margin-top: 1.5rem;">Last page - Next is disabled.</p>
+      <p class="mt-lg">Last page - Next is disabled.</p>
 
       <nav-pagination aria-label="Page navigation">
         <nav>
@@ -80,9 +80,9 @@
       <h2>In Context</h2>
 
       <h3>Table Pagination</h3>
-      <div class="demo-card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <p style="margin: 0; color: var(--text-muted); font-size: 0.875rem;">
+      <article class="demo-card">
+        <div class="demo-pagination-context">
+          <p class="demo-pagination-info">
             Showing <strong>21</strong> to <strong>30</strong> of <strong>97</strong> results
           </p>
           <nav-pagination aria-label="Table pages">
@@ -97,26 +97,26 @@
             </nav>
           </nav-pagination>
         </div>
-      </div>
+      </article>
 
       <h3>Blog List</h3>
-      <div class="demo-card">
-        <div style="margin-bottom: 1rem;">
-          <article style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
-            <h4 style="margin: 0 0 0.25rem;">Blog Post Title</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-muted);">Brief excerpt of the blog post content...</p>
+      <article class="demo-card">
+        <div class="demo-blog-list mb-md">
+          <article>
+            <h4>Blog Post Title</h4>
+            <p>Brief excerpt of the blog post content...</p>
           </article>
-          <article style="padding: 1rem 0; border-bottom: 1px solid var(--border);">
-            <h4 style="margin: 0 0 0.25rem;">Another Blog Post</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-muted);">Brief excerpt of the blog post content...</p>
+          <article>
+            <h4>Another Blog Post</h4>
+            <p>Brief excerpt of the blog post content...</p>
           </article>
-          <article style="padding: 1rem 0;">
-            <h4 style="margin: 0 0 0.25rem;">Third Blog Post</h4>
-            <p style="margin: 0; font-size: 0.875rem; color: var(--text-muted);">Brief excerpt of the blog post content...</p>
+          <article>
+            <h4>Third Blog Post</h4>
+            <p>Brief excerpt of the blog post content...</p>
           </article>
         </div>
 
-        <div style="display: flex; justify-content: center;">
+        <div class="flex justify-center">
           <nav-pagination aria-label="Blog pages">
             <nav>
               <a href="?page=1" data-page="prev">← Newer</a>
@@ -124,7 +124,7 @@
             </nav>
           </nav-pagination>
         </div>
-      </div>
+      </article>
     </section>
 
     <section class="demo-section">
@@ -154,6 +154,6 @@
 &lt;!-- Disabled button for first/last page --&gt;
 &lt;button type="button" disabled&gt;Previous&lt;/button&gt;</code></pre>
     </section>
-  </div>
+  </main>
 </body>
 </html>

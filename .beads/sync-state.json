@@ -1,0 +1,7 @@
+{
+  "last_failure": "2026-01-07T20:42:47.66638-08:00",
+  "failure_count": 1,
+  "backoff_until": "2026-01-07T20:43:17.66638-08:00",
+  "needs_manual_sync": false,
+  "failure_reason": "git pull failed in worktree: exit status 128\nFrom https://github.com/ProfPowell/project-template\n * branch            main       -\u003e FETCH_HEAD\nwarning: fetch updated the current branch head.\nfast-forwarding your working tree from\ncommit 878dc2f931e6afea6928179a0dc688209645af0d.\nerror: Your local changes to the following files would be overwritten by merge:\n\t.beads/issues.jsonl\n\t.beads/last-touched\nPlease commit your changes or stash them before you merge.\nAborting\nfatal: Cannot fast-forward your working tree.\nAfter making sure that you saved anything precious from\n$ git diff 878dc2f931e6afea6928179a0dc688209645af0d\noutput, run\n$ git reset --hard\nto recover.\n"
+}

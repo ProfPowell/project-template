@@ -7,37 +7,36 @@
   <link rel="stylesheet" href="../components.css"/>
 </head>
 <body>
-  <div class="demo-page">
+  <main class="demo-page">
     <h1>Tabs Component</h1>
-    <p>Tabbed interface for organizing content. Uses <code>&lt;tab-group&gt;</code> custom element.</p>
+    <p>Tabbed interface using native <code>&lt;details name=""&gt;</code> for exclusive accordion behavior. No JavaScript required.</p>
 
     <section class="demo-section">
-      <h2>Default Style (Underline)</h2>
+      <h2>Default Style (Accordion)</h2>
+      <p>Vertical accordion with only one panel open at a time.</p>
 
       <tab-group>
-        <div data-tablist role="tablist" aria-label="Account settings">
-          <button role="tab" id="tab-profile" aria-selected="true" aria-controls="panel-profile">Profile</button>
-          <button role="tab" id="tab-security" aria-selected="false" aria-controls="panel-security" tabindex="-1">Security</button>
-          <button role="tab" id="tab-notifications" aria-selected="false" aria-controls="panel-notifications" tabindex="-1">Notifications</button>
-        </div>
-        <div role="tabpanel" id="panel-profile" aria-labelledby="tab-profile">
-          <div class="demo-card">
-            <h3 style="margin: 0 0 0.5rem;">Profile Settings</h3>
-            <p style="margin: 0; color: var(--text-muted);">Manage your profile information and preferences.</p>
-          </div>
-        </div>
-        <div role="tabpanel" id="panel-security" aria-labelledby="tab-security" hidden>
-          <div class="demo-card">
-            <h3 style="margin: 0 0 0.5rem;">Security Settings</h3>
-            <p style="margin: 0; color: var(--text-muted);">Update your password and security preferences.</p>
-          </div>
-        </div>
-        <div role="tabpanel" id="panel-notifications" aria-labelledby="tab-notifications" hidden>
-          <div class="demo-card">
-            <h3 style="margin: 0 0 0.5rem;">Notification Settings</h3>
-            <p style="margin: 0; color: var(--text-muted);">Configure how you receive notifications.</p>
-          </div>
-        </div>
+        <details name="account-tabs" open>
+          <summary>Profile</summary>
+          <article class="demo-card">
+            <h3 class="mb-sm">Profile Settings</h3>
+            <p class="text-muted mb-0">Manage your profile information and preferences.</p>
+          </article>
+        </details>
+        <details name="account-tabs">
+          <summary>Security</summary>
+          <article class="demo-card">
+            <h3 class="mb-sm">Security Settings</h3>
+            <p class="text-muted mb-0">Update your password and security preferences.</p>
+          </article>
+        </details>
+        <details name="account-tabs">
+          <summary>Notifications</summary>
+          <article class="demo-card">
+            <h3 class="mb-sm">Notification Settings</h3>
+            <p class="text-muted mb-0">Configure how you receive notifications.</p>
+          </article>
+        </details>
       </tab-group>
     </section>
 
@@ -45,149 +44,115 @@
       <h2>Pills Style</h2>
 
       <tab-group data-style="pills">
-        <div data-tablist role="tablist" aria-label="View options">
-          <button role="tab" id="tab-all" aria-selected="true" aria-controls="panel-all">All</button>
-          <button role="tab" id="tab-active" aria-selected="false" aria-controls="panel-active" tabindex="-1">Active</button>
-          <button role="tab" id="tab-completed" aria-selected="false" aria-controls="panel-completed" tabindex="-1">Completed</button>
-        </div>
-        <div role="tabpanel" id="panel-all" aria-labelledby="tab-all">
-          <div class="demo-card">
-            <p style="margin: 0;">Showing all items</p>
-          </div>
-        </div>
-        <div role="tabpanel" id="panel-active" aria-labelledby="tab-active" hidden>
-          <div class="demo-card">
-            <p style="margin: 0;">Showing active items only</p>
-          </div>
-        </div>
-        <div role="tabpanel" id="panel-completed" aria-labelledby="tab-completed" hidden>
-          <div class="demo-card">
-            <p style="margin: 0;">Showing completed items only</p>
-          </div>
-        </div>
+        <details name="view-tabs" open>
+          <summary>All</summary>
+          <article class="demo-card">
+            <p class="mb-0">Showing all items</p>
+          </article>
+        </details>
+        <details name="view-tabs">
+          <summary>Active</summary>
+          <article class="demo-card">
+            <p class="mb-0">Showing active items only</p>
+          </article>
+        </details>
+        <details name="view-tabs">
+          <summary>Completed</summary>
+          <article class="demo-card">
+            <p class="mb-0">Showing completed items only</p>
+          </article>
+        </details>
       </tab-group>
     </section>
 
     <section class="demo-section">
       <h2>In Context: Product Details</h2>
 
-      <div class="demo-card">
-        <h3 style="margin: 0 0 1rem;">Product Name</h3>
+      <article class="demo-card">
+        <h3 class="mb-md">Product Name</h3>
 
         <tab-group>
-          <div data-tablist role="tablist" aria-label="Product information">
-            <button role="tab" id="tab-description" aria-selected="true" aria-controls="panel-description">Description</button>
-            <button role="tab" id="tab-specs" aria-selected="false" aria-controls="panel-specs" tabindex="-1">Specifications</button>
-            <button role="tab" id="tab-reviews" aria-selected="false" aria-controls="panel-reviews" tabindex="-1">Reviews (24)</button>
-          </div>
-          <div role="tabpanel" id="panel-description" aria-labelledby="tab-description">
-            <p style="color: var(--text-muted); line-height: 1.6;">
+          <details name="product-tabs" open>
+            <summary>Description</summary>
+            <p class="text-muted lh-relaxed">
               This is a detailed product description that explains the features and benefits of the product.
               It provides customers with all the information they need to make an informed purchase decision.
             </p>
-          </div>
-          <div role="tabpanel" id="panel-specs" aria-labelledby="tab-specs" hidden>
-            <dl style="margin: 0;">
-              <div style="display: flex; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
-                <dt style="width: 8rem; color: var(--text-muted);">Dimensions</dt>
-                <dd style="margin: 0;">10 × 5 × 3 inches</dd>
+          </details>
+          <details name="product-tabs">
+            <summary>Specifications</summary>
+            <dl class="demo-specs">
+              <div>
+                <dt>Dimensions</dt>
+                <dd>10 x 5 x 3 inches</dd>
               </div>
-              <div style="display: flex; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
-                <dt style="width: 8rem; color: var(--text-muted);">Weight</dt>
-                <dd style="margin: 0;">1.5 lbs</dd>
+              <div>
+                <dt>Weight</dt>
+                <dd>1.5 lbs</dd>
               </div>
-              <div style="display: flex; padding: 0.5rem 0;">
-                <dt style="width: 8rem; color: var(--text-muted);">Material</dt>
-                <dd style="margin: 0;">Aluminum</dd>
+              <div>
+                <dt>Material</dt>
+                <dd>Aluminum</dd>
               </div>
             </dl>
-          </div>
-          <div role="tabpanel" id="panel-reviews" aria-labelledby="tab-reviews" hidden>
-            <div style="display: flex; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--border);">
+          </details>
+          <details name="product-tabs">
+            <summary>Reviews (24)</summary>
+            <article class="demo-review">
               <user-avatar data-size="sm">JD</user-avatar>
-              <div>
-                <div style="font-weight: 500;">Jane Doe</div>
-                <p style="margin: 0.25rem 0 0; font-size: 0.875rem;">Great product! Exactly what I was looking for.</p>
+              <div class="demo-review-content">
+                <span class="demo-review-author">Jane Doe</span>
+                <p>Great product! Exactly what I was looking for.</p>
               </div>
-            </div>
-          </div>
+            </article>
+          </details>
         </tab-group>
-      </div>
+      </article>
     </section>
 
     <section class="demo-section">
       <h2>Accessibility</h2>
       <ul>
-        <li>Uses proper ARIA roles: <code>tablist</code>, <code>tab</code>, <code>tabpanel</code></li>
-        <li><code>aria-selected</code> indicates the active tab</li>
-        <li><code>aria-controls</code> links tabs to their panels</li>
-        <li>Inactive tabs have <code>tabindex="-1"</code></li>
-        <li>Keyboard navigation: Arrow keys between tabs, Enter to activate</li>
+        <li>Uses native <code>&lt;details&gt;</code> element for built-in accessibility</li>
+        <li>The <code>name</code> attribute creates exclusive accordion behavior</li>
+        <li>Only one panel can be open at a time (like tabs)</li>
+        <li>Keyboard accessible: Enter/Space to toggle, arrow keys between items</li>
+        <li>No JavaScript required for core functionality</li>
       </ul>
     </section>
 
     <section class="demo-section">
       <h2>Usage</h2>
-      <pre><code>&lt;tab-group&gt;
-  &lt;div data-tablist role="tablist" aria-label="Settings"&gt;
-    &lt;button role="tab"
-            id="tab-1"
-            aria-selected="true"
-            aria-controls="panel-1"&gt;
-      Tab 1
-    &lt;/button&gt;
-    &lt;button role="tab"
-            id="tab-2"
-            aria-selected="false"
-            aria-controls="panel-2"
-            tabindex="-1"&gt;
-      Tab 2
-    &lt;/button&gt;
-  &lt;/div&gt;
-
-  &lt;div role="tabpanel" id="panel-1" aria-labelledby="tab-1"&gt;
-    Content for tab 1
-  &lt;/div&gt;
-
-  &lt;div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden&gt;
-    Content for tab 2
-  &lt;/div&gt;
+      <pre><code>&lt;!-- Basic accordion (default) --&gt;
+&lt;tab-group&gt;
+  &lt;details name="unique-name" open&gt;
+    &lt;summary&gt;Tab 1&lt;/summary&gt;
+    &lt;p&gt;Content for tab 1&lt;/p&gt;
+  &lt;/details&gt;
+  &lt;details name="unique-name"&gt;
+    &lt;summary&gt;Tab 2&lt;/summary&gt;
+    &lt;p&gt;Content for tab 2&lt;/p&gt;
+  &lt;/details&gt;
 &lt;/tab-group&gt;
 
 &lt;!-- Pills style --&gt;
 &lt;tab-group data-style="pills"&gt;
   ...
-&lt;/tab-group&gt;</code></pre>
+&lt;/tab-group&gt;
+
+&lt;!-- Key: The name attribute must be unique per tab group
+     but shared among all details in that group --&gt;</code></pre>
     </section>
-  </div>
 
-  <script>
-    // Simple tab switching for demo (production would use Web Component)
-    document.querySelectorAll('[role="tab"]').forEach(tab => {
-      tab.addEventListener('click', () => {
-        const tablist = tab.closest('[role="tablist"]');
-        const tabgroup = tab.closest('tab-group');
-
-        // Deselect all tabs
-        tablist.querySelectorAll('[role="tab"]').forEach(t => {
-          t.setAttribute('aria-selected', 'false');
-          t.setAttribute('tabindex', '-1');
-        });
-
-        // Hide all panels
-        tabgroup.querySelectorAll('[role="tabpanel"]').forEach(p => {
-          p.hidden = true;
-        });
-
-        // Select clicked tab
-        tab.setAttribute('aria-selected', 'true');
-        tab.removeAttribute('tabindex');
-
-        // Show corresponding panel
-        const panelId = tab.getAttribute('aria-controls');
-        document.getElementById(panelId).hidden = false;
-      });
-    });
-  </script>
+    <section class="demo-section">
+      <h2>How It Works</h2>
+      <p>The <code>name</code> attribute on <code>&lt;details&gt;</code> elements creates an "exclusive accordion" where only one can be open at a time - exactly like tabs but with native HTML.</p>
+      <ul>
+        <li><strong>No JavaScript</strong> - Browser handles open/close state</li>
+        <li><strong>Vertical or horizontal</strong> - CSS controls layout via <code>data-style</code></li>
+        <li><strong>Progressive enhancement</strong> - Works in all browsers that support details</li>
+      </ul>
+    </section>
+  </main>
 </body>
 </html>
